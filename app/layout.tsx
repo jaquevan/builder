@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import NavBar from "@/app/components/NavBar";
+import Footer from "@/app/components/Footer";
 
 
 
@@ -15,10 +17,12 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+    <NavBar />
       <body>
         {children}
-      <h3>Builder Co</h3>
       </body>
+
+    <Footer/>
     </html>
   );
 }
