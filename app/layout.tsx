@@ -17,12 +17,12 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-    <NavBar />
+
       <body>
         {children}
       </body>
 
-    <Footer/>
+    <Footer/><NavBar />
     </html>
   );
 }

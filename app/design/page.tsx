@@ -1,6 +1,10 @@
+import {Typography, Container} from "@mui/material";
+
 
 export default function Design() {
     return (
-        <h1>Design</h1>
+        <Container>
+            <Typography>This is Design Page</Typography>
+        </Container>
     );
 }

@@ -10,6 +10,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 export default function TemporaryDrawer() {
     const [open, setOpen] = React.useState(false);
@@ -54,8 +55,6 @@ export default function TemporaryDrawer() {
                 display: 'inline-flex',
                 padding: 0,
                 margin: 0,
-                position: 'absolute',
-                left: 40,
             }}
             >
                 <Button variant="contained" onClick={toggleDrawer(true)} sx={{bgcolor: 'orange'}}>Quick Nav</Button>
