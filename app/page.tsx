@@ -1,7 +1,9 @@
 "use client"
 
 import styled from "styled-components"
-import { Container } from '@mui/material';
+import {Container, Typography} from '@mui/material';
+import BasicBreadcrumbs from "@/app/components/BreadCrumbs";
+import Drawer from "@/app/components/SideNavShelf"
 
 const StyledText = styled.h1`
     text-align: center;
@@ -17,15 +19,16 @@ const StyledDiv = styled.div`
 `;
 
 export default function Home() {
-  return (
-      <Container>
-        <StyledText>
-          Builder Co.
-        </StyledText>
-          <StyledDiv>
+    return (
+        <Container>
+            <StyledText>
+                <Drawer/>
+                <Typography variant="h4">Builder Co.</Typography>
+            </StyledText>
+            <StyledDiv>
 
-          </StyledDiv>
-      </Container>
+            </StyledDiv>
+        </Container>
 
-  );
+    );
 }
