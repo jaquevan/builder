@@ -32,8 +32,8 @@ export default function NavBar() {
                     <ul>
                         <StyledLink href="/">Home</StyledLink>
                         <StyledLink href="/design">Design</StyledLink>
+                        <StyledLink href="/projects">Projects</StyledLink>
                         <StyledLink href="/design">Resume</StyledLink>
-                        <StyledLink href="/design">Projects</StyledLink>
                     </ul>
                 </nav>
             </StyledDiv>
