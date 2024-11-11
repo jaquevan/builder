@@ -1,84 +1,67 @@
 "use client"
 
-import styled from "styled-components"
-import {Container, Typography} from '@mui/material';
-import Drawer from "@/app/components/SideNavShelf"
+import styled from "styled-components";
+import { Container, Typography } from '@mui/material';
+import Drawer from "@/app/components/SideNavShelf";
+import CustomInput from "@/app/components/CustomInput";
+import Header from "@/app/components/Header";
+import NavBar from "@/app/components/NavBar";
+import Footer from "@/app/components/Footer";
 
-// header text styling
-const StyledText = styled.h1`
-    text-align: center;
-    background-color: #fff600;
-    font-family: Arial, Helvetica, sans-serif;
-    padding: 2% 0;
-    border: 1px solid #fff600;
-    border-radius: 15px;
-    
-`;
 
-const StyledSubText = styled(Typography)`
-    //centers the text in the div below the header
-    text-align: center;
-    padding: 0;
-    margin: 0 auto;
-    
+const ContentContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 2rem 0;
 `;
 
 const StyledDiv = styled.div`
-    
     border: 1px solid black;
     border-radius: 10px;
-    padding: 5%;
+    padding: 2rem;
     display: flex;
-    flex-direction: row;
-    margin: 0 auto;
+    flex-direction: column;
+    align-items: center;
     width: 70%;
-    
-    
+    margin: 1rem 0;
 `;
 
 const QuickNavDiv = styled.div`
-
-    width: 30%;
-    margin: 0 auto;
+    width: 100%;
     display: flex;
     justify-content: center;
-    padding: 2%;
+    padding: 1rem 0;
 `;
 
-const StyledContainer = styled(Container)`
+const MainContainer = styled(Container)`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
+    background: gray;
 `;
 
 export default function Home() {
     return (
-        <Container>
+        <>
 
-            {/*Big Header Text For Animations and Logo*/}
-            <StyledText>
-                <Typography variant="h4">Builder</Typography>
-            </StyledText>
+            <Header />
 
+                <Container>
+                <QuickNavDiv>
+                    <Drawer />
+                </QuickNavDiv>
+                <ContentContainer>
+                    <StyledDiv>
+                        <CustomInput />
+                    </StyledDiv>
 
+                </ContentContainer>
+                </Container>
+            <NavBar />
+            <Footer/>
 
-            <StyledContainer>
-
-            <QuickNavDiv>
-                {/*Quick Nav Button that opens a bookshelf*/}
-                <Drawer/>
-            </QuickNavDiv>
-
-
-            <StyledDiv>
-                <StyledSubText variant="caption">Text for Main Content or Alternating cards</StyledSubText>
-            </StyledDiv>
-
-            </StyledContainer>
-
-
-
-
-        </Container>
-
+        </>
     );
 }
