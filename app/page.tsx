@@ -47,19 +47,18 @@ export default function Home() {
         <>
 
             <Header />
-
-                <Container>
-                <QuickNavDiv>
-                    <Drawer />
-                </QuickNavDiv>
+            <NavBar />
+                <MainContainer>
+                    <QuickNavDiv>
+                        <Drawer />
+                    </QuickNavDiv>
                 <ContentContainer>
                     <StyledDiv>
                         <CustomInput />
                     </StyledDiv>
-
                 </ContentContainer>
-                </Container>
-            <NavBar />
+                </MainContainer>
+
             <Footer/>
 
         </>

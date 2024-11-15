@@ -2,6 +2,8 @@ import { Typography } from "@mui/material";
 import styled, { keyframes } from "styled-components";
 import Image from "next/image";
 import logoSrc from "@/app/public/images/dirt.png";
+import Mascot from "@/app/public/images/TempMascot.png";
+import cityBackground from "@/app/public/images/city.png";
 
 // Define a keyframes animation for a subtle effect
 const subtlePulse = keyframes`
@@ -20,27 +22,24 @@ const subtlePulse = keyframes`
 `;
 
 const StyledText = styled(Typography)`
-    background-color: #fff600;
-    font-family: Arial, Helvetica, sans-serif; /* Change font, add a custom one later */
+    background-color: rgba(255, 246, 0, 0.8); /* Add transparency */
+    font-family: "Monospaced","Droid Sans", sans-serif; /* Change font, add a custom one later */
     padding: 2% 0;
     border: 1px solid #fff600;
     border-radius: 20px;
-    animation: ${subtlePulse} 4s infinite;
-    font-size: 4rem; /* Increase text size */
+    font-size: 4.2rem; 
     text-align: center;
-    width: 75%;
-    @media (min-width: 768px) {
-        text-align: left;
-    }
+    width: 35%;
+    z-index: 1;
 `;
 
 const HeaderContainer = styled.header`
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: black;
-
-    padding-bottom: 2rem; /* Add padding underneath the header */
+    background: url(${cityBackground.src}) no-repeat center center;
+    background-size: cover;
+    padding: 1.2rem .5rem; 
 
     @media (min-width: 768px) {
         flex-direction: row;
@@ -49,28 +48,42 @@ const HeaderContainer = styled.header`
 `;
 
 const LogoContainer = styled.div`
-    width: 15vh;
-    height: 15vh;
-    margin-left: .5rem;
-    background-color: #fff600;
-    border: 5px solid #fff600;
-    border-radius: 50%;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-    overflow: hidden;
-    position: relative;
+    display: flex;
+    align-items: center;
+    margin-left: 0.5rem;
 
     @media (min-width: 768px) {
         margin-left: 0;
     }
 `;
 
-// Building a Header that will use Material UI Typography and implement a logo behind the typography
+const Logo = styled.div`
+    width: 20vh;
+    height: 20vh;
+    background-color: #fff600;
+    border: 5px solid #fff600;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    position: relative;
+    animation: ${subtlePulse} 4s infinite;
+`;
+
+const MascotImage = styled(Image)`
+    width: 25vh;
+    height: 27vh;
+    margin-left: 1rem;
+`;
+
 export default function Header() {
     return (
         <HeaderContainer>
             <StyledText>Builder Co</StyledText>
             <LogoContainer>
-                <Image src={logoSrc} alt="Dirt" layout="fill" objectFit="cover" />
+                <MascotImage src={Mascot} alt="miner" objectFit="cover" />
+                <Logo>
+                    <Image src={logoSrc} alt="Dirt" layout="fill" objectFit="cover" />
+                </Logo>
             </LogoContainer>
         </HeaderContainer>
     );
