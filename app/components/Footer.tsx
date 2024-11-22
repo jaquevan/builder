@@ -18,6 +18,7 @@ const FooterContent = styled.div`
     flex-wrap: wrap;
     max-width: 1200px;
     margin: 0 auto;
+    font-family: Arial, sans-serif;
 `;
 
 const FooterSection = styled.div`

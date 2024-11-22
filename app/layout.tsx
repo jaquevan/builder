@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import NavBar from "@/app/components/NavBar";
+
 
 
 
@@ -20,7 +20,6 @@ export default function RootLayout({
       <body>
         {children}
       </body>
-      <NavBar />
     </html>
   );
 }

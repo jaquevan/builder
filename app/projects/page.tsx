@@ -7,12 +7,19 @@ import { motion } from 'framer-motion';
 
 import Footer from "@/app/components/Footer";
 
-import planit from "../../../builderCo/builder/public/public/images/planit.png";
-import art from "../../../builderCo/builder/public/public/images/art.png";
-import camel from "../../../builderCo/builder/public/public/images/CameliticsHomepage.png";
-import doc from "../../../builderCo/builder/public/public/images/doc.png";
-import about from "../../../builderCo/builder/public/public/images/About.png";
-import onc from "../../../builderCo/builder/public/public/images/ONC.png";
+// images for planit
+import timer from "../public/timer.png"
+import task from "../public/plantasks.png"
+import journal from "../public/journal.png"
+import planit from "../public/planitHome.png"
+
+// images for camelitics
+import header from "../public/header.png";
+import data from "../public/data.png"
+import about from "../public/about.png";
+import doc from "../public/data.png";
+import camel from "../public/camelitics.png";
+
 import Image from "next/image";
 
 const StyledDiv = styled.div`
@@ -106,6 +113,12 @@ export default function Design() {
                         </Typography>
                         <StyledSub>Plan It</StyledSub>
                         <MainImage src={planit} alt="Plan It" objectFit="cover" initial="hidden" whileInView="visible" variants={imageVariants} />
+                        <GridContainer>
+                            <SubImage src={timer} alt="Timer" objectFit="cover" initial="hidden" whileInView="visible" variants={imageVariants} />
+                            <SubImage src={journal} alt="Journal" objectFit="cover" initial="hidden" whileInView="visible" variants={imageVariants} />
+                        </GridContainer>
+                        <MainImage src={task} alt="Task" objectFit="cover" initial="hidden" whileInView="visible" variants={imageVariants} />
+
                     </StyledDiv>
                 </Element>
                 <Element name="camelitics">
@@ -113,16 +126,18 @@ export default function Design() {
                         <StyledSub>Camelitics</StyledSub>
                         <MainImage src={camel} alt="Camelitics" objectFit="cover" initial="hidden" whileInView="visible" variants={imageVariants} />
                         <GridContainer>
-                            <SubImage src={art} alt="Art" objectFit="cover" initial="hidden" whileInView="visible" variants={imageVariants} />
+                            <SubImage src={header} alt="Header" objectFit="cover" initial="hidden" whileInView="visible" variants={imageVariants} />
+                            <SubImage src={data} alt="Data" objectFit="cover" initial="hidden" whileInView="visible" variants={imageVariants} />
+                            <SubImage src={about} alt="About" objectFit="cover" initial="hidden" whileInView="visible" variants={imageVariants} />
                             <SubImage src={doc} alt="Doc" objectFit="cover" initial="hidden" whileInView="visible" variants={imageVariants} />
                         </GridContainer>
-                        <MainImage src={about} alt="About" objectFit="cover" initial="hidden" whileInView="visible" variants={imageVariants} />
                     </StyledDiv>
                 </Element>
                 <Element name="onc">
                     <StyledDiv>
                         <StyledSub>Our National Conversation - Modern Site</StyledSub>
-                        <MainImage src={onc} alt="Responsive forums page" objectFit="cover" initial="hidden" whileInView="visible" variants={imageVariants} />
+                        <h1>add images here</h1>
+                        {/*<MainImage src={onc} alt="Responsive forums page" objectFit="cover" initial="hidden" whileInView="visible" variants={imageVariants} />*/}
                     </StyledDiv>
                 </Element>
             </Container>

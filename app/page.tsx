@@ -1,7 +1,7 @@
 "use client"
 
 import styled from "styled-components";
-import { Container, Typography } from '@mui/material';
+import { Container } from '@mui/material';
 import Drawer from "@/app/components/SideNavShelf";
 import CustomInput from "@/app/components/CustomInput";
 import Header from "@/app/components/Header";

@@ -1,9 +1,9 @@
 import { Typography } from "@mui/material";
 import styled, { keyframes } from "styled-components";
 import Image from "next/image";
-import logoSrc from "../../../builderCo/builder/public/public/images/dirt.png";
-import Mascot from "../../../builderCo/builder/public/public/images/TempMascot.png";
-import cityBackground from "../../../builderCo/builder/public/public/images/city.png";
+import logoSrc from "../public/logo-temp.png"
+import Mascot from "../public/mascot.png"
+import cityBackground from "../public/city.png"
 
 // Define a keyframes animation for a subtle effect
 const subtlePulse = keyframes`
@@ -22,12 +22,12 @@ const subtlePulse = keyframes`
 `;
 
 const StyledText = styled(Typography)`
-    background-color: rgba(255, 246, 0, 0.8); /* Add transparency */
-    font-family: "Monospaced","Droid Sans", sans-serif; /* Change font, add a custom one later */
+    background-color: rgba(255, 246, 0, 0.8); 
+    font-family: "ui-monospace", "Times New Roman", serif; 
     padding: 2% 0;
     border: 1px solid #fff600;
     border-radius: 20px;
-    font-size: 4.2rem; 
+    font-size: 4.5rem; 
     text-align: center;
     width: 35%;
     z-index: 1;
@@ -78,7 +78,7 @@ const MascotImage = styled(Image)`
 export default function Header() {
     return (
         <HeaderContainer>
-            <StyledText>Builder Co</StyledText>
+            <StyledText>builder co</StyledText>
             <LogoContainer>
                 <MascotImage src={Mascot} alt="miner" objectFit="cover" />
                 <Logo>

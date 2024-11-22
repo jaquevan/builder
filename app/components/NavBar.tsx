@@ -1,42 +1,62 @@
 "use client"
 
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Link from "next/link";
 
-
-const StyledDiv = styled.div`
-    text-align: center;
-`
+const hoverAnimation = keyframes`
+    0% {
+        color: white;
+        background: none;
+        text-shadow: none;
+    }
+    50% {
+        color: #ffaf82;
+        background: linear-gradient(90deg, rgba(255, 175, 130, 0.2), rgba(255, 246, 0, 0.2));
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+    100% {
+        color: white;
+        background: none;
+        text-shadow: none;
+    }
+`;
 
 const StyledLink = styled(Link)`
-    padding: 0 3%;
-    list-style-type: none;
+    padding: 0 2rem;
     text-decoration: none;
-    color: black;
-    border-bottom: 1px solid;
-    font-family: Arial, Helvetica, sans-serif;
-    
-    
+    color: white; /* White text */
+    font-family: "Arial", "Helvetica", sans-serif;
+    font-size: 1.2rem; /* Increase font size */
+    transition: color 0.3s, background-color 0.3s, text-shadow 0.3s; /* Smooth transitions */
+
     &:hover {
-        border-bottom: 1px solid black;
-        background-color: #ffaf82;
+        animation: ${hoverAnimation} 1s ease-in-out;
     }
-`
+`;
+
+const NavContainer = styled.nav`
+    background-color: #333; /* Dark background */
+    padding: 1rem 0; /* Add padding */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+`;
+
+const NavList = styled.ul`
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+`;
 
 export default function NavBar() {
-
     return (
-        <>
-            <StyledDiv>
-                <nav>
-                    <ul>
-                        <StyledLink href="/">Home</StyledLink>
-                        <StyledLink href="/design">Design</StyledLink>
-                        <StyledLink href="/projects">Projects</StyledLink>
-                        <StyledLink href="/resume">Resume</StyledLink>
-                    </ul>
-                </nav>
-            </StyledDiv>
-        </>
-    )
-};
+        <NavContainer>
+            <NavList>
+                <li><StyledLink href="/">Home</StyledLink></li>
+                <li><StyledLink href="/design">Design</StyledLink></li>
+                <li><StyledLink href="/projects">Projects</StyledLink></li>
+                <li><StyledLink href="/resume">Resume</StyledLink></li>
+            </NavList>
+        </NavContainer>
+    );
+}
