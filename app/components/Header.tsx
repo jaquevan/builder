@@ -1,9 +1,9 @@
 import { Typography } from "@mui/material";
 import styled, { keyframes } from "styled-components";
 import Image from "next/image";
-import logoSrc from "@/app/public/images/dirt.png";
-import Mascot from "@/app/public/images/TempMascot.png";
-import cityBackground from "@/app/public/images/city.png";
+import logoSrc from "../../../builderCo/builder/public/public/images/dirt.png";
+import Mascot from "../../../builderCo/builder/public/public/images/TempMascot.png";
+import cityBackground from "../../../builderCo/builder/public/public/images/city.png";
 
 // Define a keyframes animation for a subtle effect
 const subtlePulse = keyframes`

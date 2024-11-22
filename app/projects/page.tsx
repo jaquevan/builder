@@ -7,12 +7,12 @@ import { motion } from 'framer-motion';
 
 import Footer from "@/app/components/Footer";
 
-import planit from "@/app/public/images/planit.png";
-import art from "@/app/public/images/art.png";
-import camel from "@/app/public/images/CameliticsHomepage.png";
-import doc from "@/app/public/images/doc.png";
-import about from "@/app/public/images/About.png";
-import onc from "@/app/public/images/ONC.png";
+import planit from "../../../builderCo/builder/public/public/images/planit.png";
+import art from "../../../builderCo/builder/public/public/images/art.png";
+import camel from "../../../builderCo/builder/public/public/images/CameliticsHomepage.png";
+import doc from "../../../builderCo/builder/public/public/images/doc.png";
+import about from "../../../builderCo/builder/public/public/images/About.png";
+import onc from "../../../builderCo/builder/public/public/images/ONC.png";
 import Image from "next/image";
 
 const StyledDiv = styled.div`

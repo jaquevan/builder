@@ -1,6 +1,6 @@
 "use client"
 
-import dirt from "@/app/public/images/dirt.png"
+import dirt from "../../../builderCo/builder/public/public/images/dirt.png"
 import { useEffect } from 'react';
 
 import * as THREE from 'three';
