@@ -2,8 +2,8 @@
 
 import styled from "styled-components";
 import { Container } from '@mui/material';
-import Drawer from "@/app/components/SideNavShelf";
-import CustomInput from "@/app/components/CustomInput";
+// import Drawer from "@/app/components/SideNavShelf";
+
 import Header from "@/app/components/Header";
 import NavBar from "@/app/components/NavBar";
 import Footer from "@/app/components/Footer";
@@ -48,16 +48,6 @@ export default function Home() {
 
             <Header />
             <NavBar />
-                <MainContainer>
-                    <QuickNavDiv>
-                        <Drawer />
-                    </QuickNavDiv>
-                <ContentContainer>
-                    <StyledDiv>
-                        <CustomInput />
-                    </StyledDiv>
-                </ContentContainer>
-                </MainContainer>
 
             <Footer/>
 

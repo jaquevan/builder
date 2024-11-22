@@ -1,11 +1,12 @@
 "use client"
-import BooleanInput from "@/app/components/BooleanInput";
+
+import Scroll from "@/app/components/Scroll";
+
 
 export default function Demo() {
     return (
         <>
-            <h1>Demo Page</h1>
-            <BooleanInput/>
+            <Scroll />
         </>
     )
 }
