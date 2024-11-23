@@ -3,6 +3,7 @@
 import Cube from "@/app/components/Cube";
 import {Typography, Container} from "@mui/material";
 import styled from "styled-components";
+import Nav from "@/app/components/NavBar";
 
 const StyledDiv = styled.div`
     display: flex;
@@ -36,6 +37,7 @@ export default function Design() {
                 <Cube/>
 
         </Container>
+            <Nav/>
         </>
 
     );

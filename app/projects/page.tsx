@@ -6,6 +6,7 @@ import { Link as ScrollLink, Element } from 'react-scroll';
 import { motion } from 'framer-motion';
 
 import Footer from "@/app/components/Footer";
+import NavBar from "@/app/components/NavBar"
 
 // images for planit
 import timer from "../public/timer.png"
@@ -71,7 +72,8 @@ const GridContainer = styled.div`
 const NavContainer = styled.div`
     display: flex;
     justify-content: center;
-    margin-bottom: 2rem;
+    margin: 2rem auto;
+    
 `;
 
 const NavLink = styled(ScrollLink)`
@@ -94,6 +96,7 @@ const imageVariants = {
 export default function Design() {
     return (
         <>
+            <NavBar/>
             <NavContainer>
                 <NavLink to="planit" smooth={true} duration={500}>Plan It</NavLink>
                 <NavLink to="camelitics" smooth={true} duration={500}>Camelitics</NavLink>

@@ -10,6 +10,5 @@ const StyledText = styled(Typography)`
 export default function Resume(){
     return(
         <StyledText variant="h1">Resume</StyledText>
-        // <ResumeComponent/>
     )
 }

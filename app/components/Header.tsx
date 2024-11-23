@@ -12,7 +12,7 @@ const subtlePulse = keyframes`
         box-shadow: 0 0 5px #fff600;
     }
     50% {
-        transform: scale(1.02);
+        transform: scale(1.04);
         box-shadow: 0 0 10px #fff600;
     }
     100% {
@@ -24,12 +24,12 @@ const subtlePulse = keyframes`
 const StyledText = styled(Typography)`
     background-color: rgba(255, 246, 0, 0.8); 
     font-family: "ui-monospace", "Times New Roman", serif; 
-    padding: 2% 0;
+    padding: 2% 1%;
     border: 1px solid #fff600;
     border-radius: 20px;
-    font-size: 4.5rem; 
+    font-size: 5.5rem; 
     text-align: center;
-    width: 35%;
+    width: 60%;
     z-index: 1;
 `;
 
@@ -58,8 +58,8 @@ const LogoContainer = styled.div`
 `;
 
 const Logo = styled.div`
-    width: 20vh;
-    height: 20vh;
+    width: 24vh;
+    height: 24vh;
     background-color: #fff600;
     border: 5px solid #fff600;
     border-radius: 50%;
@@ -72,7 +72,7 @@ const Logo = styled.div`
 const MascotImage = styled(Image)`
     width: 25vh;
     height: 27vh;
-    margin-left: 1rem;
+    margin-right: 5rem;
 `;
 
 export default function Header() {

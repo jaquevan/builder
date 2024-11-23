@@ -1,28 +1,12 @@
 "use client"
 
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import Link from "next/link";
 
-const hoverAnimation = keyframes`
-    0% {
-        color: white;
-        background: none;
-        text-shadow: none;
-    }
-    50% {
-        color: #ffaf82;
-        background: linear-gradient(90deg, rgba(255, 175, 130, 0.2), rgba(255, 246, 0, 0.2));
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-    }
-    100% {
-        color: white;
-        background: none;
-        text-shadow: none;
-    }
-`;
+
 
 const StyledLink = styled(Link)`
-    padding: 0 2rem;
+    padding: 1rem 2rem;
     text-decoration: none;
     color: white; /* White text */
     font-family: "Arial", "Helvetica", sans-serif;
@@ -30,7 +14,10 @@ const StyledLink = styled(Link)`
     transition: color 0.3s, background-color 0.3s, text-shadow 0.3s; /* Smooth transitions */
 
     &:hover {
-        animation: ${hoverAnimation} 1s ease-in-out;
+        color: #ffaf82;
+        background: linear-gradient(90deg, rgba(255, 175, 130, 0.2), rgba(255, 246, 0, 0.2));
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);    
+        border-radius: 15px;
     }
 `;
 
@@ -56,6 +43,8 @@ export default function NavBar() {
                 <li><StyledLink href="/design">Design</StyledLink></li>
                 <li><StyledLink href="/projects">Projects</StyledLink></li>
                 <li><StyledLink href="/resume">Resume</StyledLink></li>
+                <li><StyledLink href="/demo">Demo</StyledLink></li>
+
             </NavList>
         </NavContainer>
     );
