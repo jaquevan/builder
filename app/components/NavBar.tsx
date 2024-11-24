@@ -23,7 +23,7 @@ const StyledLink = styled(Link)`
 
 const NavContainer = styled.nav`
     background-color: #333; /* Dark background */
-    padding: 1rem 0; /* Add padding */
+    padding: 1.2rem 0; /* Add padding */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
 `;
 
