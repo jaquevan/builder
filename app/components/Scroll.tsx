@@ -3,6 +3,7 @@ import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import Footer from "@/app/components/Footer";
 import Content from "@/app/components/Content";
 import { Typography } from "@mui/material";
+import Experience from "./Experience"
 
 const StyledScroll = styled(ParallaxLayer)`
     display: block;
@@ -19,11 +20,18 @@ const StyledScrollSwitch = styled(ParallaxLayer)`
     font-family: Arial, "Times New Roman", sans-serif;
 `;
 
+const ExperienceScroll = styled(ParallaxLayer)`
+    background-color: #444;
+    color: black;
+    font-family: Arial, "Times New Roman", sans-serif;
+`;
+
 const StyledParallax = styled(Parallax)`
     margin: 0 auto;
     padding: 0;
     text-align: center;
     width: 100vw; /* Ensure it takes full viewport width */
+    height: auto;
     background-color: #333;
 `;
 
@@ -47,9 +55,9 @@ export default function Scroll() {
                     <Content />
                 </StyledScroll>
 
-                <StyledScrollSwitch offset={1} speed={1}>
-                    <h2>Design Content</h2>
-                </StyledScrollSwitch>
+                <ExperienceScroll offset={1} speed={1}>
+                    <Experience/>
+                </ExperienceScroll>
 
                 <StyledScroll offset={2} speed={1}>
                     <h2>Interests and Motivation</h2>
