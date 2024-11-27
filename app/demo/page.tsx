@@ -1,14 +1,7 @@
-"use client"
-
-import Scroll from "@/app/components/Scroll";
-import Nav from "@/app/components/NavBar";
-
-
-export default function Demo() {
-    return (
+export default function Demo(){
+    (
         <>
-            <Nav/>
-            <Scroll />
+            <h1>Hello</h1>
         </>
-    )
+    );
 }
