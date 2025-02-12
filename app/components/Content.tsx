@@ -38,7 +38,7 @@ const StyledSewer = styled.div`
     background: url(${Sewer.src}) no-repeat center center;
     background-size: cover; /* Make the background image fill the entire div */
     padding-bottom: 20%;
-    margin-top: 2%;
+    margin-top: 0;
     `;
 
 
@@ -57,6 +57,7 @@ const TrainImage = styled(Image)`
 
 const ButtonContainer = styled.div`
     margin-top: 1rem;
+    margin-bottom: 0;
     display: flex;
     justify-content: center;
     gap: 1rem;
@@ -114,7 +115,7 @@ export default function Content() {
             </ButtonContainer>
 
             <StyledSewer>
-                <h1> </h1>
+                <h1> Tasks and Status Section Here with Links to Projects </h1>
             </StyledSewer>
         </>
     );

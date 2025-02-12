@@ -8,7 +8,7 @@ const StyledFooter = styled.footer`
     background-color: #333;
     color: white;
     width: 66.6%;
-    height: 100%;
+    height: 100vh;
     
 `;
 

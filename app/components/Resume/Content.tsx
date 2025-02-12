@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import { Typography } from '@mui/material';
 
+
+const Title = styled(Typography)`
+    text-align: center;
+    `;
 const ContentContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -28,6 +32,13 @@ const SectionContent = styled(Typography)`
 export default function Content() {
     return (
         <ContentContainer>
+            <Title>
+                <Typography variant="h1">Evan Jaquez</Typography>
+                <Typography> Frontend Developer </Typography>
+                <Typography>Computer Science and Economics</Typography>
+            </Title>
+
+
             <Section>
                 <SectionTitle variant="h2">Work Experience</SectionTitle>
                 <SectionContent variant="body1">

@@ -1,7 +1,13 @@
+"use client"
+import Cube from "@/app/components/Cube";
+import Nav from "@/app/components/NavBar";
+
+
 export default function Demo(){
-    (
-        <>
-            <h1>Hello</h1>
-        </>
-    );
+    return (
+    <>
+        <Nav/>
+        <Cube/>
+    </>
+);
 }

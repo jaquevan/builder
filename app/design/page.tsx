@@ -1,6 +1,6 @@
 "use client"
 
-import Cube from "@/app/components/Cube";
+// import Cube from "@/app/components/Cube";
 import {Typography, Container} from "@mui/material";
 import styled from "styled-components";
 import Nav from "@/app/components/NavBar";
@@ -34,7 +34,7 @@ export default function Design() {
                     pb: 0
                 }}>We Appreciate Your Patience</Typography>
 
-                <Cube/>
+                {/*<Cube/>*/}
 
         </Container>
             <Nav/>

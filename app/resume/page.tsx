@@ -1,8 +1,8 @@
 "use client"
 
 import SideBar from "@/app/components/Resume/SideBar";
-import Title from "@/app/components/Resume/Title";
 import NavBar from "@/app/components/NavBar";
+import Footer from "@/app/components/Footer";
 import Content from "@/app/components/Resume/Content";
 import styled from "styled-components";
 
@@ -21,9 +21,10 @@ export default function Resume() {
             <NavBar />
             <Container>
                 <SideBar />
-                <Title />
+                <Content/>
             </Container>
-            <Content/>
+            <Footer/>
+
         </>
     );
 }
