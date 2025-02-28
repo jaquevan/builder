@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Typography } from "@mui/material";
 import styled, { keyframes } from "styled-components";
 import Image from "next/image";
 import logoSrc from "../public/logo-temp.png";
-import Mascot from "../public/mole.png";
 import cityBackground from "../public/skyline.webp";
-
 
 const subtlePulse = keyframes`
     0% {
@@ -22,10 +20,10 @@ const subtlePulse = keyframes`
     }
 `;
 
-const StyledText = styled(Typography)<{ isScrolled: boolean }>`
+const StyledText = styled(Typography)`
     font-family: "Arial", "Times New Roman", serif;
     color: white;
-    font-size: ${({ isScrolled }) => (isScrolled ? "2rem" : "4rem")};
+    font-size: 4rem;
     text-align: center;
     width: 70%;
     margin-left: 6rem;
@@ -36,17 +34,22 @@ const StyledText = styled(Typography)<{ isScrolled: boolean }>`
     &:hover {
         box-shadow: none;
     }
+
+    @media (max-width: 768px) {
+        font-size: 3rem;
+        margin: 0 auto;
+    }
 `;
 
-const HeaderContainer = styled.header<{ isScrolled: boolean }>`
+const HeaderContainer = styled.header`
     display: flex;
     flex-direction: column;
     align-items: center;
     background: url(${cityBackground.src}) no-repeat center center;
     background-size: cover;
-    background-position: top; 
-    filter: brightness(.98); 
-    height: ${({ isScrolled }) => (isScrolled ? "15vh" : "30vh")};
+    background-position: top;
+    filter: brightness(.98);
+    height: 30vh;
     padding: 1.1rem 0.5rem;
     transition: height 0.3s ease;
 
@@ -61,52 +64,40 @@ const LogoContainer = styled.div`
     align-items: center;
     margin-left: 0.5rem;
 
-    @media (min-width: 768px) {
+    @media (max-width: 768px) {
+        justify-content: center;
+        width: 100%;
         margin-left: 0;
     }
 `;
 
-const Logo = styled.div<{ isScrolled: boolean }>`
-    width: ${({ isScrolled }) => (isScrolled ? "12vh" : "24vh")};
-    height: ${({ isScrolled }) => (isScrolled ? "12vh" : "24vh")};
+const Logo = styled.div`
+    width: 22vh;
+    height: 22vh;
+    margin: 10px;
     background-color: #fff600;
     border: 5px solid #fff600;
     border-radius: 50%;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
     overflow: hidden;
-    position: relative;
     animation: ${subtlePulse} 4s infinite;
     transition: width 0.3s ease, height 0.3s ease;
-    margin-right: 5%;
+
+
+    @media (max-width: 768px) {
+        postion: relative;
+        margin: 0 auto;
+        width: 15vh;
+        height: 15vh;
+    }
 `;
 
-// const MascotImage = styled(Image)<{ isScrolled: boolean }>`
-//     width: ${({ isScrolled }) => (isScrolled ? "14vh" : "29vh")};
-//     height: ${({ isScrolled }) => (isScrolled ? "13vh" : "27vh")};
-//     margin-top: 0.5rem;
-//     margin-right: 1rem;
-//     transition: width 0.3s ease, height 0.3s ease;
-// `;
-
 export default function Header() {
-    const [isScrolled, setIsScrolled] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 50);
-        };
-
-        window.addEventListener("scroll", handleScroll);
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, []);
-
     return (
-        <HeaderContainer isScrolled={isScrolled}>
-            <StyledText isScrolled={isScrolled}>builder co</StyledText>
+        <HeaderContainer>
+            <StyledText>builder co</StyledText>
             <LogoContainer>
-                <Logo isScrolled={isScrolled}>
+                <Logo>
                     <Image src={logoSrc} alt="Dirt" layout="fill" objectFit="cover" />
                 </Logo>
             </LogoContainer>
