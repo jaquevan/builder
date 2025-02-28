@@ -44,6 +44,8 @@ export default function NavBar() {
                 <li><StyledLink href="/projects">Projects</StyledLink></li>
                 <li><StyledLink href="/resume">Resume</StyledLink></li>
                 <li><StyledLink href="/demo">Demo</StyledLink></li>
+                <li><StyledLink href="/status">Status</StyledLink></li>
+
 
             </NavList>
         </NavContainer>

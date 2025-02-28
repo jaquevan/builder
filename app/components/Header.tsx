@@ -77,15 +77,16 @@ const Logo = styled.div<{ isScrolled: boolean }>`
     position: relative;
     animation: ${subtlePulse} 4s infinite;
     transition: width 0.3s ease, height 0.3s ease;
+    margin-right: 5%;
 `;
 
-const MascotImage = styled(Image)<{ isScrolled: boolean }>`
-    width: ${({ isScrolled }) => (isScrolled ? "14vh" : "29vh")};
-    height: ${({ isScrolled }) => (isScrolled ? "13vh" : "27vh")};
-    margin-top: 0.5rem;
-    margin-right: 1rem;
-    transition: width 0.3s ease, height 0.3s ease;
-`;
+// const MascotImage = styled(Image)<{ isScrolled: boolean }>`
+//     width: ${({ isScrolled }) => (isScrolled ? "14vh" : "29vh")};
+//     height: ${({ isScrolled }) => (isScrolled ? "13vh" : "27vh")};
+//     margin-top: 0.5rem;
+//     margin-right: 1rem;
+//     transition: width 0.3s ease, height 0.3s ease;
+// `;
 
 export default function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -105,7 +106,6 @@ export default function Header() {
         <HeaderContainer isScrolled={isScrolled}>
             <StyledText isScrolled={isScrolled}>builder co</StyledText>
             <LogoContainer>
-                <MascotImage src={Mascot} alt="miner" objectFit="cover" isScrolled={isScrolled} />
                 <Logo isScrolled={isScrolled}>
                     <Image src={logoSrc} alt="Dirt" layout="fill" objectFit="cover" />
                 </Logo>

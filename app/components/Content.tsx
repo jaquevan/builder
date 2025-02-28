@@ -113,10 +113,6 @@ export default function Content() {
                     Experience
                 </StyledPaper>
             </ButtonContainer>
-
-            <StyledSewer>
-                <h1> Tasks and Status Section Here with Links to Projects </h1>
-            </StyledSewer>
         </>
     );
 }
