@@ -1,104 +1,128 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import { Typography } from "@mui/material";
 import styled, { keyframes } from "styled-components";
 import Image from "next/image";
 import logoSrc from "../public/logo-temp.png";
-import cityBackground from "../public/skyline.webp";
+import cityBackground from "../public/header-night.jpg";
 
 const subtlePulse = keyframes`
-    0% {
-        transform: scale(1);
-        box-shadow: 0 0 4px #fff600;
-    }
-    50% {
-        transform: scale(1.03);
-        box-shadow: 0 0 9px #fff600;
-    }
-    100% {
-        transform: scale(1);
-        box-shadow: 0 0 px #fff600;
-    }
-`;
-
-const StyledText = styled(Typography)`
-    font-family: "Arial", "Times New Roman", serif;
-    color: white;
-    font-size: 4rem;
-    text-align: center;
-    width: 70%;
-    margin-left: 6rem;
-    z-index: 1;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    transition: font-size 0.3s ease, box-shadow 0.3s ease;
-
-    &:hover {
-        box-shadow: none;
-    }
-
-    @media (max-width: 768px) {
-        font-size: 3rem;
-        margin: 0 auto;
-    }
+    0% { transform: scale(1); box-shadow: 0 0 4px #fff600; }
+    50% { transform: scale(1.02); box-shadow: 0 0 8px #fff600; }
+    100% { transform: scale(1); box-shadow: 0 0 4px #fff600; }
 `;
 
 const HeaderContainer = styled.header`
     display: flex;
-    flex-direction: column;
     align-items: center;
     background: url(${cityBackground.src}) no-repeat center center;
     background-size: cover;
-    background-position: top;
-    filter: brightness(.98);
-    height: 30vh;
-    padding: 1.1rem 0.5rem;
-    transition: height 0.3s ease;
+    background-position: center 27%; //adjust where on image header is 
+    width: 100%;
+    height: ${props => props.$scrolled ? '12vh' : '25vh'}; 
+    padding: 0.8rem;
+    position: relative;
+    transition: all 0.25s ease;
+    z-index: 90;
 
-    @media (min-width: 768px) {
-        flex-direction: row;
-        justify-content: space-between;
+    @media (max-width: 768px) {
+        flex-direction: column;
+        height: ${props => props.$scrolled ? '10vh' : '22vh'}; 
     }
 `;
 
+const TextContainer = styled.div`
+    flex: 1;
+    margin-left: 5rem; /* Slightly reduced */
+
+    @media (max-width: 768px) {
+        margin: 0 auto;
+        text-align: center;
+    }
+`;
+
+const BrandText = styled(Typography)`
+    font-family: "Arial", serif;
+    color: white;
+    font-size: ${props => props.$scrolled ? '2.8rem' : '3.6rem'}; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    line-height: 1;
+
+    @media (max-width: 768px) {
+        font-size: ${props => props.$scrolled ? '1.8rem' : '2.5rem'}; 
+    }
+`;
+
+const AuthorName = styled.div`
+    font-family: "Arial", sans-serif;
+    color: white;
+    font-size: ${props => props.$scrolled ? '0.9rem' : '1.1rem'}; /* Slightly reduced */
+    opacity: 0.9;
+    margin-top: 0.3rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+
+    @media (max-width: 768px) {
+        font-size: ${props => props.$scrolled ? '0.7rem' : '0.9rem'};
+    }
+`;
+
+// Logo container
 const LogoContainer = styled.div`
     display: flex;
     align-items: center;
-    margin-left: 0.5rem;
+    margin-right: 2rem;
 
     @media (max-width: 768px) {
-        justify-content: center;
-        width: 100%;
-        margin-left: 0;
+        margin: 0 auto;
     }
 `;
 
 const Logo = styled.div`
-    width: 22vh;
-    height: 22vh;
-    margin: 10px;
+    width: ${props => props.$scrolled ? '16vh' : '20vh'}; 
+    height: ${props => props.$scrolled ? '16vh' : '20vh'}; 
     background-color: #fff600;
-    border: 5px solid #fff600;
+    border: 4px solid #fff600; /* Slightly thinner */
     border-radius: 50%;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
     overflow: hidden;
     animation: ${subtlePulse} 4s infinite;
-    transition: width 0.3s ease, height 0.3s ease;
-
 
     @media (max-width: 768px) {
-        postion: relative;
-        margin: 0 auto;
-        width: 15vh;
-        height: 15vh;
+        width: ${props => props.$scrolled ? '10vh' : '14vh'}; 
+        height: ${props => props.$scrolled ? '10vh' : '14vh'}; 
     }
 `;
 
 export default function Header() {
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => setScrolled(window.scrollY > 20);
+
+        window.addEventListener('scroll', handleScroll);
+        handleScroll(); // Check initial state
+
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     return (
-        <HeaderContainer>
-            <StyledText>builder co</StyledText>
+        <HeaderContainer $scrolled={scrolled}>
+            <TextContainer>
+                <BrandText $scrolled={scrolled}>builder co</BrandText>
+                <AuthorName $scrolled={scrolled}>by Evan Jaquez</AuthorName>
+            </TextContainer>
+
             <LogoContainer>
-                <Logo>
-                    <Image src={logoSrc} alt="Dirt" layout="fill" objectFit="cover" />
+                <Logo $scrolled={scrolled}>
+                    <Image
+                        src={logoSrc}
+                        alt="Builder Co Logo"
+                        fill
+                        priority
+                        sizes="(max-width: 768px) 14vh, 20vh"
+                        style={{ objectFit: 'cover' }}
+                    />
                 </Logo>
             </LogoContainer>
         </HeaderContainer>

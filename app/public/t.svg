@@ -1,0 +1,93 @@
+<svg width="400" height="200" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+    <!-- Gradients -->
+    <defs>
+        <linearGradient id="greenGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#00A64F;stop-opacity:1" />
+            <stop offset="50%" style="stop-color:#00843D;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#006432;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="creamGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#FFFDF5;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#F5F2E3;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="windowGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#D4F0FF;stop-opacity:1" />
+            <stop offset="60%" style="stop-color:#A0D6F7;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#87C8F2;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <!-- Wheels and Undercarriage -->
+    <rect x="70" y="160" width="30" height="10" fill="#222222" />
+    <rect x="180" y="160" width="30" height="10" fill="#222222" />
+    <rect x="290" y="160" width="30" height="10" fill="#222222" />
+
+    <circle cx="80" cy="170" r="10" fill="#333333" />
+    <circle cx="80" cy="170" r="4" fill="#555555" />
+
+    <circle cx="190" cy="170" r="10" fill="#333333" />
+    <circle cx="190" cy="170" r="4" fill="#555555" />
+
+    <circle cx="300" cy="170" r="10" fill="#333333" />
+    <circle cx="300" cy="170" r="4" fill="#555555" />
+
+    <!-- Articulated Trolley Body - First Section -->
+    <!-- Green Bottom Half -->
+    <rect x="40" y="120" width="160" height="40" rx="0" ry="0" fill="url(#greenGradient)"/>
+    <!-- White/Cream Top Half -->
+    <rect x="40" y="80" width="160" height="40" rx="4" ry="4" fill="url(#creamGradient)"/>
+
+    <!-- Articulation Joint -->
+    <rect x="200" y="100" width="20" height="60" fill="#333333"/>
+
+    <!-- Articulated Trolley Body - Second Section -->
+    <!-- Green Bottom Half -->
+    <rect x="220" y="120" width="160" height="40" rx="0" ry="0" fill="url(#greenGradient)"/>
+    <!-- White/Cream Top Half -->
+    <rect x="220" y="80" width="160" height="40" rx="4" ry="4" fill="url(#creamGradient)"/>
+
+    <!-- Front Angular Design with Split Colors -->
+    <polygon points="380,80 400,100 400,120 380,120" fill="url(#creamGradient)"/>
+    <polygon points="380,120 400,120 400,160 380,160" fill="url(#greenGradient)"/>
+
+    <!-- Windows -->
+    <rect x="55" y="90" width="25" height="25" rx="2" ry="2" fill="url(#windowGradient)"/>
+    <rect x="90" y="90" width="25" height="25" rx="2" ry="2" fill="url(#windowGradient)"/>
+    <rect x="125" y="90" width="25" height="25" rx="2" ry="2" fill="url(#windowGradient)"/>
+    <rect x="160" y="90" width="25" height="25" rx="2" ry="2" fill="url(#windowGradient)"/>
+
+    <rect x="235" y="90" width="25" height="25" rx="2" ry="2" fill="url(#windowGradient)"/>
+    <rect x="270" y="90" width="25" height="25" rx="2" ry="2" fill="url(#windowGradient)"/>
+    <rect x="305" y="90" width="25" height="25" rx="2" ry="2" fill="url(#windowGradient)"/>
+    <rect x="340" y="90" width="25" height="25" rx="2" ry="2" fill="url(#windowGradient)"/>
+
+    <!-- Front Window -->
+    <polygon points="385,95 385,115 395,105" fill="url(#windowGradient)"/>
+
+    <!-- Doors -->
+    <rect x="160" y="130" width="20" height="30" rx="2" ry="2" fill="#444444"/>
+    <rect x="240" y="130" width="20" height="30" rx="2" ry="2" fill="#444444"/>
+
+    <!-- Top Roof Trim -->
+    <rect x="40" y="70" width="160" height="10" fill="#333333"/>
+    <rect x="220" y="70" width="160" height="10" fill="#333333"/>
+    <polygon points="380,70 400,90 380,90" fill="#333333"/>
+
+    <!-- MBTA "T" Logo -->
+    <rect x="100" y="130" width="30" height="30" rx="5" ry="5" fill="#FFFFFF"/>
+    <path d="M 107 135 h 16 v 5 h -5 v 15 h -6 v -15 h -5 z" fill="#00843D"/>
+
+    <!-- Simplified Pantograph -->
+    <path d="M 140 70 L 140 50 L 180 50 L 180 70" fill="none" stroke="#666666" stroke-width="3"/>
+
+    <!-- Headlight -->
+    <circle cx="395" cy="140" r="5" fill="#FFFF88"/>
+
+    <!-- Route Indicator -->
+    <rect x="370" y="130" width="20" height="20" rx="10" ry="10" fill="#FFFFFF"/>
+    <text x="380" y="145" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#00843D">B</text>
+
+    <!-- Bottom Trim/Skirts -->
+    <rect x="40" y="160" width="160" height="5" fill="#333333"/>
+    <rect x="220" y="160" width="160" height="5" fill="#333333"/>
+</svg>

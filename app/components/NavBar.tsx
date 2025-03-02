@@ -1,51 +1,25 @@
 "use client"
 
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-const StyledLink = styled(Link)`
-    padding: 1rem 2rem;
-    text-decoration: none;
-    color: white; /* White text */
-    font-family: "Arial", "Helvetica", sans-serif;
-    font-size: 1.2rem; /* Increase font size */
-    transition: color 0.3s, background-color 0.3s, text-shadow 0.3s; /* Smooth transitions */
-    position: relative; /* For the glow effect */
 
-    &:hover {
-        color: #ffaf82;
-        background: linear-gradient(90deg, rgba(255, 175, 130, 0.2), rgba(255, 246, 0, 0.2));
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-        border-radius: 15px;
-    }
-
-    &:hover::before {
-        content: '';
-        position: absolute;
-        top: -5px;
-        left: -5px;
-        right: -5px;
-        bottom: -5px;
-        border-radius: 15px;
-        box-shadow: 0 0 10px rgba(255, 175, 130, 0.5);
-        z-index: -1;
-    }
-
-    @media (max-width: 768px) {
-        padding: 0.5rem 1rem;
-        font-size: 1rem;
-    }
-
-    @media (max-width: 480px) {
-        padding: 0.3rem 0.5rem;
-        font-size: 0.8rem;
-    }
-`;
 
 const NavContainer = styled.nav`
-    background-color: #333; 
-    padding: 1.2rem 0; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    background-color: #1A1A1A;
+    padding: 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+`;
+
+const NavContent = styled.div`
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 `;
 
 const NavList = styled.ul`
@@ -54,20 +28,102 @@ const NavList = styled.ul`
     list-style-type: none;
     margin: 0;
     padding: 0;
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
+`;
+
+const NavItem = styled.li`
+    position: relative;
+    margin: 0;
+    padding: 0;
+`;
+
+const StyledLink = styled(Link)`
+    display: block;
+    padding: 1.2rem 1.8rem;
+    text-decoration: none;
+    color: ${props => props.$isActive ? '#FFAF82' : 'rgba(255, 255, 255, 0.9)'};
+    font-family: "Arial", "Helvetica", sans-serif;
+    font-size: 1rem;
+    font-weight: ${props => props.$isActive ? '600' : '500'};
+    letter-spacing: 0.5px;
+    transition: color 0.25s ease, background-color 0.25s ease;
+    position: relative;
+
+    &:hover {
+        color: #FFAF82;
+        background-color: rgba(255, 175, 130, 0.08);
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: ${props => props.$isActive ? 'linear-gradient(90deg, #FFAF82, #FFE53B)' : 'transparent'};
+        transform: ${props => props.$isActive ? 'scaleX(1)' : 'scaleX(0)'};
+        transform-origin: center;
+        transition: transform 0.25s ease;
+    }
+
+    &:hover::after {
+        background: linear-gradient(90deg, #FFAF82, #FFE53B);
+        transform: scaleX(1);
+    }
+
+    @media (max-width: 768px) {
+        padding: 1rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    @media (max-width: 480px) {
+        padding: 0.8rem 0.6rem;
+        font-size: 0.8rem;
+    }
+`;
+
+const ActiveIndicator = styled.span`
+    position: absolute;
+    top: 1rem;
+    right: 0.5rem;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: #FFAF82;
+    opacity: ${props => props.$isActive ? '1' : '0'};
+    transition: opacity 0.25s ease;
 `;
 
 export default function NavBar() {
+    const pathname = usePathname();
+
+    const navItems = [
+        { href: "/", label: "Home" },
+        { href: "/design", label: "Design" },
+        { href: "/projects", label: "Projects" },
+        { href: "/resume", label: "Resume" },
+        { href: "/demo", label: "Demo" },
+        { href: "/status", label: "Status" }
+    ];
+
     return (
         <NavContainer>
-            <NavList>
-                <li><StyledLink href="/">Home</StyledLink></li>
-                <li><StyledLink href="/design">Design</StyledLink></li>
-                <li><StyledLink href="/projects">Projects</StyledLink></li>
-                <li><StyledLink href="/resume">Resume</StyledLink></li>
-                <li><StyledLink href="/demo">Demo</StyledLink></li>
-                <li><StyledLink href="/status">Status</StyledLink></li>
-            </NavList>
+            <NavContent>
+                <NavList>
+                    {navItems.map((item) => (
+                        <NavItem key={item.href}>
+                            <StyledLink
+                                href={item.href}
+                                $isActive={pathname === item.href}
+                            >
+                                {item.label}
+                                <ActiveIndicator $isActive={pathname === item.href} />
+                            </StyledLink>
+                        </NavItem>
+                    ))}
+                </NavList>
+            </NavContent>
         </NavContainer>
     );
 }
