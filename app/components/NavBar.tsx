@@ -100,11 +100,10 @@ export default function NavBar() {
 
     const navItems = [
         { href: "/", label: "Home" },
+        { href: "/about", label: "About" },
         { href: "/design", label: "Design" },
         { href: "/projects", label: "Projects" },
-        { href: "/resume", label: "Resume" },
-        { href: "/demo", label: "Demo" },
-        { href: "/status", label: "Status" }
+        { href: "/demo", label: "Demos" },
     ];
 
     return (
