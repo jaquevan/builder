@@ -4,8 +4,6 @@
 
 ## Under Development ... 🚧🏗️ - Evan Jaquez Active Portfolio Site 
 
-![image](https://github.com/user-attachments/assets/61ab9ec2-6574-41c4-a317-943f350bf13d)
-
 ## Features
 - Responsive design
 - Real-time updates
