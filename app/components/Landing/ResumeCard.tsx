@@ -18,7 +18,7 @@ const ResumeSection = styled.div`
     max-width: 500px;
     animation: ${fadeSlideIn} 0.8s ease-out 0.3s both;
     z-index: 25;
-    
+
     @media (max-width: 768px) {
         margin: 15px auto 20px;
         text-align: center;
@@ -82,18 +82,11 @@ export default function ResumeCard() {
                 <Typography variant="h4" color="#ffffff" fontWeight={600}>
                     Want a closer look?
                 </Typography>
-                <Typography variant="body1" color="#cccccc" sx={{ marginBottom: '8px' }}>
-                    My resume includes experience in web development, UI/UX design,
-                    and project management with cutting-edge technologies.
-                </Typography>
             </StyledText>
             <ResumeSection>
                 <StyledResumeCard elevation={3}>
                     <Typography variant="body1" color="#ffffff" fontWeight={500}>
-                        Looking for my qualifications?
-                    </Typography>
-                    <Typography variant="body2" color="#cccccc" sx={{ marginBottom: '8px' }}>
-                        View my resume to learn more about my skills and experience.
+                        Click here to view my resume.
                     </Typography>
                     <a href="/WebDev_Jaquez.pdf" target="_blank" rel="noopener noreferrer">
                         <ResumeButton

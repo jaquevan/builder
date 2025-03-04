@@ -30,10 +30,6 @@ const DesignHeaderTitle = styled.h1`
     -webkit-text-fill-color: transparent;
 `;
 
-const DesignHeaderSubtitle = styled.p`
-    font-size: 1.2rem;
-    color: #666;
-`;
 
 const Section = styled.section`
     margin-bottom: 5rem;
@@ -94,46 +90,6 @@ const SkillIcon = styled.div`
     margin-bottom: 1rem;
 `;
 
-const DesignPhilosophy = styled.div`
-    background: linear-gradient(to right, #f8f9fa, #e9ecef);
-    padding: 3rem;
-    border-radius: 15px;
-    text-align: center;
-`;
-
-const Blockquote = styled.blockquote`
-    font-size: 1.5rem;
-    font-style: italic;
-    margin: 2rem auto;
-    max-width: 80%;
-    position: relative;
-
-    &::before,
-    &::after {
-        content: '"';
-        font-size: 3rem;
-        color: #8e2de2;
-        position: absolute;
-    }
-
-    &::before {
-        top: -20px;
-        left: -20px;
-    }
-
-    &::after {
-        bottom: -40px;
-        right: -20px;
-    }
-`;
-
-const PhilosophyPoints = styled.div`
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin-top: 3rem;
-    text-align: left;
-`;
 
 const ProjectsGrid = styled.div`
     display: grid;
@@ -224,7 +180,7 @@ const DesignPage: React.FC = () => {
         <DesignPageContainer>
 
             <DesignHeader>
-                <DesignHeaderTitle>UI/UX Design Portfolio</DesignHeaderTitle>
+                <DesignHeaderTitle className="fade-in">UI/UX Design Portfolio</DesignHeaderTitle>
             </DesignHeader>
             <Section>
                 <SectionTitle>My Design Journey</SectionTitle>

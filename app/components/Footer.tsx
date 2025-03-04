@@ -211,6 +211,7 @@ const BottomBar = styled.div`
     text-align: center;
     font-size: 0.85rem;
     color: #999;
+    font-family: 'Roboto Mono', monospace;
 
     & span {
         color: ${colors.accent};
@@ -307,7 +308,9 @@ export default function Footer() {
                 <BrandColumn>
                     <LogoText variant="h3">builder | Evan Jaquez</LogoText>
                     <Tagline variant="body2">
-                        Creating unique digital solutions with thoughtful design.
+                        BA in Computer Science & Economics. <br />
+                        Minor in Data Science <br />
+                        Boston University, Boston MA
                     </Tagline>
 
                     <SocialIconsContainer>

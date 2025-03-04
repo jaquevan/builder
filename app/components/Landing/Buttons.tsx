@@ -26,7 +26,8 @@ const ButtonContainer = styled.div`
     justify-content: flex-start;
     max-width: 100%;
     margin: 1.5rem 0 0.5rem; 
-    padding: 0 clamp(1rem, 5%, 3rem);
+    padding: 0 clamp(1rem, 10%, 5rem);
+    padding-top: 3%;
 
     @media (max-width: 768px) {
         justify-content: center;
@@ -34,6 +35,14 @@ const ButtonContainer = styled.div`
         margin-bottom: 0.25rem; 
     }
 `;
+
+const Name = styled.h1`
+    margin: 0 auto;
+    padding-top: 4%;
+    padding-bottom: 0;
+    font-size: 4rem;
+
+    `;
 
 const StyledButton = styled.a`
     position: relative;
@@ -157,6 +166,9 @@ export default function EnhancedButtons() {
     ];
 
     return (
+        <>
+
+        <Name>Evan Jaquez</Name>
         <ButtonContainer role="navigation" aria-label="Social links and navigation">
             {buttons.map((button) => (
                 <Tooltip title={button.tooltip} key={button.id} arrow>
@@ -179,5 +191,7 @@ export default function EnhancedButtons() {
                 </Tooltip>
             ))}
         </ButtonContainer>
+    </>
     );
+
 }

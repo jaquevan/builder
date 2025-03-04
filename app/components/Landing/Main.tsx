@@ -4,6 +4,7 @@ import Content from "@/app/components/Landing/Content";
 import Buttons from "@/app/components/Landing/Buttons";
 import Status from "@/app/components/Landing/Status";
 import ResumeCard from "@/app/components/Landing/ResumeCard";
+import {Typography} from "@mui/material";
 
 
 const fadeIn = keyframes`
@@ -80,6 +81,7 @@ const WelcomeText = styled.h2`
     animation: ${glow} 3s infinite;
     text-shadow: 0 0 10px rgba(255,255,255,0.6);
     margin-bottom: clamp(10px, 2vh, 15px);
+    padding-top: 0;
     
     @media (max-width: 480px) {
         letter-spacing: 1px;
@@ -121,6 +123,8 @@ const ButtonDiv = styled.div`
 const StatusContainer = styled.div`
     margin-right: clamp(10px, 3%, 30px);
     z-index: 30;
+    padding-top: 1%;
+    margin-bottom: 0;
 
     @media (max-width: 768px) {
         margin-right: 0;
@@ -178,20 +182,9 @@ const TimeDisplay = styled.div`
 `;
 
 export default function Main() {
-    // Current date and time info
-    const username = "jaquevan";
-
     return (
         <StyledBody>
             <StyledSection>
-                <TimeDisplay>
-                     • {username} •
-                </TimeDisplay>
-
-                <WelcomeContainer>
-                    <WelcomeText>Welcome Aboard</WelcomeText>
-                </WelcomeContainer>
-
                 <MainContentArea>
                     <TopContainer>
                         <ButtonDiv>
@@ -206,7 +199,12 @@ export default function Main() {
                     </TopContainer>
 
                     <ContentWrapper>
+                        <WelcomeContainer>
+                            <WelcomeText>Welcome Aboard</WelcomeText>
+                        </WelcomeContainer>
+
                         <Content />
+
                     </ContentWrapper>
                 </MainContentArea>
             </StyledSection>
