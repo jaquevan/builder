@@ -340,9 +340,8 @@ export default function Footer() {
 
                 <NavColumn>
                     <SectionTitle variant="h6">Resources</SectionTitle>
-                    <FooterLink href="/blog">Blog</FooterLink>
                     <FooterLink href="/resume">Resume</FooterLink>
-                    <FooterLink href="/about">About</FooterLink>
+                    <FooterLink href="/about">About Me</FooterLink>
                 </NavColumn>
 
                 <ProfileColumn>

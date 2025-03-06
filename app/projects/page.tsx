@@ -9,7 +9,7 @@ import projects from "../components/Projects/projects";
 
 export default function Projects() {
     return (
-        <Box sx={{ bgcolor: "#f8f9fa", minHeight: "100vh" }}>
+        <Box sx={{ minHeight: "100vh" }}>
             <NavBar />
             <Container maxWidth="lg" sx={{ py: 8 }}>
                 <Typography variant="h3" component="h1" align="center"

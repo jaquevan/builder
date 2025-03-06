@@ -9,11 +9,11 @@ import { usePathname } from "next/navigation";
 const NavContainer = styled.nav`
     width: 40vw;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    position: sticky;
+    position: unset;
     top: 0;
-    border-radius: 50px;
+    border-radius: 55px;
     margin: 2% auto;
-    z-index: 1000;
+    z-index: 100;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     color: black;
 
