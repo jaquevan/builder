@@ -260,28 +260,6 @@ const ProfileName = styled(Typography)`
     text-align: center;
 `;
 
-const StatusBadge = styled.div`
-    display: flex;
-    align-items: center;
-    background-color: rgba(52, 211, 153, 0.15);
-    border: 1px solid rgba(52, 211, 153, 0.3);
-    border-radius: 16px;
-    padding: 4px 12px;
-    margin-top: 0.5rem;
-    font-size: 0.85rem;
-    color: ${colors.highlight};
-`;
-
-const StatusDot = styled.div`
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background-color: ${colors.highlight};
-    margin-right: 6px;
-    box-shadow: 0 0 5px ${colors.highlight};
-`;
-
-
 
 export default function Footer() {
     const [currentDateTime, setCurrentDateTime] = useState("2025-03-02 20:41:07");
@@ -377,10 +355,7 @@ export default function Footer() {
                             height={120}
                         />
                         <ProfileName variant="h6">Evan Jaquez</ProfileName>
-                        <StatusBadge>
-                            <StatusDot />
-                            <span>Open to Work</span>
-                        </StatusBadge>
+
                     </ProfileContainer>
                 </ProfileColumn>
             </ContentContainer>

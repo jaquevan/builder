@@ -2,9 +2,8 @@
 import styled, { keyframes } from "styled-components";
 import Content from "@/app/components/Landing/Content";
 import Buttons from "@/app/components/Landing/Buttons";
-import Status from "@/app/components/Landing/Status";
+import GithubStatus from "@/app/components/Landing/GithubStatus";
 import ResumeCard from "@/app/components/Landing/ResumeCard";
-import {Typography} from "@mui/material";
 
 
 const fadeIn = keyframes`
@@ -30,44 +29,35 @@ const glow = keyframes`
     }
 `;
 
-const fadeSlideIn = keyframes`
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-`;
+
 
 const StyledBody = styled.div`
-    background-color: black;
     overflow-x: hidden;
-    width: 100%;
+    width: 100vw;
+    height: 47.5vw;
     margin: 0;
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
 `;
 
-const StyledSection = styled.div`
+const MainSection = styled.div`
     display: flex;
     flex-direction: column;
     width: 90vw;
-    background-color: black;
-    color: white;
-    font-family: Arial, "Times New Roman", sans-serif;
+    color: black;
+    font-family: Monospaced, "JetBrains Mono", sans-serif;
     margin: 0 auto;
     position: relative;
     flex: 1;
+    padding-bottom: 0;
+    
 `;
 
 const WelcomeContainer = styled.div`
     position: relative;
     display: flex;
     flex-direction: column;
-    margin-top: clamp(10px, 2%, 20px);
+    margin-top: -11%; // space between train animation content and above 
     z-index: 10;
     animation: ${fadeIn} 1.5s ease-out;
 `;
@@ -78,7 +68,7 @@ const WelcomeText = styled.h2`
     font-weight: 700;
     text-align: left;
     letter-spacing: 2px;
-    animation: ${glow} 3s infinite;
+    animation: ${glow} 4s infinite;
     text-shadow: 0 0 10px rgba(255,255,255,0.6);
     margin-bottom: clamp(10px, 2vh, 15px);
     padding-top: 0;
@@ -121,10 +111,10 @@ const ButtonDiv = styled.div`
 `;
 
 const StatusContainer = styled.div`
-    margin-right: clamp(10px, 3%, 30px);
     z-index: 30;
-    padding-top: 1%;
-    margin-bottom: 0;
+    position: absolute;
+    top: 1vw;
+    right: 1vw;
 
     @media (max-width: 768px) {
         margin-right: 0;
@@ -136,7 +126,7 @@ const StatusContainer = styled.div`
 const ResumeSection = styled.div`
     margin: 15px 0 5px 5.5%;
     max-width: 500px;
-    animation: ${fadeSlideIn} 0.8s ease-out 0.3s both;
+    animation: ${fadeIn} 0.8s ease-out 0.3s both;
     z-index: 25;
     
     @media (max-width: 768px) {
@@ -146,68 +136,39 @@ const ResumeSection = styled.div`
     }
 `;
 
-
-
-// Content wrapper to position the train animation properly
-const ContentWrapper = styled.div`
-    margin-top: clamp(-30px, -5vh, -20px);
-    width: 100%;
-    z-index: 10;
-    position: relative;
-    flex: 1;
-
-    @media (max-width: 768px) {
-        margin-top: clamp(-20px, -3vh, -10px);
-    }
-`;
-
-// Current time component
-const TimeDisplay = styled.div`
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    padding-top: 1%;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.6);
-    z-index: 40;
-
-    @media (max-width: 768px) {
-        position: relative;
-        text-align: center;
-        top: auto;
-        right: auto;
-        margin-bottom: 10px;
-    }
-`;
-
 export default function Main() {
     return (
         <StyledBody>
-            <StyledSection>
+            <MainSection>
+
                 <MainContentArea>
+
                     <TopContainer>
+
                         <ButtonDiv>
+
                             <Buttons />
+
                             <ResumeSection>
                                 <ResumeCard />
                             </ResumeSection>
                         </ButtonDiv>
+
                         <StatusContainer>
-                            <Status />
+                            <GithubStatus />
                         </StatusContainer>
+
                     </TopContainer>
 
-                    <ContentWrapper>
                         <WelcomeContainer>
                             <WelcomeText>Welcome Aboard</WelcomeText>
                         </WelcomeContainer>
 
+                        {/*content refers to the train animation component*/}
                         <Content />
 
-                    </ContentWrapper>
                 </MainContentArea>
-            </StyledSection>
+            </MainSection>
         </StyledBody>
     );
 }

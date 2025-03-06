@@ -1,26 +1,31 @@
 "use client"
 
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 
 
 const NavContainer = styled.nav`
-    background-color: #1A1A1A;
-    padding: 0;
+    width: 40vw;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     position: sticky;
     top: 0;
+    border-radius: 50px;
+    margin: 2% auto;
     z-index: 1000;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: black;
+
 `;
 
 const NavContent = styled.div`
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+
 `;
+
 
 const NavList = styled.ul`
     display: flex;
@@ -41,8 +46,7 @@ const StyledLink = styled(Link)`
     display: block;
     padding: 1.2rem 1.8rem;
     text-decoration: none;
-    color: ${props => props.$isActive ? '#FFAF82' : 'rgba(255, 255, 255, 0.9)'};
-    font-family: "Arial", "Helvetica", sans-serif;
+    color: ${props => props.$isActive ? '#00843D' : '#111111'};    font-family: "Arial", "Helvetica", sans-serif;
     font-size: 1rem;
     font-weight: ${props => props.$isActive ? '600' : '500'};
     letter-spacing: 0.5px;
@@ -50,8 +54,7 @@ const StyledLink = styled(Link)`
     position: relative;
 
     &:hover {
-        color: #FFAF82;
-        background-color: rgba(255, 175, 130, 0.08);
+        color: #00843D;
     }
 
     &::after {
@@ -61,14 +64,15 @@ const StyledLink = styled(Link)`
         left: 0;
         width: 100%;
         height: 3px;
-        background: ${props => props.$isActive ? 'linear-gradient(90deg, #FFAF82, #FFE53B)' : 'transparent'};
+        background: ${props => props.$isActive ? 'linear-gradient(90deg, rebeccapurple, #00843D)' : 'transparent'};
         transform: ${props => props.$isActive ? 'scaleX(1)' : 'scaleX(0)'};
-        transform-origin: center;
-        transition: transform 0.25s ease;
+        transform-origin: left;
+        transition: transform 0.3s ease;
     }
 
+
     &:hover::after {
-        background: linear-gradient(90deg, #FFAF82, #FFE53B);
+        background: linear-gradient(90deg, #00843B, rebeccapurple);
         transform: scaleX(1);
     }
 
@@ -90,7 +94,7 @@ const ActiveIndicator = styled.span`
     width: 4px;
     height: 4px;
     border-radius: 50%;
-    background-color: #FFAF82;
+    background-color: rebeccapurple;
     opacity: ${props => props.$isActive ? '1' : '0'};
     transition: opacity 0.25s ease;
 `;

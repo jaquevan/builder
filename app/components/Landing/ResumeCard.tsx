@@ -79,14 +79,14 @@ export default function ResumeCard() {
         <>
 
             <StyledText>
-                <Typography variant="h4" color="#ffffff" fontWeight={600}>
+                <Typography variant="h5"  fontWeight={700}>
                     Want a closer look?
                 </Typography>
             </StyledText>
             <ResumeSection>
                 <StyledResumeCard elevation={3}>
                     <Typography variant="body1" color="#ffffff" fontWeight={500}>
-                        Click here to view my resume.
+                        Click here to view my resume in a new tab.
                     </Typography>
                     <a href="/WebDev_Jaquez.pdf" target="_blank" rel="noopener noreferrer">
                         <ResumeButton

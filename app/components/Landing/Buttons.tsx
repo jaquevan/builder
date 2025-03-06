@@ -135,6 +135,15 @@ const ButtonText = styled.span`
     }
 `;
 
+const SubText = styled.h2`
+    margin: 0 auto;
+    padding-top: 0.5rem;
+    font-size: 1.5rem;
+    color: #00843D; /* Use the same green color as other components */
+    font-family: Monospaced, "JetBrains Mono", sans-serif; /* Monospaced font */
+    text-align: left; 
+`;
+
 export default function EnhancedButtons() {
     const [hoveredButton, setHoveredButton] = useState(null);
 
@@ -169,6 +178,8 @@ export default function EnhancedButtons() {
         <>
 
         <Name>Evan Jaquez</Name>
+            <SubText>UX Designer and Frontend Developer</SubText>
+
         <ButtonContainer role="navigation" aria-label="Social links and navigation">
             {buttons.map((button) => (
                 <Tooltip title={button.tooltip} key={button.id} arrow>

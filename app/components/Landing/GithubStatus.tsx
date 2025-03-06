@@ -258,7 +258,6 @@ const DirectionSign = styled(Link)`
     align-items: center;
     justify-content: center;
     padding: 0.5rem 0.75rem;
-    margin-top: auto;
     font-weight: 500;
     font-size: 0.95rem;
     text-decoration: none;

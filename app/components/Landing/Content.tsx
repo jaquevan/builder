@@ -31,8 +31,8 @@ const TrackContainer = styled.div`
     position: relative;
     width: 100vw; 
     margin-left: calc(-50vw + 50%); 
-    height: 25vh;
-    background: url(${City.src}) no-repeat center bottom;
+    height: 37vh;
+    background: url(${City.src}) no-repeat center;
     background-size: cover;
     overflow: hidden;
     min-height: 160px; 
@@ -42,23 +42,16 @@ const TrackContainer = styled.div`
     align-items: center;
 
     @media (max-width: 768px) {
-        height: 35vh;
+        height: 30vh;
     }
 
     @media (max-width: 480px) {
-        height: 40vh;
+        height: 30vh;
     }
 `;
 
 
-const BackgroundOverlay = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 100%);
-`;
+
 
 const TrainContainer = styled.div`
     position: absolute;
@@ -128,7 +121,6 @@ export default function TrainAnimation() {
 
     return (
         <TrackContainer aria-label="Animated train scene with city background">
-            <BackgroundOverlay />
 
             <TrainContainer>
                 <TrainImageWrapper>
