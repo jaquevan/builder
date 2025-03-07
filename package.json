@@ -22,12 +22,12 @@
     "framer-motion": "^11.11.17",
     "leaflet": "^1.9.4",
     "next": "15.0.1",
-    "react": "19.0.0-rc-69d4b800-20241021",
-    "react-dom": "19.0.0-rc-69d4b800-20241021",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-leaflet": "^5.0.0",
     "react-pdf": "^9.1.1",
     "react-scroll": "^1.9.0",
-    "styled-components": "^6.1.13",
+    "styled-components": "^5.3.3",
     "three": "^0.170.0"
   },
   "devDependencies": {
@@ -37,6 +37,8 @@
     "eslint": "^8",
     "eslint-config-next": "15.0.1",
     "typescript": "^5",
-    "vite": "^5.4.10"
+    "vite": "^5.4.10",
+    "babel-plugin-styled-components": "^1.12.0"
+
   }
 }
