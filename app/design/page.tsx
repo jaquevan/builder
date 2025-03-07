@@ -4,7 +4,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Nav from '@/app/components/NavBar';
 import Footer from "@/app/components/Footer";
-
+import Image from 'next/image';
 
 const DesignPageContainer = styled.div`
     font-family: 'Inter', 'Helvetica Neue', sans-serif;
@@ -29,7 +29,6 @@ const DesignHeaderTitle = styled.h1`
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 `;
-
 
 const Section = styled.section`
     margin-bottom: 5rem;
@@ -59,13 +58,6 @@ const JourneyContent = styled.div`
     align-items: center;
 `;
 
-const ProfileImage = styled.img`
-    border-radius: 50%;
-    width: 100%;
-    max-width: 250px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-`;
-
 const SkillsContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -89,7 +81,6 @@ const SkillIcon = styled.div`
     font-size: 2.5rem;
     margin-bottom: 1rem;
 `;
-
 
 const ProjectsGrid = styled.div`
     display: grid;
@@ -172,99 +163,96 @@ const Resource = styled.div`
     }
 `;
 
-
 const DesignPage: React.FC = () => {
     return (
         <>
-        <Nav/>
-        <DesignPageContainer>
+            <Nav/>
+            <DesignPageContainer>
 
-            <DesignHeader>
-                <DesignHeaderTitle className="fade-in">UI/UX Design Portfolio</DesignHeaderTitle>
-            </DesignHeader>
-            <Section>
-                <SectionTitle>My Design Journey</SectionTitle>
-                <JourneyContent>
-                    <div>
-                        <p>
-                            Although I'm early in my UI/UX design journey, I'm passionate about creating
-                            interfaces that are both beautiful and functional. My background in
-                            [your background - e.g., "computer science", "graphic design", etc.]
-                            has given me a unique perspective on how users interact with digital products.
-                        </p>
-                        <p>
-                            What fascinates me about UI/UX design is the perfect blend of creativity and
-                            problem-solving. I enjoy the process of understanding user needs and translating
-                            them into designs that are intuitive and engaging.
-                        </p>
-                    </div>
-                    <ProfileImage src="/path-to-your-image.jpg" alt="Your Name" />
-                </JourneyContent>
-            </Section>
+                <DesignHeader>
+                    <DesignHeaderTitle className="fade-in">UI/UX Design Portfolio</DesignHeaderTitle>
+                </DesignHeader>
+                <Section>
+                    <SectionTitle>My Design Journey</SectionTitle>
+                    <JourneyContent>
+                        <div>
+                            <p>
+                                Although I&apos;m early in my UI/UX design journey, I&apos;m passionate about creating
+                                interfaces that are both beautiful and functional. My background in
+                                [your background - e.g., &quot;computer science&quot;, &quot;graphic design&quot;, etc.]
+                                has given me a unique perspective on how users interact with digital products.
+                            </p>
+                            <p>
+                                What fascinates me about UI/UX design is the perfect blend of creativity and
+                                problem-solving. I enjoy the process of understanding user needs and translating
+                                them into designs that are intuitive and engaging.
+                            </p>
+                        </div>
+                    </JourneyContent>
+                </Section>
 
-            <Section>
-                <SectionTitle>Design Skills & Tools</SectionTitle>
-                <SkillsContainer>
-                    <SkillCard>
-                        <SkillIcon>🎨</SkillIcon>
-                        <h3>UI Design</h3>
-                        <p>Creating visually appealing interfaces with attention to color theory, typography, and visual hierarchy.</p>
-                    </SkillCard>
-                    <SkillCard>
-                        <SkillIcon>🧠</SkillIcon>
-                        <h3>UX Design</h3>
-                        <p>Designing with user-centered approaches, focusing on usability and accessibility.</p>
-                    </SkillCard>
-                    <SkillCard>
-                        <SkillIcon>🛠️</SkillIcon>
-                        <h3>Design Tools</h3>
-                        <p>Figma, Adobe Photoshop, Miro, Photopea</p>
-                    </SkillCard>
-                </SkillsContainer>
-            </Section>
+                <Section>
+                    <SectionTitle>Design Skills & Tools</SectionTitle>
+                    <SkillsContainer>
+                        <SkillCard>
+                            <SkillIcon>🎨</SkillIcon>
+                            <h3>UI Design</h3>
+                            <p>Creating visually appealing interfaces with attention to color theory, typography, and visual hierarchy.</p>
+                        </SkillCard>
+                        <SkillCard>
+                            <SkillIcon>🧠</SkillIcon>
+                            <h3>UX Design</h3>
+                            <p>Designing with user-centered approaches, focusing on usability and accessibility.</p>
+                        </SkillCard>
+                        <SkillCard>
+                            <SkillIcon>🛠️</SkillIcon>
+                            <h3>Design Tools</h3>
+                            <p>Figma, Adobe Photoshop, Miro, Photopea</p>
+                        </SkillCard>
+                    </SkillsContainer>
+                </Section>
 
+                <Section>
+                    <SectionTitle>Learning Projects</SectionTitle>
+                    <p className="section-intro">
+                        As I&apos;m building my experience, here are some design exercises and projects I&apos;ve worked on to develop my skills:
+                    </p>
+                    <ProjectsGrid>
+                        <ProjectCard>
+                            <ProjectImage>
+                                <img src="../../public/camelitics.png" alt="Project 1" />
+                            </ProjectImage>
+                            <ProjectTitle>Boston Voter App</ProjectTitle>
+                            <ProjectDescription>A concept redesign of a popular app focusing on improved navigation and visual hierarchy.</ProjectDescription>
+                            <ViewProjectButton>View Process</ViewProjectButton>
+                        </ProjectCard>
 
-            <Section>
-                <SectionTitle>Learning Projects</SectionTitle>
-                <p className="section-intro">
-                    As I'm building my experience, here are some design exercises and projects I've worked on to develop my skills:
-                </p>
-                <ProjectsGrid>
-                    <ProjectCard>
-                        <ProjectImage>
-                            <img src="../../public/camelitics.png" alt="Project 1" />
-                        </ProjectImage>
-                        <ProjectTitle>Boston Voter App</ProjectTitle>
-                        <ProjectDescription>A concept redesign of a popular app focusing on improved navigation and visual hierarchy.</ProjectDescription>
-                        <ViewProjectButton>View Process</ViewProjectButton>
-                    </ProjectCard>
+                        <ProjectCard>
+                            <ProjectImage>
+                                <img src="../../public/camelitics.png" alt="Project 2" />
+                            </ProjectImage>
+                            <ProjectTitle>MAPLE 3.0</ProjectTitle>
+                            <ProjectDescription>Exploring the principles of creating a consistent design system by analyzing popular frameworks.</ProjectDescription>
+                            <ViewProjectButton>View Process</ViewProjectButton>
+                        </ProjectCard>
+                    </ProjectsGrid>
+                </Section>
 
-                    <ProjectCard>
-                        <ProjectImage>
-                            <img src="../../public/camelitics.png" alt="Project 2" />
-                        </ProjectImage>
-                        <ProjectTitle>MAPLE 3.0</ProjectTitle>
-                        <ProjectDescription>Exploring the principles of creating a consistent design system by analyzing popular frameworks.</ProjectDescription>
-                        <ViewProjectButton>View Process</ViewProjectButton>
-                    </ProjectCard>
-                </ProjectsGrid>
-            </Section>
+                <Section>
+                    <SectionTitle>Resources I&apos;m Learning From</SectionTitle>
+                    <ResourcesList>
+                        <Resource>
+                            <h3>Courses</h3>
+                            <ul>
+                                <li>CS391 - Web and App Development</li>
+                                <li>DS488/688 - UX Design Practicum</li>
+                                <li>CS501 - Mobile App Development</li>
+                            </ul>
+                        </Resource>
 
-            <Section>
-                <SectionTitle>Resources I'm Learning From</SectionTitle>
-                <ResourcesList>
-                    <Resource>
-                        <h3>Courses</h3>
-                        <ul>
-                            <li>CS391 - Web and App Development</li>
-                            <li>DS488/688 - UX Design Practicum</li>
-                            <li>CS501 - Mobile App Development</li>
-                        </ul>
-                    </Resource>
-
-                </ResourcesList>
-            </Section>
-        </DesignPageContainer>
+                    </ResourcesList>
+                </Section>
+            </DesignPageContainer>
             <Footer/>
         </>
     );

@@ -10,7 +10,7 @@ import Image from "next/image";
 export interface Project {
     id: string;
     title: string;
-    image: any;
+    image: string;
     description: string;
     learnings: string;
     github: string | null;

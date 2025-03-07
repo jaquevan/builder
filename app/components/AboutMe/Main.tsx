@@ -4,7 +4,6 @@ import styled from "styled-components";
 import SpotifyEmbed from "@/app/components/AboutMe/Spotify";
 import Image from "next/image";
 import pfp from "@/public/real_pfp.jpg";
-import GeeseMap from "@/app/components/AboutMe/Map";
 
 // styled components dealing with the top of the about apge and the containers representing
 // the first viewpoint of the site
@@ -132,9 +131,7 @@ const SpotifyContiner = styled.div`
     padding: 0;
     justify-content: right;
 `;
-const MapContainer = styled.div`
-    padding-top: 100vh;
-`;
+
 
 
 export default function Main() {
@@ -161,9 +158,6 @@ export default function Main() {
             <Subtitle>UX/UI Research and Design</Subtitle>
         </SpotifyContiner>
 
-        <MapContainer>
-            <GeeseMap/>
-        </MapContainer>
         </>
 
     );
