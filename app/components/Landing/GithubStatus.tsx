@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-
 import { Tooltip, Typography, CircularProgress } from "@mui/material";
 import CodeIcon from "@mui/icons-material/Code";
 import StorageIcon from "@mui/icons-material/Storage";
@@ -9,7 +8,6 @@ import TerminalIcon from "@mui/icons-material/Public";
 import PublicIcon from "@mui/icons-material/Terminal";
 import StarIcon from "@mui/icons-material/Star";
 import GitHubIcon from "@mui/icons-material/GitHub";
-
 import TechIcons from "./TechIcons";
 
 // styled components
@@ -34,16 +32,33 @@ import {
     LoadingContainer
 } from './GithubStatus.styles';
 
+interface UserProfile {
+    avatar_url: string;
+    name: string;
+    bio: string;
+    public_repos: number;
+    created_at: string;
+}
+
+interface Repo {
+    language?: string;
+}
+
+interface Event {
+    type: string;
+    created_at: string;
+}
+
 export default function GitHubStatus() {
     // state variables
     const [loading, setLoading] = useState(true);
-    const [userProfile, setUserProfile] = useState(null);
+    const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
     const [repos, setRepos] = useState(0);
     const [languages, setLanguages] = useState('');
     const [streak, setStreak] = useState('0 days');
     const [lastCommitDate, setLastCommitDate] = useState('');
     const [currentTime, setCurrentTime] = useState('');
-    const [error, setError] = useState(null);
+    const [error, setError] = useState<string | null>(null);
 
     // hardcoded values
     const username = "jaquevan";
@@ -72,17 +87,17 @@ export default function GitHubStatus() {
                 // fetch basic profile data
                 const profileResponse = await fetch(`https://api.github.com/users/${username}`);
                 if (!profileResponse.ok) throw new Error('Failed to fetch profile');
-                const profileData = await profileResponse.json();
+                const profileData: UserProfile = await profileResponse.json();
                 setUserProfile(profileData);
                 setRepos(profileData.public_repos || 0);
 
                 // fetch repos to get languages
                 const reposResponse = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`);
                 if (!reposResponse.ok) throw new Error('Failed to fetch repos');
-                const reposData = await reposResponse.json();
+                const reposData: Repo[] = await reposResponse.json();
 
                 // count languages and get top 3
-                const languageCounts = {};
+                const languageCounts: { [key: string]: number } = {};
                 reposData.forEach(repo => {
                     if (repo.language) {
                         languageCounts[repo.language] = (languageCounts[repo.language] || 0) + 1;
@@ -100,7 +115,7 @@ export default function GitHubStatus() {
                 // get recent activity for last commit date and streak
                 const eventsResponse = await fetch(`https://api.github.com/users/${username}/events`);
                 if (!eventsResponse.ok) throw new Error('Failed to fetch events');
-                const events = await eventsResponse.json();
+                const events: Event[] = await eventsResponse.json();
 
                 const pushEvents = events.filter(event => event.type === 'PushEvent');
 
@@ -117,13 +132,12 @@ export default function GitHubStatus() {
                 setLoading(false);
             } catch (err) {
                 console.error('GitHub API error:', err);
-                setError(err.message);
                 setLoading(false);
             }
         };
 
         // helper function to calculate streak - separated for clarity
-        const calculateStreak = (pushEvents) => {
+        const calculateStreak = (pushEvents: Event[]) => {
             const today = new Date();
             today.setHours(0, 0, 0, 0);
 
@@ -131,7 +145,7 @@ export default function GitHubStatus() {
             lastCommit.setHours(0, 0, 0, 0);
 
             // check if last commit is recent (today or yesterday)
-            const daysDiff = Math.ceil(Math.abs(today - lastCommit) / (1000 * 60 * 60 * 24));
+            const daysDiff = Math.ceil(Math.abs(today.getTime() - lastCommit.getTime()) / (1000 * 60 * 60 * 24));
 
             if (daysDiff <= 1) {
                 // count consecutive days with commits

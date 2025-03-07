@@ -1,9 +1,14 @@
-"use client"
+"use client";
 
 import styled from "styled-components";
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
 import { usePathname } from "next/navigation";
+
+// Define the props interface for StyledLink
+interface StyledLinkProps {
+    $isActive: boolean;
+}
 
 const NavContainer = styled.nav`
     width: 45vw;
@@ -67,7 +72,7 @@ const NavItem = styled.li`
     padding: 0;
 `;
 
-const StyledLink = styled(Link)`
+const StyledLink = styled(Link)<StyledLinkProps>`
     display: block;
     padding: 1.2rem 1.8rem;
     text-decoration: none;

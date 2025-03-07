@@ -5,6 +5,33 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import WorkIcon from "@mui/icons-material/Work";
 
+const buttons = [
+    {
+        id: "linkedin",
+        text: "LinkedIn",
+        href: "https://www.linkedin.com/in/evan-jaquez-118b5b294/",
+        icon: <LinkedInIcon />,
+        gradient: "linear-gradient(135deg, #0077b5, #00a0dc)",
+        tooltip: "Connect on LinkedIn"
+    },
+    {
+        id: "experience",
+        text: "Experience",
+        href: "/experience",
+        icon: <WorkIcon />,
+        gradient: "linear-gradient(135deg, #6a11cb, #2575fc)",
+        tooltip: "View Work Experience"
+    },
+    {
+        id: "github",
+        text: "GitHub",
+        href: "https://www.github.com/jaquevan",
+        icon: <GitHubIcon />,
+        gradient: "linear-gradient(135deg, #24292e, #4a4a4a)",
+        tooltip: "View GitHub Projects"
+    }
+];
+
 const pulse = keyframes`
     0% { transform: scale(1); }
     50% { transform: scale(1.05); }
@@ -15,6 +42,14 @@ const shimmer = keyframes`
     0% { background-position: -200% 0; }
     100% { background-position: 200% 0; }
 `;
+
+interface StyledButtonProps {
+    $gradient?: string;
+    $maxWidth?: string;
+    $mobileMaxWidth?: string;
+    $mobileFlex?: string;
+    $smallMobileMaxWidth?: string;
+}
 
 const ButtonContainer = styled.div`
     display: flex;
@@ -41,7 +76,7 @@ const Name = styled.h1`
     font-size: 4rem;
 `;
 
-const StyledButton = styled.a`
+const StyledButton = styled.a<StyledButtonProps>`
     position: relative;
     display: flex;
     align-items: center;
@@ -142,33 +177,6 @@ const SubText = styled.h2`
 `;
 
 export default function EnhancedButtons() {
-    const buttons = [
-        {
-            id: "linkedin",
-            text: "LinkedIn",
-            href: "https://www.linkedin.com/in/evan-jaquez-118b5b294/",
-            icon: <LinkedInIcon />,
-            gradient: "linear-gradient(135deg, #0077b5, #00a0dc)",
-            tooltip: "Connect on LinkedIn"
-        },
-        {
-            id: "experience",
-            text: "Experience",
-            href: "/experience",
-            icon: <WorkIcon />,
-            gradient: "linear-gradient(135deg, #6a11cb, #2575fc)",
-            tooltip: "View Work Experience"
-        },
-        {
-            id: "github",
-            text: "GitHub",
-            href: "https://www.github.com/jaquevan",
-            icon: <GitHubIcon />,
-            gradient: "linear-gradient(135deg, #24292e, #4a4a4a)",
-            tooltip: "View GitHub Projects"
-        }
-    ];
-
     return (
         <>
             <Name>Evan Jaquez</Name>
