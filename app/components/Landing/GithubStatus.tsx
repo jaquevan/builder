@@ -191,21 +191,6 @@ export default function GitHubStatus() {
         );
     }
 
-    // error state
-    if (error) {
-        return (
-            <StationPaper elevation={3}>
-                <StationHeader>
-                    <StationName><GitHubIcon sx={{mr: 1}}/> Error</StationName>
-                    <TimeDisplay>{currentTime}</TimeDisplay>
-                </StationHeader>
-                <div style={{padding: '2rem', textAlign: 'center'}}>
-                    <Typography>Failed to load GitHub data: {error}</Typography>
-                </div>
-            </StationPaper>
-        );
-    }
-
     // success state
     return (
         <StationPaper elevation={3}>
