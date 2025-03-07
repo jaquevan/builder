@@ -58,7 +58,6 @@ export default function GitHubStatus() {
     const [streak, setStreak] = useState('0 days');
     const [lastCommitDate, setLastCommitDate] = useState('');
     const [currentTime, setCurrentTime] = useState('');
-    const [error, setError] = useState<string | null>(null);
 
     // hardcoded values
     const username = "jaquevan";
