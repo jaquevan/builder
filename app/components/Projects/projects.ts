@@ -10,7 +10,7 @@ const projects: Project[] = [
     {
         id: "planit",
         title: "Plan It",
-        image: planit,
+        image: planit.src,
         description: "Productivity app with timer, tasks & journaling",
         learnings: "Built with React. Learned state management, user experience design, and implementing multiple connected features.",
         github: "https://github.com/jaquevan/Plan-It_bh2024",
@@ -19,7 +19,7 @@ const projects: Project[] = [
     {
         id: "camelitics",
         title: "Camelitics",
-        image: camel,
+        image: camel.src,
         description: "Data platform for camel racing statistics",
         learnings: "Mastered data visualization, processing algorithms, and creating intuitive dashboards for complex datasets.",
         github: "https://github.com/TemiKayas/Camelitics",
@@ -28,7 +28,7 @@ const projects: Project[] = [
     {
         id: "onc",
         title: "Our National Conversation",
-        image: null,
+        image: bdd.src,
         description: "Modern forum for constructive national discussion",
         learnings: "Developed community platform skills including authentication, moderation tools, and engagement features.",
         github: null,
@@ -37,7 +37,7 @@ const projects: Project[] = [
     {
         id: "Dbz",
         title: "Dragon Ball Z Mini Wiki",
-        image: dbz,
+        image: dbz.src,
         description: "Practice using API data to create a mini wiki in React",
         learnings: "Developed skills in fetching and displaying API data, and creating a user-friendly interface.",
         github: "https://github.com/jaquevan/React-Dragon-Ball-Wiki",
@@ -46,7 +46,7 @@ const projects: Project[] = [
     {
         id: "BDD",
         title: "Blue Dev Digital",
-        image: bdd,
+        image: bdd.src,
         description: "UX/UI Consultant and Front-end Developer ",
         learnings: "Updated and maintain company website, created new pages and updated content.",
         github: null,
@@ -55,7 +55,7 @@ const projects: Project[] = [
     {
         id: "Weather App",
         title: "Weather App",
-        image: weather,
+        image: weather.src,
         description: "Next.js weather app",
         learnings: "Built with Next.js.",
         github: "https://github.com/jaquevan/Weather-App-",
