@@ -38,6 +38,7 @@ const ButtonContainer = styled.div`
 
 const Name = styled.h1`
     margin: 0 auto;
+    text-align: left;
     padding-top: 4%;
     padding-bottom: 0;
     font-size: 4rem;
@@ -148,6 +149,7 @@ export default function EnhancedButtons() {
     const [hoveredButton, setHoveredButton] = useState(null);
 
     const buttons = [
+
         {
             id: "linkedin",
             text: "LinkedIn",
@@ -156,6 +158,16 @@ export default function EnhancedButtons() {
             gradient: "linear-gradient(135deg, #0077b5, #00a0dc)",
             tooltip: "Connect on LinkedIn"
         },
+
+        {
+            id: "experience",
+            text: "Experience",
+            href: "/experience",
+            icon: <WorkIcon />,
+            gradient: "linear-gradient(135deg, #6a11cb, #2575fc)",
+            tooltip: "View Work Experience"
+        },
+
         {
             id: "github",
             text: "GitHub",
@@ -163,22 +175,15 @@ export default function EnhancedButtons() {
             icon: <GitHubIcon />,
             gradient: "linear-gradient(135deg, #24292e, #4a4a4a)",
             tooltip: "View GitHub Projects"
-        },
-        {
-            id: "experience",
-            text: "Experience",
-            href: "/",
-            icon: <WorkIcon />,
-            gradient: "linear-gradient(135deg, #6a11cb, #2575fc)",
-            tooltip: "View Work Experience"
         }
+
     ];
 
     return (
         <>
 
         <Name>Evan Jaquez</Name>
-            <SubText>UX Designer and Frontend Developer</SubText>
+            <SubText>Frontend Developer and UX Designer/Researcher</SubText>
 
         <ButtonContainer role="navigation" aria-label="Social links and navigation">
             {buttons.map((button) => (

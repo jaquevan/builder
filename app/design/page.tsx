@@ -232,7 +232,7 @@ const DesignPage: React.FC = () => {
                 <ProjectsGrid>
                     <ProjectCard>
                         <ProjectImage>
-                            <img src="../public/camelitics.png" alt="Project 1" />
+                            <img src="../../public/camelitics.png" alt="Project 1" />
                         </ProjectImage>
                         <ProjectTitle>Boston Voter App</ProjectTitle>
                         <ProjectDescription>A concept redesign of a popular app focusing on improved navigation and visual hierarchy.</ProjectDescription>
@@ -241,7 +241,7 @@ const DesignPage: React.FC = () => {
 
                     <ProjectCard>
                         <ProjectImage>
-                            <img src="../public/camelitics.png" alt="Project 2" />
+                            <img src="../../public/camelitics.png" alt="Project 2" />
                         </ProjectImage>
                         <ProjectTitle>MAPLE 3.0</ProjectTitle>
                         <ProjectDescription>Exploring the principles of creating a consistent design system by analyzing popular frameworks.</ProjectDescription>

@@ -17,7 +17,7 @@ export default function SpotifyEmbed() {
             <iframe
                 src="https://open.spotify.com/embed/album/4m2880jivSbbyEGAKfITCa?utm_source=generator"
                 width="100%"
-                height="152"
+                height="151"
                 frameBorder="0"
                 allowFullScreen={true}
                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"

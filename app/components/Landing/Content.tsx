@@ -4,8 +4,8 @@ import Image from "next/image";
 import styled, { keyframes } from "styled-components";
 
 // Assets
-import Train from "../../public/t.svg";
-import City from "../../public/city.png";
+import Train from "@/public/t.svg";
+import City from "@/public/city.png";
 
 // Animation keyframes
 const moveTrain = keyframes`

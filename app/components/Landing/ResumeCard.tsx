@@ -74,12 +74,14 @@ const StyledText = styled.div`
 `;
 
 export default function ResumeCard() {
+    const handleOpenResume = () => {
+        window.open("/WebDev_Jaquez.pdf", '_blank', 'noopener,noreferrer');
+    };
+
     return (
-
         <>
-
             <StyledText>
-                <Typography variant="h5"  fontWeight={700}>
+                <Typography variant="h5" fontWeight={700}>
                     Want a closer look?
                 </Typography>
             </StyledText>
@@ -88,17 +90,16 @@ export default function ResumeCard() {
                     <Typography variant="body1" color="#ffffff" fontWeight={500}>
                         Click here to view my resume in a new tab.
                     </Typography>
-                    <a href="/WebDev_Jaquez.pdf" target="_blank" rel="noopener noreferrer">
-                        <ResumeButton
-                            variant="contained"
-                            startIcon={<DescriptionIcon />}
-                        >
-                            View Resume
-                        </ResumeButton>
-                    </a>
+                    <ResumeButton
+                        onClick={handleOpenResume}
+                        variant="contained"
+                        color="primary"
+                        startIcon={<DescriptionIcon />}
+                    >
+                        View Resume
+                    </ResumeButton>
                 </StyledResumeCard>
             </ResumeSection>
         </>
-
     );
 }

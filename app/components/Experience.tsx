@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Card, CardContent, Typography } from "@mui/material";
-import DirtImage from "../public/dirt.png";
+import DirtImage from "@/public/dirt.png";
 
 const CardContainer = styled.div`
     display: flex;

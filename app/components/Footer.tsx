@@ -10,7 +10,7 @@ import CodeIcon from '@mui/icons-material/Code';
 import DesignServicesIcon from '@mui/icons-material/DesignServices';
 import ContactPageIcon from '@mui/icons-material/ContactPage';
 import Image from 'next/image';
-import pfp from '../public/real_pfp.jpg';
+import pfp from '@/public/real_pfp.jpg';
 
 
 const fadeIn = keyframes`
@@ -253,12 +253,6 @@ const ProfileAvatar = styled(Image)`
     }
 `;
 
-const ProfileName = styled(Typography)`
-    color: ${colors.lightText};
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    text-align: center;
-`;
 
 
 export default function Footer() {
@@ -345,7 +339,7 @@ export default function Footer() {
                 </NavColumn>
 
                 <ProfileColumn>
-                    <SectionTitle variant="h6">Developer</SectionTitle>
+                    <SectionTitle variant="h6">Evan D Jaquez</SectionTitle>
                     <ProfileContainer>
                         <ProfileAvatar
                             src={pfp}
@@ -353,8 +347,6 @@ export default function Footer() {
                             width={120}
                             height={120}
                         />
-                        <ProfileName variant="h6">Evan Jaquez</ProfileName>
-
                     </ProfileContainer>
                 </ProfileColumn>
             </ContentContainer>

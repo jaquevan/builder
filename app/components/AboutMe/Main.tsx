@@ -3,18 +3,22 @@
 import styled from "styled-components";
 import SpotifyEmbed from "@/app/components/AboutMe/Spotify";
 import Image from "next/image";
-import pfp from "../../public/real_pfp.jpg";
+import pfp from "@/public/real_pfp.jpg";
+import GeeseMap from "@/app/components/AboutMe/Map";
 
+// styled components dealing with the top of the about apge and the containers representing
+// the first viewpoint of the site
 const ProfileContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 120px 20px 60px;
+    width: 45%;
+    margin: 0;
+    padding-top: 5%;
 
     @media screen and (max-width: 768px) {
         padding-top: 100px;
+        width: 100%;
     }
 `;
 
@@ -26,28 +30,29 @@ const ProfileImage = styled.div`
     overflow: hidden;
     border: 4px solid #00843D;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 
     @media screen and (max-width: 768px) {
         width: 180px;
         height: 180px;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
     }
 
     @media screen and (max-width: 480px) {
         width: 150px;
         height: 150px;
-        margin-bottom: 25px;
+        margin-bottom: 15px;
     }
 `;
 
+// important text that is displayed at the top of the page
 const Name = styled.h1`
     font-size: 2.8rem;
     font-family: 'Roboto Mono', monospace;
     background: linear-gradient(135deg, #00843D, rebeccapurple);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1rem;
     font-weight: 700;
     position: relative;
     padding-bottom: 0.5rem;
@@ -88,7 +93,7 @@ const Subtitle = styled.h2`
     font-family: "Arial", "Helvetica", sans-serif;
     font-weight: 700;
     margin-bottom: .5rem;
-    text-align: center;
+    text-align: left;
 
     @media screen and (max-width: 768px) {
         font-size: 1.1rem;
@@ -106,8 +111,8 @@ const Minor = styled.h2`
     font-size: 1.3rem;
     font-family: "Arial", "Helvetica", sans-serif;
     font-weight: 600;
-    margin-bottom: 2rem;
-    text-align: center;
+    margin-bottom: 2rem ;
+    text-align: left;
 
     @media screen and (max-width: 768px) {
         font-size: 1.1rem;
@@ -120,8 +125,21 @@ const Minor = styled.h2`
     }
 `;
 
+
+const SpotifyContiner = styled.div`
+    width: 45%;
+    margin: -35% 50%;
+    padding: 0;
+    justify-content: right;
+`;
+const MapContainer = styled.div`
+    padding-top: 100vh;
+`;
+
+
 export default function Main() {
     return (
+        <>
         <ProfileContainer>
             <ProfileImage>
                 <Image src={pfp}
@@ -131,11 +149,22 @@ export default function Main() {
                     priority
                 />
             </ProfileImage>
-
             <Name>Evan Jaquez</Name>
             <Subtitle>Boston University - Computer Science & Economics</Subtitle>
             <Minor>Minor in Data Science</Minor>
-            <SpotifyEmbed/>
         </ProfileContainer>
+
+        <SpotifyContiner>
+            <Name>What I am Listening to</Name>
+            <SpotifyEmbed/>
+            <Name>What I am Learning</Name>
+            <Subtitle>UX/UI Research and Design</Subtitle>
+        </SpotifyContiner>
+
+        <MapContainer>
+            <GeeseMap/>
+        </MapContainer>
+        </>
+
     );
 }

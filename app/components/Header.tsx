@@ -4,8 +4,8 @@ import React, { useState, useEffect } from "react";
 import { Typography } from "@mui/material";
 import styled, { keyframes } from "styled-components";
 import Image from "next/image";
-import logoSrc from "../public/logo-temp.png";
-import cityBackground from "../public/header-night.jpg";
+import logoSrc from "@/public/logo-temp.png";
+import cityBackground from "@/public/header-night.jpg";
 
 const subtlePulse = keyframes`
     0% { transform: scale(1); box-shadow: 0 0 4px #fff600; }
