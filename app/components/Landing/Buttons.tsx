@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { Tooltip } from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub";
