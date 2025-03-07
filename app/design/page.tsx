@@ -58,6 +58,13 @@ const JourneyContent = styled.div`
     align-items: center;
 `;
 
+const ProfileImage = styled(Image)`
+    border-radius: 50%;
+    width: 100%;
+    max-width: 250px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+`;
+
 const SkillsContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -152,12 +159,12 @@ const Resource = styled.div`
     background: #f8f9fa;
     padding: 2rem;
     border-radius: 15px;
-
+    
     ul {
         padding-left: 1.5rem;
         margin-top: 1rem;
     }
-
+    
     li {
         margin-bottom: 0.5rem;
     }
@@ -188,6 +195,7 @@ const DesignPage: React.FC = () => {
                                 them into designs that are intuitive and engaging.
                             </p>
                         </div>
+                        <ProfileImage src="/path-to-your-image.jpg" alt="Your Name" width={250} height={250} />
                     </JourneyContent>
                 </Section>
 
@@ -206,7 +214,7 @@ const DesignPage: React.FC = () => {
                         </SkillCard>
                         <SkillCard>
                             <SkillIcon>🛠️</SkillIcon>
-                            <h3>Design Tools</h3>
+                            <h3>Design Tools</SkillIcon>
                             <p>Figma, Adobe Photoshop, Miro, Photopea</p>
                         </SkillCard>
                     </SkillsContainer>
@@ -220,7 +228,7 @@ const DesignPage: React.FC = () => {
                     <ProjectsGrid>
                         <ProjectCard>
                             <ProjectImage>
-                                <img src="../../public/camelitics.png" alt="Project 1" />
+                                <Image src="/public/camelitics.png" alt="Project 1" width={350} height={200} />
                             </ProjectImage>
                             <ProjectTitle>Boston Voter App</ProjectTitle>
                             <ProjectDescription>A concept redesign of a popular app focusing on improved navigation and visual hierarchy.</ProjectDescription>
@@ -229,7 +237,7 @@ const DesignPage: React.FC = () => {
 
                         <ProjectCard>
                             <ProjectImage>
-                                <img src="../../public/camelitics.png" alt="Project 2" />
+                                <Image src="/public/camelitics.png" alt="Project 2" width={350} height={200} />
                             </ProjectImage>
                             <ProjectTitle>MAPLE 3.0</ProjectTitle>
                             <ProjectDescription>Exploring the principles of creating a consistent design system by analyzing popular frameworks.</ProjectDescription>
@@ -249,7 +257,6 @@ const DesignPage: React.FC = () => {
                                 <li>CS501 - Mobile App Development</li>
                             </ul>
                         </Resource>
-
                     </ResourcesList>
                 </Section>
             </DesignPageContainer>

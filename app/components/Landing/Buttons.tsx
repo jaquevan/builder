@@ -6,7 +6,6 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import WorkIcon from "@mui/icons-material/Work";
 
-
 const pulse = keyframes`
     0% { transform: scale(1); }
     50% { transform: scale(1.05); }
@@ -18,21 +17,20 @@ const shimmer = keyframes`
     100% { background-position: 200% 0; }
 `;
 
-
 const ButtonContainer = styled.div`
     display: flex;
     gap: clamp(0.5rem, 2vw, 1.5rem);
     flex-wrap: wrap;
     justify-content: flex-start;
     max-width: 100%;
-    margin: 1.5rem 0 0.5rem; 
+    margin: 1.5rem 0 0.5rem;
     padding: 0 clamp(1rem, 10%, 5rem);
     padding-top: 3%;
 
     @media (max-width: 768px) {
         justify-content: center;
         gap: clamp(0.4rem, 1.5vw, 1rem);
-        margin-bottom: 0.25rem; 
+        margin-bottom: 0.25rem;
     }
 `;
 
@@ -42,8 +40,7 @@ const Name = styled.h1`
     padding-top: 4%;
     padding-bottom: 0;
     font-size: 4rem;
-
-    `;
+`;
 
 const StyledButton = styled.a`
     position: relative;
@@ -65,7 +62,7 @@ const StyledButton = styled.a`
     min-width: 0;
     max-width: ${props => props.$maxWidth || "160px"};
     overflow: hidden;
-    z-index: 2; 
+    z-index: 2;
 
     &:hover, &:focus {
         transform: translateY(-3px);
@@ -142,14 +139,11 @@ const SubText = styled.h2`
     font-size: 1.5rem;
     color: #00843D; /* Use the same green color as other components */
     font-family: Monospaced, "JetBrains Mono", sans-serif; /* Monospaced font */
-    text-align: left; 
+    text-align: left;
 `;
 
 export default function EnhancedButtons() {
-    const [hoveredButton, setHoveredButton] = useState(null);
-
     const buttons = [
-
         {
             id: "linkedin",
             text: "LinkedIn",
@@ -158,7 +152,6 @@ export default function EnhancedButtons() {
             gradient: "linear-gradient(135deg, #0077b5, #00a0dc)",
             tooltip: "Connect on LinkedIn"
         },
-
         {
             id: "experience",
             text: "Experience",
@@ -167,7 +160,6 @@ export default function EnhancedButtons() {
             gradient: "linear-gradient(135deg, #6a11cb, #2575fc)",
             tooltip: "View Work Experience"
         },
-
         {
             id: "github",
             text: "GitHub",
@@ -176,38 +168,30 @@ export default function EnhancedButtons() {
             gradient: "linear-gradient(135deg, #24292e, #4a4a4a)",
             tooltip: "View GitHub Projects"
         }
-
     ];
 
     return (
         <>
-
-        <Name>Evan Jaquez</Name>
+            <Name>Evan Jaquez</Name>
             <SubText>Frontend Developer and UX Designer/Researcher</SubText>
-
-        <ButtonContainer role="navigation" aria-label="Social links and navigation">
-            {buttons.map((button) => (
-                <Tooltip title={button.tooltip} key={button.id} arrow>
-                    <StyledButton
-                        href={button.href}
-                        target={button.href.startsWith("http") ? "_blank" : "_self"}
-                        rel={button.href.startsWith("http") ? "noopener noreferrer" : ""}
-                        $gradient={button.gradient}
-                        onMouseEnter={() => setHoveredButton(button.id)}
-                        onMouseLeave={() => setHoveredButton(null)}
-                        onFocus={() => setHoveredButton(button.id)}
-                        onBlur={() => setHoveredButton(null)}
-                        aria-label={button.tooltip}
-                    >
-                        <IconWrapper className="icon">
-                            {button.icon}
-                        </IconWrapper>
-                        <ButtonText>{button.text}</ButtonText>
-                    </StyledButton>
-                </Tooltip>
-            ))}
-        </ButtonContainer>
-    </>
+            <ButtonContainer role="navigation" aria-label="Social links and navigation">
+                {buttons.map((button) => (
+                    <Tooltip title={button.tooltip} key={button.id} arrow>
+                        <StyledButton
+                            href={button.href}
+                            target={button.href.startsWith("http") ? "_blank" : "_self"}
+                            rel={button.href.startsWith("http") ? "noopener noreferrer" : ""}
+                            $gradient={button.gradient}
+                            aria-label={button.tooltip}
+                        >
+                            <IconWrapper className="icon">
+                                {button.icon}
+                            </IconWrapper>
+                            <ButtonText>{button.text}</ButtonText>
+                        </StyledButton>
+                    </Tooltip>
+                ))}
+            </ButtonContainer>
+        </>
     );
-
 }
