@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import React, {useState, useEffect, useRef} from "react";
+import React, { useState, useEffect, useRef } from "react";
 import FullscreenIcon from '@mui/icons-material/Fullscreen';
 import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
 
@@ -21,7 +21,7 @@ type CommandResult = {
     text: string;
     isCommand?: boolean;
     isAsciiArt?: boolean;
-}
+};
 
 export default function Terminal() {
     const [input, setInput] = useState<string>("");
@@ -33,18 +33,16 @@ export default function Terminal() {
  / /___ | |/ / /_/ / / / /  / /_/ / /_/ / /_/ / /_/ /  __/ / /_
 /_____/ |___/\\__,_/_/ /_/   \\____/\\__,_/\\__, /\\__,_/\\___/ /___/
                                           /_/
-
 `,
             isCommand: false,
             isAsciiArt: true
         },
-        {text: "Welcome to my interactive terminal! Type 'help' for a list of commands.", isCommand: false},
+        { text: "Welcome to my interactive terminal! Type 'help' for a list of commands.", isCommand: false },
     ]);
 
     const [commandHistory, setCommandHistory] = useState<string[]>([]);
     const [historyIndex, setHistoryIndex] = useState<number>(-1);
     const [isFullscreen, setIsFullscreen] = useState(false);
-    const [showCursor, setShowCursor] = useState(true);
 
     const inputRef = useRef<HTMLInputElement>(null);
     const terminalRef = useRef<HTMLDivElement>(null);
@@ -63,7 +61,7 @@ export default function Terminal() {
             " Relevant Coursework: \n" +
             "   - CS391 - Web and App Development\n" +
             "   - CS411 - Software Engineering\n" +
-            "   - CS330 - Intro to Advanced Algoritmns \n" +
+            "   - CS330 - Intro to Advanced Algorithms \n" +
             "   - DS291 - Spark! Software Engineering Career Prep Practicum \n" +
             "   - DS488/688 - UX Design Practicum",
 
@@ -88,16 +86,16 @@ export default function Terminal() {
 
         if (input.trim() === "") return;
 
-        const newHistory = [...history, {text: input, isCommand: true}];
+        const newHistory = [...history, { text: input, isCommand: true }];
         const commandName = input.trim().toLowerCase().split(" ")[0];
 
         if (commands[commandName]) {
             const result = commands[commandName]();
             if (result) {
-                newHistory.push({text: result});
+                newHistory.push({ text: result });
             }
         } else {
-            newHistory.push({text: `Command not found: ${commandName}. Type 'help' for available commands.`});
+            newHistory.push({ text: `Command not found: ${commandName}. Type 'help' for available commands.` });
         }
 
         setHistory(newHistory);
@@ -106,7 +104,7 @@ export default function Terminal() {
         setInput("");
     };
 
-    const handleKeyDown = (e: React.KeyboardEvent) => {
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "ArrowUp") {
             e.preventDefault();
             if (historyIndex < commandHistory.length - 1) {
@@ -136,63 +134,38 @@ export default function Terminal() {
         terminalRef.current?.scrollTo(0, terminalRef.current.scrollHeight);
     }, [history]);
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            if (document.activeElement === inputRef.current) {
-                setShowCursor(prev => !prev);
-            } else {
-                setShowCursor(true);
-            }
-        }, 500);
-
-        return () => clearInterval(interval);
-    }, []);
-
     return (
         <TerminalContainer onClick={handleContainerClick} isFullscreen={isFullscreen}>
             <TerminalHeader>
                 <FullscreenButton onClick={toggleFullscreen}>
-                    {isFullscreen ? <FullscreenExitIcon fontSize="small"/> : <FullscreenIcon fontSize="small"/>}
+                    {isFullscreen ? <FullscreenExitIcon fontSize="small" /> : <FullscreenIcon fontSize="small" />}
                 </FullscreenButton>
             </TerminalHeader>
             <TerminalContent ref={terminalRef}>
                 {history.map((item, index) => (
                     <TerminalLine key={index}>
-                        {item.isAsciiArt && (
-                            <AsciiArt>{item.text}</AsciiArt>
-                        )}
-                        {!item.isAsciiArt && !item.isCommand && item.text.includes("travler@evanjaquez") &&
-                            <PromptSpan>{item.text}</PromptSpan>
-                        }
+                        {item.isAsciiArt && <AsciiArt>{item.text}</AsciiArt>}
                         {!item.isAsciiArt && item.isCommand && (
-                            <>
-                                <PromptSpan>travler@evanjaquez:~$ </PromptSpan>
-                                <OutputText>{item.text}</OutputText>
-                            </>
+                            <><PromptSpan>travler@evanjaquez:~$ </PromptSpan><OutputText>{item.text}</OutputText></>
                         )}
-                        {!item.isAsciiArt && !item.isCommand && !item.text.includes("travler@evanjaquez") && (
-                            <OutputText>{item.text}</OutputText>
-                        )}
+                        {!item.isAsciiArt && !item.isCommand && <OutputText>{item.text}</OutputText>}
                     </TerminalLine>
                 ))}
-
-                {!history[history.length - 1]?.isCommand && (
-                    <TerminalLine>
-                        <InputLine>
-                            <PromptSpan>travler@evanjaquez:~$ </PromptSpan>
-                            <InputField
-                                ref={inputRef}
-                                type="text"
-                                value={input}
-                                onChange={handleInput}
-                                onKeyDown={handleKeyDown}
-                                autoFocus
-                                spellCheck={false}
-                                autoComplete="off"
-                            />
-                        </InputLine>
-                    </TerminalLine>
-                )}
+                <TerminalLine>
+                    <InputLine>
+                        <PromptSpan>travler@evanjaquez:~$ </PromptSpan>
+                        <InputField
+                            ref={inputRef}
+                            type="text"
+                            value={input}
+                            onChange={handleInput}
+                            onKeyDown={handleKeyDown}
+                            autoFocus
+                            spellCheck={false}
+                            autoComplete="off"
+                        />
+                    </InputLine>
+                </TerminalLine>
             </TerminalContent>
         </TerminalContainer>
     );
