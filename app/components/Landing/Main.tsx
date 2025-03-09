@@ -31,7 +31,7 @@ const glow = keyframes`
 const StyledBody = styled.div`
     overflow-x: hidden;
     width: 100vw;
-    height: 47.5vw;
+    height: 50%;
     margin: 0;
     display: flex;
     flex-direction: column;

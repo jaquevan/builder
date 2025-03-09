@@ -1,52 +1,36 @@
-"use client"
+"use client";
 
 import styled from "styled-components";
-import SpotifyEmbed from "@/app/components/AboutMe/Spotify";
+import Terminal from "@/app/components/AboutMe/Terminal";
+import Scroll from "@/app/components/AboutMe/Scroll";
 import Image from "next/image";
 import pfp from "@/public/real_pfp.jpg";
 
-// styled components dealing with the top of the about apge and the containers representing
-// the first viewpoint of the site
-const ProfileContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 45%;
-    margin: 0;
-    padding-top: 5%;
-
-    @media screen and (max-width: 768px) {
-        padding-top: 100px;
-        width: 100%;
-    }
-`;
-
 const ProfileImage = styled.div`
     position: relative;
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
+    width: 12vw;
+    height: 12vw;
+    border-radius: 15px;
     overflow: hidden;
     border: 4px solid #00843D;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
-    margin-bottom: 30px;
+    margin: 0 auto;
 
     @media screen and (max-width: 768px) {
-        width: 180px;
-        height: 180px;
+        width: 32vw;
+        height: 32vw;
         margin-bottom: 20px;
     }
 
     @media screen and (max-width: 480px) {
-        width: 150px;
-        height: 150px;
+        width: 36vw;
+        height: 36vw;
         margin-bottom: 15px;
     }
 `;
 
-// important text that is displayed at the top of the page
 const Name = styled.h1`
-    font-size: 2.8rem;
+    font-size: 2.5vw;
     font-family: 'Roboto Mono', monospace;
     background: linear-gradient(135deg, #00843D, rebeccapurple);
     -webkit-background-clip: text;
@@ -63,102 +47,140 @@ const Name = styled.h1`
         bottom: 0;
         left: 50%;
         transform: translateX(-50%);
-        width: 80px;
+        width: 8vw;
         height: 4px;
         background: linear-gradient(90deg, #00843D, rebeccapurple);
         border-radius: 2px;
     }
 
     @media screen and (max-width: 768px) {
-        font-size: 2.2rem;
+        font-size: 5vw;
         &::after {
-            width: 60px;
+            width: 12vw;
         }
     }
 
     @media screen and (max-width: 480px) {
-        font-size: 1.8rem;
+        font-size: 7vw;
         &::after {
-            width: 50px;
+            width: 15vw;
             height: 3px;
         }
     }
 `;
 
-
 const Subtitle = styled.h2`
-    color: #666;
-    font-size: 1.3rem;
+    font-size: 1.2vw;
     font-family: "Arial", "Helvetica", sans-serif;
     font-weight: 700;
     margin-bottom: .5rem;
-    text-align: left;
+    text-align: center;
 
     @media screen and (max-width: 768px) {
-        font-size: 1.1rem;
-        margin-bottom: 1.5rem;
+        font-size: 2.5vw;
+        margin-bottom: 0.8rem;
     }
 
     @media screen and (max-width: 480px) {
-        font-size: 1rem;
-        margin-bottom: 1.2rem;
+        font-size: 3.5vw;
+        margin-bottom: 0.6rem;
     }
 `;
 
 const Minor = styled.h2`
-    color: #666;
-    font-size: 1.3rem;
+    font-size: 1.2vw;
     font-family: "Arial", "Helvetica", sans-serif;
     font-weight: 600;
-    margin-bottom: 2rem ;
-    text-align: left;
+    margin-bottom: 2rem;
+    text-align: center;
 
     @media screen and (max-width: 768px) {
-        font-size: 1.1rem;
+        font-size: 2.5vw;
         margin-bottom: 1.5rem;
     }
 
     @media screen and (max-width: 480px) {
-        font-size: 1rem;
+        font-size: 3.5vw;
         margin-bottom: 1.2rem;
     }
 `;
 
+const TerminalContainer = styled.div`
+    width: 60vw;
+    max-width: 700px;
 
-const SpotifyContiner = styled.div`
-    width: 45%;
-    margin: -35% 50%;
-    padding: 0;
-    justify-content: right;
+    @media screen and (max-width: 900px) {
+        width: 70vw;
+        margin-right: 5%;
+    }
+
+    @media screen and (max-width: 768px) {
+        width: 95vw;
+        margin: 0 auto;
+    }
 `;
 
+const ProfileContainer = styled.div`
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    padding-right: 2vw;
 
+    @media screen and (max-width: 768px) {
+        width: 80vw;
+        margin: 0 auto;
+        padding-right: 0;
+        max-width: 400px;
+    }
+`;
+
+const MainDiv = styled.div`
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    max-width: 1200px;
+    margin: 5rem auto;
+    align-items: center;
+    gap: 2rem;
+
+
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+        padding: 1vw 0;
+    }
+`;
+
+const PageWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    align-items: center;
+`;
 
 export default function Main() {
     return (
-        <>
-        <ProfileContainer>
-            <ProfileImage>
-                <Image src={pfp}
-                    alt="profile picture"
-                    fill
-                    style={{ objectFit: "cover" }}
-                    priority
-                />
-            </ProfileImage>
-            <Name>Evan Jaquez</Name>
-            <Subtitle>Boston University - Computer Science & Economics</Subtitle>
-            <Minor>Minor in Data Science</Minor>
-        </ProfileContainer>
+        <PageWrapper>
+            <MainDiv>
+                <ProfileContainer>
+                    <ProfileImage>
+                        <Image src={pfp}
+                               alt="profile picture"
+                               fill
+                               style={{ objectFit: "cover" }}
+                               priority
+                        />
+                    </ProfileImage>
+                    <Name>Evan Jaquez</Name>
+                    <Subtitle>Boston University - Computer Science & Economics</Subtitle>
+                    <Minor>Minor in Data Science</Minor>
+                </ProfileContainer>
 
-        <SpotifyContiner>
-            <Name>What I am Listening to</Name>
-            <SpotifyEmbed/>
-            <Name>What I am Learning</Name>
-            <Subtitle>UX/UI Research and Design</Subtitle>
-        </SpotifyContiner>
-
-        </>
-
+                <TerminalContainer>
+                    <Terminal/>
+                </TerminalContainer>
+            </MainDiv>
+            <Scroll/>
+        </PageWrapper>
     );
 }

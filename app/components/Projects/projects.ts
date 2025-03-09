@@ -1,5 +1,5 @@
 // Project Images
-import planit from '@/public/planitHome.png';
+import planit from '@/public/plantasks.png';
 import camel from '@/public/camelitics.png';
 import dbz from '@/public/dbz.png';
 import bdd from '@/public/bdd.png';

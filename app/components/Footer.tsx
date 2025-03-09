@@ -126,7 +126,7 @@ const SectionTitle = styled(Typography)`
     color: ${colors.lightText};
     font-size: 1.1rem;
     font-weight: 600;
-    margin-bottom: 1rem;
+    margin-bottom: 1.1rem;
     position: relative;
     display: inline-block;
 
@@ -156,6 +156,7 @@ const FooterLink = styled.a`
     color: #CCC;
     text-decoration: none;
     margin-bottom: 0.75rem;
+    margin-top: 3%;
     font-size: 1.1rem;
     transition: all 0.2s ease;
 
