@@ -23,6 +23,31 @@ type HevyWorkout = {
     }>;
 };
 
+interface TooltipProps {
+    active?: boolean;
+    payload?: Array<{
+        payload: {
+            date?: Date;
+            title?: string;
+            value?: number;
+        };
+        value: number;
+    }>;
+    label?: string;
+}
+
+interface PieTooltipProps {
+    active?: boolean;
+    payload?: Array<{
+        name: string;
+        value: number;
+        payload: {
+            fill: string;
+        };
+        percent: number;
+    }>;
+}
+
 type ChartData = { name: string; sets: number; date: Date; title: string };
 type MuscleGroupData = { name: string; sets: number; fill: string };
 
@@ -133,6 +158,16 @@ const LegendColor = styled.div<{ color: string }>`
     border-radius: 2px;
 `;
 
+const InfoText = styled.div`
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    border-bottom: 1px dashed #e0e0e0;
+    text-align: center;
+    font-style: italic;
+`;
+
 export default function Gym() {
     const [totalWorkouts, setTotalWorkouts] = useState(0);
     const [totalSets, setTotalSets] = useState(0);
@@ -154,7 +189,6 @@ export default function Gym() {
 
         // Back
         "Lat Pulldown - Close Grip (Cable)": "Back",
-        "Incline Bench Press (Dumbbell)": "Back",
         "Face Pull": "Back",
         "Seated Cable Row - V Grip (Cable)": "Back",
         "Pull Up (Assisted)": "Back",
@@ -321,6 +355,7 @@ export default function Gym() {
 
         // Convert to chart data format
         const chartData: MuscleGroupData[] = Object.entries(muscleGroupSets)
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             .filter(([_, count]) => count > 0)
             .map(([name, sets]) => ({
                 name,
@@ -339,7 +374,7 @@ export default function Gym() {
         });
     };
 
-    const CustomTooltip = ({ active, payload, label }: any) => {
+    const CustomTooltip = ({ active, payload, label }: TooltipProps) => {
         if (active && payload && payload.length) {
             const data = payload[0]?.payload;
             const date = data?.date;
@@ -372,7 +407,7 @@ export default function Gym() {
         return null;
     };
 
-    const PieChartTooltip = ({ active, payload }: any) => {
+    const PieChartTooltip = ({ active, payload }: PieTooltipProps) => {
         if (active && payload && payload.length) {
             const data = payload[0];
             return (
@@ -424,8 +459,11 @@ export default function Gym() {
     return (
         <Container>
             <Title>Workout Analytics</Title>
-
+            <InfoText>
+                Data sourced from Hevy Workout Tracking App API, displaying the last 10 workout sessions
+            </InfoText>
             <StatBar>
+
                 <Stat>Total Tracked Workouts: {totalWorkouts}</Stat>
                 <Stat>Total Sets (past 10 workouts): {totalSets}</Stat>
             </StatBar>

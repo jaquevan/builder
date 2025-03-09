@@ -25,18 +25,25 @@ export const TerminalContainer = styled.div<{ isFullscreen?: boolean }>`
     box-shadow: 0 4px 12px rgb(74, 2, 255);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 15px;
-    display: flex;
-    flex-direction: column;
     font-size: calc(.8rem);
     margin: 0 auto;
 
+    @media (max-width: 1024px) {
+        width: ${props => props.isFullscreen ? '99vw' : '60vw'};
+        height: ${props => props.isFullscreen ? '70vw' : '30vw'};
+        font-size: ${props => props.isFullscreen ? '1rem' : '0.9rem'};
+    }
+
     @media (max-width: 768px) {
-        font-size: ${props => props.isFullscreen ? '0.9rem' : '0.7rem'};
+        width: ${props => props.isFullscreen ? '99vw' : '85vw'};
+        height: ${props => props.isFullscreen ? '70vw' : '40vw'};
+        font-size: ${props => props.isFullscreen ? '0.9rem' : '0.8rem'};
     }
 
     @media (max-width: 480px) {
-        font-size: ${props => props.isFullscreen ? '0.8rem' : '0.6rem'};
-        width: ${props => props.isFullscreen ? '99vw' : '90%'};
+        width: ${props => props.isFullscreen ? '99vw' : '85vw'};
+        height: ${props => props.isFullscreen ? '70vw' : '50vw'};
+        font-size: ${props => props.isFullscreen ? '0.8rem' : '0.7rem'};
     }
 `;
 
@@ -84,7 +91,6 @@ export const FullscreenButton = styled.button`
         width: 16px;
         height: 16px;
     }
-    
 `;
 
 export const TerminalContent = styled.div`
@@ -129,7 +135,6 @@ export const InputLine = styled.div`
     align-items: center;
     width: 100%;
 `;
-
 
 export const InputField = styled.input`
     flex: 1;
