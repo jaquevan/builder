@@ -1,52 +1,36 @@
 "use client"
 
 import styled from "styled-components";
-import SpotifyEmbed from "@/app/components/AboutMe/Spotify";
+import Terminal from "@/app/components/AboutMe/Terminal";
+import Scroll from "@/app/components/AboutMe/Scroll"
 import Image from "next/image";
 import pfp from "@/public/real_pfp.jpg";
 
-// styled components dealing with the top of the about apge and the containers representing
-// the first viewpoint of the site
-const ProfileContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 45%;
-    margin: 0;
-    padding-top: 5%;
-
-    @media screen and (max-width: 768px) {
-        padding-top: 100px;
-        width: 100%;
-    }
-`;
-
 const ProfileImage = styled.div`
     position: relative;
-    width: 220px;
-    height: 220px;
+    width: 180px;
+    height: 180px;
     border-radius: 50%;
     overflow: hidden;
     border: 4px solid #00843D;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
-    margin-bottom: 30px;
+    margin: 0 auto;
 
     @media screen and (max-width: 768px) {
-        width: 180px;
-        height: 180px;
+        width: 160px;
+        height: 160px;
         margin-bottom: 20px;
     }
 
     @media screen and (max-width: 480px) {
-        width: 150px;
-        height: 150px;
+        width: 140px;
+        height: 140px;
         margin-bottom: 15px;
     }
 `;
 
-// important text that is displayed at the top of the page
 const Name = styled.h1`
-    font-size: 2.8rem;
+    font-size: 2.5rem;
     font-family: 'Roboto Mono', monospace;
     background: linear-gradient(135deg, #00843D, rebeccapurple);
     -webkit-background-clip: text;
@@ -70,7 +54,7 @@ const Name = styled.h1`
     }
 
     @media screen and (max-width: 768px) {
-        font-size: 2.2rem;
+        font-size: 2rem;
         &::after {
             width: 60px;
         }
@@ -85,80 +69,123 @@ const Name = styled.h1`
     }
 `;
 
-
 const Subtitle = styled.h2`
-    color: #666;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-family: "Arial", "Helvetica", sans-serif;
     font-weight: 700;
     margin-bottom: .5rem;
-    text-align: left;
+    text-align: center;
 
     @media screen and (max-width: 768px) {
         font-size: 1.1rem;
-        margin-bottom: 1.5rem;
+        margin-bottom: 0.8rem;
     }
 
     @media screen and (max-width: 480px) {
         font-size: 1rem;
-        margin-bottom: 1.2rem;
+        margin-bottom: 0.6rem;
     }
 `;
 
 const Minor = styled.h2`
-    color: #666;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-family: "Arial", "Helvetica", sans-serif;
     font-weight: 600;
-    margin-bottom: 2rem ;
-    text-align: left;
+    margin-bottom: 2rem;
+    text-align: center;
 
     @media screen and (max-width: 768px) {
-        font-size: 1.1rem;
+        font-size: 1rem;
         margin-bottom: 1.5rem;
     }
 
     @media screen and (max-width: 480px) {
-        font-size: 1rem;
+        font-size: 0.9rem;
         margin-bottom: 1.2rem;
     }
 `;
 
 
-const SpotifyContiner = styled.div`
-    width: 45%;
-    margin: -35% 50%;
+const TerminalContainer = styled.div`
+    width: 55%;
     padding: 0;
-    justify-content: right;
+
+    @media screen and (max-width: 900px) {
+        width: 50%;
+    }
+
+    @media screen and (max-width: 768px) {
+        width: 95%;
+        margin: 0 auto;
+    }
 `;
 
+const ProfileContainer = styled.div`
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 2rem;
 
+    @media screen and (max-width: 1024px) {
+        width: 45%;
+        padding-right: 1rem;
+    }
+
+    @media screen and (max-width: 768px) {
+        width: 80%;
+        margin: 0 auto;
+        padding-right: 0;
+        max-width: 400px;
+    }
+`;
+
+const MainDiv = styled.div`
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    align-items: center;
+    gap: 1rem;
+
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+        padding: 1rem 0;
+    }
+`;
+
+const PageWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+`;
 
 export default function Main() {
     return (
-        <>
-        <ProfileContainer>
-            <ProfileImage>
-                <Image src={pfp}
-                    alt="profile picture"
-                    fill
-                    style={{ objectFit: "cover" }}
-                    priority
-                />
-            </ProfileImage>
-            <Name>Evan Jaquez</Name>
-            <Subtitle>Boston University - Computer Science & Economics</Subtitle>
-            <Minor>Minor in Data Science</Minor>
-        </ProfileContainer>
+        <PageWrapper>
+            <MainDiv>
+                <ProfileContainer>
+                    <ProfileImage>
+                        <Image src={pfp}
+                               alt="profile picture"
+                               fill
+                               style={{ objectFit: "cover" }}
+                               priority
+                        />
+                    </ProfileImage>
+                    <Name>Evan Jaquez</Name>
+                    <Subtitle>Boston University - Computer Science & Economics</Subtitle>
+                    <Minor>Minor in Data Science</Minor>
+                </ProfileContainer>
 
-        <SpotifyContiner>
-            <Name>What I am Listening to</Name>
-            <SpotifyEmbed/>
-            <Name>What I am Learning</Name>
-            <Subtitle>UX/UI Research and Design</Subtitle>
-        </SpotifyContiner>
-
-        </>
-
+                <TerminalContainer>
+                    <Terminal/>
+                </TerminalContainer>
+            </MainDiv>
+            <Scroll/>
+        </PageWrapper>
     );
 }
