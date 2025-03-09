@@ -156,6 +156,7 @@ const FooterLink = styled.a`
     color: #CCC;
     text-decoration: none;
     margin-bottom: 0.75rem;
+    margin-top: 3%;
     font-size: 1.1rem;
     transition: all 0.2s ease;
 

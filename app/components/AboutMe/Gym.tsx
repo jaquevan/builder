@@ -90,6 +90,7 @@ const StatBar = styled.div`
     background: #f8f8f8;
     border-radius: 12px;
     border-left: 4px solid #00843D;
+    color: black;
 `;
 
 const Stat = styled.div`
