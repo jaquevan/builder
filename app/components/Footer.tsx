@@ -126,7 +126,7 @@ const SectionTitle = styled(Typography)`
     color: ${colors.lightText};
     font-size: 1.1rem;
     font-weight: 600;
-    margin-bottom: 1rem;
+    margin-bottom: 1.1rem;
     position: relative;
     display: inline-block;
 

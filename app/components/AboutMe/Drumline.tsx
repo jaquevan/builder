@@ -37,7 +37,6 @@ const ImageContainer = styled.div`
 const Title = styled.h1`
     font-size: 2rem;
     margin-bottom: 1.5rem;
-    color: #333;
     position: relative;
     padding-bottom: 0.5rem;
     font-family: 'Poppins', sans-serif;
@@ -51,7 +50,7 @@ const Title = styled.h1`
         transform: translateX(-50%);
         width: 80px;
         height: 3px;
-        background: linear-gradient(90deg, #6c757d, #343a40);
+        background: linear-gradient(90deg, #6c757d, #828b96);
         border-radius: 2px;
     }
 
@@ -64,12 +63,11 @@ const Description = styled.div`
     font-size: 1.1rem;
     line-height: 1.8;
     margin: 1.5rem 0;
-    color: #2c3e50;
     font-weight: 400;
     text-align: justify;
 
     strong {
-        color: #1a237e;
+        color: #468f0d;
         font-weight: 600;
     }
 
