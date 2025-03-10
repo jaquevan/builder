@@ -190,8 +190,8 @@ const SocialIconsContainer = styled.div`
 `;
 
 const SocialIconButton = styled(IconButton)`
-    color: ${colors.lightText};
-    background-color: rgba(255, 255, 255, 0.05);
+    color: black;
+    background-color: white;
     transition: all 0.3s ease;
     padding: 8px;
 
