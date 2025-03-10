@@ -86,11 +86,12 @@ const StatBar = styled.div`
     display: flex;
     justify-content: space-around;
     padding: 1rem;
-    margin-bottom: 2rem;
-    background: #f8f8f8;
+    margin: 2rem auto;
+    background: #999ea8;
     border-radius: 12px;
     border-left: 4px solid #00843D;
     color: black;
+    width: 60%;
 `;
 
 const Stat = styled.div`
@@ -102,12 +103,13 @@ const Stat = styled.div`
 
 const ChartCard = styled.div`
     background: white;
+    color: black;
     border-radius: 12px;
     padding: 1.5rem;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    margin: 0 auto 2rem auto;
-    max-width: 900px;
+    width: 50vw;
     border-top: 4px solid #9e66ff;
+    margin: 2rem auto;
 `;
 
 const ChartTitle = styled.h2`
@@ -121,19 +123,20 @@ const ChartTitle = styled.h2`
 `;
 
 const ChartsRow = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 2rem;
-
-    @media screen and (max-width: 900px) {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 2rem;
+      width: 100%;
+      
+      @media screen and (max-width: 900px) {
         flex-direction: column;
-    }
-`;
+      }
+    `;
 
 const ChartContainer = styled.div`
     flex: 1;
-    min-width: 300px;
+    min-width: 200px;
 `;
 
 const PieChartLegend = styled.div`
@@ -154,6 +157,7 @@ const LegendItem = styled.div`
 const LegendColor = styled.div<{ color: string }>`
     width: 12px;
     height: 12px;
+    color: black;
     background-color: ${props => props.color};
     margin-right: 5px;
     border-radius: 2px;
@@ -422,7 +426,8 @@ export default function Gym() {
                     boxShadow: '0 2px 5px rgba(0,0,0,0.1)'
                 }}>
                     <p style={{ margin: '0 0 5px 0' }}><strong>{data.name}</strong></p>
-                    <p style={{ color: data.payload.fill, margin: 0 }}>
+                    <p style={{color: data.payload.fill, margin: 0}}>
+
                         {data.value} sets ({Math.round(data.percent * 100)}%)
                     </p>
                 </div>
@@ -483,7 +488,7 @@ export default function Gym() {
                                 fontFamily: 'Roboto Mono, monospace',
                                 fontSize: 12
                             }}
-                            angle={-45}
+                            angle={-40}
                             textAnchor="end"
                             height={70}
                             interval={0}
@@ -510,7 +515,7 @@ export default function Gym() {
                             stroke="#00843D"
                             strokeDasharray="3 3"
                             label={{
-                                value: `Avg: ${avgSets.toFixed(1)}`,
+                                value: ` : ${avgSets.toFixed(1)}`,
                                 position: 'insideTopRight',
                                 fill: '#00843D',
                                 fontFamily: 'Roboto Mono, monospace',

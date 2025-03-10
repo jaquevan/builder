@@ -126,11 +126,15 @@ const ProfileContainer = styled.div`
     flex-direction: column;
     justify-content: left;
     padding-right: 2vw;
-
+    
+    @media (max-width: 1024px) {
+        width: 40vw;
+        padding: 0;
+    }
     @media screen and (max-width: 768px) {
         width: 80vw;
         margin: 0 auto;
-        padding-right: 0;
+        padding: 0;
         max-width: 400px;
     }
 `;
@@ -144,7 +148,9 @@ const MainDiv = styled.div`
     align-items: center;
     gap: 2rem;
 
-
+    @media (max-width: 1024px) {
+        margin: 3rem auto;
+    }
     @media screen and (max-width: 768px) {
         flex-direction: column;
         padding: 1vw 0;
