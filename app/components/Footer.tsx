@@ -196,7 +196,7 @@ const SocialIconButton = styled(IconButton)`
     padding: 8px;
 
     &:hover {
-        background-color: ${colors.accent};
+        background-color: #00843D;
         transform: translateY(-3px);
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
@@ -322,21 +322,21 @@ export default function Footer() {
                     <FooterLink href="/">
                         <HomeIcon fontSize="small" /> Home
                     </FooterLink>
-                    <FooterLink href="/design">
-                        <CodeIcon fontSize="small" /> Design
+                    <FooterLink href="/about">
+                        <CodeIcon fontSize="small" /> About Me
                     </FooterLink>
                     <FooterLink href="/projects">
                         <DesignServicesIcon fontSize="small" /> Projects
                     </FooterLink>
-                    <FooterLink href="/demo">
-                        <ContactPageIcon fontSize="small" /> Demo
+                    <FooterLink href="/contact">
+                        <ContactPageIcon fontSize="small" /> Contact
                     </FooterLink>
                 </NavColumn>
 
                 <NavColumn>
-                    <SectionTitle variant="h6">Resources</SectionTitle>
-                    <FooterLink href="/resume">Resume</FooterLink>
-                    <FooterLink href="/about">About Me</FooterLink>
+                    {/*<SectionTitle variant="h6">Resources</SectionTitle>*/}
+                    {/*<FooterLink href="/resume">Resume</FooterLink>*/}
+                    {/*<FooterLink href="/about">About Me</FooterLink>*/}
                 </NavColumn>
 
                 <ProfileColumn>

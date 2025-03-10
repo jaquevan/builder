@@ -172,7 +172,7 @@ const SubText = styled.h2`
     padding-top: 0.5rem;
     font-size: 1.5rem;
     color: #00843D; /* Use the same green color as other components */
-    font-family: Monospaced, "JetBrains Mono", sans-serif; /* Monospaced font */
+    font-family: Monospaced, "JetBrains Mono", sans-serif; 
     text-align: left;
 `;
 

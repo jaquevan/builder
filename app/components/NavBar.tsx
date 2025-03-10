@@ -130,6 +130,7 @@ export default function NavBar() {
         { href: "/about", label: "About" },
         // { href: "/design", label: "Design" },
         { href: "/projects", label: "Projects" },
+        { href: "/contact", label: "Contact" },
         // { href: "/experience", label: "Experience" },
     ];
 
