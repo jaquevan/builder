@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "../app/global.css";
 import ClientThemeProvider from './ClientThemeProvider';
 import StyledComponentsRegistry from '../lib/registry';
+import { Analytics } from "@vercel/analytics/react"
 
 
 export const metadata: Metadata = {
@@ -20,6 +21,7 @@ export default function RootLayout({
         <StyledComponentsRegistry>
             <ClientThemeProvider>{children}</ClientThemeProvider>
         </StyledComponentsRegistry>
+        <Analytics/>
         </body>
         </html>
     );

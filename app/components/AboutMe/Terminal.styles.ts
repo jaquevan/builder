@@ -11,7 +11,7 @@ export const AsciiArt = styled.pre`
 `;
 
 export const TerminalContainer = styled.div<{ isFullscreen?: boolean }>`
-    width: ${props => props.isFullscreen ? '99vw' : '65vh'};
+    width: ${props => props.isFullscreen ? '90vw' : '65vh'};
     height: ${props => props.isFullscreen ? '70vw' : '20vw'};
     position: ${props => props.isFullscreen ? 'fixed' : 'relative'};
     top: ${props => props.isFullscreen ? '0' : 'auto'};
@@ -22,6 +22,7 @@ export const TerminalContainer = styled.div<{ isFullscreen?: boolean }>`
     padding: 5% 4%;
     cursor: text;
     color: white;
+    display: flex;
     box-shadow: 0 4px 12px rgb(74, 2, 255);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 15px;
@@ -29,9 +30,10 @@ export const TerminalContainer = styled.div<{ isFullscreen?: boolean }>`
     margin: 0 auto;
 
     @media (max-width: 1024px) {
-        width: ${props => props.isFullscreen ? '99vw' : '60vw'};
+        width: ${props => props.isFullscreen ? '99vw' : '50vw'};
         height: ${props => props.isFullscreen ? '70vw' : '30vw'};
         font-size: ${props => props.isFullscreen ? '1rem' : '0.9rem'};
+        margin: 0;
     }
 
     @media (max-width: 768px) {
@@ -98,7 +100,7 @@ export const TerminalContent = styled.div`
     flex-direction: column;
     overflow-y: auto;
     flex: 1;
-    margin-top: 10px;
+    margin-top: 8px;
 
     /* Hide scrollbar for Chrome, Safari and Opera */
     &::-webkit-scrollbar {

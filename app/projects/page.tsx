@@ -16,13 +16,12 @@ export default function Projects() {
                             sx={{
                                 mb: 6,
                                 fontWeight: 700,
-                                color: "#333",
                                 borderBottom: "3px solid #4361ee",
                                 pb: 2,
                                 display: "inline-block",
                                 mx: "auto"
                             }}>
-                    My Projects
+                    Frontend Projects
                 </Typography>
 
                 <Grid

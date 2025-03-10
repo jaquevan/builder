@@ -24,7 +24,7 @@ const DrumlineContainer = styled.div`
 `;
 
 const ImageContainer = styled.div`
-    width: 90%;
+    width: 80%;
     border-radius: 10px;
     overflow: hidden;
     margin: 1.5rem 0;

@@ -36,8 +36,9 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 position: "relative",
                 transition: "transform 0.3s, box-shadow 0.3s",
                 "&:hover": {
+                    borderRadius: 3,
                     transform: "translateY(-8px)",
-                    boxShadow: "0 12px 28px rgba(0,0,0,0.15)"
+                    boxShadow: "0 12px 28px rgba(0,0,0,0.5)"
                 },
             }}
         >
@@ -47,7 +48,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                     position: "absolute",
                     width: "100%",
                     height: "100%",
-                    borderRadius: 2,
+                    borderRadius: 3,
                     bgcolor: "white",
                     boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
                     p: 3,
@@ -100,7 +101,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                             rel="noopener noreferrer"
                             sx={{ mr: 1, color: "#333" }}
                         >
-                            Code
+                            Repo
                         </Button>
                     )}
 
@@ -123,7 +124,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                         sx={{ ml: "auto", color: "#4361ee" }}
                         onClick={toggleLearnings}
                     >
-                        Learnings
+                        More
                     </Button>
                 </Box>
             </Box>
@@ -134,7 +135,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                     position: "absolute",
                     width: "100%",
                     height: "100%",
-                    borderRadius: 2,
+                    borderRadius: 3,
                     bgcolor: "#4361ee",
                     color: "white",
                     boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
