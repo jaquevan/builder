@@ -52,7 +52,8 @@ export default function Terminal() {
             "Available commands:\n" +
             "  help      - display this help message\n" +
             "  education - view my relevant coursework and education\n" +
-            "  activities - view my extracurricular activities\n",
+            "  activities - view my extracurricular activities\n" +
+            "  location - learn about where im based\n",
 
         education: () =>
             " Boston University\n" +
@@ -71,6 +72,11 @@ export default function Terminal() {
             "   - Snare Drum: Spring 2024 - Present\n" +
             " Film Lovers and Philosophers Club\n" +
             "   - Member since Fall 2023",
+
+        location: () =>
+            " Boston, MA\n" +
+            "   - Student at BU Jan 2023- May 2026\n" +
+            " Danbury, CT\n",
     };
 
     const handleContainerClick = () => {

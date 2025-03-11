@@ -31,7 +31,7 @@ const TrackContainer = styled.div`
     position: relative;
     width: 100vw; 
     margin-left: calc(-50vw + 50%); 
-    height: 37vh;
+    height: 30vh;
     background: url(${City.src}) no-repeat center;
     background-size: cover;
     overflow: hidden;
@@ -42,11 +42,11 @@ const TrackContainer = styled.div`
     align-items: center;
 
     @media (max-width: 768px) {
-        height: 30vh;
+        height: 44vh;
     }
 
     @media (max-width: 480px) {
-        height: 30vh;
+        height: 44vh;
     }
 `;
 

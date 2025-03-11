@@ -16,17 +16,6 @@ const fadeIn = keyframes`
     }
 `;
 
-const glow = keyframes`
-    0% {
-        text-shadow: 0 0 5px rgba(255,255,255,0.6), 0 0 10px rgba(255,255,255,0.4);
-    }
-    50% {
-        text-shadow: 0 0 20px rgba(255,255,255,0.8), 0 0 30px rgba(255,255,255,0.6);
-    }
-    100% {
-        text-shadow: 0 0 5px rgba(255,255,255,0.6), 0 0 10px rgba(255,255,255,0.4);
-    }
-`;
 
 const StyledBody = styled.div`
     overflow-x: hidden;
@@ -63,49 +52,14 @@ const MainSection = styled.div`
     }
 `;
 
-const WelcomeContainer = styled.div`
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    margin-top: -11%;
-    z-index: 10;
-    animation: ${fadeIn} 1.5s ease-out;
-
-    @media (max-width: 768px) {
-        margin-top: 1rem;
-    }
-
-    @media (max-width: 375px) {
-        margin-top: 0.5rem;
-    }
-`;
-
-const WelcomeText = styled.h2`
-    font-size: clamp(1.8rem, 5vw, 3rem);
-    font-weight: 700;
-    text-align: left;
-    letter-spacing: 2px;
-    animation: ${glow} 4s infinite;
-    text-shadow: 0 0 10px rgba(255,255,255,0.6);
-    margin-bottom: clamp(10px, 2vh, 15px);
-    padding-top: 0;
-
-    @media (max-width: 480px) {
-        letter-spacing: 1px;
-        text-align: center;
-    }
-
-    @media (max-width: 375px) {
-        font-size: 1.5rem;
-        letter-spacing: 0.5px;
-    }
-`;
-
 const MainContentArea = styled.div`
     display: flex;
     flex-direction: column;
     position: relative;
     flex: 1;
+
+    @media (width: 1024px) {
+    }
 `;
 
 const TopContainer = styled.div`
@@ -118,7 +72,7 @@ const TopContainer = styled.div`
 
     @media (max-width: 1024px) {
         flex-direction: column;
-        align-items: center;
+        width: 100%;
     }
 `;
 
@@ -130,6 +84,9 @@ const ButtonDiv = styled.div`
     @media (max-width: 1024px) {
         padding-right: 0;
         width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     @media (max-width: 375px) {
@@ -142,8 +99,8 @@ const StatusContainer = styled.div`
     position: absolute;
     top: 1vw;
     right: 1vw;
+    width: 40%;
 
-    /* only visible on desktop */
     @media (max-width: 1024px) {
         display: none;
     }
@@ -154,21 +111,26 @@ const MobileStatusContainer = styled.div`
     display: none;
     z-index: 30;
     width: 100%;
-    max-width: 500px;
-    margin: 20px auto 0;
+    margin: 20px auto;
+    padding: 0 20px;
 
-    @media (max-width: 1024px) {
+    @media (width: 1024px) {
         display: block;
+        order: 3;
     }
 
-    @media (max-width: 375px) {
-        margin: 10px auto 0;
+    @media (width: 768px) {
+        padding: 0 15px;
+    }
+
+    @media (width: 480px) {
+        padding: 0 10px;
     }
 `;
 
 const ResumeSection = styled.div`
-    margin: 15px 0 5px 5.5%;
-    max-width: 500px;
+    width: 25vw;
+    padding: 0;
     animation: ${fadeIn} 0.8s ease-out 0.3s both;
     z-index: 25;
 
@@ -204,10 +166,6 @@ export default function Main() {
                         </StatusContainer>
                     </TopContainer>
 
-                    <WelcomeContainer>
-                        <WelcomeText> </WelcomeText>
-                    </WelcomeContainer>
-
                     {/* train animation component */}
                     <Content />
 
@@ -215,6 +173,7 @@ export default function Main() {
                     <MobileStatusContainer>
                         <GithubStatus />
                     </MobileStatusContainer>
+
                 </MainContentArea>
             </MainSection>
         </StyledBody>

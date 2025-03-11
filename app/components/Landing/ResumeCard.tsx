@@ -14,8 +14,7 @@ const fadeSlideIn = keyframes`
 `;
 
 const ResumeSection = styled.div`
-    margin: 15px 0 5px 5.5%;
-    max-width: 500px;
+    margin: 25px 0 5px 5.5%;
     animation: ${fadeSlideIn} 0.8s ease-out 0.3s both;
     z-index: 25;
 
@@ -28,14 +27,14 @@ const ResumeSection = styled.div`
 
 const StyledResumeCard = styled(Paper)`
     background-color: rgba(30, 30, 30, 0.7) !important;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(10px);
     padding: 16px 20px;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     border-left: 4px solid #00843D;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 5px;
 `;
 
 const ResumeButton = styled(Button)`
@@ -61,10 +60,9 @@ const ResumeButton = styled(Button)`
 `;
 
 const StyledText = styled.div`
-    padding-top: 3.5%; // padding changed for tooltip to not cover text
-    margin: 15px 0 5px 5.5%;
+    margin: -5% auto;
+    padding: 0;
     animation: ${fadeSlideIn} 0.8s ease-out 0.3s both;
-    z-index: 25;
     
     @media (max-width: 768px) {
         margin: 15px auto 20px;

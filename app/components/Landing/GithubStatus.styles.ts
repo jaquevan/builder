@@ -26,6 +26,8 @@ interface StatItemProps {
 }
 
 // styled components
+
+// this holds the stats cards
 export const StationPaper = styled(Paper)`
     display: flex;
     flex-direction: column;
@@ -40,20 +42,12 @@ export const StationPaper = styled(Paper)`
     transform-origin: top center;
     font-family: 'JetBrains Mono', 'Roboto Mono', monospace;
 
-    @media (max-width: 768px) {
+    @media screen and (max-width: 768px) {
         max-width: 100%;
         margin: 0 auto;
     }
-
-    &:hover {
-        transform: translateY(-0.25rem);
-        transition: transform 0.3s ease;
-
-        @media (max-width: 768px) {
-            transform: translateY(-0.125rem);
-        }
-    }
 `;
+
 
 export const StationHeader = styled.div`
     background-color: ${MBTAColors.green};
@@ -103,8 +97,8 @@ export const UserInfo = styled.div`
 `;
 
 export const StyledAvatar = styled(Avatar)`
-    width: 4rem;
-    height: 4rem;
+    width: 4.5rem;
+    height: 4.5rem;
     border: 0.1875rem solid ${MBTAColors.green};
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
 
@@ -115,11 +109,12 @@ export const StyledAvatar = styled(Avatar)`
     }
 `;
 
+// list of technologies used
 export const InfoBoard = styled.div`
-    background-color: #282C34;
-    color: #F8F8F8;
+    background-color: #5a5c62;
     padding: 0.75rem;
     position: relative;
+    font-weight: 800;
     height: 2.5rem;
     overflow: hidden;
     display: flex;
@@ -157,7 +152,7 @@ export const StatItem = styled.div<StatItemProps>`
 
     &:hover {
         transform: translateY(-0.125rem);
-        transition: transform 0.2s ease;
+        transition: transform 0.1s ease;
     }
 
     @media (max-width: 480px) {
@@ -196,7 +191,7 @@ export const StatValue = styled.div`
 
 export const DirectionSign = styled(Link)`
     display: flex;
-    background-color: ${MBTAColors.black};
+    background-color: #5a5c62;
     color: white;
     align-items: center;
     justify-content: center;
@@ -230,6 +225,7 @@ export const LastCommitTicker = styled.div`
     padding: 0.4rem;
     font-family: 'JetBrains Mono', 'Roboto Mono', monospace;
     font-size: 0.85rem;
+    font-weight: 800;
     text-align: center;
     white-space: nowrap;
     overflow: hidden;
