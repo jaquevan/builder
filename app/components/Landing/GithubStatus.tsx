@@ -61,7 +61,7 @@ export default function GitHubStatus() {
 
     // hardcoded values
     const username = "jaquevan";
-    const contributions = 230; // hardcoded for now
+    const contributions = 259; // hardcoded for now
     const stationName = "GitHub Central";
 
     // update time every second

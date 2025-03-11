@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 const SpotifyContainer = styled.div`
     width: 45%;
-    max-height: 1055px;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 12px rgb(255, 255, 255);

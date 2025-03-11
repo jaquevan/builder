@@ -58,8 +58,7 @@ const ButtonContainer = styled.div`
     justify-content: flex-start;
     max-width: 100%;
     margin: 1.5rem 0 0.5rem;
-    padding: 0 clamp(1rem, 10%, 5rem);
-    padding-top: 3%;
+    padding: 1% 0 clamp(1rem, 10%, 5rem);
 
     @media (max-width: 768px) {
         justify-content: center;
@@ -70,10 +69,16 @@ const ButtonContainer = styled.div`
 
 const Name = styled.h1`
     margin: 0 auto;
-    text-align: left;
-    padding-top: 4%;
-    padding-bottom: 0;
+    padding-top: 0.5rem;
     font-size: 4rem;
+`;
+
+const SubText = styled.h2`
+    margin: 0 auto;
+    padding-top: 0.5rem;
+    font-size: 1.5rem;
+    color: #00843D; 
+    font-family: Monospaced, "JetBrains Mono", sans-serif; 
 `;
 
 const StyledButton = styled.a<StyledButtonProps>`
@@ -167,20 +172,14 @@ const ButtonText = styled.span`
     }
 `;
 
-const SubText = styled.h2`
-    margin: 0 auto;
-    padding-top: 0.5rem;
-    font-size: 1.5rem;
-    color: #00843D; /* Use the same green color as other components */
-    font-family: Monospaced, "JetBrains Mono", sans-serif; 
-    text-align: left;
-`;
+
 
 export default function EnhancedButtons() {
     return (
         <>
             <Name>Evan Jaquez</Name>
             <SubText>Frontend Developer and UX Designer/Researcher</SubText>
+
             <ButtonContainer role="navigation" aria-label="Social links and navigation">
                 {buttons.map((button) => (
                     <Tooltip title={button.tooltip} key={button.id} arrow>

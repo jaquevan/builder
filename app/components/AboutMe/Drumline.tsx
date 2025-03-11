@@ -93,7 +93,8 @@ const YoutubeButton = styled.a`
     gap: 0.5rem;
 
     &:hover {
-        background-color: #cc0000;
+        background-color: #84919a;
+        color: black;
         transform: translateY(-2px);
     }
 
