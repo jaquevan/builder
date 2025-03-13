@@ -24,7 +24,7 @@ export default function Projects() {
                     Frontend Projects
                 </Typography>
 
-                <Grid
+                <Grid className="fade-in"
                     container
                     spacing={8}
                     justifyContent="center"

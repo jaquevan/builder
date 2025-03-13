@@ -38,7 +38,7 @@ export const StationPaper = styled(Paper)`
     max-width: 31.25rem; // 500px equivalent
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
     overflow: hidden;
-    animation: ${slideIn} 0.4s ease-out;
+    animation: ${slideIn} 0.5s ease-out;
     transform-origin: top center;
     font-family: 'JetBrains Mono', 'Roboto Mono', monospace;
 
@@ -191,7 +191,7 @@ export const StatValue = styled.div`
 
 export const DirectionSign = styled(Link)`
     display: flex;
-    background-color: #5a5c62;
+    background-color: black;
     color: white;
     align-items: center;
     justify-content: center;

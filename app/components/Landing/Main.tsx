@@ -155,7 +155,7 @@ export default function Main() {
                     <TopContainer>
                         <ButtonDiv>
                             <Buttons />
-                            <ResumeSection>
+                            <ResumeSection className="fade-in">
                                 <ResumeCard />
                             </ResumeSection>
                         </ButtonDiv>
