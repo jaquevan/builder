@@ -177,10 +177,10 @@ const ButtonText = styled.span`
 export default function EnhancedButtons() {
     return (
         <>
-            <Name>Evan Jaquez</Name>
-            <SubText>Frontend Developer and UX Designer/Researcher</SubText>
+            <Name className="fade-in">Evan Jaquez</Name>
+            <SubText className="fade-in">Frontend Developer and UX Designer/Researcher</SubText>
 
-            <ButtonContainer role="navigation" aria-label="Social links and navigation">
+            <ButtonContainer className="fade-in" role="navigation" aria-label="Social links and navigation">
                 {buttons.map((button) => (
                     <Tooltip title={button.tooltip} key={button.id} arrow>
                         <StyledButton

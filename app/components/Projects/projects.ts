@@ -27,14 +27,14 @@ const projects: Project[] = [
         liveLink: null
     },
     {
-        id: "onc",
-        title: "Our National Conversation",
-        image: onc.src,
-        description: "Modern forum for constructive national discussion",
-        learnings: "Developed skills including authentication, React, and responsive design.",
-        github: null,
-        liveLink: "https://www.ournationalconversation.org/"
-    },
+         id: "onc",
+         title: "Our National Conversation",
+         image: onc.src,
+         description: "Modern forum for constructive national discussion",
+         learnings: "Developed skills including authentication, React, and responsive design.",
+         github: null,
+         liveLink: "https://www.ournationalconversation.org/"
+     },
     {
         id: "Dbz",
         title: "Dragon Ball Z Mini Wiki",
