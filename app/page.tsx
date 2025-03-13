@@ -1,19 +1,26 @@
-"use client"
+// app/page.tsx
+import { Metadata as NextMetadata } from 'next';
+import Metadata from '@/app/components/Metadata';
+import { homeSEO } from '@/app/utils/pageSEO';
+import NavBar from '@/app/components/NavBar';
+import Footer from '@/app/components/Footer';
+import Main from '@/app/components/Landing/Main';
 
-import Main from "@/app/components/Landing/Main";
-import NavBar from "@/app/components/NavBar";
-import Footer from "@/app/components/Footer";
-
+export const generateMetadata = (): NextMetadata => {
+    return {
+        title: homeSEO.title,
+        description: homeSEO.description,
+        keywords: homeSEO.keywords,
+    };
+};
 
 export default function Home() {
     return (
         <>
-
-            {/*<Header />*/}
+            <Metadata seo={homeSEO} />
             <NavBar />
             <Main />
             <Footer />
-
         </>
     );
 }
