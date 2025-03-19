@@ -13,7 +13,7 @@ const projects: Project[] = [
         title: "Plan It",
         image: planit.src,
         description: "Space themed productivity app with meditation, tasks-completion & journaling features",
-        learnings: "Built with Next.js. Learned state management, user experience design, and implementing multiple connected features.",
+        learnings: "Built with Next.js. Learned state management, user experience experience, and implementing multiple connected features.",
         github: "https://github.com/jaquevan/Plan-It_bh2024",
         liveLink: null
     },
@@ -31,7 +31,7 @@ const projects: Project[] = [
          title: "Our National Conversation",
          image: onc.src,
          description: "Modern forum for constructive national discussion",
-         learnings: "Developed skills including authentication, React, and responsive design.",
+         learnings: "Developed skills including authentication, React, and responsive experience.",
          github: null,
          liveLink: "https://www.ournationalconversation.org/"
      },
