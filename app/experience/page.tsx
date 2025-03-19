@@ -3,7 +3,7 @@ import Nav from '@/app/components/NavBar';
 import Footer from "@/app/components/Footer";
 import styled, { keyframes } from 'styled-components';
 import { Container, Typography, Paper } from '@mui/material';
-import { Work, School, CalendarToday, LocationOn } from '@mui/icons-material';
+import { Work, School, LocationOn } from '@mui/icons-material';
 import Image from 'next/image';
 
 const colors = {

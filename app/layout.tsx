@@ -23,6 +23,7 @@ export default function RootLayout({
             <ClientThemeProvider>{children}</ClientThemeProvider>
         </StyledComponentsRegistry>
         <Analytics/>
+        <SpeedInsights/>
         </body>
         </html>
     );
