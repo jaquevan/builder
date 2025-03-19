@@ -3,6 +3,7 @@ import "../app/global.css";
 import ClientThemeProvider from './ClientThemeProvider';
 import StyledComponentsRegistry from '../lib/registry';
 import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 
 export const metadata: Metadata = {
