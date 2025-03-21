@@ -61,7 +61,7 @@ export default function GitHubStatus() {
 
     // hardcoded values
     const username = "jaquevan";
-    const contributions = 259; // hardcoded for now
+    const contributions = 277; // hardcoded for now
     const stationName = "GitHub Central";
 
     // update time every second
@@ -90,86 +90,25 @@ export default function GitHubStatus() {
                 setUserProfile(profileData);
                 setRepos(profileData.public_repos || 0);
 
-                // fetch repos to get languages
-                const reposResponse = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`);
-                if (!reposResponse.ok) throw new Error('Failed to fetch repos');
-                const reposData: Repo[] = await reposResponse.json();
+                // set typescript as primary language
+                setLanguages('TypeScript');
 
-                // count languages and get top 3
-                const languageCounts: { [key: string]: number } = {};
-                reposData.forEach(repo => {
-                    if (repo.language) {
-                        languageCounts[repo.language] = (languageCounts[repo.language] || 0) + 1;
-                    }
-                });
-
-                const top3Languages = Object.entries(languageCounts)
-                    .sort((a, b) => b[1] - a[1])
-                    .slice(0, 3)
-                    .map(([lang]) => lang)
-                    .join(', ');
-
-                setLanguages(top3Languages || 'Not specified');
-
-                // get recent activity for last commit date and streak
+                // get recent activity for last commit date
                 const eventsResponse = await fetch(`https://api.github.com/users/${username}/events`);
                 if (!eventsResponse.ok) throw new Error('Failed to fetch events');
                 const events: Event[] = await eventsResponse.json();
 
                 const pushEvents = events.filter(event => event.type === 'PushEvent');
 
-                // calculate last commit date and streak
                 if (pushEvents.length > 0) {
-                    // last commit date
                     const lastCommit = new Date(pushEvents[0].created_at);
                     setLastCommitDate(lastCommit.toISOString().split('T')[0]);
-
-                    // simplified streak calculation
-                    calculateStreak(pushEvents);
                 }
 
                 setLoading(false);
             } catch (err) {
                 console.error('GitHub API error:', err);
                 setLoading(false);
-            }
-        };
-
-        // helper function to calculate streak - separated for clarity
-        const calculateStreak = (pushEvents: Event[]) => {
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
-
-            const lastCommit = new Date(pushEvents[0].created_at);
-            lastCommit.setHours(0, 0, 0, 0);
-
-            // check if last commit is recent (today or yesterday)
-            const daysDiff = Math.ceil(Math.abs(today.getTime() - lastCommit.getTime()) / (1000 * 60 * 60 * 24));
-
-            if (daysDiff <= 1) {
-                // count consecutive days with commits
-                let currentStreak = 1;
-                let currentDate = new Date(lastCommit);
-
-                for (let i = 1; i < pushEvents.length; i++) {
-                    const commitDate = new Date(pushEvents[i].created_at);
-                    commitDate.setHours(0, 0, 0, 0);
-
-                    // check if this commit was on the previous day
-                    const prevDate = new Date(currentDate);
-                    prevDate.setDate(prevDate.getDate() - 1);
-
-                    if (commitDate.getTime() === prevDate.getTime()) {
-                        currentStreak++;
-                        currentDate = new Date(commitDate);
-                    } else {
-                        break; // streak broken
-                    }
-                }
-
-                setStreak(`${currentStreak} days`);
-            } else {
-                setStreak('0 days'); // no recent commits
             }
         };
 
@@ -244,7 +183,7 @@ export default function GitHubStatus() {
 
                 <StatItem $color={MBTAColors.blue}>
                     <StatHeader>
-                        <StatTitle>CONTRIBUTIONS (2023)</StatTitle>
+                        <StatTitle>CONTRIBUTIONS (this year)</StatTitle>
                         <CodeIcon fontSize="small" sx={{color: MBTAColors.blue}}/>
                     </StatHeader>
                     <StatValue>{contributions}</StatValue>
@@ -258,10 +197,9 @@ export default function GitHubStatus() {
                     <StatValue>{streak}</StatValue>
                 </StatItem>
 
-                <Tooltip title={languages} placement="top">
                     <StatItem $color={MBTAColors.orange}>
                         <StatHeader>
-                            <StatTitle>LANGUAGES</StatTitle>
+                            <StatTitle>Most Used Language</StatTitle>
                             <TerminalIcon fontSize="small" sx={{color: MBTAColors.orange}}/>
                         </StatHeader>
                         <Typography variant="body2" noWrap sx={{
@@ -272,7 +210,6 @@ export default function GitHubStatus() {
                             {languages}
                         </Typography>
                     </StatItem>
-                </Tooltip>
             </StatsGrid>
 
             <TickerTape/>

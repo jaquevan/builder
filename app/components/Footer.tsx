@@ -9,23 +9,15 @@ import HomeIcon from '@mui/icons-material/Home';
 import CodeIcon from '@mui/icons-material/Code';
 import DesignServicesIcon from '@mui/icons-material/DesignServices';
 import ContactPageIcon from '@mui/icons-material/ContactPage';
-import Image from 'next/image';
+import Link from 'next/link';
 import pfp from '@/public/real_pfp.jpg';
-
+import githubPfp from '@/public/github_pfp.jpg';
 
 const fadeIn = keyframes`
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 `;
 
-// pfp glow animation
-const profileGlow = keyframes`
-    0% { box-shadow: 0 0 4px rgba(0, 132, 61, 0.5); }
-    50% { box-shadow: 0 0 15px rgba(0, 132, 61, 0.8), 0 0 25px rgba(0, 132, 61, 0.4); }
-    100% { box-shadow: 0 0 4px rgba(0, 132, 61, 0.5); }
-`;
-
-// Base colors
 const colors = {
     darkBg: "#1A1A1A",
     accent: "#00843D",
@@ -35,36 +27,36 @@ const colors = {
 };
 
 const FooterWrapper = styled.footer`
-  background-color: ${colors.darkBg};
-  color: ${colors.lightText};
-  padding: 2rem 0 0;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
-  animation: ${fadeIn} 0.6s ease-out;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(90deg, ${colors.accent}, #34D399, ${colors.accent});
-  }
+    background-color: ${colors.darkBg};
+    color: ${colors.lightText};
+    padding: 2rem 0 0;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
+    animation: ${fadeIn} 0.6s ease-out;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(90deg, ${colors.accent}, #34D399, ${colors.accent});
+    }
 `;
 
 const ContentContainer = styled(Container)`
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 2rem;
-  padding-bottom: 1.5rem;
-  
-  @media (max-width: 768px) {
-    flex-direction: column;
-    gap: 1.5rem;
-  }
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding-bottom: 1.5rem;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
 `;
 
 const Column = styled.div`
@@ -120,6 +112,7 @@ const Tagline = styled(Typography)`
     margin-bottom: 1.5rem;
     max-width: 300px;
     line-height: 1.5;
+    font-family: 'Courier New', Courier, monospace;
 `;
 
 const SectionTitle = styled(Typography)`
@@ -149,7 +142,7 @@ const SectionTitle = styled(Typography)`
     }
 `;
 
-const FooterLink = styled.a`
+const FooterLink = styled(Link)`
     font-family: 'Roboto Mono', monospace;
     display: flex;
     align-items: center;
@@ -162,7 +155,7 @@ const FooterLink = styled.a`
 
     &:hover {
         color: ${colors.highlight};
-        transform: translateX(3px);
+        transform: translateX(2px); /* Reduced from 3px to 2px */
     }
 
     & svg {
@@ -189,20 +182,23 @@ const SocialIconsContainer = styled.div`
     }
 `;
 
-const SocialIconButton = styled(IconButton)`
-    color: black;
+const SocialButton = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
     background-color: white;
+    color: #000;
+    cursor: pointer;
     transition: all 0.3s ease;
-    padding: 8px;
 
     &:hover {
-        background-color: #00843D;
+        background-color: ${colors.accent};
+        color: white;
         transform: translateY(-3px);
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    &:active {
-        transform: translateY(-1px);
     }
 `;
 
@@ -235,26 +231,44 @@ const ProfileContainer = styled.div`
     flex-direction: column;
     align-items: center;
     width: 100%;
+    perspective: 1200px; 
 `;
 
-const ProfileAvatar = styled(Image)`
-    margin-bottom: 1rem;
-    border: 3px solid ${colors.accent};
-    animation: ${profileGlow} 10s infinite;
-    transition: transform 0.3s ease;
+const ProfileAvatar = styled.div`
+    width: 150px;
+    height: 150px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border-radius: 50%;
+    will-change: transform; 
 
     &:hover {
-        transform: scale(1.05);
+        transform: rotateY(180deg);
     }
 
-    @media (max-width: 768px) {
-        width: 100px !important;
-        height: 100px !important;
+    & > div {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        border-radius: 50%;
+        overflow: hidden; /* Ensures children stay within border radius */
+    }
+
+    & .front {
+        background-image: url(${pfp.src});
+        background-size: cover;
+        border: 3px solid ${colors.accent};
+    }
+
+    & .back {
+        background-image: url(${githubPfp.src});
+        background-size: cover;
+        border: 3px solid ${colors.accent};
+        transform: rotateY(180deg);
     }
 `;
-
-
 
 export default function Footer() {
     const [currentDateTime, setCurrentDateTime] = useState("2025-03-02 20:41:07");
@@ -265,11 +279,14 @@ export default function Footer() {
             const year = now.getFullYear();
             const month = String(now.getMonth() + 1).padStart(2, '0');
             const day = String(now.getDate()).padStart(2, '0');
-            const hours = String(now.getHours()).padStart(2, '0');
+            let hours = now.getHours();
             const minutes = String(now.getMinutes()).padStart(2, '0');
             const seconds = String(now.getSeconds()).padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12; // the hour '0' should be '12'
 
-            setCurrentDateTime(`${year}-${month}-${day} ${hours}:${minutes}:${seconds}`);
+            setCurrentDateTime(`${year}-${month}-${day} ${hours}:${minutes}:${seconds} ${ampm}`);
         }, 1000);
 
         return () => clearInterval(interval);
@@ -279,36 +296,36 @@ export default function Footer() {
         <FooterWrapper>
             <ContentContainer maxWidth="lg">
                 <BrandColumn>
-                    <LogoText variant="h3">builder | Evan Jaquez</LogoText>
+                    <LogoText variant="h3">jaquevan | builder</LogoText>
                     <Tagline variant="body2">
-                        BA in Computer Science & Economics. <br />
+                        Computer Science & Economics. <br />
                         Minor in Data Science <br />
                         Boston University, Boston MA
                     </Tagline>
 
                     <SocialIconsContainer>
                         <Tooltip title="LinkedIn Profile">
-                            <a href="https://www.linkedin.com/in/evan-jaquez-118b5b294/" target="_blank" aria-label="LinkedIn">
-                                <SocialIconButton>
+                            <Link href="https://www.linkedin.com/in/evan-jaquez-118b5b294/" target="_blank" aria-label="LinkedIn">
+                                <SocialButton>
                                     <LinkedInIcon />
-                                </SocialIconButton>
-                            </a>
+                                </SocialButton>
+                            </Link>
                         </Tooltip>
 
                         <Tooltip title="GitHub Profile">
-                            <a href="https://github.com/jaquevan" target="_blank" aria-label="GitHub">
-                                <SocialIconButton>
+                            <Link href="https://github.com/jaquevan" target="_blank" aria-label="GitHub">
+                                <SocialButton>
                                     <GitHubIcon />
-                                </SocialIconButton>
-                            </a>
+                                </SocialButton>
+                            </Link>
                         </Tooltip>
 
                         <Tooltip title="Contact via Email">
-                            <a href="mailto:jaquevan@bu.edu" target="_blank" aria-label="Email">
-                                <SocialIconButton>
+                            <Link href="mailto:jaquevan@bu.edu" target="_blank" aria-label="Email">
+                                <SocialButton>
                                     <EmailIcon />
-                                </SocialIconButton>
-                            </a>
+                                </SocialButton>
+                            </Link>
                         </Tooltip>
                     </SocialIconsContainer>
 
@@ -325,6 +342,9 @@ export default function Footer() {
                     <FooterLink href="/about">
                         <CodeIcon fontSize="small" /> About Me
                     </FooterLink>
+                    <FooterLink href="/experience">
+                        <EmailIcon fontSize="small" /> Experience
+                    </FooterLink>
                     <FooterLink href="/projects">
                         <DesignServicesIcon fontSize="small" /> Projects
                     </FooterLink>
@@ -333,21 +353,13 @@ export default function Footer() {
                     </FooterLink>
                 </NavColumn>
 
-                <NavColumn>
-                    {/*<SectionTitle variant="h6">Resources</SectionTitle>*/}
-                    {/*<FooterLink href="/resume">Resume</FooterLink>*/}
-                    {/*<FooterLink href="/about">About Me</FooterLink>*/}
-                </NavColumn>
-
                 <ProfileColumn>
-                    <SectionTitle variant="h6">Evan D Jaquez</SectionTitle>
+                    <SectionTitle variant="h6">Evan Jaquez</SectionTitle>
                     <ProfileContainer>
-                        <ProfileAvatar
-                            src={pfp}
-                            alt="Evan Jaquez"
-                            width={120}
-                            height={120}
-                        />
+                        <ProfileAvatar>
+                            <div className="front"></div>
+                            <div className="back"></div>
+                        </ProfileAvatar>
                     </ProfileContainer>
                 </ProfileColumn>
             </ContentContainer>
