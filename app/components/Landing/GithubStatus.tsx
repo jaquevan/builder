@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Tooltip, Typography, CircularProgress } from "@mui/material";
+import { Typography, CircularProgress } from "@mui/material";
 import CodeIcon from "@mui/icons-material/Code";
 import StorageIcon from "@mui/icons-material/Storage";
 import TerminalIcon from "@mui/icons-material/Public";
@@ -40,9 +40,6 @@ interface UserProfile {
     created_at: string;
 }
 
-interface Repo {
-    language?: string;
-}
 
 interface Event {
     type: string;
@@ -55,7 +52,6 @@ export default function GitHubStatus() {
     const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
     const [repos, setRepos] = useState(0);
     const [languages, setLanguages] = useState('');
-    const [streak, setStreak] = useState('0 days');
     const [lastCommitDate, setLastCommitDate] = useState('');
     const [currentTime, setCurrentTime] = useState('');
 
@@ -63,6 +59,7 @@ export default function GitHubStatus() {
     const username = "jaquevan";
     const contributions = 277; // hardcoded for now
     const stationName = "GitHub Central";
+    const streak = 13; // hardcoded streak value for now
 
     // update time every second
     useEffect(() => {
@@ -175,7 +172,7 @@ export default function GitHubStatus() {
             <StatsGrid>
                 <StatItem $color={MBTAColors.green}>
                     <StatHeader>
-                        <StatTitle>REPOSITORIES</StatTitle>
+                        <StatTitle>Public Repositories</StatTitle>
                         <StorageIcon fontSize="small" sx={{color: MBTAColors.green}}/>
                     </StatHeader>
                     <StatValue>{repos}</StatValue>
@@ -183,7 +180,7 @@ export default function GitHubStatus() {
 
                 <StatItem $color={MBTAColors.blue}>
                     <StatHeader>
-                        <StatTitle>CONTRIBUTIONS (this year)</StatTitle>
+                        <StatTitle>Contributions (this year)</StatTitle>
                         <CodeIcon fontSize="small" sx={{color: MBTAColors.blue}}/>
                     </StatHeader>
                     <StatValue>{contributions}</StatValue>
@@ -191,7 +188,7 @@ export default function GitHubStatus() {
 
                 <StatItem $color={MBTAColors.red}>
                     <StatHeader>
-                        <StatTitle>STREAK</StatTitle>
+                        <StatTitle>Longest Streak</StatTitle>
                         <StarIcon fontSize="small" sx={{color: MBTAColors.red}}/>
                     </StatHeader>
                     <StatValue>{streak}</StatValue>
