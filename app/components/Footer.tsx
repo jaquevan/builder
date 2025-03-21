@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
-import { Typography, Container, IconButton, Tooltip } from "@mui/material";
+import { Typography, Container, Tooltip } from "@mui/material";
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import EmailIcon from '@mui/icons-material/Email';
