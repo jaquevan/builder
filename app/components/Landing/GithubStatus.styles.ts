@@ -112,18 +112,43 @@ export const StyledAvatar = styled(Avatar)`
 // list of technologies used
 export const InfoBoard = styled.div`
     background-color: #5a5c62;
-    padding: 0.75rem;
     position: relative;
     font-weight: 800;
     height: 2.5rem;
     overflow: hidden;
     display: flex;
     align-items: center;
+    justify-content: center;
     font-family: 'JetBrains Mono', 'Roboto Mono', monospace;
+
+    & > div {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        justify-content: center;
+    }
+
+    & svg {
+        width: 1.5rem;
+        height: 1.5rem;
+        color: ${MBTAColors.lightGray};
+        opacity: 0.8;
+        transition: all 0.2s ease;
+
+        &:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+    }
 
     @media (max-width: 480px) {
         height: 2.2rem;
         padding: 0.5rem;
+
+        & svg {
+            width: 1.2rem;
+            height: 1.2rem;
+        }
     }
 `;
 
@@ -149,10 +174,12 @@ export const StatItem = styled.div<StatItemProps>`
     padding: 0.75rem;
     border-left: 0.25rem solid ${props => props.$color || MBTAColors.green};
     font-family: 'JetBrains Mono', 'Roboto Mono', monospace;
+    transition: all 0.2s ease;
 
     &:hover {
         transform: translateY(-0.125rem);
-        transition: transform 0.1s ease;
+        background: linear-gradient(135deg, white 0%, ${MBTAColors.green}22 100%);
+        box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
     }
 
     @media (max-width: 480px) {
@@ -253,5 +280,5 @@ export const LoadingContainer = styled.div`
     justify-content: center;
     align-items: center;
     height: 18.75rem;
-    width: 100%;
+    width: 100%;    
 `;

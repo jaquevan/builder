@@ -6,50 +6,35 @@ import GithubStatus from "@/app/components/Landing/GithubStatus";
 import ResumeCard from "@/app/components/Landing/ResumeCard";
 
 const fadeIn = keyframes`
-    0% {
+    from {
         opacity: 0;
         transform: translateY(20px);
     }
-    100% {
+    to {
         opacity: 1;
         transform: translateY(0);
     }
 `;
 
-
 const StyledBody = styled.div`
     overflow-x: hidden;
-    width: 100vw;
-    height: 50%;
-    margin: 0;
+    width: 100%;
+    max-height: 90vh;
     display: flex;
     flex-direction: column;
-
-    @media (max-width: 768px) {
-        height: auto;
-        min-height: 100vh;
-    }
+    margin: 0;
+    padding: 1rem 0;
 `;
 
 const MainSection = styled.div`
     display: flex;
     flex-direction: column;
-    width: 90vw;
-    font-family: Monospaced, "JetBrains Mono", sans-serif;
+    width: min(90%, 1200px);
     margin: 0 auto;
     position: relative;
     flex: 1;
-    padding-bottom: 0;
-
-    @media (max-width: 480px) {
-        width: 95%;
-        padding: 1rem 0;
-    }
-
-    @media (max-width: 375px) {
-        width: 98%;
-        padding: 0.5rem 0;
-    }
+    font-family: monospace;
+    max-height: calc(100vh - 2rem);
 `;
 
 const MainContentArea = styled.div`
@@ -57,125 +42,99 @@ const MainContentArea = styled.div`
     flex-direction: column;
     position: relative;
     flex: 1;
+    gap: 2rem;
 
-    @media (width: 1024px) {
+    @media (max-width: 1024px) {
+        align-items: center;
     }
 `;
 
 const TopContainer = styled.div`
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: flex-start; 
     width: 100%;
-    margin-bottom: 0;
-    z-index: 20;
+    height: calc(54vh - 2rem);
+    gap: 2rem;
 
     @media (max-width: 1024px) {
         flex-direction: column;
-        width: 100%;
+        gap: 1rem;
+        min-height: auto; 
     }
 `;
 
 const ButtonDiv = styled.div`
     flex: 1;
-    margin-top: -10px;
-    padding-right: clamp(10px, 2%, 20px);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-right: max(1rem, 2%);
+    max-height: 100vh;
 
-    @media (max-width: 1024px) {
+    @media (max-width: 1024px) 
         padding-right: 0;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
         align-items: center;
-    }
-
-    @media (max-width: 375px) {
-        margin-top: -5px;
+        width: 100%;
     }
 `;
 
 const StatusContainer = styled.div`
-    z-index: 30;
-    position: absolute;
-    top: 1vw;
-    right: 1vw;
+    position: sticky;
+    top: 1rem;
     width: 40%;
+    z-index: 30;
 
     @media (max-width: 1024px) {
         display: none;
     }
 `;
 
-/* mobile-only status container that appears after content */
 const MobileStatusContainer = styled.div`
     display: none;
-    z-index: 30;
     width: 100%;
-    margin: 20px auto;
-    padding: 0 20px;
+    margin-top: 1rem;
 
-    @media (width: 1024px) {
+    @media (max-width: 1024px) {
         display: block;
-        order: 3;
-    }
-
-    @media (width: 768px) {
-        padding: 0 15px;
-    }
-
-    @media (width: 480px) {
-        padding: 0 10px;
+        width: 100%;
+        max-width: 500px;
+        margin: 1rem auto;
     }
 `;
 
 const ResumeSection = styled.div`
-    width: 25vw;
-    padding: 0;
+    width: clamp(300px, 25vw, 400px);
     animation: ${fadeIn} 0.8s ease-out 0.3s both;
-    z-index: 25;
 
     @media (max-width: 768px) {
-        margin: 15px auto 20px;
-        text-align: center;
-        padding: 0;
         width: 100%;
-    }
-
-    @media (max-width: 375px) {
-        margin: 10px auto 15px;
-        padding: 0;
+        max-width: 500px;
     }
 `;
 
 export default function Main() {
     return (
-        <StyledBody>
-            <MainSection>
-                <MainContentArea>
-                    <TopContainer>
-                        <ButtonDiv>
-                            <Buttons />
-                            <ResumeSection className="fade-in">
-                                <ResumeCard />
-                            </ResumeSection>
-                        </ButtonDiv>
-
-                        {/* desktop status */}
-                        <StatusContainer>
+            <StyledBody>
+                <MainSection>
+                    <MainContentArea>
+                        <TopContainer>
+                            <ButtonDiv>
+                                <Buttons />
+                                <ResumeSection>
+                                    <ResumeCard />
+                                </ResumeSection>
+                            </ButtonDiv>
+                            <StatusContainer>
+                                <GithubStatus />
+                            </StatusContainer>
+                        </TopContainer>
+                        <Content />
+                        <MobileStatusContainer>
                             <GithubStatus />
-                        </StatusContainer>
-                    </TopContainer>
-
-                    {/* train animation component */}
-                    <Content />
-
-                    {/* mobile status appears after content */}
-                    <MobileStatusContainer>
-                        <GithubStatus />
-                    </MobileStatusContainer>
-
-                </MainContentArea>
-            </MainSection>
-        </StyledBody>
-    );
-}
+                        </MobileStatusContainer>
+                    </MainContentArea>
+                </MainSection>
+            </StyledBody>
+        );
+    }

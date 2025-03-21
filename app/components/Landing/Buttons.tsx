@@ -34,7 +34,7 @@ const buttons = [
 
 const pulse = keyframes`
     0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
+    50% { transform: scale(1.1); }
     100% { transform: scale(1); }
 `;
 
@@ -60,7 +60,7 @@ const ButtonContainer = styled.div`
     margin: 1.5rem 0 0.5rem;
     padding: 1% 0 clamp(1rem, 10%, 5rem);
 
-    @media (max-width: 768px) {
+    @media (max-width: 1024px) {
         justify-content: center;
         gap: clamp(0.4rem, 1.5vw, 1rem);
         margin-bottom: 0.25rem;
@@ -68,17 +68,19 @@ const ButtonContainer = styled.div`
 `;
 
 const Name = styled.h1`
-    margin: 0 auto;
-    padding-top: 0.5rem;
+    margin: 0;
+    padding: 0;
     font-size: 4rem;
+    line-height: 1.2;
 `;
 
 const SubText = styled.h2`
-    margin: 0 auto;
-    padding-top: 0.5rem;
+    margin: 0;
+    padding: 0;
     font-size: 1.5rem;
-    color: #00843D; 
-    font-family: Monospaced, "JetBrains Mono", sans-serif; 
+    color: #00843D;
+    font-family: Monospaced, "JetBrains Mono", sans-serif;
+    line-height: 1.2;
 `;
 
 const StyledButton = styled.a<StyledButtonProps>`
@@ -87,7 +89,7 @@ const StyledButton = styled.a<StyledButtonProps>`
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    padding: clamp(0.6rem, 1.5vw, 1rem) clamp(1rem, 2vw, 2rem);
+    padding: .8rem 2rem;
     border-radius: 10px;
     font-size: clamp(0.85rem, 1.5vw, 1.1rem);
     font-weight: 500;
@@ -98,8 +100,8 @@ const StyledButton = styled.a<StyledButtonProps>`
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
     flex: 1;
-    min-width: 0;
-    max-width: ${props => props.$maxWidth || "160px"};
+    min-width: 140px;
+    max-width: ${props => props.$maxWidth || "180px"};
     overflow: hidden;
     z-index: 2;
 
@@ -141,9 +143,12 @@ const StyledButton = styled.a<StyledButtonProps>`
         border-radius: inherit;
     }
 
-    @media (max-width: 768px) {
-        max-width: ${props => props.$mobileMaxWidth || "140px"};
-        flex: ${props => props.$mobileFlex || "0 1 calc(50% - 1rem)"};
+
+    @media (max-width: 1024px) {
+        max-width: ${props => props.$mobileMaxWidth || "300px"};
+        flex: ${props => props.$mobileFlex || "0 1 calc(80% - 1rem)"};
+        padding: 0.8rem .5em;
+        font-size: 1rem;
     }
 
     @media (max-width: 480px) {
@@ -164,12 +169,10 @@ const IconWrapper = styled.div`
 
 const ButtonText = styled.span`
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-
-    @media (max-width: 380px) {
-        font-size: clamp(0.75rem, 3vw, 0.9rem);
-    }
+    overflow: auto;
+    text-overflow: fade;
+    font-size: calc(.5rem + 0.5vw);
+    
 `;
 
 
@@ -179,7 +182,6 @@ export default function EnhancedButtons() {
         <>
             <Name className="fade-in">Evan Jaquez</Name>
             <SubText className="fade-in">Frontend Developer and UX Designer/Researcher</SubText>
-
             <ButtonContainer className="fade-in" role="navigation" aria-label="Social links and navigation">
                 {buttons.map((button) => (
                     <Tooltip title={button.tooltip} key={button.id} arrow>

@@ -2,89 +2,106 @@
 import styled, { keyframes } from "styled-components";
 import Image from "next/image";
 
-// animation for continuous horizontal scrolling
 const scroll = keyframes`
-    0% {
+    from {
         transform: translateX(0);
     }
-    100% {
-        transform: translateX(-100%);
+    to {
+        transform: translateX(-50%);
     }
 `;
 
 const TechContainer = styled.div`
     width: 100%;
     overflow: hidden;
-    background: transparent;
-    padding: 5px 0;
-    margin: 8px 0;
+    background: #424242;
+    padding: 0;
+    margin: auto 0;
     position: relative;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
 
-    @media (max-width: 768px) {
-        padding: 10px 0;
+    &::before, &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        width: 100px;
+        height: 100%;
+        z-index: 2;
     }
 
-    @media (max-width: 480px) {
-        padding: 8px 0;
+    &::before {
+        left: 0;
+        background: linear-gradient(to right, #383838 0%, transparent 100%);
     }
 
-    @media (max-width: 375px) {
-        padding: 5px 0;
+    &::after {
+        right: 0;
+        background: linear-gradient(to left, #383838 0%, transparent 100%);
     }
 `;
 
 const TechTrack = styled.div`
     display: flex;
-    width: 200%; // Ensure the track is wide enough for both sets of icons
-    animation: ${scroll} 20s linear infinite;
+    width: fit-content;
+    animation: ${scroll} 35s linear infinite;
+    padding: 0 2rem;
+    align-items: center;
+    height: 100%;
 `;
 
 const IconsGroup = styled.div`
     display: flex;
     align-items: center;
-    gap: 40px;
-    padding: 0 20px;
-
-    @media (max-width: 768px) {
-        gap: 30px;
-    }
-
-    @media (max-width: 480px) {
-        gap: 25px;
-        padding: 0 15px;
-    }
-
-    @media (max-width: 375px) {
-        gap: 20px;
-        padding: 0 10px;
-    }
+    justify-content: center;
+    gap: 2rem;
+    padding: 0 1rem;
+    height: 100%;
 `;
 
 const IconContainer = styled.div`
     display: flex;
-    flex-direction: column;
     align-items: center;
-    transition: transform 0.3s ease;
+    gap: 0.5rem;
+    transition: transform 0.2s ease;
+    height: fit-content;
 
+    &:hover {
+        transform: translateY(-2px);
+    }
+`;
+
+const IconWrapper = styled.div`
+    width: 1.75rem;
+    height: 1.75rem;
+    position: relative;
+    filter: grayscale(20%);
+    transition: filter 0.2s ease;
+
+    &:hover {
+        filter: grayscale(0%);
+    }
 `;
 
 const IconLabel = styled.span`
-    font-size: 0.5rem;
-    margin-top: 1px;
-    color: var(--text-primary);
-    font-family: "Arial", sans-serif;
+    font-size: 0.8rem;
+    color: #ffffff;
+    font-family: 'JetBrains Mono', monospace;
+    opacity: 0.9;
+    white-space: nowrap;
 
     @media (max-width: 480px) {
-        font-size: 0.7rem;
+        font-size: 0.75rem;
     }
 `;
 
 const TechIcons = () => {
-    // tech stack data with names and image paths
     const technologies = [
         { name: "JavaScript", path: "/icons/js.svg" },
         { name: "TypeScript", path: "/icons/ts.svg" },
         { name: "React", path: "/icons/react.svg" },
+        { name: "Next.js", path: "/icons/next.svg" },
         { name: "Figma", path: "/icons/figma.svg" },
         { name: "Jest", path: "/icons/jest.svg" },
         { name: "MUI", path: "/icons/mui.svg" },
@@ -93,12 +110,9 @@ const TechIcons = () => {
         { name: "Vite", path: "/icons/vite.svg" },
         { name: "MongoDB", path: "/icons/mdb.svg" },
         { name: "Ubuntu", path: "/icons/ubuntu.svg" },
-        { name: "Adobe", path: "/icons/adobe.svg" }
-
-
-
-
-
+        { name: "Adobe", path: "/icons/adobe.svg" },
+        { name: "Slack", path: "/icons/slack.svg" },
+        { name: "Docker", path: "/icons/docker.svg" }
 
 
     ];
@@ -106,36 +120,24 @@ const TechIcons = () => {
     return (
         <TechContainer>
             <TechTrack>
-                {/* first set of icons */}
-                <IconsGroup>
-                    {technologies.map((tech, index) => (
-                        <IconContainer key={`tech-${index}`}>
-                            <Image
-                                src={tech.path}
-                                alt={`${tech.name} icon`}
-                                width={40}
-                                height={40}
-                                priority
-                            />
-                            <IconLabel>{tech.name}</IconLabel>
-                        </IconContainer>
-                    ))}
-                </IconsGroup>
-
-                {/* duplicate set for seamless looping */}
-                <IconsGroup aria-hidden="true">
-                    {technologies.map((tech, index) => (
-                        <IconContainer key={`tech-dup-${index}`}>
-                            <Image
-                                src={tech.path}
-                                alt={`${tech.name} icon`}
-                                width={40}
-                                height={40}
-                            />
-                            <IconLabel>{tech.name}</IconLabel>
-                        </IconContainer>
-                    ))}
-                </IconsGroup>
+                {[...Array(2)].map((_, groupIndex) => (
+                    <IconsGroup key={`group-${groupIndex}`} aria-hidden={groupIndex === 1}>
+                        {technologies.map((tech, index) => (
+                            <IconContainer key={`tech-${groupIndex}-${index}`}>
+                                <IconWrapper>
+                                    <Image
+                                        src={tech.path}
+                                        alt={`${tech.name} icon`}
+                                        fill
+                                        style={{ objectFit: 'contain' }}
+                                        priority={groupIndex === 0}
+                                    />
+                                </IconWrapper>
+                                <IconLabel>{tech.name}</IconLabel>
+                            </IconContainer>
+                        ))}
+                    </IconsGroup>
+                ))}
             </TechTrack>
         </TechContainer>
     );
