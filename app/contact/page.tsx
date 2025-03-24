@@ -63,7 +63,7 @@ export default function Contact() {
             <Container>
                 <ContentWrapper>
                     <LeftSection>
-                        <Title variant="h1">Contact Me</Title>
+                        <Title> Contact Me </Title>
                         <SocialButtons>
                             <Tooltip title="View GitHub Profile" arrow>
                                 <SocialButton
@@ -93,7 +93,6 @@ export default function Contact() {
                             </Tooltip>
                         </SocialButtons>
                     </LeftSection>
-                    <Container>
                         <RightSection>
                             <StyledDiv>
                                 <form onSubmit={handleSubmit}>
@@ -194,8 +193,6 @@ export default function Contact() {
                                 </form>
                             </StyledDiv>
                         </RightSection>
-                    </Container>
-
                 </ContentWrapper>
             </Container>
             <Footer />

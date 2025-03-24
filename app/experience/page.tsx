@@ -35,10 +35,10 @@ const PageContent = styled.div`
     animation: ${fadeIn} 0.8s ease;
 `;
 
-const Title = styled(Typography)`
+const Title = styled.h1`
     font-size: 2.5rem;
     font-weight: bold;
-    margin-bottom: 2rem;
+    margin: 1rem 0;
     font-family: 'JetBrains Mono', monospace;
     text-align: center;
 
