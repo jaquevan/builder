@@ -40,6 +40,8 @@ const TrackContainer = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    z-index: 1;
+    pointer-events: none; 
 
     @media (max-width: 768px) {
         height: 44vh;
@@ -64,6 +66,8 @@ const TrainContainer = styled.div`
     animation: ${moveTrain} 10s ease-out infinite;
     will-change: transform; 
     z-index: 5;
+    pointer-events: none;
+
 `;
 
 const TrainImageWrapper = styled.div`
@@ -102,10 +106,8 @@ export default function TrainAnimation() {
             const width = window.innerWidth;
             if (width >= 1200) {
                 setTrainCount(4);
-            } else if (width >= 768) {
-                setTrainCount(3);
             } else {
-                setTrainCount(2);
+                setTrainCount(3);
             }
         };
 
