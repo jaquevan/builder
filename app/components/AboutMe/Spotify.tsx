@@ -3,9 +3,9 @@ import styled from "styled-components";
 
 const SpotifyContainer = styled.div`
     width: 45%;
+    margin: 0 auto;   
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgb(255, 255, 255);
     background: black;
     padding: 1.5rem;
     display: flex;
@@ -13,8 +13,26 @@ const SpotifyContainer = styled.div`
 
     @media screen and (max-width: 1024px) {
         width: 90%;
-        height: auto;
+        min-width: 280px;
+        padding: 1rem;
     }
+`;
+
+const ResponsiveIframe = styled.div`
+    position: relative;
+    padding-bottom: 80%; 
+    height: 0;
+    overflow: hidden;
+    border-radius: 12px;
+`;
+
+const StyledIframe = styled.iframe`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
 `;
 
 const Title = styled.h1`
@@ -46,7 +64,7 @@ const Title = styled.h1`
 
 const IframeWrapper = styled.div`
     flex: 1;
-    overflow-y: auto;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
@@ -75,36 +93,17 @@ export default function SpotifyEmbed() {
         <SpotifyContainer>
             <Title>Current Favorite Albums</Title>
             <IframeWrapper>
-                <iframe
-                    style={IframeStyle}
-                    src="https://open.spotify.com/embed/album/4m2880jivSbbyEGAKfITCa?utm_source=generator&theme=0"
-                    width="100%"
-                    height="250"
-                    frameBorder="0"
-                    allowFullScreen
-                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                    loading="lazy"
-                />
-                <iframe
-                    style={IframeStyle}
-                    src="https://open.spotify.com/embed/album/2omIeSJEGQeKHPOpiXgfkr?utm_source=generator"
-                    width="100%"
-                    height="250"
-                    frameBorder="0"
-                    allowFullScreen
-                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                    loading="lazy"
-                />
-                <iframe
-                    style={IframeStyle}
-                    src="https://open.spotify.com/embed/album/3Gt7rOjcZQoHCfnKl5AkK7?utm_source=generator"
-                    width="100%"
-                    height="250"
-                    frameBorder="0"
-                    allowFullScreen
-                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                    loading="lazy"
-                />
+                <ResponsiveIframe>
+                    <StyledIframe
+                        style={IframeStyle}
+                        src="https://open.spotify.com/embed/album/4m2880jivSbbyEGAKfITCa?utm_source=generator&theme=0"
+                        width="100%"
+                        height="300px"
+                        frameBorder="0"
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                        loading="lazy"
+                    />
+                </ResponsiveIframe>
             </IframeWrapper>
         </SpotifyContainer>
     );

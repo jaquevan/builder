@@ -10,8 +10,8 @@ import CodeIcon from '@mui/icons-material/Code';
 import DesignServicesIcon from '@mui/icons-material/DesignServices';
 import ContactPageIcon from '@mui/icons-material/ContactPage';
 import Link from 'next/link';
+import Image from 'next/image';
 import pfp from '@/public/real_pfp.jpg';
-import githubPfp from '@/public/github_pfp.jpg';
 
 const fadeIn = keyframes`
     from { opacity: 0; transform: translateY(10px); }
@@ -238,37 +238,10 @@ const ProfileAvatar = styled.div`
     width: 150px;
     height: 150px;
     position: relative;
-    transform-style: preserve-3d;
     transition: transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border-radius: 50%;
-    will-change: transform; 
-
-    &:hover {
-        transform: rotateY(180deg);
-    }
-
-    & > div {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        backface-visibility: hidden;
-        border-radius: 50%;
-        overflow: hidden; /* Ensures children stay within border radius */
-    }
-
-    & .front {
-        background-image: url(${pfp.src});
-        background-size: cover;
-        border: 3px solid ${colors.accent};
-    }
-
-    & .back {
-        background-image: url(${githubPfp.src});
-        background-size: cover;
-        border: 3px solid ${colors.accent};
-        transform: rotateY(180deg);
-    }
-`;
+    border: 3px solid ${colors.accent};
+    overflow: hidden;`;
 
 export default function Footer() {
     const [currentDateTime, setCurrentDateTime] = useState("2025-03-02 20:41:07");
@@ -357,8 +330,12 @@ export default function Footer() {
                     <SectionTitle variant="h6">Evan Jaquez</SectionTitle>
                     <ProfileContainer>
                         <ProfileAvatar>
-                            <div className="front"></div>
-                            <div className="back"></div>
+                            <Image
+                            src={pfp}
+                            alt="Profile Picture"
+                            layout="fill"
+                            objectFit="cover"
+                            />
                         </ProfileAvatar>
                     </ProfileContainer>
                 </ProfileColumn>

@@ -25,12 +25,16 @@ const DrumlineContainer = styled.div`
 
 const ImageContainer = styled.div`
     width: 80%;
+    max-width: 500px;  /* Limits how wide it gets */
+    min-width: 260px;  
     border-radius: 10px;
     overflow: hidden;
-    margin: 1.5rem 0;
+    margin: 1.5rem auto; 
 
     @media screen and (max-width: 768px) {
+        width: 90%; 
         margin-top: 1rem;
+        min-width: 220px; 
     }
 `;
 

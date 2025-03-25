@@ -9,7 +9,7 @@ const Container = styled.div`
     margin: -8.5vh auto 0; 
     padding: 1rem;
     position: relative;
-    z-index: 10;
+    z-index: 999999;
 
     @media (max-width: 768px) {
         margin-top: -1rem; 
