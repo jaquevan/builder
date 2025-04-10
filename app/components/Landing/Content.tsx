@@ -40,7 +40,7 @@ const TrackContainer = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    z-index: 1;
+    z-index: -1;
     pointer-events: none; 
 
     @media (max-width: 768px) {

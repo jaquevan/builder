@@ -76,6 +76,7 @@ const ButtonDiv = styled.div`
         padding-right: 0;
         align-items: center;
         width: 100%;
+    overflow: visible;
     }
 `;
 
@@ -106,6 +107,8 @@ const MobileStatusContainer = styled.div`
 const ResumeSection = styled.div`
     width: clamp(300px, 25vw, 400px);
     animation: ${fadeIn} 0.8s ease-out 0.3s both;
+    z-index: 40;
+    position: relative;
 
     @media (max-width: 768px) {
         width: 100%;
