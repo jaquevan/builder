@@ -5,9 +5,31 @@ import dbz from '@/public/dbz.png';
 import bdd from '@/public/bdd.png';
 import weather from '@/public/weather.png';
 import onc from "@/public/onc.jpg";
+import ecodev from "@/public/lc.png"; // Add this image
+import bostonVoter from "@/public/BV.png"; // Add this image
 import { Project } from "./ProjectCard"
 
 const projects: Project[] = [
+
+    {
+    id: "ecodev",
+    title: "La Colaborativa EcoDev",
+    image: ecodev.src,
+    description: "A dedicated platform highlighting the work of participants in La Colaborativa's culinary entrepreneurship program with interactive profiles.",
+    learnings: "Gained valuable experience in designing inclusive, multilingual interfaces. Developed skills in creating accessible UI components and learned about integrating content management systems. View the organization website here https://la-colaborativa.org/.",
+    github: "https://github.com/jaquevan/ecodev-platform",
+    liveLink: "https://ecodev-website.vercel.app/"
+   },
+
+    {
+        id: "boston-voter",
+        title: "Boston Voter App",
+        image: bostonVoter.src,
+        description: "Developed for the City of Boston to increase voter participation in BIPOC communities with polling information and election reminders.",
+        learnings: "Learned to design for diverse user groups with varying levels of technical literacy. Improved skills in creating location-based services and implementing accessibility features.",
+        github: null,
+        liveLink: "https://dev--bostonvoter.up.railway.app/upcomingElections"
+    },
     {
         id: "planit",
         title: "Plan It",
@@ -17,6 +39,8 @@ const projects: Project[] = [
         github: "https://github.com/jaquevan/Plan-It_bh2024",
         liveLink: null
     },
+
+
     {
         id: "camelitics",
         title: "Camelitics",
@@ -26,15 +50,18 @@ const projects: Project[] = [
         github: "https://github.com/TemiKayas/Camelitics",
         liveLink: null
     },
+
+
     {
-         id: "onc",
-         title: "Our National Conversation",
-         image: onc.src,
-         description: "Modern forum for constructive national discussion",
-         learnings: "Developed skills including authentication, React, and responsive experience.",
-         github: null,
-         liveLink: "https://www.ournationalconversation.org/"
-     },
+        id: "onc",
+        title: "Our National Conversation",
+        image: onc.src,
+        description: "Modern forum for constructive national discussion",
+        learnings: "Developed skills including authentication, React, and responsive experience.",
+        github: null,
+        liveLink: "https://www.ournationalconversation.org/"
+    },
+
     {
         id: "Dbz",
         title: "Dragon Ball Z Mini Wiki",

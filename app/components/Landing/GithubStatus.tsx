@@ -4,33 +4,168 @@ import { useState, useEffect } from "react";
 import { Typography, CircularProgress } from "@mui/material";
 import CodeIcon from "@mui/icons-material/Code";
 import StorageIcon from "@mui/icons-material/Storage";
-import TerminalIcon from "@mui/icons-material/Public";
-import PublicIcon from "@mui/icons-material/Terminal";
+import TerminalIcon from "@mui/icons-material/Terminal";
 import StarIcon from "@mui/icons-material/Star";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import TechIcons from "./TechIcons";
+import styled, { keyframes } from "styled-components";
 
-// styled components
-import {
-    MBTAColors,
-    StationPaper,
-    StationHeader,
-    StationName,
-    ProfileSection,
-    UserInfo,
-    StyledAvatar,
-    InfoBoard,
-    StatsGrid,
-    StatItem,
-    StatHeader,
-    StatTitle,
-    StatValue,
-    DirectionSign,
-    TickerTape,
-    LastCommitTicker,
-    TimeDisplay,
-    LoadingContainer
-} from './GithubStatus.styles';
+// Animations
+const fadeIn = keyframes`
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+`;
+
+// Styled components
+const StatusCard = styled.div`
+    background: rgba(18, 18, 18, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    animation: ${fadeIn} 0.4s ease-out;
+
+    @media (max-width: 600px) {
+        border-radius: 12px;
+        max-width: 100%;
+    }
+`;
+
+const CardHeader = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 18px;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2));
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+`;
+
+const Title = styled.div`
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #FFFFFF;
+    font-family: "JetBrains Mono", monospace;
+`;
+
+const Time = styled.div`
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: "JetBrains Mono", monospace;
+`;
+
+const Profile = styled.div`
+    display: flex;
+    padding: 16px;
+    align-items: center;
+    gap: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+`;
+
+const Avatar = styled.img`
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(to right, #00843D, #6cc644);
+    padding: 2px;
+
+    @media (max-width: 600px) {
+        width: 40px;
+        height: 40px;
+    }
+`;
+
+const UserDetails = styled.div`
+    flex: 1;
+    overflow: hidden;
+`;
+
+const IconsContainer = styled.div`
+    padding: 10px 0;
+    overflow: hidden;
+`;
+
+const StatsContainer = styled.div`
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 14px;
+
+    @media (max-width: 480px) {
+        grid-template-columns: 1fr;
+    }
+`;
+
+const StatBox = styled.div`
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    padding: 14px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    @media (max-width: 480px) {
+        padding: 12px;
+    }
+`;
+
+const StatBoxHeader = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+`;
+
+const StatLabel = styled.div`
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+`;
+
+const StatValueText = styled.div`
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #FFFFFF;
+    font-family: "JetBrains Mono", monospace;
+
+    @media (max-width: 600px) {
+        font-size: 1.1rem;
+    }
+`;
+
+const Link = styled.a`
+    display: block;
+    text-align: right;
+    padding: 10px 18px;
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s, transform 0.2s;
+
+    &:hover {
+        color: #6cc644;
+        transform: translateX(3px);
+    }
+`;
+
+const LoadingWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+`;
 
 interface UserProfile {
     avatar_url: string;
@@ -40,26 +175,18 @@ interface UserProfile {
     created_at: string;
 }
 
-
-interface Event {
-    type: string;
-    created_at: string;
-}
-
 export default function GitHubStatus() {
     // state variables
     const [loading, setLoading] = useState(true);
     const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
     const [repos, setRepos] = useState(0);
     const [languages, setLanguages] = useState('');
-    const [lastCommitDate, setLastCommitDate] = useState('');
     const [currentTime, setCurrentTime] = useState('');
 
     // hardcoded values
     const username = "jaquevan";
-    const contributions = 277; // hardcoded for now
-    const stationName = "GitHub Central";
-    const streak = 13; // hardcoded streak value for now
+    const contributions = 277;
+    const streak = 13;
 
     // update time every second
     useEffect(() => {
@@ -68,8 +195,7 @@ export default function GitHubStatus() {
             const formattedDate = now.toISOString().split('T')[0];
             const hours = String(now.getHours()).padStart(2, '0');
             const minutes = String(now.getMinutes()).padStart(2, '0');
-            const seconds = String(now.getSeconds()).padStart(2, '0');
-            setCurrentTime(`${formattedDate} ${hours}:${minutes}:${seconds}`);
+            setCurrentTime(`${formattedDate} ${hours}:${minutes}`);
         }, 1000);
         return () => clearInterval(interval);
     }, []);
@@ -80,31 +206,22 @@ export default function GitHubStatus() {
             try {
                 setLoading(true);
 
-                // fetch basic profile data
+                // Fetch only the essential profile data in one request
                 const profileResponse = await fetch(`https://api.github.com/users/${username}`);
-                if (!profileResponse.ok) throw new Error('Failed to fetch profile');
-                const profileData: UserProfile = await profileResponse.json();
+                if (!profileResponse.ok) {
+                    throw new Error('GitHub API error');
+                }
+
+                const profileData = await profileResponse.json();
+
+                // Update all necessary state at once
                 setUserProfile(profileData);
                 setRepos(profileData.public_repos || 0);
-
-                // set typescript as primary language
-                setLanguages('TypeScript');
-
-                // get recent activity for last commit date
-                const eventsResponse = await fetch(`https://api.github.com/users/${username}/events`);
-                if (!eventsResponse.ok) throw new Error('Failed to fetch events');
-                const events: Event[] = await eventsResponse.json();
-
-                const pushEvents = events.filter(event => event.type === 'PushEvent');
-
-                if (pushEvents.length > 0) {
-                    const lastCommit = new Date(pushEvents[0].created_at);
-                    setLastCommitDate(lastCommit.toISOString().split('T')[0]);
-                }
+                setLanguages('TypeScript'); // Hardcoded as requested
 
                 setLoading(false);
             } catch (err) {
-                console.error('GitHub API error:', err);
+                console.error('Error fetching GitHub data:', err);
                 setLoading(false);
             }
         };
@@ -112,109 +229,82 @@ export default function GitHubStatus() {
         fetchGitHubData();
     }, [username]);
 
-    // loading state
     if (loading) {
         return (
-            <StationPaper elevation={3}>
-                <StationHeader>
-                    <StationName><GitHubIcon sx={{mr: 1}}/> Loading GitHub Data</StationName>
-                    <TimeDisplay>{currentTime}</TimeDisplay>
-                </StationHeader>
-                <LoadingContainer>
-                    <CircularProgress sx={{ color: MBTAColors.green }} />
-                </LoadingContainer>
-            </StationPaper>
+            <StatusCard>
+                <CardHeader>
+                    <Title><GitHubIcon sx={{ mr: 1, fontSize: "1.1rem" }} /> GitHub</Title>
+                    <Time>{currentTime}</Time>
+                </CardHeader>
+                <LoadingWrapper>
+                    <CircularProgress size={30} sx={{ color: "#00843D" }} />
+                </LoadingWrapper>
+            </StatusCard>
         );
     }
 
-    // success state
     return (
-        <StationPaper elevation={3}>
-            <StationHeader>
-                <StationName>
-                    <PublicIcon sx={{mr: 1}}/> {stationName}
-                </StationName>
-                <TimeDisplay>{currentTime}</TimeDisplay>
-            </StationHeader>
+        <StatusCard>
+            <CardHeader>
+                <Title><GitHubIcon sx={{ mr: 1, fontSize: "1.1rem" }} /> GitHub</Title>
+                <Time>{currentTime}</Time>
+            </CardHeader>
 
-            {/* user profile section */}
-            <ProfileSection>
-                <StyledAvatar
-                    alt={username}
+            <Profile>
+                <Avatar
                     src={userProfile?.avatar_url || "https://avatars.githubusercontent.com/u/144175083?v=4"}
+                    alt={username}
                 />
-                <UserInfo>
-                    <Typography variant="h6" sx={{ fontWeight: 600, fontSize: '1.2rem', fontFamily: "'JetBrains Mono', monospace" }}>
-                        {userProfile?.name || username}
+                <UserDetails>
+                    <Typography variant="subtitle1" sx={{
+                        fontWeight: 600,
+                        fontSize: '1rem',
+                        fontFamily: "'JetBrains Mono', monospace",
+                        color: "#FFFFFF"
+                    }}>
+                        jaquevan
                     </Typography>
-                    <Typography variant="body2" color="textSecondary" sx={{ fontFamily: "'JetBrains Mono', monospace" }}>
-                        {userProfile?.bio || ''}
-                    </Typography>
-                    <Typography variant="caption" color="textSecondary" sx={{ fontFamily: "'JetBrains Mono', monospace" }}>
-                        Active since {userProfile?.created_at ? new Date(userProfile.created_at).getFullYear() : '2023'}
-                    </Typography>
-                </UserInfo>
-            </ProfileSection>
+                </UserDetails>
+            </Profile>
 
-            {/* scrolling message board */}
-            <InfoBoard>
-                <div style={{ width: '100%', overflow: 'hidden', whiteSpace: 'nowrap', position: 'relative' }}>
-                    <TechIcons/>
-                </div>
-            </InfoBoard>
+            <IconsContainer>
+                <TechIcons />
+            </IconsContainer>
+            <StatsContainer>
+                <StatBox>
+                    <StatBoxHeader>
+                        <StatLabel>Repositories</StatLabel>
+                        <StorageIcon fontSize="small" sx={{ color: "#6cc644" }} />
+                    </StatBoxHeader>
+                    <StatValueText>{repos}</StatValueText>
+                </StatBox>
 
-            {/* commit info ticker */}
-            <LastCommitTicker>
-                LAST COMMIT: {lastCommitDate || 'No data'} • STATUS: ACTIVE
-            </LastCommitTicker>
+                <StatBox>
+                    <StatBoxHeader>
+                        <StatLabel>Contributions</StatLabel>
+                        <CodeIcon fontSize="small" sx={{ color: "#4078c0" }} />
+                    </StatBoxHeader>
+                    <StatValueText>{contributions}</StatValueText>
+                </StatBox>
 
-            {/* github stats grid - 2x2 layout */}
-            <StatsGrid>
-                <StatItem $color={MBTAColors.green}>
-                    <StatHeader>
-                        <StatTitle>Public Repositories</StatTitle>
-                        <StorageIcon fontSize="small" sx={{color: MBTAColors.green}}/>
-                    </StatHeader>
-                    <StatValue>{repos}</StatValue>
-                </StatItem>
+                <StatBox>
+                    <StatBoxHeader>
+                        <StatLabel>Longest Streak</StatLabel>
+                        <StarIcon fontSize="small" sx={{ color: "#bd2c00" }} />
+                    </StatBoxHeader>
+                    <StatValueText>{streak}</StatValueText>
+                </StatBox>
 
-                <StatItem $color={MBTAColors.blue}>
-                    <StatHeader>
-                        <StatTitle>Contributions (this year)</StatTitle>
-                        <CodeIcon fontSize="small" sx={{color: MBTAColors.blue}}/>
-                    </StatHeader>
-                    <StatValue>{contributions}</StatValue>
-                </StatItem>
+                <StatBox>
+                    <StatBoxHeader>
+                        <StatLabel>Language</StatLabel>
+                        <TerminalIcon fontSize="small" sx={{ color: "#6e5494" }} />
+                    </StatBoxHeader>
+                    <StatValueText>{languages}</StatValueText>
+                </StatBox>
+            </StatsContainer>
 
-                <StatItem $color={MBTAColors.red}>
-                    <StatHeader>
-                        <StatTitle>Longest Streak</StatTitle>
-                        <StarIcon fontSize="small" sx={{color: MBTAColors.red}}/>
-                    </StatHeader>
-                    <StatValue>{streak}</StatValue>
-                </StatItem>
-
-                    <StatItem $color={MBTAColors.orange}>
-                        <StatHeader>
-                            <StatTitle>Most Used Language</StatTitle>
-                            <TerminalIcon fontSize="small" sx={{color: MBTAColors.orange}}/>
-                        </StatHeader>
-                        <Typography variant="body2" noWrap sx={{
-                            maxWidth: '100%',
-                            fontSize: '0.85rem',
-                            fontFamily: "'JetBrains Mono', monospace"
-                        }}>
-                            {languages}
-                        </Typography>
-                    </StatItem>
-            </StatsGrid>
-
-            <TickerTape/>
-
-            {/* navigation link */}
-            <DirectionSign href="/projects">
-                → To Projects
-            </DirectionSign>
-        </StationPaper>
+            <Link href="/projects">→ View Projects</Link>
+        </StatusCard>
     );
 }

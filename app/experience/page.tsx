@@ -3,8 +3,8 @@
 import Nav from '@/app/components/NavBar';
 import Footer from "@/app/components/Footer";
 import styled, { keyframes } from 'styled-components';
-import { Container, Typography, Paper } from '@mui/material';
-import { Work, School, LocationOn } from '@mui/icons-material';
+import { Container, Paper } from '@mui/material';
+import { Work, LocationOn, VolunteerActivism } from '@mui/icons-material';
 import Image from 'next/image';
 
 const colors = {
@@ -12,6 +12,8 @@ const colors = {
     blue: "#003DA5",
     red: "#DA291C",
     orange: "#ED8B00",
+    purple: "#8A2BE2",
+    teal: "#008080",
     lightGray: "#F8F9FA",
 };
 
@@ -44,6 +46,31 @@ const Title = styled.h1`
 
     @media (max-width: 600px) {
         font-size: 2rem;
+    }
+`;
+
+const SectionTitle = styled.h2`
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 2rem 0 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    text-align: center;
+    width: 100%;
+    max-width: 700px;
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, ${colors.blue}, transparent);
+    }
+
+    @media (max-width: 600px) {
+        font-size: 1.5rem;
     }
 `;
 
@@ -155,6 +182,72 @@ export default function ExperiencePage() {
                 <PageContent>
                     <Title>Relevant Experience</Title>
 
+                    {/* BU Spark UX PM */}
+                    <ExpCard elevation={2}>
+                        <CardHeader color={colors.green}>
+                            <JobTitle>UX Design Project Manager</JobTitle>
+                            <span>September 2025 - Present</span>
+                        </CardHeader>
+                        <CardBody>
+                            <Company><Work/><span>BU Spark!</span></Company>
+                            <InfoItem><LocationOn fontSize="small" /><span>Boston, MA</span></InfoItem>
+                            <p>Lead student teams focused on UX research and design, serve as the primary liaison between clients and BU leadership, and drive agile project delivery through regular client meetings and team check-ins.</p>
+                            <TechStack>
+                                <TechTag><TechIcon name="figma" />Figma</TechTag>
+                                <TechTag><TechIcon name="slack" />Slack</TechTag>
+                                <TechTag>Notion</TechTag>
+                            </TechStack>
+                        </CardBody>
+                    </ExpCard>
+
+                    {/* La Colaborativa */}
+                    <ExpCard elevation={2}>
+                        <CardHeader color={colors.orange}>
+                            <JobTitle>UI/UX Design and Web Development Intern</JobTitle>
+                            <span>May 2025 - August 2025</span>
+                        </CardHeader>
+                        <CardBody>
+                            <Company><Work/><span>La Colaborativa</span></Company>
+                            <InfoItem><LocationOn fontSize="small" /><span>Boston, MA</span></InfoItem>
+                            <ul style={{ paddingLeft: '1.5rem', marginTop: '0.25rem' }}>
+                                <li>Designed and developed UI/UX for the organization&apos;s primary website, ensuring community members have up-to-date access to program information and resources.</li>
+                                <li>Created a 2-month Digital Equity Curriculum focused on Canva, empowering local community members with essential digital and design skills.</li>
+                                <li>Developed a dedicated webpage to highlight and support the work of 12 participants in the organization&apos;s culinary entrepreneurship program.</li>
+                                <li>Worked closely with the Economic Stability and Mobility Department, receiving regular supervision and feedback from leadership to drive impactful results.</li>
+                            </ul>
+                            <TechStack>
+                                <TechTag><TechIcon name="ts" />Typescript</TechTag>
+                                <TechTag><TechIcon name="next" />Next.js</TechTag>
+                                <TechTag><TechIcon name="figma" />Figma</TechTag>
+                                <TechTag>Canva</TechTag>
+                            </TechStack>
+                        </CardBody>
+                    </ExpCard>
+
+                    {/* BU Spark UX Intern */}
+                    <ExpCard elevation={2}>
+                        <CardHeader color={colors.green}>
+                            <JobTitle>UX Intern - Special Initiatives</JobTitle>
+                            <span>January 2025 - Present</span>
+                        </CardHeader>
+                        <CardBody>
+                            <Company><Work/><span>BU Spark!</span></Company>
+                            <InfoItem><LocationOn fontSize="small" /><span>Boston, MA</span></InfoItem>
+                            <ul style={{ paddingLeft: '1.5rem', marginTop: '0.25rem' }}>
+                                <li>Support project scoping for civic tech initiatives by conducting UX research, client engagement, and preparing technical deliverables for future development.</li>
+                                <li>Create user personas, conduct stakeholder interviews, and map user journeys to improve product accessibility and engagement.</li>
+                                <li>Develop high-fidelity prototypes in Figma, collaborating in hybrid teams to iterate on designs.</li>
+                                <li>Delivered design work that was recognized as a representative UX project within the department.</li>
+                            </ul>
+                            <TechStack>
+                                <TechTag><TechIcon name="figma" />Figma</TechTag>
+                                <TechTag><TechIcon name="mui" />Material UI</TechTag>
+                                <TechTag><TechIcon name="slack" />Slack</TechTag>
+                                <TechTag><TechIcon name="react" />React</TechTag>
+                            </TechStack>
+                        </CardBody>
+                    </ExpCard>
+
                     {/* Blue Dev Digital */}
                     <ExpCard elevation={2}>
                         <CardHeader color={colors.blue}>
@@ -175,84 +268,68 @@ export default function ExperiencePage() {
                         </CardBody>
                     </ExpCard>
 
+                    <SectionTitle>Volunteer & Other</SectionTitle>
+
+                    {/* Course Grader */}
+                    <ExpCard elevation={2}>
+                        <CardHeader color={colors.teal}>
+                            <JobTitle><VolunteerActivism fontSize="small" /> Course Grader - CS411</JobTitle>
+                            <span>May 2025 - September 2025</span>
+                        </CardHeader>
+                        <CardBody>
+                            <Company><Work/><span>BU College of Arts and Sciences</span></Company>
+                            <InfoItem><LocationOn fontSize="small" /><span>Boston, MA</span></InfoItem>
+                            <ul style={{ paddingLeft: '1.5rem', marginTop: '0.25rem' }}>
+                                <li>Hold weekly Office Hours in which I serve as the UX mentor, guiding students on frontend technologies and best practices for large-scale software engineering projects.</li>
+                                <li>Evaluate and provide feedback on complex group projects, including applications with thousands of lines of code.</li>
+                            </ul>
+                            <TechStack>
+                                <TechTag><TechIcon name="react" />React</TechTag>
+                                <TechTag><TechIcon name="js" />JavaScript</TechTag>
+                                <TechTag><TechIcon name="ts" />TypeScript</TechTag>
+                                <TechTag>HTML</TechTag>
+                                <TechTag>CSS</TechTag>
+                            </TechStack>
+                        </CardBody>
+                    </ExpCard>
+
+                    {/* Hack4impact */}
+                    <ExpCard elevation={2}>
+                        <CardHeader color={colors.teal}>
+                            <JobTitle><VolunteerActivism fontSize="small" /> UI/UX Designer</JobTitle>
+                            <span>May 2025 - September 2025</span>
+                        </CardHeader>
+                        <CardBody>
+                            <Company><Work/><span>Hack4impact BU</span></Company>
+                            <InfoItem><LocationOn fontSize="small" /><span>Boston, MA</span></InfoItem>
+                            <ul style={{ paddingLeft: '1.5rem', marginTop: '0.25rem' }}>
+                                <li>Created wireframes, user flows, and high-fidelity prototypes in Figma, iterating designs based on feedback from stakeholders and end users.</li>
+                                <li>Contributed to the redesign of Hack4impact&apos;s organizational website, improving usability and visual consistency.</li>
+                            </ul>
+                            <TechStack>
+                                <TechTag><TechIcon name="figma" />Figma</TechTag>
+                                <TechTag><TechIcon name="react" />React</TechTag>
+                                <TechTag><TechIcon name="tw" />Tailwind CSS</TechTag>
+                                <TechTag>Notion</TechTag>
+                            </TechStack>
+                        </CardBody>
+                    </ExpCard>
+
                     {/* Our National Conversation */}
                     <ExpCard elevation={2}>
-                        <CardHeader color={colors.green}>
-                            <JobTitle> Software Engineer Intern </JobTitle>
-                            <span>July 2024 - Present</span>
+                        <CardHeader color={colors.teal}>
+                            <JobTitle>Software Engineer Intern</JobTitle>
+                            <span>July 2024 - May 2025</span>
                         </CardHeader>
                         <CardBody>
                             <Company><Work/> Our National Conversation</Company>
                             <InfoItem><LocationOn fontSize="small" /><span>Remote, USA</span></InfoItem>
-                            <p>Developed and optimized React-based front-end components, improving accessibility and user engagement. Worked closley with the design team to implement Figma designs.</p>
+                            <p>Worked on front-end features to improve user engagement and accessibility on new sites. Implemented front-end interfaces and integrated back-end logic using React and Python.</p>
                             <TechStack>
                                 <TechTag><TechIcon name="react" />React</TechTag>
                                 <TechTag><TechIcon name="vite" />Vite</TechTag>
                                 <TechTag><TechIcon name="jest" />Jest</TechTag>
                                 <TechTag><TechIcon name="tw" />Tailwind CSS</TechTag>
-                                <TechTag><TechIcon name="slack" />Slack</TechTag>
-                            </TechStack>
-                        </CardBody>
-                    </ExpCard>
-
-                    {/* Spark */}
-                    <ExpCard elevation={2}>
-                        <CardHeader color={colors.orange}>
-                            <JobTitle> UX Designer & Researcher</JobTitle>
-                            <span>Jan 2023 - May 2026</span>
-                        </CardHeader>
-                        <CardBody>
-                            <Company><Work/> BU Spark! </Company>
-                            <InfoItem><LocationOn fontSize="small"/><span>Boston, MA</span></InfoItem>
-
-                            <Typography variant="body1" style={{ fontWeight: 'bold', marginTop: '0.5rem' }}>Client Projects:</Typography>
-                            <ul style={{ paddingLeft: '1.5rem', marginTop: '0.25rem' }}>
-                                <li><strong>Maple 3.0</strong> - Site to increase accesibility to bills and view/submit testimonies to the Massachusetts Legislature about the bills that will shape the future of Bostons community.</li>
-                                <li><strong>Boston Voter App </strong>- City of Boston voter information app for BIPOC communities</li>
-                            </ul>
-
-                            <Typography variant="body1" style={{ fontWeight: 'bold', marginTop: '1rem' }}>Responsibilities:</Typography>
-                            <ul style={{ paddingLeft: '1.5rem', marginTop: '0.25rem' }}>
-                                <li>Conducted user research, interviews, and usability testing with real clients in Boston.</li>
-                                <li>Presented in weekly client and team meetings to align project goals with business needs.</li>
-                                <li>Created wireframes, prototypes, and high-fidelity designs in Figma for implementation.</li>
-                                <li>Collaborated with the Software Engineering team to integrate designs into the final product.</li>
-                            </ul>
-
-                            <TechStack>
-                                <TechTag><TechIcon name="figma" />Figma</TechTag>
-                                <TechTag><TechIcon name="mui" />Material UI</TechTag>
-                                <TechTag><TechIcon name="slack" />Slack</TechTag>
-                                <TechTag><TechIcon name="react" />React</TechTag>
-                            </TechStack>
-                        </CardBody>
-                    </ExpCard>
-
-                    {/* Boston University */}
-                    <ExpCard elevation={2}>
-                        <CardHeader color={colors.red}>
-                            <JobTitle><School fontSize="small" /> Boston University</JobTitle>
-                            <span>Jan 2023 - May 2026</span>
-                        </CardHeader>
-                        <CardBody>
-                            <Company><Work/> B.A. in Computer Science & Economics </Company>
-                            <p>Minor in Data Science</p>
-                            <InfoItem><LocationOn fontSize="small"/><span>Boston, MA</span></InfoItem>
-
-                            <ul>
-                                <li>Web & App Development</li>
-                                <li>UX/UI Design Practicum</li>
-                                <li>Software Engineering</li>
-                                <li>Software Engineering Career Prep</li>
-                                <li>Data Structures & Algorithms</li>
-                                <li>Data Science & AI Ethics</li>
-                            </ul>
-                            <TechStack>
-                                <TechTag><TechIcon name="js" />Javascript</TechTag>
-                                <TechTag><TechIcon name="ts" />Typescript</TechTag>
-                                <TechTag><TechIcon name="three" />Three.js</TechTag>
-                                <TechTag><TechIcon name="docker" />Docker</TechTag>
-                                <TechTag><TechIcon name="ubuntu" />Ubuntu</TechTag>
                             </TechStack>
                         </CardBody>
                     </ExpCard>

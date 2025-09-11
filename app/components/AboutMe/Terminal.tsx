@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import FullscreenIcon from '@mui/icons-material/Fullscreen';
-import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
+import ClearIcon from '@mui/icons-material/Clear';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 import {
     TerminalContainer,
@@ -21,6 +21,7 @@ type CommandResult = {
     text: string;
     isCommand?: boolean;
     isAsciiArt?: boolean;
+    isError?: boolean;
 };
 
 export default function Terminal() {
@@ -42,7 +43,7 @@ export default function Terminal() {
 
     const [commandHistory, setCommandHistory] = useState<string[]>([]);
     const [historyIndex, setHistoryIndex] = useState<number>(-1);
-    const [isFullscreen, setIsFullscreen] = useState(false);
+    const [showCopiedMessage, setShowCopiedMessage] = useState(false);
 
     const inputRef = useRef<HTMLInputElement>(null);
     const terminalRef = useRef<HTMLDivElement>(null);
@@ -53,7 +54,9 @@ export default function Terminal() {
             "  help      - display this help message\n" +
             "  education - view my relevant coursework and education\n" +
             "  activities - view my extracurricular activities\n" +
-            "  location - learn about where im based\n",
+            "  location - learn about where im based\n" +
+            "  clear     - clear the terminal\n" +
+            "  about     - learn more about this terminal\n",
 
         education: () =>
             " Boston University\n" +
@@ -77,6 +80,18 @@ export default function Terminal() {
             " Boston, MA\n" +
             "   - Student at BU Jan 2023- May 2026\n" +
             " Danbury, CT\n",
+
+        clear: () => {
+            setHistory([]);
+            return "";
+        },
+
+        about: () =>
+            " This terminal was built with React and styled-components.\n" +
+            " Features:\n" +
+            "   - Command history navigation (up/down arrows)\n" +
+            "   - Copy to clipboard\n" +
+            "   - Clear terminal\n"
     };
 
     const handleContainerClick = () => {
@@ -101,7 +116,10 @@ export default function Terminal() {
                 newHistory.push({ text: result });
             }
         } else {
-            newHistory.push({ text: `Command not found: ${commandName}. Type 'help' for available commands.` });
+            newHistory.push({
+                text: `Command not found: ${commandName}. Type 'help' for available commands.`,
+                isError: true
+            });
         }
 
         setHistory(newHistory);
@@ -128,11 +146,43 @@ export default function Terminal() {
             }
         } else if (e.key === "Enter") {
             handleSubmit(e);
+        } else if (e.key === "Tab") {
+            e.preventDefault();
+            const currentInput = input.trim().toLowerCase();
+
+            // Simple tab completion
+            if (currentInput) {
+                const matchingCommands = Object.keys(commands).filter(cmd =>
+                    cmd.startsWith(currentInput)
+                );
+
+                if (matchingCommands.length === 1) {
+                    setInput(matchingCommands[0]);
+                }
+            }
         }
     };
+    const clearTerminal = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        setHistory([]);
+    };
 
-    const toggleFullscreen = () => {
-        setIsFullscreen(!isFullscreen);
+    const copyToClipboard = (e: React.MouseEvent) => {
+        e.stopPropagation();
+
+        const terminalContent = history
+            .map(item => {
+                if (item.isCommand) {
+                    return `travler@evanjaquez:~$ ${item.text}`;
+                }
+                return item.text;
+            })
+            .join('\n');
+
+        navigator.clipboard.writeText(terminalContent).then(() => {
+            setShowCopiedMessage(true);
+            setTimeout(() => setShowCopiedMessage(false), 2000);
+        });
     };
 
     useEffect(() => {
@@ -141,20 +191,51 @@ export default function Terminal() {
     }, [history]);
 
     return (
-        <TerminalContainer onClick={handleContainerClick} isFullscreen={isFullscreen}>
+        <TerminalContainer onClick={handleContainerClick}>
             <TerminalHeader>
-                <FullscreenButton onClick={toggleFullscreen}>
-                    {isFullscreen ? <FullscreenExitIcon fontSize="small" /> : <FullscreenIcon fontSize="small" />}
-                </FullscreenButton>
+                <div style={{ display: 'flex', gap: '8px' }}>
+                    <span style={{
+                        fontFamily: 'monospace',
+                        color: '#f8f8f2',
+                        opacity: 0.7,
+                        fontSize: '14px',
+                        fontWeight: 'bold'
+                    }}>
+                        terminal@evanjaquez
+                    </span>
+                    {showCopiedMessage && (
+                        <span style={{
+                            color: '#50fa7b',
+                            fontSize: '12px',
+                            display: 'flex',
+                            alignItems: 'center'
+                        }}>
+                            Copied to clipboard!
+                        </span>
+                    )}
+                </div>
+                <div style={{ display: 'flex', gap: '8px' }}>
+                    <FullscreenButton onClick={copyToClipboard} title="Copy to clipboard">
+                        <ContentCopyIcon fontSize="small" />
+                    </FullscreenButton>
+                    <FullscreenButton onClick={clearTerminal} title="Clear terminal">
+                        <ClearIcon fontSize="small" />
+                    </FullscreenButton>
+                </div>
             </TerminalHeader>
             <TerminalContent ref={terminalRef}>
                 {history.map((item, index) => (
                     <TerminalLine key={index}>
                         {item.isAsciiArt && <AsciiArt>{item.text}</AsciiArt>}
                         {!item.isAsciiArt && item.isCommand && (
-                            <><PromptSpan>travler@evanjaquez:~$ </PromptSpan><OutputText>{item.text}</OutputText></>
+                            <>
+                                <PromptSpan>travler@evanjaquez:~$ </PromptSpan>
+                                <OutputText>{item.text}</OutputText>
+                            </>
                         )}
-                        {!item.isAsciiArt && !item.isCommand && <OutputText>{item.text}</OutputText>}
+                        {!item.isAsciiArt && !item.isCommand && (
+                            <OutputText isError={item.isError}>{item.text}</OutputText>
+                        )}
                     </TerminalLine>
                 ))}
                 <TerminalLine>
