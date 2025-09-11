@@ -138,7 +138,6 @@ const PageWrapper = styled.div`
     flex-direction: column;
     width: 100vw;
     align-items: center;
-    background: #121212;
     min-height: 100vh;
 `;
 
