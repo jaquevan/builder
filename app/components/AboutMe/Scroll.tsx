@@ -2,7 +2,7 @@
 
 import styled from "styled-components";
 import SpotifyEmbed from "@/app/components/AboutMe/Spotify";
-import Gym from "./Gym"
+// import Gym from "./Gym"
 import Background from "./Background"
 import Drumline from "./Drumline"
 
@@ -48,7 +48,7 @@ export default function Scroll(){
     return(
         <>
             <Background/>
-            <Gym/>
+            {/*<Gym/>*/}
             <MusicContainer>
                 <h1>Music</h1>
                 <FlexContainer>

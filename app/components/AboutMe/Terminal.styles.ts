@@ -1,4 +1,10 @@
-import styled from "styled-components";
+// Terminal.styles.tsx
+import styled, { keyframes } from "styled-components";
+
+const fadeIn = keyframes`
+    from { opacity: 0; }
+    to { opacity: 1; }
+`;
 
 export const AsciiArt = styled.pre`
     font-size: calc(.7rem);
@@ -8,44 +14,44 @@ export const AsciiArt = styled.pre`
     margin: 0;
     color: #9e66ff;
     font-family: 'Roboto Mono', monospace;
+    animation: ${fadeIn} 0.6s ease-in;
 `;
 
 export const TerminalContainer = styled.div<{ isFullscreen?: boolean }>`
-    width: ${props => props.isFullscreen ? '90vw' : '65vh'};
-    height: ${props => props.isFullscreen ? '70vw' : '20vw'};
-    position: ${props => props.isFullscreen ? 'fixed' : 'relative'};
-    top: ${props => props.isFullscreen ? '0' : 'auto'};
-    left: ${props => props.isFullscreen ? '0' : 'auto'};
-    z-index: ${props => props.isFullscreen ? '9999' : '1'};
+    width: 65vh;
+    height: 20vw;
+    position: relative;
     background-color: #1e1e1e;
     font-family: 'Roboto Mono', monospace;
-    padding: 5% 4%;
+    padding: 40px 4% 5% 4%;
     cursor: text;
     color: white;
     display: flex;
-    box-shadow: 0 4px 12px rgb(74, 2, 255);
+    flex-direction: column;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 15px;
     font-size: calc(.8rem);
     margin: 0 auto;
+    transition: all 0.3s ease-in-out;
 
     @media (max-width: 1024px) {
-        width: ${props => props.isFullscreen ? '99vw' : '50vw'};
-        height: ${props => props.isFullscreen ? '70vw' : '30vw'};
-        font-size: ${props => props.isFullscreen ? '1rem' : '0.9rem'};
+        width: 50vw;
+        height: 30vw;
+        font-size: 0.9rem;
         margin: 0;
     }
 
     @media (max-width: 768px) {
-        width: ${props => props.isFullscreen ? '99vw' : '85vw'};
-        height: ${props => props.isFullscreen ? '70vw' : '40vw'};
-        font-size: ${props => props.isFullscreen ? '0.9rem' : '0.8rem'};
+        width: 85vw;
+        height: 40vw;
+        font-size: 0.8rem;
     }
 
     @media (max-width: 480px) {
-        width: ${props => props.isFullscreen ? '99vw' : '85vw'};
-        height: ${props => props.isFullscreen ? '70vw' : '50vw'};
-        font-size: ${props => props.isFullscreen ? '0.8rem' : '0.7rem'};
+        width: 85vw;
+        height: 50vw;
+        font-size: 0.7rem;
     }
 `;
 
@@ -62,31 +68,56 @@ export const TerminalHeader = styled.div`
     align-items: center;
     justify-content: space-between;
     padding: 0 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+`;
+
+export const HeaderTitle = styled.div`
+    font-size: .8rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-left: 15px;
+    display: flex;
+    align-items: center;
+    font-family: 'monospace';
+    font-weight: bold;
 
     &::before {
-        content: "aboutMe@evanjaquez";
-        font-size: .8rem;
-        color: rgba(255, 255, 255, 0.7);
-        margin-left: 15px;
+        content: "";
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: #50fa7b;
+        margin-right: 8px;
+        box-shadow: 0 0 4px #50fa7b;
     }
 `;
 
+export const ButtonGroup = styled.div`
+    display: flex;
+    gap: 8px;
+`;
+
 export const FullscreenButton = styled.button`
-    width: 20px;
-    height: 20px;
-    background-color: transparent;
-    border: 1px solid grey;
+    width: 22px;
+    height: 22px;
+    background-color: rgba(60, 60, 60, 0.7);
+    border: 1px solid rgba(128, 128, 128, 0.7);
     color: white;
-    border-radius: 15px;
+    border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: background-color 0.2s;
-    margin-right: 25px;
+    transition: all 0.2s;
 
     &:hover {
-        background-color: rgb(130, 241, 49);
+        background-color: rgba(130, 241, 49, 0.2);
+        border-color: rgb(130, 241, 49);
+        transform: translateY(-1px);
+    }
+
+    &:active {
+        transform: translateY(1px);
     }
 
     svg {
@@ -101,17 +132,28 @@ export const TerminalContent = styled.div`
     overflow-y: auto;
     flex: 1;
     margin-top: 8px;
+    padding-right: 4px;
 
-    /* Hide scrollbar for Chrome, Safari and Opera */
     &::-webkit-scrollbar {
-        display: none;
+        width: 4px;
     }
 
-    /* Hide scrollbar for Firefox */
-    scrollbar-width: none;
+    &::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 2px;
+    }
 
-    /* Hide scrollbar for IE and Edge */
-    -ms-overflow-style: none;
+    &::-webkit-scrollbar-thumb {
+        background: rgba(158, 102, 255, 0.5);
+        border-radius: 2px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: rgba(158, 102, 255, 0.8);
+    }
+
+    scrollbar-width: thin;
+    scrollbar-color: rgba(158, 102, 255, 0.5) transparent;
 `;
 
 export const TerminalLine = styled.div`
@@ -119,6 +161,7 @@ export const TerminalLine = styled.div`
     flex-wrap: wrap;
     line-height: 1.6;
     margin: 4px 0;
+    animation: ${fadeIn} 0.3s ease-out;
 `;
 
 export const PromptSpan = styled.span`
@@ -127,15 +170,18 @@ export const PromptSpan = styled.span`
     white-space: pre;
 `;
 
-export const OutputText = styled.span`
+export const OutputText = styled.span<{ isError?: boolean }>`
     white-space: pre-wrap;
-    color: #cccccc;
+    color: ${props => props.isError ? '#ff5555' : '#cccccc'};
+    animation: ${fadeIn} 0.4s ease-out;
 `;
 
 export const InputLine = styled.div`
     display: flex;
     align-items: center;
     width: 100%;
+    position: relative;
+    margin: 4px 0;
 `;
 
 export const InputField = styled.input`
@@ -148,4 +194,15 @@ export const InputField = styled.input`
     font-size: inherit;
     padding: 0;
     margin: 0;
+`;
+
+export const NotificationBadge = styled.span`
+    background: #50fa7b;
+    color: #282a36;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    margin-left: 8px;
+    font-weight: bold;
+    animation: ${fadeIn} 0.3s ease;
 `;

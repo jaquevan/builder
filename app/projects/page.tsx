@@ -1,28 +1,32 @@
 "use client"
 
-import { Container, Typography, Box, Grid } from "@mui/material";
+import { Container, Box, Grid } from "@mui/material";
 
 import Footer from "@/app/components/Footer";
 import NavBar from "@/app/components/NavBar";
 import ProjectCard from "../components/Projects/ProjectCard";
 import projects from "../components/Projects/projects";
+import styled from "styled-components";
+
+const Title = styled.h1`
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 0 0 3rem 0;
+    font-family: 'JetBrains Mono', monospace;
+    text-align: center;
+
+    @media (max-width: 600px) {
+        font-size: 2rem;
+    }
+`;
 
 export default function Projects() {
     return (
         <Box sx={{ minHeight: "100vh" }}>
             <NavBar />
             <Container maxWidth="lg" sx={{ py: 8 }}>
-                <Typography variant="h3" component="h1" align="center"
-                            sx={{
-                                mb: 6,
-                                fontWeight: 700,
-                                borderBottom: "3px solid #4361ee",
-                                pb: 2,
-                                display: "inline-block",
-                                mx: "auto"
-                            }}>
-                    Frontend Projects
-                </Typography>
+                <Title> Frontend Projects </Title>
+
 
                 <Grid className="fade-in"
                     container

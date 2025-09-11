@@ -7,20 +7,20 @@ import WorkIcon from "@mui/icons-material/Work";
 
 const buttons = [
     {
+        id: "projects",
+        text: "Projects",
+        href: "/projects",
+        icon: <WorkIcon />,
+        gradient: "linear-gradient(135deg, #6a11cb, #2575fc)",
+        tooltip: "View Projects"
+    },
+    {
         id: "linkedin",
         text: "LinkedIn",
         href: "https://www.linkedin.com/in/evan-jaquez-118b5b294/",
         icon: <LinkedInIcon />,
         gradient: "linear-gradient(135deg, #0077b5, #00a0dc)",
         tooltip: "Connect on LinkedIn"
-    },
-    {
-        id: "experience",
-        text: "Experience",
-        href: "/experience",
-        icon: <WorkIcon />,
-        gradient: "linear-gradient(135deg, #6a11cb, #2575fc)",
-        tooltip: "View Work Experience"
     },
     {
         id: "github",
@@ -45,10 +45,6 @@ const shimmer = keyframes`
 
 interface StyledButtonProps {
     $gradient?: string;
-    $maxWidth?: string;
-    $mobileMaxWidth?: string;
-    $mobileFlex?: string;
-    $smallMobileMaxWidth?: string;
 }
 
 const ButtonContainer = styled.div`
@@ -89,7 +85,7 @@ const StyledButton = styled.a<StyledButtonProps>`
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    padding: .8rem 2rem;
+    padding: 0.8rem 2rem;
     border-radius: 10px;
     font-size: clamp(0.85rem, 1.5vw, 1.1rem);
     font-weight: 500;
@@ -101,7 +97,7 @@ const StyledButton = styled.a<StyledButtonProps>`
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
     flex: 1;
     min-width: 140px;
-    max-width: ${props => props.$maxWidth || "180px"};
+    max-width: 180px;
     overflow: hidden;
     z-index: 2;
 
@@ -131,10 +127,12 @@ const StyledButton = styled.a<StyledButtonProps>`
         left: 0;
         right: 0;
         bottom: 0;
-        background: linear-gradient(90deg,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0.1) 50%,
-        rgba(255, 255, 255, 0) 100%);
+        background: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.1) 50%,
+                rgba(255, 255, 255, 0) 100%
+        );
         background-size: 200% 100%;
         opacity: 0;
         z-index: -1;
@@ -143,16 +141,15 @@ const StyledButton = styled.a<StyledButtonProps>`
         border-radius: inherit;
     }
 
-
     @media (max-width: 1024px) {
-        max-width: ${props => props.$mobileMaxWidth || "300px"};
-        flex: ${props => props.$mobileFlex || "0 1 calc(80% - 1rem)"};
-        padding: 0.8rem .5em;
+        max-width: 300px;
+        flex: 0 1 calc(80% - 1rem);
+        padding: 0.8rem 1rem;
         font-size: 1rem;
     }
 
     @media (max-width: 480px) {
-        max-width: ${props => props.$smallMobileMaxWidth || "120px"};
+        max-width: 120px;
         padding: 0.5rem 0.75rem;
     }
 `;
@@ -164,24 +161,21 @@ const IconWrapper = styled.div`
     width: clamp(1.5rem, 2.5vw, 2.5rem);
     height: clamp(1.5rem, 2.5vw, 2.5rem);
     font-size: clamp(1.2rem, 2vw, 1.6rem);
-    transition: all 0.3s ease;
+    flex-shrink: 0;
 `;
 
 const ButtonText = styled.span`
     white-space: nowrap;
-    overflow: auto;
-    text-overflow: fade;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-size: calc(.5rem + 0.5vw);
-    
 `;
-
-
 
 export default function EnhancedButtons() {
     return (
         <>
             <Name className="fade-in">Evan Jaquez</Name>
-            <SubText className="fade-in">Frontend Developer and UX Designer/Researcher</SubText>
+            <SubText className="fade-in">UI/UX Designer & Researcher</SubText>
             <ButtonContainer className="fade-in" role="navigation" aria-label="Social links and navigation">
                 {buttons.map((button) => (
                     <Tooltip title={button.tooltip} key={button.id} arrow>

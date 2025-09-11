@@ -14,7 +14,6 @@ const scroll = keyframes`
 const TechContainer = styled.div`
     width: 100%;
     overflow: hidden;
-    background: #424242;
     padding: 0;
     margin: auto 0;
     position: relative;
@@ -33,12 +32,10 @@ const TechContainer = styled.div`
 
     &::before {
         left: 0;
-        background: linear-gradient(to right, #383838 0%, transparent 100%);
     }
 
     &::after {
         right: 0;
-        background: linear-gradient(to left, #383838 0%, transparent 100%);
     }
 `;
 

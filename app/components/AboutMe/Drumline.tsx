@@ -1,110 +1,133 @@
 "use client";
 
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Image from "next/image";
 import bass from "@/public/bassline.png";
+
+const fadeIn = keyframes`
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+`;
 
 const DrumlineContainer = styled.div`
     width: 45%;
     max-height: 1055px;
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    padding: 2.5rem;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.02);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     text-align: left;
-    font-family: 'Inter', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(5px);
+    animation: ${fadeIn} 0.6s ease-out;
 
     @media screen and (max-width: 1024px) {
         width: 90%;
         min-height: auto;
-        padding: 1.5rem;
+        padding: 2rem;
     }
 `;
 
 const ImageContainer = styled.div`
-    width: 80%;
-    max-width: 500px;  /* Limits how wide it gets */
-    min-width: 260px;  
-    border-radius: 10px;
+    width: 85%;
+    max-width: 520px;
+    min-width: 260px;
+    border-radius: 12px;
     overflow: hidden;
-    margin: 1.5rem auto; 
+    margin: 1.5rem auto;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), transparent);
+    }
 
     @media screen and (max-width: 768px) {
-        width: 90%; 
+        width: 95%;
         margin-top: 1rem;
-        min-width: 220px; 
+        min-width: 220px;
     }
 `;
 
 const Title = styled.h1`
-    font-size: 2rem;
+    font-size: 2.2rem;
     margin-bottom: 1.5rem;
     position: relative;
-    padding-bottom: 0.5rem;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
+    padding-bottom: 0.7rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.01em;
 
     &::after {
         content: '';
         position: absolute;
         bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 80px;
-        height: 3px;
-        background: linear-gradient(90deg, #6c757d, #828b96);
+        left: 0;
+        width: 50px;
+        height: 4px;
+        background: #3631ff;
         border-radius: 2px;
     }
 
     @media screen and (max-width: 768px) {
-        font-size: 1.75rem;
+        font-size: 1.8rem;
     }
 `;
 
 const Description = styled.div`
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     line-height: 1.8;
-    margin: 1.5rem 0;
+    margin: 1.8rem 0;
     font-weight: 400;
-    text-align: justify;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: left;
 
     strong {
-        color: #468f0d;
+        color: #5d7df3;
         font-weight: 600;
     }
 
     @media screen and (max-width: 768px) {
         font-size: 1rem;
-        line-height: 1.6;
+        line-height: 1.7;
     }
 `;
 
 const YoutubeButton = styled.a`
-    display: inline-block;
-    padding: 0.8rem 1.5rem;
+    display: inline-flex;
+    padding: 0.9rem 1.8rem;
     margin-top: 1rem;
     background-color: #3631ff;
     color: white;
-    border-radius: 8px;
+    border-radius: 10px;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 1rem;
-    transition: all 0.3s ease;
-    display: flex;
+    transition: all 0.25s ease;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.7rem;
+    letter-spacing: 0.02em;
+    box-shadow: 0 4px 12px rgba(54, 49, 255, 0.3);
 
     &:hover {
-        background-color: #84919a;
-        color: black;
-        transform: translateY(-2px);
+        background-color: #4540ff;
+        box-shadow: 0 6px 15px rgba(54, 49, 255, 0.4);
     }
 
     svg {
-        width: 20px;
-        height: 20px;
+        width: 22px;
+        height: 22px;
     }
 `;
 
@@ -116,12 +139,13 @@ export default function Drumline() {
                 <Image
                     src={bass}
                     alt="Bass drum line performance"
-                    width={400}
-                    height={200}
-                    layout="responsive"
+                    width={500}
+                    height={250}
                     style={{
                         objectFit: 'cover',
-                        borderRadius: '10px'
+                        width: '100%',
+                        height: 'auto',
+                        borderRadius: '12px'
                     }}
                     priority
                 />
@@ -134,7 +158,7 @@ export default function Drumline() {
                 my high school years.
             </Description>
             <YoutubeButton
-                href="https://youtu.be/vyq-H2ZBphM"
+                href="https://www.youtube.com/watch?v=_4OkZiPBoCw&ab_channel=BUBand"
                 target="_blank"
                 rel="noopener noreferrer"
             >

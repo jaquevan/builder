@@ -1,29 +1,39 @@
 "use client";
-import styled from "styled-components";
+
+import styled, { keyframes } from "styled-components";
+
+const fadeIn = keyframes`
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+`;
 
 const SpotifyContainer = styled.div`
     width: 45%;
-    margin: 0 auto;   
-    border-radius: 10px;
+    margin: 0 auto;
+    border-radius: 15px;
     overflow: hidden;
-    background: black;
-    padding: 1.5rem;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 2rem;
     display: flex;
     flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    animation: ${fadeIn} 0.6s ease-out;
 
     @media screen and (max-width: 1024px) {
         width: 90%;
         min-width: 280px;
-        padding: 1rem;
+        padding: 1.5rem;
     }
 `;
 
 const ResponsiveIframe = styled.div`
     position: relative;
-    padding-bottom: 80%; 
+    padding-bottom: 80%;
     height: 0;
     overflow: hidden;
     border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
 `;
 
 const StyledIframe = styled.iframe`
@@ -36,29 +46,29 @@ const StyledIframe = styled.iframe`
 `;
 
 const Title = styled.h1`
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
+    font-size: 2.2rem;
+    margin-bottom: 1.8rem;
     color: white;
     position: relative;
-    padding-bottom: 0.5rem;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    text-align: center;
+    padding-bottom: 0.7rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    text-align: left;
+    letter-spacing: -0.01em;
 
     &::after {
         content: '';
         position: absolute;
         bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 80px;
-        height: 3px;
-        background: linear-gradient(90deg, #6c757d, #343a40);
+        left: 130px;
+        width: 50px;
+        height: 4px;
+        background: #1DB954;
         border-radius: 2px;
     }
 
     @media screen and (max-width: 768px) {
-        font-size: 1.75rem;
+        font-size: 1.8rem;
     }
 `;
 
@@ -67,7 +77,7 @@ const IframeWrapper = styled.div`
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 1rem;
     padding-right: 0.5rem;
 
     &::-webkit-scrollbar {
@@ -75,12 +85,17 @@ const IframeWrapper = styled.div`
     }
 
     &::-webkit-scrollbar-track {
-        background: #1a1a1a;
+        background: rgba(26, 26, 26, 0.3);
+        border-radius: 3px;
     }
 
     &::-webkit-scrollbar-thumb {
-        background: #444;
+        background: rgba(29, 185, 84, 0.5);
         border-radius: 3px;
+    }
+    
+    &::-webkit-scrollbar-thumb:hover {
+        background: rgba(29, 185, 84, 0.7);
     }
 `;
 
@@ -91,7 +106,7 @@ const IframeStyle = {
 export default function SpotifyEmbed() {
     return (
         <SpotifyContainer>
-            <Title>Current Favorite Albums</Title>
+            <Title>Current Favorite Album</Title>
             <IframeWrapper>
                 <ResponsiveIframe>
                     <StyledIframe

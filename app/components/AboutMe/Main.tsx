@@ -1,10 +1,15 @@
 "use client";
 
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Terminal from "@/app/components/AboutMe/Terminal";
 import Scroll from "@/app/components/AboutMe/Scroll";
 import Image from "next/image";
-import pfp from "@/public/real_pfp.jpg";
+import pfp2 from "@/public/pfp2.jpg";
+
+const fadeIn = keyframes`
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+`;
 
 const ProfileImage = styled.div`
     position: relative;
@@ -12,69 +17,36 @@ const ProfileImage = styled.div`
     height: 12vw;
     border-radius: 15px;
     overflow: hidden;
-    border: 4px solid #00843D;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+    border: 3px solid #00843D;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     margin: 0 auto;
+    animation: ${fadeIn} 0.7s ease-out;
 
     @media screen and (max-width: 768px) {
-        width: 32vw;
-        height: 32vw;
+        width: 30vw;
+        height: 30vw;
         margin-bottom: 20px;
     }
 
     @media screen and (max-width: 480px) {
-        width: 36vw;
-        height: 36vw;
-        margin-bottom: 15px;
+        width: 35vw;
+        height: 35vw;
+        margin-bottom: 20px;
     }
 `;
 
-const Name = styled.h1`
-    font-size: 2.5vw;
-    font-family: 'Roboto Mono', monospace;
-    background: linear-gradient(135deg, #00843D, rebeccapurple);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 1rem;
-    font-weight: 700;
-    position: relative;
-    padding-bottom: 0.5rem;
+const InfoContainer = styled.div`
+    animation: ${fadeIn} 0.8s ease-out;
     text-align: center;
-
-    &::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 8vw;
-        height: 4px;
-        background: linear-gradient(90deg, #00843D, rebeccapurple);
-        border-radius: 2px;
-    }
-
-    @media screen and (max-width: 768px) {
-        font-size: 5vw;
-        &::after {
-            width: 12vw;
-        }
-    }
-
-    @media screen and (max-width: 480px) {
-        font-size: 7vw;
-        &::after {
-            width: 15vw;
-            height: 3px;
-        }
-    }
 `;
 
 const Subtitle = styled.h2`
     font-size: 1.2vw;
-    font-family: "Arial", "Helvetica", sans-serif;
-    font-weight: 700;
-    margin-bottom: .5rem;
-    text-align: center;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #f0f0f0;
+    letter-spacing: 0.02em;
 
     @media screen and (max-width: 768px) {
         font-size: 2.5vw;
@@ -82,32 +54,34 @@ const Subtitle = styled.h2`
     }
 
     @media screen and (max-width: 480px) {
-        font-size: 3.5vw;
+        font-size: 3.2vw;
         margin-bottom: 0.6rem;
     }
 `;
 
-const Minor = styled.h2`
-    font-size: 1.2vw;
-    font-family: "Arial", "Helvetica", sans-serif;
-    font-weight: 600;
-    margin-bottom: 2rem;
-    text-align: center;
+const Minor = styled.h3`
+    font-size: 1vw;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    color: rgba(255, 255, 255, 0.8);
 
     @media screen and (max-width: 768px) {
-        font-size: 2.5vw;
-        margin-bottom: 1.5rem;
+        font-size: 2.2vw;
+        margin-bottom: 1.2rem;
     }
 
     @media screen and (max-width: 480px) {
-        font-size: 3.5vw;
-        margin-bottom: 1.2rem;
+        font-size: 3vw;
+        margin-bottom: 1rem;
     }
 `;
+
 
 const TerminalContainer = styled.div`
     width: 60vw;
     max-width: 700px;
+    animation: ${fadeIn} 0.9s ease-out;
 
     @media screen and (max-width: 900px) {
         width: 70vw;
@@ -124,9 +98,9 @@ const ProfileContainer = styled.div`
     width: 30vw;
     display: flex;
     flex-direction: column;
-    justify-content: left;
+    justify-content: center;
     padding-right: 2vw;
-    
+
     @media (max-width: 1024px) {
         width: 40vw;
         padding: 0;
@@ -146,14 +120,16 @@ const MainDiv = styled.div`
     max-width: 1200px;
     margin: 5rem auto;
     align-items: center;
-    gap: 2rem;
+    gap: 2.5rem;
 
     @media (max-width: 1024px) {
         margin: 3rem auto;
+        gap: 2rem;
     }
     @media screen and (max-width: 768px) {
         flex-direction: column;
-        padding: 1vw 0;
+        padding: 2vw 0;
+        gap: 1.5rem;
     }
 `;
 
@@ -162,6 +138,8 @@ const PageWrapper = styled.div`
     flex-direction: column;
     width: 100vw;
     align-items: center;
+    background: #121212;
+    min-height: 100vh;
 `;
 
 export default function Main() {
@@ -170,16 +148,19 @@ export default function Main() {
             <MainDiv>
                 <ProfileContainer>
                     <ProfileImage>
-                        <Image src={pfp}
-                               alt="profile picture"
-                               fill
-                               style={{ objectFit: "cover" }}
-                               priority
+                        <Image
+                            src={pfp2}
+                            alt="profile picture"
+                            fill
+                            style={{ objectFit: "cover" }}
+                            priority
                         />
                     </ProfileImage>
-                    <Name>Evan Jaquez</Name>
-                    <Subtitle>Boston University - Computer Science & Economics</Subtitle>
-                    <Minor>Minor in Data Science</Minor>
+                    <InfoContainer>
+                        <Subtitle>Boston University - Computer Science & Economics</Subtitle>
+                        <Minor>Minor in Data Science</Minor>
+
+                    </InfoContainer>
                 </ProfileContainer>
 
                 <TerminalContainer>

@@ -7,7 +7,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 
 
 export const metadata: Metadata = {
-    title: "builder | jaquevan",
+    title: "Evan Jaquez",
     description: "personal portfolio",
 };
 

@@ -71,12 +71,13 @@ const ButtonDiv = styled.div`
     gap: 1rem;
     padding-right: max(1rem, 2%);
     max-height: 100vh;
+    align-items: center;
 
-    @media (max-width: 1024px) 
+    @media (max-width: 1024px) {
         padding-right: 0;
         align-items: center;
         width: 100%;
-    overflow: visible;
+        overflow: visible;
     }
 `;
 

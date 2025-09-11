@@ -1,6 +1,6 @@
 "use client";
 
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
 import { usePathname } from "next/navigation";
@@ -9,6 +9,22 @@ interface StyledLinkProps {
     $isActive: boolean;
 }
 
+const slideInFromTop = keyframes`
+    0% {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+`;
+
+const fadeIn = keyframes`
+    from { opacity: 0; }
+    to { opacity: 1; }
+`;
+
 const NavContainer = styled.nav`
     width: 40%;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -16,6 +32,13 @@ const NavContainer = styled.nav`
     margin: 2% auto;
     z-index: 100;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    animation: ${slideInFromTop} 0.3s ease-out forwards;
+    backdrop-filter: blur(8px);
+    transition: box-shadow 0.3s ease;
+
+    &:hover {
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+    }
 
     @media (max-width: 768px) {
         width: 85%;
@@ -38,6 +61,12 @@ const ThemeToggleWrapper = styled.div`
     display: flex;
     align-items: center;
     margin-right: 5px;
+    animation: ${fadeIn} 0.4s ease-in;
+    transition: transform 0.2s ease;
+
+    &:hover {
+        transform: scale(1.05);
+    }
 
     @media (max-width: 600px) {
         transform: scale(0.9);
@@ -55,6 +84,14 @@ const NavList = styled.ul`
 const NavItem = styled.li`
     flex: 1;
     text-align: center;
+    animation: ${fadeIn} 0.3s ease-in;
+    animation-fill-mode: both;
+
+    &:nth-child(1) { animation-delay: 0.05s; }
+    &:nth-child(2) { animation-delay: 0.1s; }
+    &:nth-child(3) { animation-delay: 0.15s; }
+    &:nth-child(4) { animation-delay: 0.2s; }
+    &:nth-child(5) { animation-delay: 0.25s; }
 `;
 
 const StyledLink = styled(Link)<StyledLinkProps>`
@@ -77,19 +114,19 @@ const StyledLink = styled(Link)<StyledLinkProps>`
         content: '';
         position: absolute;
         bottom: 0;
-        left: 0;
-        width: 99%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: ${props => props.$isActive ? '70%' : '0'};
         border-radius: 18px;
         height: 3px;
-        background: ${props => props.$isActive ? 'purple' : 'transparent'};
-        transform: ${props => props.$isActive ? 'scaleX(1.1)' : 'scaleX(0)'};
-        transform-origin: center;
-        transition: transform 0.35s ease;
+        background: ${props => props.$isActive ? 'var(--primary)' : 'var(--primary)'};
+        opacity: ${props => props.$isActive ? '1' : '0'};
+        transition: width 0.25s ease, opacity 0.25s ease;
     }
 
     &:hover::after {
-        background: ${props => props.$isActive ? 'purple' : 'linear-gradient(90deg, var(--primary), var(--secondary))'};
-        transform: ${props => props.$isActive ? ' scaleX(1)' : ' scaleX(1)'};
+        width: 70%;
+        opacity: 1;
     }
 
     @media (max-width: 768px) {
@@ -111,7 +148,7 @@ export default function NavBar() {
         { href: "/about", label: "About" },
         { href: "/experience", label: "Experience" },
         { href: "/projects", label: "Projects" },
-        { href: "/contact", label: "Contact" },
+        // { href: "/contact", label: "Contact" },
     ];
 
     return (
