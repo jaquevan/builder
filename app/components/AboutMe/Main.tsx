@@ -45,7 +45,6 @@ const Subtitle = styled.h2`
     font-family: "DM Sans", sans-serif;
     font-weight: 600;
     margin-bottom: 0.5rem;
-    color: #f0f0f0;
     letter-spacing: 0.02em;
 
     @media screen and (max-width: 768px) {
@@ -64,7 +63,6 @@ const Minor = styled.h3`
     font-family: "DM Sans", sans-serif;
     font-weight: 500;
     margin-bottom: 1.5rem;
-    color: rgba(255, 255, 255, 0.8);
 
     @media screen and (max-width: 768px) {
         font-size: 2.2vw;
