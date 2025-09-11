@@ -109,9 +109,9 @@ export default function Background() {
             <FirstGenSection>
                 <SectionTitle>First Generation College Student</SectionTitle>
                 <FirstGenText>
-                    As a first-generation college student, I've embraced both the challenges and opportunities
+                    As a first-generation college student, Ive embraced both the challenges and opportunities
                     that come with charting a new path. This journey has instilled in me a deep appreciation for
-                    education and a drive to make the most of every learning opportunity. I'm passionate about
+                    education and a drive to make the most of every learning opportunity. Im passionate about
                     using my knowledge and skills to create technology that makes a meaningful difference.
                 </FirstGenText>
             </FirstGenSection>

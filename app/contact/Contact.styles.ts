@@ -1,11 +1,11 @@
 import styled, { keyframes } from 'styled-components';
 import { FormGroup, Paper } from "@mui/material";
 
-const pulse = keyframes`
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-`;
+// const pulse = keyframes`
+//     0% { transform: scale(1); }
+//     50% { transform: scale(1.05); }
+//     100% { transform: scale(1); }
+// `;
 
 const shimmer = keyframes`
     0% { background-position: -200% 0; }

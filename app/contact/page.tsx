@@ -60,7 +60,7 @@ export default function Contact() {
                             fontSize: { xs: '2.5rem', md: '3.5rem' }
                         }}
                     >
-                        Let's Connect
+                        Lets Connect
                     </Typography>
 
                     <Paper
