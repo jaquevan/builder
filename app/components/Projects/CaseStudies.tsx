@@ -20,8 +20,8 @@ const SectionTitle = styled(Typography)({
     textAlign: 'center',
     '@media (max-width: 600px)': {
         fontSize: '2rem',
-    },
-}));
+    }
+});
 
 const ProjectCard = styled(Card)(({ theme }) => ({
     borderRadius: 7,
