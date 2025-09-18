@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
-import { Typography, Container, Tooltip, IconButton } from "@mui/material";
+import { Typography, Container, Tooltip } from "@mui/material";
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import EmailIcon from '@mui/icons-material/Email';
@@ -9,7 +9,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import CodeIcon from '@mui/icons-material/Code';
 import DesignServicesIcon from '@mui/icons-material/DesignServices';
 // import ContactPageIcon from '@mui/icons-material/ContactPage';
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+// import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import Link from 'next/link';
 import Image from 'next/image';
 import pfp from '@/public/real_pfp.jpg';
@@ -361,23 +361,23 @@ const ProfileName = styled.div`
     }
 `;
 
-const ScrollToTopButton = styled(IconButton)`
-    position: absolute;
-    right: 20px;
-    bottom: 20px;
-    background-color: ${colors.accent} !important;
-    color: white !important;
-    width: 45px;
-    height: 45px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease !important;
-    animation: ${pulse} 2s infinite;
-
-    &:hover {
-        background-color: ${colors.highlight} !important;
-        transform: translateY(-5px);
-    }
-`;
+// const ScrollToTopButton = styled(IconButton)`
+//     position: absolute;
+//     right: 20px;
+//     bottom: 20px;
+//     background-color: ${colors.accent} !important;
+//     color: white !important;
+//     width: 45px;
+//     height: 45px;
+//     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+//     transition: all 0.3s ease !important;
+//     animation: ${pulse} 2s infinite;
+//
+//     &:hover {
+//         background-color: ${colors.highlight} !important;
+//         transform: translateY(-5px);
+//     }
+// `;
 
 export default function Footer() {
     const [currentDateTime, setCurrentDateTime] = useState("2025-03-02 20:41:07");
@@ -401,12 +401,12 @@ export default function Footer() {
         return () => clearInterval(interval);
     }, []);
 
-    const scrollToTop = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    };
+    // const scrollToTop = () => {
+    //     window.scrollTo({
+    //         top: 0,
+    //         behavior: 'smooth'
+    //     });
+    // };
 
     return (
         <FooterWrapper>
@@ -486,9 +486,9 @@ export default function Footer() {
 
             <BottomBar>
                 © {new Date().getFullYear()} <span>Evan Jaquez</span>. All rights reserved. Built with React & Next.js
-                <ScrollToTopButton onClick={scrollToTop} aria-label="Scroll to top">
-                    <ArrowUpwardIcon />
-                </ScrollToTopButton>
+                {/*<ScrollToTopButton onClick={scrollToTop} aria-label="Scroll to top">*/}
+                {/*    <ArrowUpwardIcon />*/}
+                {/*</ScrollToTopButton>*/}
             </BottomBar>
         </FooterWrapper>
     );
