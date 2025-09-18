@@ -5,6 +5,7 @@ import { Container, Box, Grid } from "@mui/material";
 import Footer from "@/app/components/Footer";
 import NavBar from "@/app/components/NavBar";
 import ProjectCard from "../components/Projects/ProjectCard";
+import CaseStudies from "../components/Projects/CaseStudies";
 import projects from "../components/Projects/projects";
 import styled from "styled-components";
 
@@ -22,8 +23,11 @@ const Title = styled.h1`
 
 export default function Projects() {
     return (
+        <>
+
         <Box sx={{ minHeight: "100vh" }}>
             <NavBar />
+            <CaseStudies/>
             <Container maxWidth="lg" sx={{ py: 8 }}>
                 <Title> Frontend Projects </Title>
 
@@ -61,5 +65,7 @@ export default function Projects() {
             </Container>
             <Footer />
         </Box>
+
+        </>
     );
 }

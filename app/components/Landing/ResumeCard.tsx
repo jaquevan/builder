@@ -76,7 +76,7 @@ const ViewButton = styled(Button)`
 
 export default function ResumeCard() {
     const handleOpenResume = () => {
-        window.open("/WebDev_Jaquez.pdf", '_blank', 'noopener,noreferrer');
+        window.open("/Resume_Jaquez_Fa25.pdf", '_blank', 'noopener,noreferrer');
     };
 
     return (
