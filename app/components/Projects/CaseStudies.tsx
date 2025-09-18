@@ -1,17 +1,17 @@
 'use client'
 
-import { Container, Typography, Box, Card, Chip, Button } from '@mui/material';
+import { Container, Typography, Box, Card } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Link from 'next/link';
 
-// Import all your images
+// Import all images
 import LC from '@/public/LC-thumb.png';
 import MapleImage from '@/public/MAPLE-thumb.png';
 import BostonVoterImage from '@/public/BV-thumb.png';
 import WordWyrmImage from '@/public/WW-thumb.png';
 
 // Styled components
-const SectionTitle = styled(Typography)(({ theme }) => ({
+const SectionTitle = styled(Typography)({
     fontSize: '2.5rem',
     fontWeight: 'bold',
     margin: '1rem 0',
@@ -39,24 +39,6 @@ const ProjectCard = styled(Card)(({ theme }) => ({
         boxShadow: "0 12px 24px rgba(0,0,0,0.12)",
     },
 }));
-
-
-
-
-
-const ProjectTitle = styled(Typography)({
-    fontWeight: 700,
-    marginBottom: '8px',
-    fontSize: '1.2rem',
-    color: "#fff",
-});
-
-const ProjectDescription = styled(Typography)({
-    color: 'rgba(255, 255, 255, 0.85)',
-    lineHeight: 1.6,
-    fontSize: '0.95rem',
-    marginBottom: '16px',
-});
 
 
 // Case Studies data
