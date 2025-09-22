@@ -68,6 +68,12 @@ const Name = styled.h1`
     padding: 0;
     font-size: 4rem;
     line-height: 1.2;
+    letter-spacing: normal;
+    transition: letter-spacing 0.3s ease;
+
+    &:hover {
+        letter-spacing: 0.15rem;
+    }
 `;
 
 const SubText = styled.h2`

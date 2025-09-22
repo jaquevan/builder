@@ -40,7 +40,7 @@ const float = keyframes`
 
 const colors = {
     darkBg: "#111111",
-    accent: "#00843D",
+    accent: "#4bb97d",
     lightText: "#F8F8F8",
     midGray: "#333333",
     highlight: "#34D399",
@@ -65,7 +65,7 @@ const FooterWrapper = styled.footer`
         height: 4px;
         background: linear-gradient(90deg, ${colors.accent}, ${colors.highlight}, ${colors.accent});
         background-size: 200% 100%;
-        animation: ${shimmer} 3s infinite linear;
+        animation: ${shimmer} 5s infinite linear;
     }
 `;
 
@@ -89,7 +89,7 @@ const Column = styled.div`
     transition: transform 0.3s ease;
 
     &:hover {
-        transform: translateY(-5px);
+        transform: translateY(-1px);
     }
 
     @media (max-width: 768px) {
@@ -140,7 +140,7 @@ const LogoText = styled(Typography)`
     transition: all 0.3s ease;
 
     &:hover {
-        letter-spacing: 1.2px;
+        letter-spacing: 3px;
     }
 `;
 
@@ -222,7 +222,7 @@ const FooterLink = styled(Link)`
         justify-content: center;
 
         &:hover {
-            transform: translateY(-3px);
+            transform: translateY(-9px);
             padding-left: 0;
         }
     }
@@ -253,7 +253,7 @@ const SocialButton = styled.div`
 
     &:hover {
         background-color: ${colors.accent};
-        color: white;
+        color: black;
         transform: translateY(-5px) rotate(5deg);
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     }
