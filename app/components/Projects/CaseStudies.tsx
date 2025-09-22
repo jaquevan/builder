@@ -2,7 +2,6 @@
 
 import { Container, Typography, Box, Card } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import Link from 'next/link';
 
 // Import all images
 import LC from '@/public/LC-thumb.png';
@@ -34,12 +33,12 @@ const ProjectCard = styled(Card)(({ theme }) => ({
     aspectRatio: "16 / 9", // keeps cards consistent, responsive
     backgroundSize: "cover",
     backgroundPosition: "center",
+    cursor: "default",
     "&:hover": {
         transform: "translateY(-4px)",
         boxShadow: "0 12px 24px rgba(0,0,0,0.12)",
     },
 }));
-
 
 // Case Studies data
 const caseStudies = [
@@ -76,9 +75,10 @@ export default function CaseStudies() {
                 <SectionTitle variant="h1">UX Case Studies</SectionTitle>
 
                 {caseStudies.map((project) => (
-                    <Link key={project.id} href={project.link} style={{ textDecoration: 'none' }}>
-                        <ProjectCard style={{ backgroundImage: `url(${project.image.src})` }} />
-                        </Link>
+                    <ProjectCard
+                        key={project.id}
+                        style={{ backgroundImage: `url(${project.image.src})` }}
+                    />
                 ))}
             </Container>
         </Box>

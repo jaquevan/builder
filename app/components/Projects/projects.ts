@@ -71,9 +71,9 @@ const projects: Project[] = [
         id: "three",
         title: "Three JS and WebGL Demo",
         image: three.src,
-        description: "Next.js weather app",
+        description: "Demo used to present Three.js and WebGL to my web development class",
         github: "https://github.com/jaquevan/webShape",
-        liveLink: null
+        liveLink: "https://web-shape-ewt8iabyx-jaquevans-projects.vercel.app/"
     },
 
     {
