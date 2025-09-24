@@ -5,8 +5,7 @@ import styled from 'styled-components';
 import BackToProjects from "@/app/components/Projects/BackToProjects";
 import NavBar from '@/app/components/NavBar';
 
-// images used in case study
-import Poster from '../../../public/WW-thumb.png';
+// images
 import team from '../../../public/word/team.png';
 import problem from '../../../public/word/problem.png';
 import persona from '../../../public/word/persona.png';
@@ -16,211 +15,290 @@ import validation from '../../../public/word/validation.png';
 import crazy8 from '../../../public/word/crazy8.jpg';
 import jobmap from '../../../public/word/jobmap.jpg';
 import floop from '../../../public/word/floop.jpg';
+import gaming from '../../../public/word/gaming-floopa.png';
 
-const Container = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem 1.5rem;
+const Container = styled.main`
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
 `;
 
 const PageTitle = styled.h1`
-  font-size: 2.5rem;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 2rem;
+    font-size: 3rem;
+    font-weight: 800;
+    font-family: 'JetBrains Mono', monospace;
+    text-align: center;
+    margin: 2rem 0 3rem;
+    letter-spacing: -0.02em;
 `;
 
-const HeroImageWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-bottom: 3rem;
+const HeroImage = styled.div`
+    display: flex;
+    justify-content: center;
+    margin-bottom: 4rem;
+
+    img {
+        width: 100%;
+        max-width: 520px;
+        border-radius: 8px;
+        object-fit: cover;
+    }
+`;
+
+const Section = styled.section`
+    margin-bottom: 5rem;
 `;
 
 const SectionTitle = styled.h2`
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1.75rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(90deg, #6e6e6e, transparent);
+
+        @media (prefers-color-scheme: dark) {
+            background: linear-gradient(90deg, #a0a0a0, transparent);
+        }
+    }
 `;
 
 const Paragraph = styled.p`
-  line-height: 1.6;
-  margin-bottom: 2rem;
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--text-primary, #333);
+    margin-bottom: 2rem;
+    max-width: 70ch;
+
+    @media (prefers-color-scheme: dark) {
+        color: var(--text-primary, #e0e0e0);
+    }
 `;
 
-const GridContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 1.5rem;
-  margin-bottom: 3rem;
-  
-  @media (min-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  @media (min-width: 1024px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
+const Deliverables = styled.ul`
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+
+    li {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 0.5rem;
+        position: relative;
+        padding-left: 1.25rem;
+
+        &::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #e63946;
+        }
+    }
 `;
 
-const Card = styled.div`
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: 1.5rem;
-  height: 100%;
-  
-  @media (prefers-color-scheme: dark) {
-    background-color: #2a2a2a;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  }
+const Phase = styled.div`
+    margin-bottom: 3rem;
 `;
 
-const CardTitle = styled.h3`
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
+const PhaseTitle = styled.h3`
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-primary, #222);
 `;
 
-const CardText = styled.p`
-  font-size: 0.95rem;
-  line-height: 1.5;
+const Grid = styled.div`
+    display: grid;
+    gap: 2rem;
+
+    @media (min-width: 700px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 1024px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
 `;
 
 const ImageWrapper = styled.div`
-  margin-bottom: 1rem;
-  border-radius: 6px;
-  overflow: hidden;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+
+    img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+`;
+
+const TeamSection = styled(Section)`
+    text-align: center;
+`;
+
+const TeamImage = styled.div`
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    margin-bottom: 1.5rem;
+
+    img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+`;
+
+const TeamDescription = styled.p`
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1.125rem;
+    line-height: 1.65;
+
+    @media (prefers-color-scheme: dark) {
+        color: var(--text-secondary, #b0b0b0);
+    }
+`;
+
+const NextStepsSection = styled(Section)`
+    padding: 2.5rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(230, 230, 230, 0.5);
+    position: relative;
+    overflow: hidden;
+    
+
+    ${SectionTitle} {
+        text-align: center;
+    }
+
+    ${Paragraph} {
+        margin: 0 auto;
+        max-width: 600px;
+        font-weight: 500;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        background-color: rgba(40, 40, 40, 0.4);
+        border-color: rgba(60, 60, 60, 0.5);
+    }
 `;
 
 export default function WordWyrm() {
     return (
         <Container>
-            <NavBar/>
+            <NavBar />
             <BackToProjects url="/projects" />
 
             <PageTitle>Word Wyrm Case Study</PageTitle>
 
-            <HeroImageWrapper>
-                <Image
-                    src={Poster}
-                    alt="Word Wyrm Project Thumbnail"
-                    style={{ width: '50%', height: 'auto', borderRadius: '8px' }}
-                />
-            </HeroImageWrapper>
+            <HeroImage>
+                <Image src={gaming} alt="Word Wyrm Gaming Dragon" priority />
+            </HeroImage>
 
-            <SectionTitle>Project Overview</SectionTitle>
+            <Section>
+                <SectionTitle>Deliverables</SectionTitle>
+                <Deliverables>
+                    <li>Phase I: Problem & Research</li>
+                    <li>Phase II: Hypothesis & Validation</li>
+                    <li>Phase III: Ideation</li>
+                    <li>Phase IV: Journey Mapping</li>
+                    <li>Phase V: Feedback & Iteration</li>
+                </Deliverables>
+            </Section>
 
-            <Paragraph>
-                Word Wyrm is an in-progress project where I serve as a UX Designer and Technical Teammate.
-                The project is currently in a design sprint, with Discovery completed and Design underway.
-                Word Wyrm will explore how AI-driven gamification can transform traditional worksheets
-                into engaging, interactive language-learning experiences.
-            </Paragraph>
+            <Section>
+                <Phase>
+                    <PhaseTitle>Phase I: Problem & Research</PhaseTitle>
+                    <Paragraph>
+                        We began by defining the problem: language learning often relies on worksheets and drills that
+                        are boring and passive. Through user interviews and persona development, we uncovered the
+                        importance of intuitive design and the need to balance fun with measurable learning outcomes.
+                    </Paragraph>
+                    <Grid>
+                        <ImageWrapper><Image src={problem} alt="Problem" /></ImageWrapper>
+                        <ImageWrapper><Image src={interview} alt="User Interviews" /></ImageWrapper>
+                        <ImageWrapper><Image src={persona} alt="Persona" /></ImageWrapper>
+                    </Grid>
+                </Phase>
 
-            <GridContainer>
-                <Card>
-                    <CardTitle>The Problem</CardTitle>
-                    <ImageWrapper>
-                        <Image src={problem} alt="Problem Definition" style={{ width: '100%', height: 'auto' }} />
-                    </ImageWrapper>
-                    <CardText>
-                        Language learning often relies on worksheets and drills that are boring and passive.
-                        Our challenge is to create a gamified, AI-powered tool that helps teachers convert
-                        existing lesson materials into interactive games.
-                    </CardText>
-                </Card>
+                <Phase>
+                    <PhaseTitle>Phase II: Hypothesis & Validation</PhaseTitle>
+                    <Paragraph>
+                        Based on our research, we developed hypotheses about user behavior and classroom integration.
+                        We conducted validation sessions with teachers and students to refine these assumptions,
+                        ensuring we stayed grounded in real user needs.
+                    </Paragraph>
+                    <Grid>
+                        <ImageWrapper><Image src={hypothesis} alt="Hypothesis" /></ImageWrapper>
+                        <ImageWrapper><Image src={validation} alt="Validation" /></ImageWrapper>
+                    </Grid>
+                </Phase>
 
-                <Card>
-                    <CardTitle>User Research</CardTitle>
-                    <ImageWrapper>
-                        <Image src={interview} alt="User Interviews" style={{ width: '100%', height: 'auto' }} />
-                    </ImageWrapper>
-                    <CardText>
-                        We conducted interviews with teachers and students to understand their needs,
-                        including the importance of a simple interface and balancing fun with real learning.
-                    </CardText>
-                </Card>
+                <Phase>
+                    <PhaseTitle>Phase III: Ideation</PhaseTitle>
+                    <Paragraph>
+                        Using techniques like Crazy 8s brainstorming, we rapidly generated a wide range of solutions.
+                        These sketches helped us explore both playful and practical ideas for gamifying language practice.
+                    </Paragraph>
+                    <Grid>
+                        <ImageWrapper><Image src={crazy8} alt="Crazy 8s Ideation" /></ImageWrapper>
+                    </Grid>
+                </Phase>
 
-                <Card>
-                    <CardTitle>Persona Development</CardTitle>
-                    <ImageWrapper>
-                        <Image src={persona} alt="User Persona" style={{ width: '100%', height: 'auto' }} />
-                    </ImageWrapper>
-                    <CardText>
-                        We created personas like "Bilingual Ben" to highlight the need for intuitive tools
-                        that save prep time and track student progress.
-                    </CardText>
-                </Card>
+                <Phase>
+                    <PhaseTitle>Phase IV: Journey Mapping</PhaseTitle>
+                    <Paragraph>
+                        We mapped user journeys to capture teacher and student workflows. This gave us visibility into
+                        key pain points and opportunities where AI-powered gamification could enhance learning experiences.
+                    </Paragraph>
+                    <Grid>
+                        <ImageWrapper><Image src={jobmap} alt="Job Map" /></ImageWrapper>
+                    </Grid>
+                </Phase>
 
-                <Card>
-                    <CardTitle>Hypothesis Testing</CardTitle>
-                    <ImageWrapper>
-                        <Image src={hypothesis} alt="Hypothesis" style={{ width: '100%', height: 'auto' }} />
-                    </ImageWrapper>
-                    <CardText>
-                        We developed hypotheses about user behavior to guide our design decisions and research direction.
-                    </CardText>
-                </Card>
+                <Phase>
+                    <PhaseTitle>Phase V: Feedback & Iteration</PhaseTitle>
+                    <Paragraph>
+                        We ran feedback loops with educators and peers, refining our prototypes to make them more engaging
+                        and effective. Iteration has been central to keeping Word Wyrm grounded in actual classroom needs.
+                    </Paragraph>
+                    <Grid>
+                        <ImageWrapper><Image src={floop} alt="Feedback Loop" /></ImageWrapper>
+                    </Grid>
+                </Phase>
+            </Section>
 
-                <Card>
-                    <CardTitle>Validation Process</CardTitle>
-                    <ImageWrapper>
-                        <Image src={validation} alt="Validation" style={{ width: '100%', height: 'auto' }} />
-                    </ImageWrapper>
-                    <CardText>
-                        We conducted validation sessions to test our assumptions and ensure we addressed real user needs.
-                    </CardText>
-                </Card>
-
-                <Card>
-                    <CardTitle>Ideation</CardTitle>
-                    <ImageWrapper>
-                        <Image src={crazy8} alt="Crazy 8s Ideation" style={{ width: '100%', height: 'auto' }} />
-                    </ImageWrapper>
-                    <CardText>
-                        We used Crazy 8s exercises to rapidly generate diverse solution ideas in a limited timeframe.
-                    </CardText>
-                </Card>
-
-                <Card>
-                    <CardTitle>User Journey Mapping</CardTitle>
-                    <ImageWrapper>
-                        <Image src={jobmap} alt="Job Map" style={{ width: '100%', height: 'auto' }} />
-                    </ImageWrapper>
-                    <CardText>
-                        We developed job maps to understand user workflows and identify key touchpoints in the experience.
-                    </CardText>
-                </Card>
-
-                <Card>
-                    <CardTitle>Feedback Loop</CardTitle>
-                    <ImageWrapper>
-                        <Image src={floop} alt="Feedback Loop" style={{ width: '100%', height: 'auto' }} />
-                    </ImageWrapper>
-                    <CardText>
-                        We conducted feedback sessions to refine our concepts and ensure they meet user expectations.
-                    </CardText>
-                </Card>
-            </GridContainer>
-
-            <Card>
-                <CardTitle>Our Team</CardTitle>
-                <ImageWrapper>
-                    <Image src={team} alt="Project Team" style={{ width: '100%', height: 'auto' }} />
-                </ImageWrapper>
-                <CardText>
+            <TeamSection>
+                <SectionTitle>Our Team</SectionTitle>
+                <TeamImage>
+                    <Image src={team} alt="Project Team" />
+                </TeamImage>
+                <TeamDescription>
                     Our interdisciplinary team combines expertise in education technology, game design,
                     and language learning to create an effective solution.
-                </CardText>
-            </Card>
+                </TeamDescription>
+            </TeamSection>
 
-            <div style={{ marginTop: '3rem' }}>
+            <NextStepsSection>
                 <SectionTitle>Next Steps</SectionTitle>
                 <Paragraph>
                     This project is currently in the research and discovery phase. A full case study
                     with detailed findings, prototypes, and outcomes will be published as the project progresses.
                 </Paragraph>
-            </div>
+            </NextStepsSection>
         </Container>
     );
 }
