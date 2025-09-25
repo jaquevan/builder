@@ -11,6 +11,13 @@ export const generateMetadata = (): NextMetadata => {
         title: homeSEO.title,
         description: homeSEO.description,
         keywords: homeSEO.keywords,
+        icons: {
+            icon: [
+                { url: '/Classic_dart_monkey.webp', sizes: '32x32' }
+            ],
+            shortcut: '/Classic_dart_monkey.webp',
+            apple: '/Classic_dart_monkey.webp'
+        },
     };
 };
 

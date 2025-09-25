@@ -6,8 +6,8 @@ import Link from 'next/link';
 
 // Import all images
 import LC from '@/public/LC-thumb.png';
-import MapleImage from '@/public/MAPLE-thumb.png';
-import BostonVoterImage from '@/public/BV-thumb.png';
+import MapleImage from '@/public/cases/m3/MAPLE-thumb.png';
+import BostonVoterImage from '@/public/cases/bv/BV-thumb.png';
 import WordWyrmImage from '@/public/WW-thumb.png';
 
 // Styled components
@@ -45,29 +45,33 @@ const ProjectCard = styled(Card)(({ theme }) => ({
 // Case Studies Thumbnails and links
 const caseStudies = [
     {
-        id: 1,
-        title: 'MAPLE 3.0',
-        image: MapleImage,
-        link: '/case-studies/maple',
-    },
-    {
         id: 2,
         title: 'Boston Voter',
         image: BostonVoterImage,
         link: '/case-studies/boston-voter',
     },
+
     {
-        id: 3,
-        title: 'La Colaborativa',
-        image: LC,
-        link: '/case-studies/la-colaborativa',
+        id: 1,
+        title: 'MAPLE 3.0',
+        image: MapleImage,
+        link: '/case-studies/maple',
     },
+
     {
         id: 4,
         title: 'Word Wyrm',
         image: WordWyrmImage,
         link: '/case-studies/word-wyrm',
     },
+    
+    {
+        id: 3,
+        title: 'La Colaborativa',
+        image: LC,
+        link: '/case-studies/la-colaborativa',
+    },
+
 ];
 
 export default function CaseStudies() {
