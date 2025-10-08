@@ -29,11 +29,11 @@ const SpotifyContainer = styled.div`
 
 const ResponsiveIframe = styled.div`
     position: relative;
-    padding-bottom: 80%;
+    padding-bottom: 25%;
     height: 0;
     overflow: hidden;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
 `;
 
 const StyledIframe = styled.iframe`
@@ -46,11 +46,11 @@ const StyledIframe = styled.iframe`
 `;
 
 const Title = styled.h1`
-    font-size: 2.2rem;
-    margin-bottom: 1.8rem;
+    font-size: 2rem;
+    margin-bottom: 1rem;
     color: white;
     position: relative;
-    padding-bottom: 0.7rem;
+    padding-bottom: 0.5rem;
     font-family: 'DM Sans', sans-serif;
     font-weight: 700;
     text-align: left;
@@ -62,13 +62,13 @@ const Title = styled.h1`
         bottom: 0;
         left: 130px;
         width: 50px;
-        height: 4px;
+        height: 3px;
         background: #1DB954;
         border-radius: 2px;
     }
 
     @media screen and (max-width: 768px) {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
     }
 `;
 
@@ -77,7 +77,7 @@ const IframeWrapper = styled.div`
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.75rem;
     padding-right: 0.5rem;
 
     &::-webkit-scrollbar {
@@ -93,28 +93,49 @@ const IframeWrapper = styled.div`
         background: rgba(29, 185, 84, 0.5);
         border-radius: 3px;
     }
-    
+
     &::-webkit-scrollbar-thumb:hover {
         background: rgba(29, 185, 84, 0.7);
     }
 `;
 
 const IframeStyle = {
-    borderRadius: '12px'
+    borderRadius: '8px'
 };
 
 export default function SpotifyEmbed() {
     return (
         <SpotifyContainer>
-            <Title>Current Favorite Album</Title>
+            <Title>Current Favorite Albums</Title>
             <IframeWrapper>
                 <ResponsiveIframe>
                     <StyledIframe
                         style={IframeStyle}
                         src="https://open.spotify.com/embed/album/4m2880jivSbbyEGAKfITCa?utm_source=generator&theme=0"
-                        width="100%"
-                        height="300px"
-                        frameBorder="0"
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                        loading="lazy"
+                    />
+                </ResponsiveIframe>
+                <ResponsiveIframe>
+                    <StyledIframe
+                        style={IframeStyle}
+                        src="https://open.spotify.com/embed/album/3Gt7rOjcZQoHCfnKl5AkK7?utm_source=generator"
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                        loading="lazy"
+                    />
+                </ResponsiveIframe>
+                <ResponsiveIframe>
+                    <StyledIframe
+                        style={IframeStyle}
+                        src="https://open.spotify.com/embed/album/4iN6TmJM1UT4AWWnuC6Jfn?utm_source=generator&theme=0"
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                        loading="lazy"
+                    />
+                </ResponsiveIframe>
+                <ResponsiveIframe>
+                    <StyledIframe
+                        style={IframeStyle}
+                        src="https://open.spotify.com/embed/album/5Dbax7G8SWrP9xyzkOvy2F?utm_source=generator"
                         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                         loading="lazy"
                     />

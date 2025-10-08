@@ -1,20 +1,20 @@
-"use client"
+"use client";
 
 import styled from "styled-components";
 import SpotifyEmbed from "@/app/components/AboutMe/Spotify";
-import Gym from "./Gym"
-import Background from "./Background"
-import Drumline from "./Drumline"
-
+import Gym from "./Gym";
+import Background from "./Background";
+import Drumline from "./Drumline";
 
 const FlexContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: stretch;
+    align-items: flex-start;
     gap: 2rem;
     max-width: 1400px;
-    height: calc(100vh - 200px); // Subtract space for margins and header
+    min-height: calc(100vh - 200px);
+    height: auto;
     margin: 0 auto;
     padding: 0 2rem;
 
@@ -44,19 +44,18 @@ const MusicContainer = styled.div`
     }
 `;
 
-export default function Scroll(){
-    return(
+export default function Scroll() {
+    return (
         <>
-            <Background/>
-            <Gym/>
+            <Background />
+            <Gym />
             <MusicContainer>
                 <h1>Music</h1>
                 <FlexContainer>
-                    <SpotifyEmbed/>
-                    <Drumline/>
+                    <SpotifyEmbed />
+                    <Drumline />
                 </FlexContainer>
             </MusicContainer>
-
         </>
     );
 }

@@ -109,7 +109,10 @@ const TechIcons = () => {
         { name: "Ubuntu", path: "/icons/ubuntu.svg" },
         { name: "Adobe", path: "/icons/adobe.svg" },
         { name: "Slack", path: "/icons/slack.svg" },
-        { name: "Docker", path: "/icons/docker.svg" }
+        { name: "Docker", path: "/icons/docker.svg" },
+        { name: "Podman", path: "/icons/podman.svg" },
+        { name: "Linux", path: "/icons/linux.svg" },
+
 
 
     ];
