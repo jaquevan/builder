@@ -201,6 +201,7 @@ const LegendItem = styled.div`
     align-items: center;
     font-family: 'Roboto Mono', monospace;
     font-size: 12px;
+    color: unset;
 
     @media screen and (max-width: 480px) {
         font-size: 10px;
