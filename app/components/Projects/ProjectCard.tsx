@@ -1,314 +1,234 @@
 "use client"
 
-import { useState } from "react";
-import { Typography, Box, Button } from "@mui/material";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import styled from "styled-components";
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LaunchIcon from '@mui/icons-material/Launch';
-import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
 
 export interface Project {
     id: string;
     title: string;
     image: string;
     description: string;
-    learnings: string;
     github: string | null;
     liveLink: string | null;
+    hackathonWinner?: string; // Award won at hackathon
 }
 
 interface ProjectCardProps {
     project: Project;
 }
 
+// Typed interfaces for styled components with custom props
+interface ImageContainerProps {
+    $hasImage: boolean;
+}
+
+interface LinkButtonProps {
+    $primary?: boolean;
+}
+
+// Styled components
+const CardContainer = styled(motion.div)`
+    width: 100%;
+    max-width: 800px;
+    height: 500px;
+    margin: 0 auto;
+    position: relative;
+`;
+
+const Card = styled.div`
+    width: 110%;
+    height: 100%;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+    }
+`;
+
+const ImageContainer = styled.div<ImageContainerProps>`
+    height: 280px;
+    width: 100%;
+    position: relative;
+    background-color: ${props => props.$hasImage ? "transparent" : "#7895ff"};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 60px;
+        z-index: 1;
+        pointer-events: none;
+    }
+`;
+
+const WinnerBadge = styled.div`
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(255, 255, 255, 0.95);
+    color: #333;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    backdrop-filter: blur(4px);
+`;
+
+const PlaceholderText = styled.div`
+    color: white;
+    font-weight: 500;
+    font-size: 1.25rem;
+`;
+
+const ContentContainer = styled.div`
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 280px);
+`;
+
+const Title = styled.h3`
+    margin: 0 0 16px 0;
+    font-weight: 700;
+    color: #3a46a7;
+    font-size: 1.35rem;
+    letter-spacing: -0.01em;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+`;
+
+const Description = styled.p`
+    margin: 0 0 24px 0;
+    color: #555;
+    line-height: 1.6;
+    font-size: 0.95rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    flex-grow: 1;
+`;
+
+const ActionContainer = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: auto;
+`;
+
+const LinkButton = styled.a<LinkButtonProps>`
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+
+    ${props => props.$primary ? `
+        background-color: #4361ee;
+        color: white;
+        &:hover {
+            background-color: #3a46a7;
+        }
+    ` : `
+        color: #333;
+        border: 1px solid #e0e0e0;
+        &:hover {
+            border-color: #ccc;
+            background-color: rgba(0,0,0,0.04);
+        }
+    `}
+`;
+
 export default function ProjectCard({ project }: ProjectCardProps) {
-    const [showLearnings, setShowLearnings] = useState(false);
-
-    const toggleLearnings = () => {
-        setShowLearnings(!showLearnings);
-    };
-
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-            whileHover={{ y: -8 }}
-            style={{ width: "100%", height: "380px", position: "relative" }}
+        <CardContainer
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
         >
-            <AnimatePresence mode="wait">
-                {!showLearnings ? (
-                    <motion.div
-                        key="front"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                        style={{ width: "100%", height: "100%" }}
-                    >
-                        {/* Main card */}
-                        <Box
-                            sx={{
-                                position: "absolute",
-                                width: "100%",
-                                height: "100%",
-                                borderRadius: "16px",
-                                bgcolor: "white",
-                                boxShadow: "rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px",
-                                p: 3,
-                                display: "flex",
-                                flexDirection: "column",
-                                overflow: "hidden",
+            <Card>
+                <ImageContainer $hasImage={Boolean(project.image)}>
+                    {project.hackathonWinner && (
+                        <WinnerBadge>{project.hackathonWinner}</WinnerBadge>
+                    )}
+                    {project.image ? (
+                        <Image
+                            src={project.image}
+                            alt={project.title}
+                            fill
+                            sizes="(max-width: 1200px) 100vw, 1200px"
+                            priority={true}
+                            style={{
+                                objectFit: "cover",
+                                objectPosition: "center top", // Focus on top portion of images
+                                transition: "transform 0.5s ease",
                             }}
-                        >
-                            <Box
-                                sx={{
-                                    height: 200,
-                                    position: "relative",
-                                    mb: 2.5,
-                                    backgroundColor: project.image ? "transparent" : "#7895ff",
-                                    borderRadius: 2,
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    overflow: "hidden",
-                                    "&::after": {
-                                        content: '""',
-                                        position: "absolute",
-                                        top: 0,
-                                        left: 0,
-                                        width: "100%",
-                                        height: "100%",
-                                        background: "linear-gradient(to bottom, rgba(0,0,0,0) 65%, rgba(0,0,0,0.25) 100%)",
-                                        zIndex: 1
-                                    }
-                                }}
+                            quality={85}
+                        />
+                    ) : (
+                        <PlaceholderText>Coming Soon</PlaceholderText>
+                    )}
+                </ImageContainer>
+
+                <ContentContainer>
+                    <Title>{project.title}</Title>
+                    <Description>{project.description}</Description>
+
+                    <ActionContainer>
+                        {project.github && (
+                            <LinkButton
+                                href={project.github}
+                                target="_blank"
+                                rel="noopener noreferrer"
                             >
-                                {project.image ? (
-                                    <Image
-                                        src={project.image}
-                                        alt={project.title}
-                                        fill
-                                        style={{
-                                            objectFit: "cover",
-                                            borderRadius: 8,
-                                        }}
-                                        className="project-image"
-                                    />
-                                ) : (
-                                    <Typography
-                                        variant="h6"
-                                        sx={{
-                                            color: "white",
-                                            fontWeight: 500,
-                                            textShadow: "0 2px 4px rgba(0,0,0,0.1)"
-                                        }}
-                                    >
-                                        Coming Soon
-                                    </Typography>
-                                )}
-                            </Box>
+                                <GitHubIcon fontSize="small" />
+                                Code
+                            </LinkButton>
+                        )}
 
-                            <Typography
-                                variant="h5"
-                                sx={{
-                                    fontWeight: 700,
-                                    color: "#3a46a7",
-                                    mb: 1,
-                                    fontSize: "1.35rem",
-                                    letterSpacing: "-0.01em"
-                                }}
+                        {project.liveLink && (
+                            <LinkButton
+                                $primary
+                                href={project.liveLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
                             >
-                                {project.title}
-                            </Typography>
-
-                            <Typography
-                                variant="body2"
-                                sx={{
-                                    color: "#555",
-                                    mb: 2,
-                                    flexGrow: 1,
-                                    lineHeight: 1.6,
-                                    fontSize: "0.9rem",
-                                    overflow: "hidden",
-                                    display: "-webkit-box",
-                                    WebkitLineClamp: 3,
-                                    WebkitBoxOrient: "vertical"
-                                }}
-                            >
-                                {project.description}
-                            </Typography>
-
-                            <Box sx={{
-                                mt: "auto",
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "space-between",
-                                borderTop: "1px solid #f0f0f0",
-                                pt: 2
-                            }}>
-                                <Box>
-                                    {project.github && (
-                                        <Button
-                                            size="small"
-                                            startIcon={<GitHubIcon />}
-                                            href={project.github}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            sx={{
-                                                mr: 1,
-                                                color: "#333",
-                                                borderRadius: "8px",
-                                                textTransform: "none",
-                                                fontWeight: 500,
-                                                "&:hover": {
-                                                    backgroundColor: "rgba(0,0,0,0.04)"
-                                                }
-                                            }}
-                                        >
-                                            Repo
-                                        </Button>
-                                    )}
-
-                                    {project.liveLink && (
-                                        <Button
-                                            size="small"
-                                            startIcon={<LaunchIcon />}
-                                            href={project.liveLink}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            sx={{
-                                                mr: 1,
-                                                color: "#4361ee",
-                                                borderRadius: "8px",
-                                                textTransform: "none",
-                                                fontWeight: 500,
-                                                "&:hover": {
-                                                    backgroundColor: "rgba(67, 97, 238, 0.04)"
-                                                }
-                                            }}
-                                        >
-                                            Live Demo
-                                        </Button>
-                                    )}
-                                </Box>
-
-                                <Button
-                                    variant="text"
-                                    size="small"
-                                    sx={{
-                                        color: "#3a46a7",
-                                        borderRadius: "8px",
-                                        textTransform: "none",
-                                        fontWeight: 500,
-                                        border: "1px solid rgba(58, 70, 167, 0.15)",
-                                        px: 2,
-                                        "&:hover": {
-                                            backgroundColor: "rgba(67, 97, 238, 0.08)"
-                                        }
-                                    }}
-                                    onClick={toggleLearnings}
-                                >
-                                    Learn More
-                                </Button>
-                            </Box>
-                        </Box>
-                    </motion.div>
-                ) : (
-                    <motion.div
-                        key="back"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                        style={{ width: "100%", height: "100%" }}
-                    >
-                        {/* Learnings card */}
-                        <Box
-                            sx={{
-                                position: "absolute",
-                                width: "100%",
-                                height: "100%",
-                                borderRadius: "16px",
-                                background: "linear-gradient(135deg, #4361ee 0%, #3a46a7 100%)",
-                                color: "white",
-                                boxShadow: "rgba(67, 97, 238, 0.3) 0px 10px 30px",
-                                p: 3,
-                                display: "flex",
-                                flexDirection: "column",
-                            }}
-                        >
-                            <Typography
-                                variant="h5"
-                                sx={{
-                                    mb: 2.5,
-                                    fontWeight: 700,
-                                    position: "relative",
-                                    display: "inline-block",
-                                    "&::after": {
-                                        content: '""',
-                                        position: "absolute",
-                                        bottom: -8,
-                                        left: 0,
-                                        width: "40px",
-                                        height: "3px",
-                                        backgroundColor: "rgba(255,255,255,0.6)",
-                                        borderRadius: "2px"
-                                    }
-                                }}
-                            >
-                                What I Learned
-                            </Typography>
-
-                            <Typography
-                                variant="body1"
-                                sx={{
-                                    mb: 3,
-                                    lineHeight: 1.7,
-                                    fontSize: "0.95rem",
-                                    opacity: 0.9,
-                                    flexGrow: 1,
-                                    overflow: "auto"
-                                }}
-                            >
-                                {project.learnings}
-                            </Typography>
-
-                            <Button
-                                variant="text"
-                                size="small"
-                                sx={{
-                                    mt: "auto",
-                                    color: "white",
-                                    opacity: 0.7,
-                                    alignSelf: "flex-start",
-                                    borderRadius: "8px",
-                                    border: "1px solid rgba(255,255,255,0.2)",
-                                    py: 0.5,
-                                    px: 2,
-                                    "&:hover": {
-                                        backgroundColor: "rgba(255,255,255,0.1)",
-                                        opacity: 1
-                                    }
-                                }}
-                                onClick={toggleLearnings}
-                            >
-                                Back to project
-                            </Button>
-                        </Box>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-
-            <style jsx global>{`
-                .project-image {
-                    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-                }
-                
-                .project-image:hover {
-                    transform: scale(1.05);
-                }
-            `}</style>
-        </motion.div>
+                                <LaunchIcon fontSize="small" />
+                                Live Demo
+                            </LinkButton>
+                        )}
+                    </ActionContainer>
+                </ContentContainer>
+            </Card>
+        </CardContainer>
     );
 }

@@ -13,100 +13,76 @@ const fadeIn = keyframes`
 
 const ProfileImage = styled.div`
     position: relative;
-    width: 12vw;
-    height: 12vw;
-    border-radius: 15px;
+    width: clamp(180px, 12vw, 220px);
+    height: clamp(180px, 12vw, 220px);
+    border-radius: 12px;
     overflow: hidden;
-    border: 3px solid #00843D;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     margin: 0 auto;
     animation: ${fadeIn} 0.7s ease-out;
 
     @media screen and (max-width: 768px) {
-        width: 30vw;
-        height: 30vw;
-        margin-bottom: 20px;
-    }
-
-    @media screen and (max-width: 480px) {
-        width: 35vw;
-        height: 35vw;
-        margin-bottom: 20px;
+        width: clamp(140px, 30vw, 200px);
+        height: clamp(140px, 30vw, 200px);
+        margin-bottom: 1.5rem;
     }
 `;
 
 const InfoContainer = styled.div`
     animation: ${fadeIn} 0.8s ease-out;
     text-align: center;
+    width: 100%;
+    margin: 0 auto;
 `;
 
 const Subtitle = styled.h2`
-    font-size: 1.2vw;
+    font-size: clamp(1rem, 1.2vw, 1.3rem);
     font-family: "DM Sans", sans-serif;
     font-weight: 600;
     margin-bottom: 0.5rem;
     letter-spacing: 0.02em;
-
+    // Emphasized text only
     @media screen and (max-width: 768px) {
-        font-size: 2.5vw;
-        margin-bottom: 0.8rem;
-    }
-
-    @media screen and (max-width: 480px) {
-        font-size: 3.2vw;
+        font-size: clamp(0.95rem, 2.5vw, 1.1rem);
         margin-bottom: 0.6rem;
+        text-align: center;
     }
 `;
 
 const Minor = styled.h3`
-    font-size: 1vw;
+    font-size: clamp(0.9rem, 1vw, 1.1rem);
     font-family: "DM Sans", sans-serif;
     font-weight: 500;
     margin-bottom: 1.5rem;
-
+    // Emphasized text only
     @media screen and (max-width: 768px) {
-        font-size: 2.2vw;
-        margin-bottom: 1.2rem;
-    }
-
-    @media screen and (max-width: 480px) {
-        font-size: 3vw;
+        font-size: clamp(0.85rem, 2.2vw, 1rem);
         margin-bottom: 1rem;
+        text-align: center;
     }
 `;
 
-
 const TerminalContainer = styled.div`
-    width: 60vw;
+    flex: 1;
     max-width: 700px;
     animation: ${fadeIn} 0.9s ease-out;
-
-    @media screen and (max-width: 900px) {
-        width: 70vw;
-        margin-right: 5%;
-    }
-
+    margin: 0 auto;
     @media screen and (max-width: 768px) {
-        width: 95vw;
+        width: 100%;
+        max-width: 500px;
         margin: 0 auto;
     }
 `;
 
 const ProfileContainer = styled.div`
-    width: 30vw;
+    flex: 0 0 auto;
+    width: clamp(250px, 30vw, 350px);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-right: 2vw;
+    gap: 1.5rem;
 
-    @media (max-width: 1024px) {
-        width: 40vw;
-        padding: 0;
-    }
     @media screen and (max-width: 768px) {
-        width: 80vw;
-        margin: 0 auto;
-        padding: 0;
+        width: 100%;
         max-width: 400px;
     }
 `;
@@ -114,27 +90,26 @@ const ProfileContainer = styled.div`
 const MainDiv = styled.div`
     display: flex;
     flex-direction: row;
-    width: 100vw;
-    max-width: 1200px;
-    margin: 5rem auto;
+    width: min(90%, 1200px);
+    margin: 3rem auto;
     align-items: center;
-    gap: 2.5rem;
+    gap: 3rem;
+    padding: 1rem;
 
-    @media (max-width: 1024px) {
-        margin: 3rem auto;
-        gap: 2rem;
-    }
     @media screen and (max-width: 768px) {
         flex-direction: column;
-        padding: 2vw 0;
-        gap: 1.5rem;
+        gap: 2rem;
+        margin: 2rem auto;
+        padding: 0.5rem;
+        align-items: center;
+        text-align: center;
     }
 `;
 
 const PageWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    width: 100vw;
+    width: 100%;
     align-items: center;
     min-height: 100vh;
 `;
@@ -147,16 +122,17 @@ export default function Main() {
                     <ProfileImage>
                         <Image
                             src={pfp2}
-                            alt="profile picture"
+                            alt="Evan Jaquez - Boston University Student"
                             fill
+                            sizes="(max-width: 768px) 200px, 220px"
                             style={{ objectFit: "cover" }}
                             priority
+                            quality={90}
                         />
                     </ProfileImage>
                     <InfoContainer>
                         <Subtitle>Boston University - Computer Science & Economics</Subtitle>
                         <Minor>Minor in Data Science</Minor>
-
                     </InfoContainer>
                 </ProfileContainer>
 

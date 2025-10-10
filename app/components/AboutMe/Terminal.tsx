@@ -48,13 +48,16 @@ export default function Terminal() {
     const inputRef = useRef<HTMLInputElement>(null);
     const terminalRef = useRef<HTMLDivElement>(null);
 
-    const commands: { [key: string]: () => string } = {
+    const commands: { [key: string]: () => string | { text: string; isAsciiArt?: boolean } } = {
         help: () =>
             "Available commands:\n" +
             "  help      - display this help message\n" +
             "  education - view my relevant coursework and education\n" +
             "  activities - view my extracurricular activities\n" +
             "  location - learn about where im based\n" +
+            "  skills    - show my technical skills\n" +
+            "  crab      - show a crab! 🦀\n" +
+            "  wave      - say hello!\n" +
             "  clear     - clear the terminal\n" +
             "  about     - learn more about this terminal\n",
 
@@ -91,7 +94,46 @@ export default function Terminal() {
             " Features:\n" +
             "   - Command history navigation (up/down arrows)\n" +
             "   - Copy to clipboard\n" +
-            "   - Clear terminal\n"
+            "   - Clear terminal\n",
+
+        skills: () =>
+            " Technical Skills:\n" +
+            "   Languages: TypeScript, JavaScript, Python, Java, C\n" +
+            "   Frontend: React, Next.js, HTML/CSS, Tailwind\n" +
+            "   Backend: Node.js, Express, Flask\n" +
+            "   Database: PostgreSQL, MongoDB, Firebase\n" +
+            "   Tools: Git, Docker, AWS, Vercel\n",
+
+        crab: () => ({
+            text: `
+        ___
+    ___/   \\___
+   /   '---'   \\
+  (  0       0  )
+   \\     v     /
+   /|    |    |\\
+  / |    |    | \\
+     \\  / \\  /
+      \\/   \\/
+
+    🦀 Time for crab!`,
+            isAsciiArt: true
+        }),
+
+        wave: () => ({
+            text: `
+    👋  Hello there!
+
+     ___________________
+    < Nice to meet you! >
+     -------------------
+          \\   ^__^
+           \\  (oo)\\_______
+              (__)\\       )\\/\\
+                  ||----w |
+                  ||     ||`,
+            isAsciiArt: true
+        })
     };
 
     const handleContainerClick = () => {
@@ -113,7 +155,11 @@ export default function Terminal() {
         if (commands[commandName]) {
             const result = commands[commandName]();
             if (result) {
-                newHistory.push({ text: result });
+                if (typeof result === 'string') {
+                    newHistory.push({ text: result });
+                } else {
+                    newHistory.push({ text: result.text, isAsciiArt: result.isAsciiArt });
+                }
             }
         } else {
             newHistory.push({

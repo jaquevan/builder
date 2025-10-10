@@ -19,11 +19,15 @@ const fadeIn = keyframes`
 const StyledBody = styled.div`
     overflow-x: hidden;
     width: 100%;
-    max-height: 90vh;
     display: flex;
     flex-direction: column;
     margin: 0;
-    padding: 1rem 0;
+    padding: 1rem 0 0;
+    margin-bottom: 0;
+
+    @media (max-width: 768px) {
+        padding: 0.5rem 0 0;
+    }
 `;
 
 const MainSection = styled.div`
@@ -34,7 +38,10 @@ const MainSection = styled.div`
     position: relative;
     flex: 1;
     font-family: monospace;
-    max-height: calc(100vh - 2rem);
+
+    @media (max-width: 768px) {
+        width: 95%;
+    }
 `;
 
 const MainContentArea = styled.div`
@@ -46,13 +53,18 @@ const MainContentArea = styled.div`
 
     @media (max-width: 1024px) {
         align-items: center;
+        gap: 1rem;
+    }
+
+    @media (max-width: 768px) {
+        gap: 0.5rem;
     }
 `;
 
 const TopContainer = styled.div`
     display: flex;
     justify-content: space-between;
-    align-items: flex-start; 
+    align-items: flex-start;
     width: 100%;
     height: calc(54vh - 2rem);
     gap: 2rem;
@@ -60,7 +72,12 @@ const TopContainer = styled.div`
     @media (max-width: 1024px) {
         flex-direction: column;
         gap: 1rem;
-        min-height: auto; 
+        height: auto;
+    }
+
+    @media (max-width: 768px) {
+        gap: 0.75rem;
+        height: auto;
     }
 `;
 
@@ -78,6 +95,12 @@ const ButtonDiv = styled.div`
         align-items: center;
         width: 100%;
         overflow: visible;
+        max-height: none;
+    }
+
+    @media (max-width: 768px) {
+        gap: 0.5rem;
+        width: 100%;
     }
 `;
 
@@ -106,14 +129,21 @@ const MobileStatusContainer = styled.div`
 `;
 
 const ResumeSection = styled.div`
-    width: clamp(300px, 25vw, 400px);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     animation: ${fadeIn} 0.8s ease-out 0.3s both;
     z-index: 40;
     position: relative;
 
-    @media (max-width: 768px) {
-        width: 100%;
+    @media (max-width: 1024px) {
         max-width: 500px;
+    }
+
+    @media (max-width: 768px) {
+        max-width: 90%;
+        margin: 0 auto;
     }
 `;
 

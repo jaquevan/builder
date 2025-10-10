@@ -6,8 +6,8 @@ import Link from 'next/link';
 
 // Import all images
 import LC from '@/public/LC-thumb.png';
-import MapleImage from '@/public/MAPLE-thumb.png';
-import BostonVoterImage from '@/public/BV-thumb.png';
+import MapleImage from '@/public/cases/m3/MAPLE-thumb.png';
+import BostonVoterImage from '@/public/cases/bv/BV-thumb.png';
 import WordWyrmImage from '@/public/WW-thumb.png';
 
 // Styled components
@@ -34,6 +34,7 @@ const ProjectCard = styled(Card)(({ theme }) => ({
     aspectRatio: "16 / 9", // keeps cards consistent, responsive
     backgroundSize: "cover",
     backgroundPosition: "center",
+    cursor: "pointer",
     "&:hover": {
         transform: "translateY(-4px)",
         boxShadow: "0 12px 24px rgba(0,0,0,0.12)",
@@ -41,32 +42,36 @@ const ProjectCard = styled(Card)(({ theme }) => ({
 }));
 
 
-// Case Studies data
+// Case Studies Thumbnails and links
 const caseStudies = [
+    {
+        id: 2,
+        title: 'Boston Voter',
+        image: BostonVoterImage,
+        link: '/case-studies/boston-voter',
+    },
+
     {
         id: 1,
         title: 'MAPLE 3.0',
         image: MapleImage,
         link: '/case-studies/maple',
     },
-    {
-        id: 2,
-        title: 'Boston Voter',
-        image: BostonVoterImage,
-        link: '/case-studies/bv',
-    },
-    {
-        id: 3,
-        title: 'La Colaborativa',
-        image: LC,
-        link: '/case-studies/lc',
-    },
+
     {
         id: 4,
         title: 'Word Wyrm',
         image: WordWyrmImage,
-        link: '/case-studies/ww',
+        link: '/case-studies/word-wyrm',
     },
+    
+    {
+        id: 3,
+        title: 'La Colaborativa',
+        image: LC,
+        link: '/case-studies/la-colaborativa',
+    },
+
 ];
 
 export default function CaseStudies() {
@@ -76,9 +81,12 @@ export default function CaseStudies() {
                 <SectionTitle variant="h1">UX Case Studies</SectionTitle>
 
                 {caseStudies.map((project) => (
-                    <Link key={project.id} href={project.link} style={{ textDecoration: 'none' }}>
-                        <ProjectCard style={{ backgroundImage: `url(${project.image.src})` }} />
-                        </Link>
+                    <Link key={project.id} href={project.link} style={{ textDecoration: 'none', display: 'block' }}>
+                        <ProjectCard
+                            style={{ backgroundImage: `url(${project.image.src})` }}
+                        >
+                        </ProjectCard>
+                    </Link>
                 ))}
             </Container>
         </Box>

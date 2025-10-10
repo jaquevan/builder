@@ -2,7 +2,7 @@
 
 import styled, { keyframes } from "styled-components";
 import Image from "next/image";
-import bass from "@/public/bassline.png";
+import snare from "@/public/snareline.png";
 
 const fadeIn = keyframes`
     from { opacity: 0; transform: translateY(10px); }
@@ -10,53 +10,71 @@ const fadeIn = keyframes`
 `;
 
 const DrumlineContainer = styled.div`
-    width: 45%;
-    max-height: 1055px;
-    padding: 2.5rem;
+    width: 100%;
+    max-width: 900px;
+    padding: 2.5rem 2rem;
     border-radius: 18px;
-    background: rgba(255, 255, 255, 0.02);
+    background: rgba(152, 152, 152, 0.03);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    text-align: left;
-    font-family: 'DM Sans', sans-serif;
+    font-family: "DM Sans", sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(5px);
+    justify-content: center;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(6px);
     animation: ${fadeIn} 0.6s ease-out;
+    margin: 0 auto;
+    box-sizing: border-box;
 
-    @media screen and (max-width: 1024px) {
+    @media (max-width: 768px) {
+        padding: 1.5rem 1.5rem;
+        border-radius: 12px;
         width: 90%;
-        min-height: auto;
-        padding: 2rem;
+    }
+
+    @media (max-width: 480px) {
+        padding: 1rem;
+        border-radius: 8px;
+        width: calc(100% - 2rem);
+        max-width: calc(100% - 2rem);
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
     }
 `;
 
 const ImageContainer = styled.div`
-    width: 85%;
-    max-width: 520px;
-    min-width: 260px;
+    width: 100%;
+    max-width: 300px;
+    margin: 1.5rem auto;
     border-radius: 12px;
     overflow: hidden;
-    margin: 1.5rem auto;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-    position: relative;
+    background: #000;
 
-    &::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), transparent);
-    }
-
-    @media screen and (max-width: 768px) {
+    @media (max-width: 768px) {
         width: 95%;
-        margin-top: 1rem;
-        min-width: 220px;
+        margin: 1rem auto;
     }
+
+    @media (max-width: 480px) {
+        width: 98%;
+        margin: 0.7rem auto;
+        border-radius: 8px;
+    }
+`;
+
+const StyledImage = styled(Image)`
+    width: 100%;
+    height: auto;
+    max-height: 620px; /* ← increase this to make it taller */
+    object-fit: contain; /* ensures entire image is shown */
+    border-radius: 12px;
+    display: block;
 `;
 
 const Title = styled.h1`
@@ -64,43 +82,47 @@ const Title = styled.h1`
     margin-bottom: 1.5rem;
     position: relative;
     padding-bottom: 0.7rem;
-    font-family: 'DM Sans', sans-serif;
     font-weight: 700;
-    color: #ffffff;
     letter-spacing: -0.01em;
+    text-align: center;
+    width: 100%;
 
-    &::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 50px;
-        height: 4px;
-        background: #3631ff;
-        border-radius: 2px;
+    @media (max-width: 768px) {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
     }
 
-    @media screen and (max-width: 768px) {
-        font-size: 1.8rem;
+    @media (max-width: 480px) {
+        font-size: 1.5rem;
+        margin-bottom: 0.8rem;
+        padding-bottom: 0.5rem;
     }
 `;
 
 const Description = styled.div`
-    font-size: 1.15rem;
-    line-height: 1.8;
+    font-size: 1rem;
+    line-height: 1.5;
     margin: 1.8rem 0;
     font-weight: 400;
-    color: rgba(255, 255, 255, 0.9);
-    text-align: left;
+    width: 100%;
+    box-sizing: border-box;
 
     strong {
-        color: #5d7df3;
+        color: #e53935;
         font-weight: 600;
     }
 
-    @media screen and (max-width: 768px) {
+
+    @media (max-width: 768px) {
         font-size: 1rem;
         line-height: 1.7;
+        margin: 1.2rem 0;
+    }
+
+    @media (max-width: 480px) {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin: 1rem 0;
     }
 `;
 
@@ -108,26 +130,37 @@ const YoutubeButton = styled.a`
     display: inline-flex;
     padding: 0.9rem 1.8rem;
     margin-top: 1rem;
-    background-color: #3631ff;
-    color: white;
+    background-color: #222;
     border-radius: 10px;
+    color: #fff;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 1rem;
-    transition: all 0.25s ease;
+    transition: background 0.25s ease;
     align-items: center;
     gap: 0.7rem;
     letter-spacing: 0.02em;
-    box-shadow: 0 4px 12px rgba(54, 49, 255, 0.3);
+    box-shadow: none;
+    border: none;
 
     &:hover {
-        background-color: #4540ff;
-        box-shadow: 0 6px 15px rgba(54, 49, 255, 0.4);
+        background-color: #444;
     }
 
     svg {
         width: 22px;
         height: 22px;
+    }
+
+    @media (max-width: 480px) {
+        padding: 0.8rem 1.4rem;
+        font-size: 0.95rem;
+        gap: 0.5rem;
+
+        svg {
+            width: 20px;
+            height: 20px;
+        }
     }
 `;
 
@@ -135,35 +168,32 @@ export default function Drumline() {
     return (
         <DrumlineContainer>
             <Title>BU Drumline</Title>
+
             <ImageContainer>
-                <Image
-                    src={bass}
-                    alt="Bass drum line performance"
-                    width={500}
-                    height={250}
-                    style={{
-                        objectFit: 'cover',
-                        width: '100%',
-                        height: 'auto',
-                        borderRadius: '12px'
-                    }}
+                <StyledImage
+                    src={snare}
+                    alt="Snare drum line performance"
                     priority
                 />
             </ImageContainer>
+
             <Description>
-                As a proud member of the <strong>Boston University Drumline</strong>, I currently perform as a
-                <strong> snare drummer</strong>, achieving a significant personal milestone since my freshman year.
-                My musical journey includes experience with the <strong>bass drum</strong> in the drumline, as well as
-                playing the <strong>trumpet</strong>, <strong>french horn</strong>, and <strong>mellophone</strong> during
-                my high school years.
+                As a proud member of the <strong>Boston University Drumline</strong>, I
+                currently perform as a <strong>snare drummer</strong>, achieving a
+                significant personal milestone since my freshman year. My musical
+                journey includes experience with the <strong>bass drum</strong> in the
+                drumline, as well as playing the <strong>trumpet</strong>,{" "}
+                <strong>french horn</strong>, and <strong>mellophone</strong> during my
+                high school years.
             </Description>
+
             <YoutubeButton
-                href="https://www.youtube.com/watch?v=_4OkZiPBoCw&ab_channel=BUBand"
+                href="https://www.dropbox.com/scl/fi/bs1y1aj5300waev1ym5u3/1007252049.mp4?rlkey=rimy37xlmgo6kv28oskwdrrij&st=oavly9sq&dl=0"
                 target="_blank"
                 rel="noopener noreferrer"
             >
                 <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
                 </svg>
                 Watch Performance
             </YoutubeButton>

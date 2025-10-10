@@ -3,14 +3,17 @@ import { generatePageSEO } from './seo';
 // import { Project } from '@/app/components/Projects/ProjectCard';
 
 export const homeSEO = generatePageSEO({
-    title: "builder | Evan Jaquez ",
-    description: "Evan Jaquez, a Boston University graduate specializing in web development and ux/ui projects.",
+    title: "Evan Jaquez: Portfolio",
+    description: "Evan Jaquez, a Boston University student specializing in frontend development and UI/UX projects.",
     keywords: [
         "web projects",
         "portfolio projects",
         "react projects",
         "Plan It app",
         "Camelitics",
+        "BU Spark!",
+        "Boston University projects",
+        "software engineering BU",
         "Our National Conversation",
         "web development portfolio",
         "Evan Jaquez BU CS",
