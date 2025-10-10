@@ -675,7 +675,7 @@ export default function Gym() {
                 </ResponsiveContainer>
             </ChartCard>
 
-            <ChartCard>
+            {/* <ChartCard>
                 <ChartTitle>Exercise Distribution by Muscle Group</ChartTitle>
                 <ChartsRow>
                     <ChartContainer>
@@ -711,7 +711,7 @@ export default function Gym() {
                         </PieChartLegend>
                     </ChartContainer>
                 </ChartsRow>
-            </ChartCard>
+            </ChartCard> */}
         </Container>
     );
 }
