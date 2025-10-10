@@ -3,118 +3,142 @@
 import styled, { keyframes } from "styled-components";
 
 const fadeIn = keyframes`
-    from { opacity: 0; transform: translateY(10px); }
+    from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 `;
 
-const BackgroundContainer = styled.div`
-    max-width: 900px;
-    margin: 6rem auto;
-    padding: 2rem;
-    font-family: 'DM Sans', sans-serif;
-    text-align: left;
-    background: rgba(18, 18, 18, 0.7);
-    border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    animation: ${fadeIn} 0.6s ease-out;
+const slideIn = keyframes`
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
 `;
 
-const Title = styled.h1`
-    font-size: 2.4rem;
-    margin-bottom: 2.5rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    color: #ffffff;
-    position: relative;
-    padding-bottom: 0.8rem;
+const BackgroundContainer = styled.div`
+    max-width: 1200px;
+    width: 90%;
+    margin: 4rem auto;
+    padding: 0;
+    font-family: 'DM Sans', sans-serif;
+    animation: ${fadeIn} 0.6s ease-out;
 
-    &::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 80px;
-        height: 4px;
-        background: linear-gradient(90deg, #00843D, rgba(106, 13, 173, 0.7));
-        border-radius: 2px;
+    @media screen and (max-width: 768px) {
+        width: 95%;
+        margin: 2rem auto;
     }
 `;
 
-const Section = styled.div`
-    margin: 2.5rem 0;
-    animation: ${fadeIn} 0.6s ease-out;
+const Title = styled.h1`
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    margin-bottom: 3rem;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    color: #ffffff;
+    text-align: center;
+
+    @media screen and (max-width: 768px) {
+        margin-bottom: 2rem;
+    }
+`;
+
+const CardsGrid = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 2rem;
+
+    @media screen and (max-width: 768px) {
+        gap: 1.5rem;
+    }
+`;
+
+const Card = styled.div`
+    background: rgba(18, 18, 18, 0.6);
+    border-radius: 12px;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: ${slideIn} 0.6s ease-out;
+    width: 100%;
+
+    @media screen and (max-width: 768px) {
+        padding: 1.5rem;
+    }
 `;
 
 const SectionTitle = styled.h2`
-    font-size: 1.6rem;
+    font-size: clamp(1.3rem, 2.5vw, 1.6rem);
     margin-bottom: 1rem;
     font-weight: 600;
     color: #00843D;
     display: flex;
     align-items: center;
+    gap: 0.75rem;
 
     &::before {
         content: '';
         display: inline-block;
-        width: 8px;
+        width: 6px;
         height: 24px;
         background: #00843D;
-        margin-right: 12px;
         border-radius: 3px;
+        flex-shrink: 0;
     }
 `;
 
 const Text = styled.p`
-    font-size: 1.1rem;
-    line-height: 1.7;
-    margin-bottom: 1rem;
-    color: rgba(255, 255, 255, 0.85);
-    max-width: 90%;
+    font-size: clamp(1rem, 1.8vw, 1.1rem);
+    line-height: 1.8;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.88);
 `;
 
-const FirstGenSection = styled(Section)`
-    background: rgba(0, 132, 61, 0.15);
-    padding: 1.5rem;
-    border-radius: 12px;
-    border-left: 4px solid #00843D;
+const FirstGenCard = styled(Card)`
+    background: rgba(18, 18, 18, 0.6);
+    border: 1px solid rgba(0, 132, 61, 0.3);
+`;
+
+const FirstGenTitle = styled(SectionTitle)`
+    color: #00843D;
+    font-size: clamp(1.4rem, 2.8vw, 1.8rem);
+    margin-bottom: 1.25rem;
 `;
 
 const FirstGenText = styled(Text)`
-    font-style: italic;
     font-weight: 500;
+    color: rgba(255, 255, 255, 0.92);
+    font-size: clamp(1.05rem, 2vw, 1.15rem);
 `;
 
 export default function Background() {
     return (
         <BackgroundContainer>
             <Title>About Me</Title>
-            <Section>
-                <SectionTitle>Location</SectionTitle>
-                <Text>
-                    I am based in Boston, MA and Danbury, CT. As a student at Boston University,
-                    I split my time between campus life in the vibrant city of Boston and my hometown
-                    in Connecticut.
-                </Text>
-            </Section>
-            <Section>
-                <SectionTitle>Cultural Background</SectionTitle>
-                <Text>
-                    My family is from the Dominican Republic, and I was born and raised in the United States.
-                    Growing up with such a vibrant culture has deeply influenced my values and outlook on life.
-                    The rich traditions, music, and community-focused mindset have shaped my approach to both
-                    personal connections and professional endeavors.
-                </Text>
-            </Section>
-            <FirstGenSection>
-                <SectionTitle>First Generation College Student</SectionTitle>
-                <FirstGenText>
-                    As a first-generation college student, Ive embraced both the challenges and opportunities
-                    that come with charting a new path. This journey has instilled in me a deep appreciation for
-                    education and a drive to make the most of every learning opportunity. Im passionate about
-                    using my knowledge and skills to create technology that makes a meaningful difference.
-                </FirstGenText>
-            </FirstGenSection>
+            <CardsGrid>
+                <Card>
+                    <SectionTitle>Location</SectionTitle>
+                    <Text>
+                        Based in Boston, MA and Danbury, CT. As a student at Boston University,
+                        I split my time between campus life in the vibrant city of Boston and my hometown
+                        in Connecticut.
+                    </Text>
+                </Card>
+                <Card>
+                    <SectionTitle>Cultural Background</SectionTitle>
+                    <Text>
+                        My family is from the Dominican Republic, and I was born and raised in the United States.
+                        Growing up with such a vibrant culture has deeply influenced my values and outlook on life.
+                        The rich traditions, music, and community-focused mindset have shaped my approach to both
+                        personal connections and professional endeavors.
+                    </Text>
+                </Card>
+                <FirstGenCard>
+                    <FirstGenTitle>First Generation College Student</FirstGenTitle>
+                    <FirstGenText>
+                        As a first-generation college student, I&apos;ve embraced both the challenges and opportunities
+                        that come with charting a new path. This journey has instilled in me a deep appreciation for
+                        education and a drive to make the most of every learning opportunity. I&apos;m passionate about
+                        using my knowledge and skills to create technology that makes a meaningful difference.
+                    </FirstGenText>
+                </FirstGenCard>
+            </CardsGrid>
         </BackgroundContainer>
     );
 }

@@ -29,26 +29,29 @@ const moveTrain = keyframes`
 
 const TrackContainer = styled.div`
     position: relative;
-    width: 100vw; 
-    margin-left: calc(-50vw + 50%); 
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-bottom: 0;
     height: 30vh;
     background: url(${City.src}) no-repeat center;
     background-size: cover;
     overflow: hidden;
-    min-height: 160px; 
+    min-height: 160px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     z-index: -1;
-    pointer-events: none; 
+    pointer-events: none;
 
     @media (max-width: 768px) {
-        height: 44vh;
+        height: 35vh;
+        min-height: 200px;
     }
 
     @media (max-width: 480px) {
-        height: 44vh;
+        height: 30vh;
+        min-height: 180px;
     }
 `;
 

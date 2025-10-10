@@ -8,22 +8,25 @@ const fadeIn = keyframes`
 `;
 
 const SpotifyContainer = styled.div`
-    width: 45%;
+    width: 100%;
+    max-width: 450px;
     margin: 0 auto;
-    border-radius: 15px;
+    border-radius: 12px;
     overflow: hidden;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(18, 18, 18, 0.6);
     padding: 2rem;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     animation: ${fadeIn} 0.6s ease-out;
 
     @media screen and (max-width: 1024px) {
-        width: 90%;
-        min-width: 280px;
+        width: 100%;
         padding: 1.5rem;
+    }
+
+    @media screen and (max-width: 480px) {
+        padding: 1rem;
     }
 `;
 
@@ -46,30 +49,12 @@ const StyledIframe = styled.iframe`
 `;
 
 const Title = styled.h1`
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 3vw, 2rem);
     margin-bottom: 1rem;
     color: white;
-    position: relative;
-    padding-bottom: 0.5rem;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'JetBrains Mono', monospace;
     font-weight: 700;
     text-align: left;
-    letter-spacing: -0.01em;
-
-    &::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 130px;
-        width: 50px;
-        height: 3px;
-        background: #1DB954;
-        border-radius: 2px;
-    }
-
-    @media screen and (max-width: 768px) {
-        font-size: 1.6rem;
-    }
 `;
 
 const IframeWrapper = styled.div`

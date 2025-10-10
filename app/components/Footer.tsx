@@ -1,42 +1,20 @@
 "use client";
 import { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
-import { Typography, Container, Tooltip } from "@mui/material";
+import { Typography, Tooltip } from "@mui/material";
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import EmailIcon from '@mui/icons-material/Email';
 import HomeIcon from '@mui/icons-material/Home';
 import CodeIcon from '@mui/icons-material/Code';
 import DesignServicesIcon from '@mui/icons-material/DesignServices';
-// import ContactPageIcon from '@mui/icons-material/ContactPage';
-// import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import Link from 'next/link';
-import Image from 'next/image';
-import pfp from '@/public/real_pfp.jpg';
 
 const fadeIn = keyframes`
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
 `;
 
-const pulse = keyframes`
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-`;
-
-const shimmer = keyframes`
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
-`;
-
-const float = keyframes`
-    0% { transform: translateY(0px) rotate(0deg); }
-    25% { transform: translateY(-8px) rotate(2deg); }
-    50% { transform: translateY(0px) rotate(0deg); }
-    75% { transform: translateY(5px) rotate(-2deg); }
-    100% { transform: translateY(0px) rotate(0deg); }
-`;
 
 const colors = {
     darkBg: "#111111",
@@ -48,181 +26,207 @@ const colors = {
 };
 
 const FooterWrapper = styled.footer`
-    background-color: ${colors.darkBg};
+    background: linear-gradient(to bottom, #0a0a0a 0%, ${colors.darkBg} 100%);
     color: ${colors.lightText};
-    padding: 3rem 0 0;
+    padding: 2rem 0 0;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.3);
     animation: ${fadeIn} 0.8s ease-out;
-
-    &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 4px;
-        background: linear-gradient(90deg, ${colors.accent}, ${colors.highlight}, ${colors.accent});
-        background-size: 200% 100%;
-        animation: ${shimmer} 5s infinite linear;
-    }
+    border-top: 1px solid rgba(52, 211, 153, 0.1);
 `;
 
-const ContentContainer = styled(Container)`
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+const GreyLine = styled.div`
+    width: 100%;
+    height: 1px;
+    background: rgba(128, 128, 128, 0.3);
+    margin-bottom: 3rem;
+`;
+
+const ContentContainer = styled.div`
+    display: grid;
+    grid-template-columns: 0.4fr 1.2fr 0.4fr;
     gap: 3rem;
-    padding-bottom: 2rem;
+    padding: 0 2rem 3rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    align-items: start;
+
+    @media (max-width: 968px) {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        text-align: center;
+    }
 
     @media (max-width: 768px) {
-        flex-direction: column;
-        gap: 2rem;
         padding: 0 1.5rem 2rem;
     }
 `;
 
-const Column = styled.div`
-    flex: 1;
-    min-width: 180px;
-    transition: transform 0.3s ease;
-
-    &:hover {
-        transform: translateY(-1px);
-    }
-
-    @media (max-width: 768px) {
-        margin-bottom: 1rem;
-    }
-`;
-
-const BrandColumn = styled(Column)`
+const BrandColumn = styled.div`
     display: flex;
     flex-direction: column;
-    max-width: 350px;
+    gap: 0.5rem;
+    min-width: 0;
 
-    @media (max-width: 768px) {
+    @media (max-width: 968px) {
         align-items: center;
         text-align: center;
-        max-width: 100%;
     }
 `;
 
-const NavColumn = styled(Column)`
-    @media (max-width: 768px) {
-        text-align: center;
-    }
-`;
-
-const ProfileColumn = styled(Column)`
+const NavColumn = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    max-width: 220px;
+    gap: 0.5rem;
+    align-items: flex-start;
+    padding-left: 2rem;
+    align-self: start;
 
-    @media (max-width: 768px) {
-        margin: 0 auto;
+    @media (max-width: 968px) {
+        align-items: center;
+        padding-left: 0;
+    }
+`;
+
+const ImagePlaceholder = styled.div`
+    width: 100%;
+    max-width: 250px;
+    aspect-ratio: 1;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.3);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+
+    @media (max-width: 968px) {
+        display: none;
     }
 `;
 
 const LogoText = styled(Typography)`
     color: ${colors.lightText};
     font-weight: 700;
-    letter-spacing: 1px;
-    margin-bottom: 1rem;
-    font-size: 2rem;
-    background: linear-gradient(90deg, ${colors.lightText} 0%, ${colors.highlight} 100%);
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 2px;
+    margin-bottom: 0.75rem;
+    font-size: 2.2rem;
+    background: linear-gradient(135deg, ${colors.lightText} 0%, ${colors.highlight} 50%, ${colors.accent} 100%);
+    background-size: 200% 200%;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    transition: all 0.3s ease;
+    transition: letter-spacing 0.3s ease;
+    position: relative;
+    width: max-content;
+    max-width: 100%;
+
+    /* Reserve space for expanded text */
+    &::after {
+        content: 'jaquevan';
+        position: absolute;
+        left: 0;
+        top: 0;
+        letter-spacing: 6px;
+        visibility: hidden;
+        height: 0;
+        overflow: hidden;
+        pointer-events: none;
+    }
 
     &:hover {
-        letter-spacing: 3px;
+        letter-spacing: 6px;
+    }
+
+    @media (max-width: 768px) {
+        font-size: 1.8rem;
     }
 `;
 
 const Tagline = styled(Typography)`
-    color: #aaa;
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
-    max-width: 300px;
-    line-height: 1.6;
-    font-family: 'Courier New', Courier, monospace;
-`;
-
-const SectionTitle = styled(Typography)`
-    color: ${colors.lightText};
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    position: relative;
-    display: inline-block;
-
-    &::after {
-        content: '';
-        position: absolute;
-        bottom: -8px;
-        left: 0;
-        width: 40px;
-        height: 3px;
-        background-color: ${colors.accent};
-        transition: width 0.3s ease;
-    }
-
-    &:hover::after {
-        width: 100%;
-    }
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    margin-bottom: 1.75rem;
+    line-height: 1.8;
+    font-family: 'Inter', 'SF Pro Display', -apple-system, sans-serif;
+    font-weight: 400;
 
     @media (max-width: 768px) {
-        &::after {
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-        }
-
-        &:hover::after {
-            width: 100px;
-        }
+        font-size: 0.9rem;
     }
 `;
 
+const NavTitle = styled.div`
+    color: ${colors.lightText};
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: lowercase;
+    letter-spacing: 2px;
+    margin-bottom: 1.25rem;
+    font-family: 'JetBrains Mono', monospace;
+`;
+
+
 const FooterLink = styled(Link)`
-    font-family: 'Roboto Mono', monospace;
-    display: flex;
+    font-family: 'Inter', 'SF Pro Display', -apple-system, sans-serif;
+    display: inline-flex;
     align-items: center;
-    color: #CCC;
+    gap: 0.75rem;
+    color: rgba(255, 255, 255, 0.65);
     text-decoration: none;
-    margin-bottom: 1rem;
-    font-size: 1.1rem;
-    transition: all 0.3s ease;
-    padding: 8px 0;
-    border-radius: 4px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    padding: 0.6rem 0;
+    position: relative;
+    width: fit-content;
+
+    &::before {
+        content: '';
+        position: absolute;
+        left: -10px;
+        top: 50%;
+        transform: translateY(-50%) scale(0);
+        width: 6px;
+        height: 6px;
+        background: ${colors.highlight};
+        border-radius: 50%;
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
 
     &:hover {
         color: ${colors.highlight};
-        transform: translateX(5px);
-        padding-left: 5px;
+        letter-spacing: 0.5px;
+        padding-left: 4px;
+
+        &::before {
+            transform: translateY(-50%) scale(1);
+        }
+
+        & svg {
+            transform: rotate(360deg) scale(1.15);
+        }
     }
 
     & svg {
-        margin-right: 8px;
-        font-size: 1rem;
-        transition: transform 0.2s ease;
+        font-size: 1.15rem;
+        transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        opacity: 0.8;
     }
 
-    &:hover svg {
-        transform: scale(1.2);
-        color: ${colors.accent};
+    @media (max-width: 968px) {
+        justify-content: center;
+        width: auto;
     }
 
     @media (max-width: 768px) {
-        justify-content: center;
+        font-size: 0.9rem;
 
         &:hover {
-            transform: translateY(-9px);
+            transform: translateY(-2px);
             padding-left: 0;
         }
     }
@@ -230,15 +234,15 @@ const FooterLink = styled(Link)`
 
 const SocialIconsContainer = styled.div`
     display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
 
-    @media (max-width: 768px) {
+    @media (max-width: 968px) {
         justify-content: center;
     }
 `;
 
-const SocialButton = styled.div`
+const SocialButton = styled.div<{ $platform?: string }>`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -252,8 +256,13 @@ const SocialButton = styled.div`
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
     &:hover {
-        background-color: ${colors.accent};
-        color: black;
+        background-color: ${props => {
+            if (props.$platform === 'linkedin') return '#0077b5';
+            if (props.$platform === 'github') return '#6e5494';
+            if (props.$platform === 'email') return '#8b5cf6';
+            return 'rgba(255, 255, 255, 0.9)';
+        }};
+        color: white;
         transform: translateY(-5px) rotate(5deg);
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     }
@@ -261,123 +270,49 @@ const SocialButton = styled.div`
     &:active {
         transform: scale(0.95);
     }
+
+    svg {
+        font-size: 1.15rem;
+    }
 `;
 
 const BottomBar = styled.div`
-    background-color: rgba(0, 0, 0, 0.4);
-    padding: 1.2rem;
+    background: transparent;
+    padding: 1.5rem 2rem;
     text-align: center;
-    font-size: 0.9rem;
-    color: #aaa;
-    font-family: 'Roboto Mono', monospace;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.25);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 400;
     position: relative;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
 
     & span {
-        color: ${colors.highlight};
-        font-weight: 600;
+        color: rgba(255, 255, 255, 0.3);
+        font-weight: 400;
+    }
+
+    @media (max-width: 768px) {
+        padding: 1.25rem 1.5rem;
+        font-size: 0.7rem;
     }
 `;
 
 const CurrentTime = styled.div`
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.9rem;
-    color: #999;
-    margin-top: 1rem;
-    padding: 8px 12px;
-    border-radius: 4px;
-    background-color: rgba(255, 255, 255, 0.05);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.4);
+    margin-top: 1.25rem;
     display: inline-block;
 
-    @media (max-width: 768px) {
+    @media (max-width: 968px) {
         text-align: center;
     }
-`;
 
-const ProfileContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    perspective: 1200px;
-    position: relative;
-
-    &::before {
-        content: '';
-        position: absolute;
-        width: 180px;
-        height: 180px;
-        border-radius: 50%;
-        background: radial-gradient(circle, ${colors.accent}33 0%, transparent 70%);
-        z-index: -1;
-        animation: ${pulse} 3s infinite ease-in-out;
+    @media (max-width: 768px) {
+        font-size: 0.7rem;
     }
 `;
-
-const ProfileAvatar = styled.div`
-    width: 160px;
-    height: 160px;
-    position: relative;
-    border-radius: 50%;
-    border: 4px solid ${colors.accent};
-    overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    animation: ${float} 8s infinite ease-in-out;
-    transform-style: preserve-3d;
-
-    &::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0) 50%, rgba(0,0,0,0.1) 100%);
-        z-index: 2;
-        pointer-events: none;
-    }
-
-    &:hover {
-        transform: scale(1.05) rotate(5deg);
-    }
-`;
-
-const ProfileName = styled.div`
-    margin-top: 1rem;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 1rem;
-    color: ${colors.lightText};
-    font-weight: 500;
-    letter-spacing: 1px;
-    text-align: center;
-    opacity: 0.9;
-
-    &::before, &::after {
-        content: '{ ';
-        color: ${colors.highlight};
-    }
-
-    &::after {
-        content: ' }';
-    }
-`;
-
-// const ScrollToTopButton = styled(IconButton)`
-//     position: absolute;
-//     right: 20px;
-//     bottom: 20px;
-//     background-color: ${colors.accent} !important;
-//     color: white !important;
-//     width: 45px;
-//     height: 45px;
-//     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-//     transition: all 0.3s ease !important;
-//     animation: ${pulse} 2s infinite;
-//
-//     &:hover {
-//         background-color: ${colors.highlight} !important;
-//         transform: translateY(-5px);
-//     }
-// `;
 
 export default function Footer() {
     const [currentDateTime, setCurrentDateTime] = useState("2025-03-02 20:41:07");
@@ -401,16 +336,10 @@ export default function Footer() {
         return () => clearInterval(interval);
     }, []);
 
-    // const scrollToTop = () => {
-    //     window.scrollTo({
-    //         top: 0,
-    //         behavior: 'smooth'
-    //     });
-    // };
-
     return (
         <FooterWrapper>
-            <ContentContainer maxWidth="lg">
+            <GreyLine />
+            <ContentContainer>
                 <BrandColumn>
                     <LogoText variant="h3">jaquevan</LogoText>
                     <Tagline variant="body2">
@@ -422,7 +351,7 @@ export default function Footer() {
                     <SocialIconsContainer>
                         <Tooltip title="Connect on LinkedIn">
                             <Link href="https://www.linkedin.com/in/evan-jaquez-118b5b294/" target="_blank" aria-label="LinkedIn">
-                                <SocialButton>
+                                <SocialButton $platform="linkedin">
                                     <LinkedInIcon />
                                 </SocialButton>
                             </Link>
@@ -430,7 +359,7 @@ export default function Footer() {
 
                         <Tooltip title="Check my GitHub">
                             <Link href="https://github.com/jaquevan" target="_blank" aria-label="GitHub">
-                                <SocialButton>
+                                <SocialButton $platform="github">
                                     <GitHubIcon />
                                 </SocialButton>
                             </Link>
@@ -438,7 +367,7 @@ export default function Footer() {
 
                         <Tooltip title="Send me an Email">
                             <Link href="mailto:jaquevan@bu.edu" target="_blank" aria-label="Email">
-                                <SocialButton>
+                                <SocialButton $platform="email">
                                     <EmailIcon />
                                 </SocialButton>
                             </Link>
@@ -451,7 +380,7 @@ export default function Footer() {
                 </BrandColumn>
 
                 <NavColumn>
-                    <SectionTitle variant="h6">Quick Links</SectionTitle>
+                    <NavTitle>mini navigation</NavTitle>
                     <FooterLink href="/">
                         <HomeIcon fontSize="small" /> Home
                     </FooterLink>
@@ -464,31 +393,15 @@ export default function Footer() {
                     <FooterLink href="/projects">
                         <DesignServicesIcon fontSize="small" /> Projects
                     </FooterLink>
-                    {/*<FooterLink href="/contact">*/}
-                    {/*    <ContactPageIcon fontSize="small" /> Contact*/}
-                    {/*</FooterLink>*/}
                 </NavColumn>
 
-                <ProfileColumn>
-                    <ProfileContainer>
-                        <ProfileAvatar>
-                            <Image
-                                src={pfp}
-                                alt="Profile Picture"
-                                layout="fill"
-                                objectFit="cover"
-                            />
-                        </ProfileAvatar>
-                        <ProfileName>Evan Jaquez</ProfileName>
-                    </ProfileContainer>
-                </ProfileColumn>
+                <ImagePlaceholder>
+                    Image
+                </ImagePlaceholder>
             </ContentContainer>
 
             <BottomBar>
                 © {new Date().getFullYear()} <span>Evan Jaquez</span>. All rights reserved. Built with React & Next.js
-                {/*<ScrollToTopButton onClick={scrollToTop} aria-label="Scroll to top">*/}
-                {/*    <ArrowUpwardIcon />*/}
-                {/*</ScrollToTopButton>*/}
             </BottomBar>
         </FooterWrapper>
     );

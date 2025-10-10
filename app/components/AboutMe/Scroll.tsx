@@ -9,38 +9,41 @@ import Drumline from "./Drumline";
 const FlexContainer = styled.div`
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: flex-start;
     gap: 2rem;
-    max-width: 1400px;
-    min-height: calc(100vh - 200px);
-    height: auto;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
 
     @media screen and (max-width: 1024px) {
         flex-direction: column;
-        height: auto;
         align-items: center;
         padding: 0 1rem;
+    }
+
+    @media screen and (max-width: 480px) {
+        gap: 1rem;
+        padding: 0 0.5rem;
     }
 `;
 
 const MusicContainer = styled.div`
     width: 100%;
-    max-width: 1600px;
-    margin: 0 auto;
-    padding: 1rem 0;
-    font-family: Monospaced, sans-serif;
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 1rem;
 
     h1 {
         text-align: center;
-        margin-bottom: 1.5rem;
-        font-size: 2rem;
+        margin-bottom: 2rem;
+        font-size: clamp(2rem, 4vw, 2.5rem);
+        font-family: 'JetBrains Mono', monospace;
+        font-weight: 700;
     }
 
-    @media screen and (max-width: 480px) {
-        padding: 0.5rem 0;
+    @media screen and (max-width: 768px) {
+        margin: 2rem auto;
     }
 `;
 

@@ -66,7 +66,7 @@ const ButtonContainer = styled.div`
 const Name = styled.h1`
     margin: 0;
     padding: 0;
-    font-size: 4rem;
+    font-size: clamp(2rem, 6vw, 4rem);
     line-height: 1.2;
     letter-spacing: normal;
     transition: letter-spacing 0.3s ease;
@@ -74,15 +74,25 @@ const Name = styled.h1`
     &:hover {
         letter-spacing: 0.15rem;
     }
+
+    @media (max-width: 768px) {
+        text-align: center;
+        font-size: clamp(2rem, 8vw, 3rem);
+    }
 `;
 
 const SubText = styled.h2`
     margin: 0;
     padding: 0;
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 3vw, 1.5rem);
     color: #00843D;
     font-family: Monospaced, "JetBrains Mono", sans-serif;
     line-height: 1.2;
+
+    @media (max-width: 768px) {
+        text-align: center;
+        font-size: clamp(0.9rem, 4vw, 1.2rem);
+    }
 `;
 
 const StyledButton = styled.a<StyledButtonProps>`
@@ -154,9 +164,20 @@ const StyledButton = styled.a<StyledButtonProps>`
         font-size: 1rem;
     }
 
+    @media (max-width: 768px) {
+        flex: 0 1 calc(45% - 0.5rem);
+        min-width: 120px;
+        max-width: 160px;
+        padding: 0.7rem 0.9rem;
+        font-size: 0.9rem;
+    }
+
     @media (max-width: 480px) {
-        max-width: 120px;
-        padding: 0.5rem 0.75rem;
+        flex: 0 1 calc(45% - 0.5rem);
+        min-width: 100px;
+        max-width: 140px;
+        padding: 0.6rem 0.75rem;
+        font-size: 0.85rem;
     }
 `;
 
@@ -181,7 +202,7 @@ export default function EnhancedButtons() {
     return (
         <>
             <Name className="fade-in">Evan Jaquez</Name>
-            <SubText className="fade-in">UI/UX Designer & Researcher</SubText>
+            <SubText className="fade-in">UX Designer & Researcher</SubText>
             <ButtonContainer className="fade-in" role="navigation" aria-label="Social links and navigation">
                 {buttons.map((button) => (
                     <Tooltip title={button.tooltip} key={button.id} arrow>

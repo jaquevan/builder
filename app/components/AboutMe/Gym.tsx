@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import styled from "styled-components";
 import {
     BarChart, Bar, XAxis, YAxis, CartesianGrid,
@@ -52,68 +52,86 @@ type ChartData = { name: string; sets: number; date: Date; title: string };
 type MuscleGroupData = { name: string; sets: number; fill: string };
 
 const Container = styled.div`
-    width: 90vw;
+    max-width: 1200px;
+    width: min(90%, 1200px);
     margin: 3rem auto;
     padding: 0 1rem;
     font-family: 'Roboto Mono', monospace;
+
+    @media screen and (max-width: 768px) {
+        margin: 2rem auto;
+        width: 95%;
+    }
 `;
 
 const Title = styled.h1`
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 4vw, 2.5rem);
     text-align: center;
     margin-bottom: 2rem;
     font-weight: 700;
-    background: linear-gradient(135deg, #00843D, rebeccapurple);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    position: relative;
-    padding-bottom: 0.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: #ffffff;
 
-    &::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 80px;
-        height: 4px;
-        background: linear-gradient(90deg, #00843D, rebeccapurple);
-        border-radius: 2px;
+    @media screen and (max-width: 768px) {
+        margin-bottom: 1.5rem;
     }
 `;
 
 const StatBar = styled.div`
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
-    padding: 1rem;
+    gap: 1rem;
+    padding: 1.5rem;
     margin: 2rem auto;
-    background: #999ea8;
+    background: rgba(18, 18, 18, 0.6);
     border-radius: 12px;
-    border-left: 4px solid #00843D;
-    color: black;
-    width: 60%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    width: min(90%, 800px);
+
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+        width: 100%;
+        padding: 1rem;
+        gap: 0.5rem;
+    }
+
+    @media screen and (max-width: 480px) {
+        padding: 0.75rem;
+    }
 `;
 
 const Stat = styled.div`
     text-align: center;
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 2vw, 1.2rem);
     font-weight: 600;
     font-family: 'Roboto Mono', monospace;
+    color: rgba(255, 255, 255, 0.95);
 `;
 
 const ChartCard = styled.div`
-    background: white;
+    background: rgba(255, 255, 255, 0.98);
     color: black;
     border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 50vw;
-    border-top: 4px solid #9e66ff;
+    padding: 2rem;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     margin: 2rem auto;
+
+    @media screen and (max-width: 768px) {
+        padding: 1rem;
+        margin: 1.5rem auto;
+    }
+
+    @media screen and (max-width: 480px) {
+        padding: 0.75rem;
+        margin: 1rem auto;
+    }
 `;
 
 const ChartTitle = styled.h2`
-    font-size: 1.2rem;
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
     margin-bottom: 1rem;
     color: #333;
     font-weight: 700;
@@ -182,7 +200,7 @@ export default function Gym() {
     const [error, setError] = useState<string | null>(null);
 
     // Exercise categorization mapping
-    const exerciseToMuscleGroup: Record<string, string> = {
+    const exerciseToMuscleGroup = useMemo(() => ({
         // Chest
         "Incline Bench Press (Dumbbell)": "Chest",
         "fitrec chest fly": "Chest",
@@ -226,10 +244,10 @@ export default function Gym() {
 
         // Core
         "Cable Crunch": "Core",
-    };
+    }), []);
 
     // Colors for the muscle groups
-    const muscleGroupColors: Record<string, string> = {
+    const muscleGroupColors = useMemo(() => ({
         "Chest": "#9e66ff",  // Purple (primary site color)
         "Back": "#00843D",   // Green (primary site color)
         "Legs": "#0088FE",   // Blue
@@ -237,7 +255,92 @@ export default function Gym() {
         "Arms": "#FF8042",   // Orange
         "Core": "#00C49F",   // Teal
         "Other": "#9370DB"   // Medium purple
-    };
+    }), []);
+
+    const processWorkoutData = useCallback((workouts: HevyWorkout[]) => {
+        let setCount = 0;
+        const chartData: ChartData[] = [];
+
+        workouts.forEach(workout => {
+            const date = new Date(workout.start_time);
+            let workoutSets = 0;
+
+            workout.exercises.forEach(exercise => {
+                if (Array.isArray(exercise.sets)) {
+                    workoutSets += exercise.sets.length;
+                }
+            });
+
+            // Use a meaningful title or generate one if not provided
+            const workoutTitle = workout.title && workout.title.trim() !== ""
+                ? workout.title
+                : `Workout (${formatDate(date)})`;
+
+            chartData.push({
+                name: formatDate(date),
+                sets: workoutSets,
+                date,
+                title: workoutTitle
+            });
+
+            setCount += workoutSets;
+        });
+
+        setTotalSets(setCount);
+
+        // Sort by date ascending
+        chartData.sort((a, b) => a.date.getTime() - b.date.getTime());
+        setWorkoutData(chartData);
+    }, []);
+
+    const processMuscleGroupData = useCallback((workouts: HevyWorkout[]) => {
+        const muscleGroupSets: Record<string, number> = {
+            "Chest": 0,
+            "Back": 0,
+            "Legs": 0,
+            "Shoulders": 0,
+            "Arms": 0,
+            "Core": 0,
+            "Other": 0
+        };
+
+        // Collect all exercises and their sets
+        workouts.forEach(workout => {
+            workout.exercises.forEach(exercise => {
+                if (!Array.isArray(exercise.sets)) return;
+
+                const setCount = exercise.sets.length;
+                const title = exercise.title;
+
+                // Try to find matching muscle group
+                let found = false;
+                for (const [exerciseName, muscleGroup] of Object.entries(exerciseToMuscleGroup)) {
+                    if (title.includes(exerciseName)) {
+                        muscleGroupSets[muscleGroup] += setCount;
+                        found = true;
+                        break;
+                    }
+                }
+
+                // If no match found, add to "Other"
+                if (!found) {
+                    muscleGroupSets["Other"] += setCount;
+                }
+            });
+        });
+
+        // Convert to chart data format
+        const chartData: MuscleGroupData[] = Object.entries(muscleGroupSets)
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            .filter(([_, count]) => count > 0)
+            .map(([name, sets]) => ({
+                name,
+                sets,
+                fill: muscleGroupColors[name as keyof typeof muscleGroupColors]
+            }));
+
+        setMuscleGroupData(chartData);
+    }, [exerciseToMuscleGroup, muscleGroupColors]);
 
     useEffect(() => {
         async function fetchData() {
@@ -284,92 +387,7 @@ export default function Gym() {
         }
 
         fetchData();
-    }, []);
-
-    const processWorkoutData = (workouts: HevyWorkout[]) => {
-        let setCount = 0;
-        const chartData: ChartData[] = [];
-
-        workouts.forEach(workout => {
-            const date = new Date(workout.start_time);
-            let workoutSets = 0;
-
-            workout.exercises.forEach(exercise => {
-                if (Array.isArray(exercise.sets)) {
-                    workoutSets += exercise.sets.length;
-                }
-            });
-
-            // Use a meaningful title or generate one if not provided
-            const workoutTitle = workout.title && workout.title.trim() !== ""
-                ? workout.title
-                : `Workout (${formatDate(date)})`;
-
-            chartData.push({
-                name: formatDate(date),
-                sets: workoutSets,
-                date,
-                title: workoutTitle
-            });
-
-            setCount += workoutSets;
-        });
-
-        setTotalSets(setCount);
-
-        // Sort by date ascending
-        chartData.sort((a, b) => a.date.getTime() - b.date.getTime());
-        setWorkoutData(chartData);
-    };
-
-    const processMuscleGroupData = (workouts: HevyWorkout[]) => {
-        const muscleGroupSets: Record<string, number> = {
-            "Chest": 0,
-            "Back": 0,
-            "Legs": 0,
-            "Shoulders": 0,
-            "Arms": 0,
-            "Core": 0,
-            "Other": 0
-        };
-
-        // Collect all exercises and their sets
-        workouts.forEach(workout => {
-            workout.exercises.forEach(exercise => {
-                if (!Array.isArray(exercise.sets)) return;
-
-                const setCount = exercise.sets.length;
-                const title = exercise.title;
-
-                // Try to find matching muscle group
-                let found = false;
-                for (const [exerciseName, muscleGroup] of Object.entries(exerciseToMuscleGroup)) {
-                    if (title.includes(exerciseName)) {
-                        muscleGroupSets[muscleGroup] += setCount;
-                        found = true;
-                        break;
-                    }
-                }
-
-                // If no match found, add to "Other"
-                if (!found) {
-                    muscleGroupSets["Other"] += setCount;
-                }
-            });
-        });
-
-        // Convert to chart data format
-        const chartData: MuscleGroupData[] = Object.entries(muscleGroupSets)
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            .filter(([_, count]) => count > 0)
-            .map(([name, sets]) => ({
-                name,
-                sets,
-                fill: muscleGroupColors[name]
-            }));
-
-        setMuscleGroupData(chartData);
-    };
+    }, [processMuscleGroupData, processWorkoutData]);
 
     const formatDate = (date: Date): string => {
         // Shorter format for x-axis labels

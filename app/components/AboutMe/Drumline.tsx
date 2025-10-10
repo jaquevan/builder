@@ -45,7 +45,7 @@ const ImageContainer = styled.div`
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-    background: #000; /* optional: adds contrast behind transparent parts */
+    background: #000;
 `;
 
 const StyledImage = styled(Image)`
