@@ -12,9 +12,9 @@ const fadeIn = keyframes`
 const DrumlineContainer = styled.div`
     width: 100%;
     max-width: 900px;
-    padding: 2.5rem;
+    padding: 2.5rem 2rem;
     border-radius: 18px;
-    background: rgba(0, 0, 0, 0.03);
+    background: rgba(152, 152, 152, 0.03);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     font-family: "DM Sans", sans-serif;
     display: flex;
@@ -23,29 +23,46 @@ const DrumlineContainer = styled.div`
     border: 1px solid rgba(0, 0, 0, 0.08);
     backdrop-filter: blur(6px);
     animation: ${fadeIn} 0.6s ease-out;
-    text-align: left;
     margin: 0 auto;
-    transition: background 0.3s ease;
+    box-sizing: border-box;
 
-    @media (prefers-color-scheme: dark) {
-        background: rgba(255, 255, 255, 0.04);
-        border: 1px solid rgba(255, 255, 255, 0.08);
+    @media (max-width: 768px) {
+        padding: 1.5rem 1.5rem;
+        border-radius: 12px;
+        width: 100%;
     }
 
-    @media (max-width: 1024px) {
-        width: 90%;
-        padding: 2rem;
+    @media (max-width: 480px) {
+        padding: 1rem;
+        border-radius: 8px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
     }
 `;
 
 const ImageContainer = styled.div`
-    width: 70%;
-    height: 45%;
+    width: 100%;
+    max-width: 300px;
     margin: 1.5rem auto;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
     background: #000;
+
+    @media (max-width: 768px) {
+        width: 95%;
+        margin: 1rem auto;
+    }
+
+    @media (max-width: 480px) {
+        width: 98%;
+        margin: 0.7rem auto;
+        border-radius: 8px;
+    }
 `;
 
 const StyledImage = styled(Image)`
@@ -57,9 +74,6 @@ const StyledImage = styled(Image)`
     display: block;
 `;
 
-
-
-
 const Title = styled.h1`
     font-size: 2.2rem;
     margin-bottom: 1.5rem;
@@ -67,38 +81,45 @@ const Title = styled.h1`
     padding-bottom: 0.7rem;
     font-weight: 700;
     letter-spacing: -0.01em;
-
-    &::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 50px;
-        height: 4px;
-        background: #3631ff;
-        border-radius: 2px;
-    }
+    text-align: center;
+    width: 100%;
 
     @media (max-width: 768px) {
         font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+
+    @media (max-width: 480px) {
+        font-size: 1.5rem;
+        margin-bottom: 0.8rem;
+        padding-bottom: 0.5rem;
     }
 `;
 
 const Description = styled.div`
-    font-size: 1.15rem;
-    line-height: 1.8;
+    font-size: 1rem;
+    line-height: 1.5;
     margin: 1.8rem 0;
     font-weight: 400;
+    width: 100%;
+    box-sizing: border-box;
 
     strong {
-        color: #5d7df3;
+        color: #e53935;
         font-weight: 600;
     }
-    
+
 
     @media (max-width: 768px) {
         font-size: 1rem;
         line-height: 1.7;
+        margin: 1.2rem 0;
+    }
+
+    @media (max-width: 480px) {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin: 1rem 0;
     }
 `;
 
@@ -106,25 +127,37 @@ const YoutubeButton = styled.a`
     display: inline-flex;
     padding: 0.9rem 1.8rem;
     margin-top: 1rem;
-    background-color: #3631ff;
+    background-color: #222;
     border-radius: 10px;
-    color: white;
+    color: #fff;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 1rem;
-    transition: all 0.25s ease;
+    transition: background 0.25s ease;
     align-items: center;
     gap: 0.7rem;
     letter-spacing: 0.02em;
-    box-shadow: 0 4px 12px rgba(54, 49, 255, 0.3);
+    box-shadow: none;
+    border: none;
 
     &:hover {
-        background-color: #4540ff;
+        background-color: #444;
     }
 
     svg {
         width: 22px;
         height: 22px;
+    }
+
+    @media (max-width: 480px) {
+        padding: 0.8rem 1.4rem;
+        font-size: 0.95rem;
+        gap: 0.5rem;
+
+        svg {
+            width: 20px;
+            height: 20px;
+        }
     }
 `;
 

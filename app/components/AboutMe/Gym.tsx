@@ -53,14 +53,22 @@ type MuscleGroupData = { name: string; sets: number; fill: string };
 
 const Container = styled.div`
     max-width: 1200px;
-    width: min(90%, 1200px);
+    width: 100%;
     margin: 3rem auto;
-    padding: 0 1rem;
+    padding: 0 2rem;
     font-family: 'Roboto Mono', monospace;
+    box-sizing: border-box;
 
     @media screen and (max-width: 768px) {
         margin: 2rem auto;
-        width: 95%;
+        width: 100%;
+        padding: 0 1rem;
+    }
+
+    @media screen and (max-width: 480px) {
+        margin: 1rem auto;
+        width: 100%;
+        padding: 0 1rem;
     }
 `;
 
@@ -70,10 +78,15 @@ const Title = styled.h1`
     margin-bottom: 2rem;
     font-weight: 700;
     font-family: 'JetBrains Mono', monospace;
-    color: #ffffff;
 
     @media screen and (max-width: 768px) {
         margin-bottom: 1.5rem;
+        font-size: clamp(1.5rem, 3vw, 2rem);
+    }
+
+    @media screen and (max-width: 480px) {
+        margin-bottom: 1rem;
+        font-size: clamp(1.2rem, 2.5vw, 1.5rem);
     }
 `;
 
@@ -87,18 +100,23 @@ const StatBar = styled.div`
     background: rgba(18, 18, 18, 0.6);
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    color: white;
-    width: min(90%, 800px);
+    width: 100%;
+    max-width: 800px;
+    box-sizing: border-box;
 
     @media screen and (max-width: 768px) {
         flex-direction: column;
         width: 100%;
         padding: 1rem;
         gap: 0.5rem;
+        margin: 1rem auto;
     }
 
     @media screen and (max-width: 480px) {
-        padding: 0.75rem;
+        width: 100%;
+        padding: 0.8rem;
+        gap: 0.4rem;
+        margin: 0.5rem auto;
     }
 `;
 
@@ -112,45 +130,54 @@ const Stat = styled.div`
 
 const ChartCard = styled.div`
     background: rgba(255, 255, 255, 0.98);
-    color: black;
     border-radius: 12px;
     padding: 2rem;
     width: 100%;
     border: 1px solid rgba(255, 255, 255, 0.1);
     margin: 2rem auto;
+    box-sizing: border-box;
 
     @media screen and (max-width: 768px) {
         padding: 1rem;
-        margin: 1.5rem auto;
+        margin: 1rem auto;
+        width: 100%;
     }
 
     @media screen and (max-width: 480px) {
-        padding: 0.75rem;
-        margin: 1rem auto;
+        padding: 0.8rem;
+        margin: 0.5rem auto;
+        width: 100%;
+        border-radius: 8px;
     }
 `;
 
 const ChartTitle = styled.h2`
-    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    font-size: clamp(1rem, 2vw, 1.3rem);
     margin-bottom: 1rem;
     color: #333;
     font-weight: 700;
     font-family: 'Roboto Mono', monospace;
     border-bottom: 2px dashed #f0f0f0;
     padding-bottom: 0.5rem;
+
+    @media screen and (max-width: 480px) {
+        font-size: 0.95rem;
+        margin-bottom: 0.7rem;
+        padding-bottom: 0.4rem;
+    }
 `;
 
 const ChartsRow = styled.div`
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      gap: 2rem;
-      width: 100%;
-      
-      @media screen and (max-width: 900px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2rem;
+    width: 100%;
+
+    @media screen and (max-width: 900px) {
         flex-direction: column;
-      }
-    `;
+    }
+`;
 
 const ChartContainer = styled.div`
     flex: 1;
@@ -163,6 +190,11 @@ const PieChartLegend = styled.div`
     justify-content: center;
     gap: 1rem;
     margin-top: 1rem;
+
+    @media screen and (max-width: 480px) {
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+    }
 `;
 
 const LegendItem = styled.div`
@@ -170,6 +202,10 @@ const LegendItem = styled.div`
     align-items: center;
     font-family: 'Roboto Mono', monospace;
     font-size: 12px;
+
+    @media screen and (max-width: 480px) {
+        font-size: 10px;
+    }
 `;
 
 const LegendColor = styled.div<{ color: string }>`
@@ -189,7 +225,54 @@ const InfoText = styled.div`
     border-bottom: 1px dashed #e0e0e0;
     text-align: center;
     font-style: italic;
+
+    @media screen and (max-width: 480px) {
+        font-size: 0.8rem;
+        padding: 0.4rem;
+    }
 `;
+
+function useResponsiveChartHeight(defaultHeight: number, tabletHeight: number, mobileHeight: number) {
+    const [height, setHeight] = useState(defaultHeight);
+
+    useEffect(() => {
+        function handleResize() {
+            if (window.innerWidth < 480) {
+                setHeight(mobileHeight);
+            } else if (window.innerWidth < 768) {
+                setHeight(tabletHeight);
+            } else {
+                setHeight(defaultHeight);
+            }
+        }
+        handleResize();
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, [defaultHeight, tabletHeight, mobileHeight]);
+
+    return height;
+}
+
+function useResponsiveValue<T>(defaultValue: T, tabletValue: T, mobileValue: T) {
+    const [value, setValue] = useState(defaultValue);
+
+    useEffect(() => {
+        function handleResize() {
+            if (window.innerWidth < 480) {
+                setValue(mobileValue);
+            } else if (window.innerWidth < 768) {
+                setValue(tabletValue);
+            } else {
+                setValue(defaultValue);
+            }
+        }
+        handleResize();
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, [defaultValue, tabletValue, mobileValue]);
+
+    return value;
+}
 
 export default function Gym() {
     const [totalWorkouts, setTotalWorkouts] = useState(0);
@@ -198,6 +281,10 @@ export default function Gym() {
     const [muscleGroupData, setMuscleGroupData] = useState<MuscleGroupData[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+
+    // Responsive chart heights
+    const barChartHeight = useResponsiveChartHeight(400, 300, 250);
+    const pieChartHeight = useResponsiveChartHeight(300, 250, 200);
 
     // Exercise categorization mapping
     const exerciseToMuscleGroup = useMemo(() => ({
@@ -331,7 +418,6 @@ export default function Gym() {
 
         // Convert to chart data format
         const chartData: MuscleGroupData[] = Object.entries(muscleGroupSets)
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             .filter(([_, count]) => count > 0)
             .map(([name, sets]) => ({
                 name,
@@ -445,7 +531,6 @@ export default function Gym() {
                 }}>
                     <p style={{ margin: '0 0 5px 0' }}><strong>{data.name}</strong></p>
                     <p style={{color: data.payload.fill, margin: 0}}>
-
                         {data.value} sets ({Math.round(data.percent * 100)}%)
                     </p>
                 </div>
@@ -480,6 +565,37 @@ export default function Gym() {
     // Calculate average sets per workout for reference line
     const avgSets = totalSets / workoutData.length;
 
+    // Responsive font sizes for axis ticks
+    const getTickFontSize = () => {
+        if (typeof window !== "undefined") {
+            if (window.innerWidth < 480) return 10;
+            if (window.innerWidth < 768) return 11;
+        }
+        return 12;
+    };
+
+    // Responsive XAxis height
+    const getXAxisHeight = () => {
+        if (typeof window !== "undefined") {
+            if (window.innerWidth < 480) return 50;
+            if (window.innerWidth < 768) return 60;
+        }
+        return 70;
+    };
+
+    // Responsive chart margins
+    const getChartMargins = () => {
+        if (typeof window !== "undefined") {
+            if (window.innerWidth < 480) {
+                return { top: 20, right: 10, left: 0, bottom: getXAxisHeight() };
+            }
+            if (window.innerWidth < 768) {
+                return { top: 20, right: 20, left: 10, bottom: getXAxisHeight() };
+            }
+        }
+        return { top: 20, right: 30, left: 20, bottom: getXAxisHeight() };
+    };
+
     return (
         <Container>
             <Title>Workout Analytics</Title>
@@ -487,32 +603,34 @@ export default function Gym() {
                 Data sourced from Hevy Workout Tracking App API, displaying the last 10 workout sessions
             </InfoText>
             <StatBar>
-
                 <Stat>Total Tracked Workouts: {totalWorkouts}</Stat>
                 <Stat>Total Sets (past 10 workouts): {totalSets}</Stat>
             </StatBar>
 
             <ChartCard>
                 <ChartTitle>Sets per Workout Session</ChartTitle>
-                <ResponsiveContainer width="100%" height={400}>
+                <ResponsiveContainer width="100%" height={barChartHeight}>
                     <BarChart
                         data={workoutData}
-                        margin={{ top: 20, right: 30, left: 20, bottom: 70 }}
+                        margin={getChartMargins()}
                     >
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis
                             dataKey="name"
                             tick={{
                                 fontFamily: 'Roboto Mono, monospace',
-                                fontSize: 12
+                                fontSize: getTickFontSize()
                             }}
                             angle={-40}
                             textAnchor="end"
-                            height={70}
+                            height={getXAxisHeight()}
                             interval={0}
                         />
                         <YAxis
-                            tick={{ fontFamily: 'Roboto Mono, monospace' }}
+                            tick={{
+                                fontFamily: 'Roboto Mono, monospace',
+                                fontSize: getTickFontSize()
+                            }}
                             label={{
                                 value: 'Total Sets',
                                 angle: -90,
@@ -551,7 +669,7 @@ export default function Gym() {
                                 dataKey="sets"
                                 position="top"
                                 fill="#333"
-                                fontSize={12}
+                                fontSize={getTickFontSize()}
                                 fontFamily="Roboto Mono, monospace"
                             />
                         </Bar>
@@ -563,7 +681,7 @@ export default function Gym() {
                 <ChartTitle>Exercise Distribution by Muscle Group</ChartTitle>
                 <ChartsRow>
                     <ChartContainer>
-                        <ResponsiveContainer width="100%" height={300}>
+                        <ResponsiveContainer width="100%" height={pieChartHeight}>
                             <PieChart>
                                 <Pie
                                     data={muscleGroupData}
@@ -571,8 +689,8 @@ export default function Gym() {
                                     nameKey="name"
                                     cx="50%"
                                     cy="50%"
-                                    outerRadius={100}
-                                    innerRadius={60}
+                                    outerRadius={pieChartHeight / 2 - 20}
+                                    innerRadius={pieChartHeight / 2 - 60}
                                     paddingAngle={2}
                                     animationDuration={800}
                                 >

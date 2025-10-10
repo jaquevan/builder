@@ -129,18 +129,19 @@ const MobileStatusContainer = styled.div`
 `;
 
 const ResumeSection = styled.div`
-    width: clamp(300px, 25vw, 400px);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     animation: ${fadeIn} 0.8s ease-out 0.3s both;
     z-index: 40;
     position: relative;
 
     @media (max-width: 1024px) {
-        width: 100%;
         max-width: 500px;
     }
 
     @media (max-width: 768px) {
-        width: 100%;
         max-width: 90%;
         margin: 0 auto;
     }

@@ -35,7 +35,8 @@ const projects: Project[] = [
         image: planit.src,
         description: "Space themed productivity app with meditation, tasks-completion & journaling features",
         github: "https://github.com/jaquevan/Plan-It_bh2024",
-        liveLink: null
+        liveLink: null,
+        hackathonWinner: "Best Health Hack"
     },
 
 
@@ -45,7 +46,8 @@ const projects: Project[] = [
         image: camel.src,
         description: "Landing page and adobe extenstion for SEO and web analytics",
         github: "https://github.com/TemiKayas/Camelitics",
-        liveLink: null
+        liveLink: null,
+        hackathonWinner: "MLH Adobe Award"
     },
 
 

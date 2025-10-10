@@ -44,21 +44,24 @@ const GreyLine = styled.div`
 
 const ContentContainer = styled.div`
     display: grid;
-    grid-template-columns: 0.4fr 1.2fr 0.4fr;
-    gap: 3rem;
-    padding: 0 2rem 3rem;
-    max-width: 1100px;
+    grid-template-columns: 0.7fr 1.1fr 0.7fr;
+    gap: 4rem;
+    padding: 0 2.5rem 3.5rem;
+    max-width: 1200px;
     margin: 0 auto;
     align-items: start;
+    align-items: flex-start;
 
     @media (max-width: 968px) {
         grid-template-columns: 1fr;
         gap: 3rem;
         text-align: center;
+        padding: 0 1.5rem 2.5rem;
+        align-items: center;
     }
 
     @media (max-width: 768px) {
-        padding: 0 1.5rem 2rem;
+        padding: 0 1rem 2rem;
     }
 `;
 
@@ -77,30 +80,35 @@ const BrandColumn = styled.div`
 const NavColumn = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.7rem;
     align-items: flex-start;
-    padding-left: 2rem;
-    align-self: start;
+    padding-right: 2rem;
+    align-self: center;
 
     @media (max-width: 968px) {
         align-items: center;
-        padding-left: 0;
+        padding-right: 0;
+        margin-top: 2rem;
+        align-self: center;
     }
 `;
 
 const ImagePlaceholder = styled.div`
     width: 100%;
-    max-width: 250px;
-    aspect-ratio: 1;
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 340px;
+    aspect-ratio: 1.1;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1.5px solid rgba(255, 255, 255, 0.13);
     display: flex;
     align-items: center;
     justify-content: center;
     color: rgba(255, 255, 255, 0.3);
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+    overflow: hidden;
+    position: relative;
 
     @media (max-width: 968px) {
         display: none;
@@ -159,15 +167,15 @@ const Tagline = styled(Typography)`
     }
 `;
 
-const NavTitle = styled.div`
-    color: ${colors.lightText};
-    font-size: 0.9rem;
-    font-weight: 600;
-    text-transform: lowercase;
-    letter-spacing: 2px;
-    margin-bottom: 1.25rem;
-    font-family: 'JetBrains Mono', monospace;
-`;
+// const NavTitle = styled.div`
+//     color: ${colors.lightText};
+//     font-size: 0.9rem;
+//     font-weight: 600;
+//     text-transform: lowercase;
+//     letter-spacing: 2px;
+//     margin-bottom: 1.25rem;
+//     font-family: 'JetBrains Mono', monospace;
+// `;
 
 
 const FooterLink = styled(Link)`
@@ -177,7 +185,8 @@ const FooterLink = styled(Link)`
     gap: 0.75rem;
     color: rgba(255, 255, 255, 0.65);
     text-decoration: none;
-    font-size: 0.95rem;
+    font-size: 1.25rem;
+    text-align: left;
     font-weight: 500;
     transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     padding: 0.6rem 0;
@@ -234,11 +243,13 @@ const FooterLink = styled(Link)`
 
 const SocialIconsContainer = styled.div`
     display: flex;
-    gap: 0.75rem;
+    gap: 1.25rem;
     margin-top: 0.5rem;
+    align-items: flex-start;
 
     @media (max-width: 968px) {
         justify-content: center;
+        align-items: center;
     }
 `;
 
@@ -246,8 +257,8 @@ const SocialButton = styled.div<{ $platform?: string }>`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 45px;
-    height: 45px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.9);
     color: #111;
@@ -272,7 +283,7 @@ const SocialButton = styled.div<{ $platform?: string }>`
     }
 
     svg {
-        font-size: 1.15rem;
+        font-size: 2rem;
     }
 `;
 
@@ -380,7 +391,6 @@ export default function Footer() {
                 </BrandColumn>
 
                 <NavColumn>
-                    <NavTitle>mini navigation</NavTitle>
                     <FooterLink href="/">
                         <HomeIcon fontSize="small" /> Home
                     </FooterLink>
@@ -396,7 +406,11 @@ export default function Footer() {
                 </NavColumn>
 
                 <ImagePlaceholder>
-                    Image
+                    <img
+                        src="/snare_close.png"
+                        alt="Snare Drum Closeup"
+                        style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '16px', filter: 'grayscale(100%)' }}
+                    />
                 </ImagePlaceholder>
             </ContentContainer>
 

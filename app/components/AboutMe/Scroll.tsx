@@ -10,11 +10,13 @@ const FlexContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     gap: 2rem;
     max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
     padding: 0 2rem;
+    box-sizing: border-box;
 
     @media screen and (max-width: 1024px) {
         flex-direction: column;
@@ -23,8 +25,13 @@ const FlexContainer = styled.div`
     }
 
     @media screen and (max-width: 480px) {
-        gap: 1rem;
-        padding: 0 0.5rem;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 1rem;
+        box-sizing: border-box;
     }
 `;
 

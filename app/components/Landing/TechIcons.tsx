@@ -2,15 +2,6 @@
 import styled, { keyframes } from "styled-components";
 import Image from "next/image";
 
-const scroll = keyframes`
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(-50%);
-    }
-`;
-
 const TechContainer = styled.div`
     width: 100%;
     overflow: hidden;
@@ -20,32 +11,24 @@ const TechContainer = styled.div`
     height: 3.5rem;
     display: flex;
     align-items: center;
-
-    &::before, &::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        width: 100px;
-        height: 100%;
-        z-index: 2;
-    }
-
-    &::before {
-        left: 0;
-    }
-
-    &::after {
-        right: 0;
-    }
 `;
 
 const TechTrack = styled.div`
     display: flex;
-    width: fit-content;
-    animation: ${scroll} 35s linear infinite;
-    padding: 0 2rem;
+    width: max-content;
+    animation: scroll-marquee 25s linear infinite;
     align-items: center;
     height: 100%;
+    will-change: transform;
+
+    @keyframes scroll-marquee {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
 `;
 
 const IconsGroup = styled.div`
@@ -55,6 +38,7 @@ const IconsGroup = styled.div`
     gap: 2rem;
     padding: 0 1rem;
     height: 100%;
+    flex-shrink: 0;
 `;
 
 const IconContainer = styled.div`
@@ -120,24 +104,37 @@ const TechIcons = () => {
     return (
         <TechContainer>
             <TechTrack>
-                {[...Array(2)].map((_, groupIndex) => (
-                    <IconsGroup key={`group-${groupIndex}`} aria-hidden={groupIndex === 1}>
-                        {technologies.map((tech, index) => (
-                            <IconContainer key={`tech-${groupIndex}-${index}`}>
-                                <IconWrapper>
-                                    <Image
-                                        src={tech.path}
-                                        alt={`${tech.name} icon`}
-                                        fill
-                                        style={{ objectFit: 'contain' }}
-                                        priority={groupIndex === 0}
-                                    />
-                                </IconWrapper>
-                                <IconLabel>{tech.name}</IconLabel>
-                            </IconContainer>
-                        ))}
-                    </IconsGroup>
-                ))}
+                <IconsGroup>
+                    {technologies.map((tech, index) => (
+                        <IconContainer key={`tech-0-${index}`}>
+                            <IconWrapper>
+                                <Image
+                                    src={tech.path}
+                                    alt={`${tech.name} icon`}
+                                    fill
+                                    style={{ objectFit: 'contain' }}
+                                    priority={index === 0}
+                                />
+                            </IconWrapper>
+                            <IconLabel>{tech.name}</IconLabel>
+                        </IconContainer>
+                    ))}
+                </IconsGroup>
+                <IconsGroup>
+                    {technologies.map((tech, index) => (
+                        <IconContainer key={`tech-1-${index}`}>
+                            <IconWrapper>
+                                <Image
+                                    src={tech.path}
+                                    alt={`${tech.name} icon`}
+                                    fill
+                                    style={{ objectFit: 'contain' }}
+                                />
+                            </IconWrapper>
+                            <IconLabel>{tech.name}</IconLabel>
+                        </IconContainer>
+                    ))}
+                </IconsGroup>
             </TechTrack>
         </TechContainer>
     );

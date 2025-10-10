@@ -13,6 +13,7 @@ export interface Project {
     description: string;
     github: string | null;
     liveLink: string | null;
+    hackathonWinner?: string; // Award won at hackathon
 }
 
 interface ProjectCardProps {
@@ -64,7 +65,7 @@ const ImageContainer = styled.div<ImageContainerProps>`
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    
+
     &::after {
         content: '';
         position: absolute;
@@ -75,6 +76,25 @@ const ImageContainer = styled.div<ImageContainerProps>`
         z-index: 1;
         pointer-events: none;
     }
+`;
+
+const WinnerBadge = styled.div`
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(255, 255, 255, 0.95);
+    color: #333;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    backdrop-filter: blur(4px);
 `;
 
 const PlaceholderText = styled.div`
@@ -157,6 +177,9 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         >
             <Card>
                 <ImageContainer $hasImage={Boolean(project.image)}>
+                    {project.hackathonWinner && (
+                        <WinnerBadge>{project.hackathonWinner}</WinnerBadge>
+                    )}
                     {project.image ? (
                         <Image
                             src={project.image}

@@ -11,21 +11,24 @@ const fadeIn = keyframes`
 const Container = styled.div`
     width: 100%;
     max-width: 360px;
-    margin: -8.5vh auto 0;
+    margin: -8.5vh 0 0 0;
     padding: 1rem;
     position: relative;
     z-index: 40;
     animation: ${fadeIn} 0.6s ease-out;
+    text-align: left;
 
     @media (max-width: 1024px) {
-        margin-top: -1rem;
+        margin: -1rem auto 0;
         max-width: 90%;
+        text-align: center;
     }
 
     @media (max-width: 768px) {
         margin-top: 0;
         max-width: 95%;
         padding: 0.5rem;
+        text-align: center;
     }
 `;
 

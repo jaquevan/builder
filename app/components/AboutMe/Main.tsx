@@ -17,7 +17,6 @@ const ProfileImage = styled.div`
     height: clamp(180px, 12vw, 220px);
     border-radius: 12px;
     overflow: hidden;
-    border: 2px solid #00843D;
     margin: 0 auto;
     animation: ${fadeIn} 0.7s ease-out;
 
@@ -31,6 +30,8 @@ const ProfileImage = styled.div`
 const InfoContainer = styled.div`
     animation: ${fadeIn} 0.8s ease-out;
     text-align: center;
+    width: 100%;
+    margin: 0 auto;
 `;
 
 const Subtitle = styled.h2`
@@ -39,11 +40,11 @@ const Subtitle = styled.h2`
     font-weight: 600;
     margin-bottom: 0.5rem;
     letter-spacing: 0.02em;
-    color: rgba(255, 255, 255, 0.95);
-
+    // Emphasized text only
     @media screen and (max-width: 768px) {
         font-size: clamp(0.95rem, 2.5vw, 1.1rem);
         margin-bottom: 0.6rem;
+        text-align: center;
     }
 `;
 
@@ -52,23 +53,23 @@ const Minor = styled.h3`
     font-family: "DM Sans", sans-serif;
     font-weight: 500;
     margin-bottom: 1.5rem;
-    color: rgba(255, 255, 255, 0.8);
-
+    // Emphasized text only
     @media screen and (max-width: 768px) {
         font-size: clamp(0.85rem, 2.2vw, 1rem);
         margin-bottom: 1rem;
+        text-align: center;
     }
 `;
-
 
 const TerminalContainer = styled.div`
     flex: 1;
     max-width: 700px;
     animation: ${fadeIn} 0.9s ease-out;
-
+    margin: 0 auto;
     @media screen and (max-width: 768px) {
         width: 100%;
         max-width: 500px;
+        margin: 0 auto;
     }
 `;
 
@@ -100,6 +101,8 @@ const MainDiv = styled.div`
         gap: 2rem;
         margin: 2rem auto;
         padding: 0.5rem;
+        align-items: center;
+        text-align: center;
     }
 `;
 

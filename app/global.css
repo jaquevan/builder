@@ -26,7 +26,7 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-
+    cursor: url('/cursor.svg') 16 16, auto;
 }
 html {
     width: 100%;
@@ -100,4 +100,14 @@ html {
     scrollbar-width: initial;
     scroll-padding: 2px;
     scrollbar-color: #1abc9c #ecf0f1;
+}
+
+/* Custom cursor styles */
+a, button, input[type="submit"], input[type="button"],
+[role="button"], .clickable {
+    cursor: url('/cursor.svg') 16 16, pointer;
+}
+
+input, textarea, select {
+    cursor: url('/cursor.svg') 16 16, text;
 }
