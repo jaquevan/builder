@@ -20,6 +20,7 @@ const DrumlineContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     border: 1px solid rgba(0, 0, 0, 0.08);
     backdrop-filter: blur(6px);
     animation: ${fadeIn} 0.6s ease-out;
@@ -29,13 +30,15 @@ const DrumlineContainer = styled.div`
     @media (max-width: 768px) {
         padding: 1.5rem 1.5rem;
         border-radius: 12px;
-        width: 100%;
+        width: 90%;
     }
 
     @media (max-width: 480px) {
         padding: 1rem;
         border-radius: 8px;
-        width: 100%;
+        width: calc(100% - 2rem);
+        max-width: calc(100% - 2rem);
+        margin: 0 auto;
         display: flex;
         flex-direction: column;
         justify-content: center;

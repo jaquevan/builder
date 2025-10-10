@@ -67,7 +67,7 @@ const TrainContainer = styled.div`
     justify-content: flex-start;
     width: 100%;
     animation: ${moveTrain} 10s ease-out infinite;
-    will-change: transform; 
+    will-change: transform;
     z-index: 5;
     pointer-events: none;
 

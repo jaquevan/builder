@@ -30,8 +30,9 @@ const FlexContainer = styled.div`
         justify-content: center;
         width: 100%;
         margin: 0 auto;
-        padding: 0 1rem;
+        padding: 0;
         box-sizing: border-box;
+        gap: 1.5rem;
     }
 `;
 
@@ -40,6 +41,7 @@ const MusicContainer = styled.div`
     max-width: 1200px;
     margin: 3rem auto;
     padding: 0 1rem;
+    box-sizing: border-box;
 
     h1 {
         text-align: center;
@@ -51,6 +53,11 @@ const MusicContainer = styled.div`
 
     @media screen and (max-width: 768px) {
         margin: 2rem auto;
+    }
+
+    @media screen and (max-width: 480px) {
+        padding: 0;
+        margin: 1.5rem auto;
     }
 `;
 

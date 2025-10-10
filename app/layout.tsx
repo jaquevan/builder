@@ -8,7 +8,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata: Metadata = {
     title: {
-        default: "Evan Jaquez - UX Researcher, Designer, and Developer",
+        default: "Evan Jaquez: Portfolio",
         template: "%s | Evan Jaquez"
     },
     description: "Evan Jaquez is a Computer Science and Economics student at Boston University, passionate about software engineering, frontend development, and UI/UX. Portfolio showcasing projects, experience, and skills.",

@@ -26,13 +26,13 @@ const SpotifyContainer = styled.div`
     @media (max-width: 768px) {
         padding: 1.5rem 1.5rem;
         border-radius: 12px;
-        width: 100%;
+        width: 90%;
     }
 
     @media (max-width: 480px) {
         padding: 1rem;
         border-radius: 8px;
-        width: 100%;
+        width: 90%;
         box-sizing: border-box;
     }
 `;

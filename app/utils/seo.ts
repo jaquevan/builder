@@ -2,7 +2,7 @@ import { SEOProps } from "../components/Metadata";
 
 
 export const defaultSEO: SEOProps = {
-    title: "Evan Jaquez | Developer & Builder",
+    title: "Evan Jaquez",
     description: "Portfolio of Evan Jaquez, a Computer Science & Economics graduate from Boston University specializing in web development and software engineering.",
     keywords: [
         "evan jaquez",

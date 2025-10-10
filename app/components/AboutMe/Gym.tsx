@@ -125,7 +125,6 @@ const Stat = styled.div`
     font-size: clamp(1rem, 2vw, 1.2rem);
     font-weight: 600;
     font-family: 'Roboto Mono', monospace;
-    color: rgba(255, 255, 255, 0.95);
 `;
 
 const ChartCard = styled.div`
@@ -211,8 +210,6 @@ const LegendItem = styled.div`
 const LegendColor = styled.div<{ color: string }>`
     width: 12px;
     height: 12px;
-    color: black;
-    background-color: ${props => props.color};
     margin-right: 5px;
     border-radius: 2px;
 `;
@@ -284,7 +281,7 @@ export default function Gym() {
 
     // Responsive chart heights
     const barChartHeight = useResponsiveChartHeight(400, 300, 250);
-    const pieChartHeight = useResponsiveChartHeight(300, 250, 200);
+    const pieChartHeight = useResponsiveChartHeight(350, 280, 220);
 
     // Exercise categorization mapping
     const exerciseToMuscleGroup = useMemo(() => ({
@@ -689,8 +686,8 @@ export default function Gym() {
                                     nameKey="name"
                                     cx="50%"
                                     cy="50%"
-                                    outerRadius={pieChartHeight / 2 - 20}
-                                    innerRadius={pieChartHeight / 2 - 60}
+                                    outerRadius={Math.min(pieChartHeight * 0.4, 120)}
+                                    innerRadius={Math.min(pieChartHeight * 0.25, 70)}
                                     paddingAngle={2}
                                     animationDuration={800}
                                 >
