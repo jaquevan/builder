@@ -34,8 +34,8 @@ export const metadata: Metadata = {
         type: "website",
         locale: "en_US",
         url: "https://jaquevan.com",
-        title: "Evan Jaquez - Software Engineer & Computer Science Student",
-        description: "Portfolio of Evan Jaquez - Computer Science and Economics student at Boston University specializing in software engineering and full-stack development.",
+        title: "Evan Jaquez - Boston University",
+        description: "Portfolio of Evan Jaquez - Computer Science and Economics student at Boston University specializing in UI/UX, Project Management, and Frontend Development.",
         siteName: "Evan Jaquez Portfolio",
     },
     twitter: {
@@ -77,12 +77,13 @@ export default function RootLayout({
         "description": "Computer Science and Economics student at Boston University, passionate about software engineering, full-stack development, and data science.",
         "knowsAbout": [
             "Software Engineering",
-            "Full Stack Development",
+            "Frontend Development",
             "Computer Science",
             "Data Science",
             "Economics",
             "Web Development",
             "React",
+            "UX Researcher",
             "Next.js",
             "TypeScript"
         ],
