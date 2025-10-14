@@ -13,6 +13,7 @@ export interface Project {
     description: string;
     github: string | null;
     liveLink: string | null;
+    devpost?: string | null; // Devpost link for hackathon projects
     hackathonWinner?: string; // Award won at hackathon
 }
 
@@ -212,6 +213,17 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                             >
                                 <GitHubIcon fontSize="small" />
                                 Code
+                            </LinkButton>
+                        )}
+
+                        {project.devpost && (
+                            <LinkButton
+                                href={project.devpost}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <LaunchIcon fontSize="small" />
+                                Devpost
                             </LinkButton>
                         )}
 

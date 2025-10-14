@@ -61,16 +61,20 @@ const Container = styled.main`
 
 const HeroImage = styled.div`
     display: flex;
-    flex-direction: column;  // Add this line
-    align-items: center;     // Add this line
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     margin-bottom: 4rem;
+    width: 100%;
+    max-width: 375px;
+    margin-left: auto;
+    margin-right: auto;
 
     img {
-        width: 110%;
-        max-width: 480px;
+        width: 100%;
+        height: auto;
         border-radius: 8px;
-        object-fit: cover;
+        object-fit: contain;
     }
 `;
 
@@ -258,6 +262,29 @@ const NextStepsSection = styled(Section)`
     }
 `;
 
+const PrototypeLink = styled.a`
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.875rem 2rem;
+    background: var(--text-primary, #333);
+    color: var(--background, white);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    @media (prefers-color-scheme: dark) {
+        background: var(--text-primary, #e0e0e0);
+        color: var(--background, #121212);
+    }
+`;
+
 const Citation = styled.figcaption`
     font-size: 0.9rem;
     color: var(--text-secondary, #666);
@@ -434,9 +461,17 @@ export default function WordWyrm() {
                 <NextStepsSection>
                     <TitleWrapper>Next Steps</TitleWrapper>
                     <Paragraph>
-                        This project is currently in the research and discovery phase. A full case study
-                        with detailed findings, prototypes, and outcomes will be published as the project progresses.
+                        This project is currently in active development. Check out the live prototype below,
+                        which is updated weekly with new features and improvements as we continue refining
+                        the platform based on user feedback and testing.
                     </Paragraph>
+                    <PrototypeLink
+                        href="https://word-wyrm-front-end.vercel.app/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        View Live Prototype
+                    </PrototypeLink>
                 </NextStepsSection>
             </Container>
             <Footer />

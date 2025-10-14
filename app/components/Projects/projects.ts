@@ -5,9 +5,9 @@ import dbz from '@/public/dbz.png';
 import bdd from '@/public/bdd.png';
 import weather from '@/public/weather.png';
 import three from '@/public/fe/Three.js_Icon.svg.png';
-import onc from "@/public/fe/our_national_conversation_logo.jpg";
 import ecodev from "@/public/lc.png"; // Add this image
 import bostonVoter from "@/public/BV.png"; // Add this image
+import trailblazer from "@/public/fe/trailblazer.png";
 import { Project } from "./ProjectCard"
 
 const projects: Project[] = [
@@ -20,6 +20,17 @@ const projects: Project[] = [
     github: "https://github.com/jaquevan/ecodev-platform",
     liveLink: "https://ecodev-website.vercel.app/"
    },
+
+    {
+        id: "trailblazer",
+        title: "Trailblazer",
+        image: trailblazer.src,
+        description: "Splatoon meets Strava. Run through Boston, paint territory in your school colors. BU vs MIT vs NEU vs... claim the city, one stride at a time.",
+        github: "https://github.com/jaquevan/running-bh-frontend",
+        liveLink: null,
+        devpost: "https://devpost.com/software/trailblazer-r0dkaz?ref_content=my-projects-tab&ref_feature=my_projects",
+        hackathonWinner: "Boston Hacks 2025"
+    },
 
     {
         id: "boston-voter",
@@ -50,15 +61,6 @@ const projects: Project[] = [
         hackathonWinner: "MLH Adobe Award"
     },
 
-
-    {
-        id: "onc",
-        title: "Our National Conversation",
-        image: onc.src,
-        description: "Non-profit website to promote civic engagement among young adults",
-        github: null,
-        liveLink: "https://www.ournationalconversation.org/"
-    },
 
     {
         id: "Dbz",

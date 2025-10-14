@@ -8,40 +8,90 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata: Metadata = {
     title: {
-        default: "Evan Jaquez: Portfolio",
+        default: "Evan Jaquez | Software Engineer & UX Designer",
         template: "%s | Evan Jaquez"
     },
-    description: "Evan Jaquez is a Computer Science and Economics student at Boston University, passionate about software engineering, frontend development, and UI/UX. Portfolio showcasing projects, experience, and skills.",
+    description: "Evan Jaquez (Evan J, Evan Jacques) is a Computer Science and Economics student at Boston University (BU), specializing in software engineering, frontend development, UI/UX design, and full-stack development. Portfolio showcasing projects at La Colaborativa, Boston Voter, MAPLE, and Word Wyrm.",
     keywords: [
+        // Name variations
         "Evan Jaquez",
+        "Evan J",
+        "Evan Jacques",
+        "Evan Jacquez",
+        "Evan BU",
+        "Evan Jaquez Boston University",
+        "Evan J BU",
+        "Evan Jacques BU",
+        // Professional titles
         "Software Engineer",
+        "Frontend Developer",
+        "Full Stack Developer",
+        "UX Designer",
+        "UX Researcher",
+        "Web Developer",
+        "UI/UX Designer",
+        // Education
         "Computer Science",
         "Boston University",
-        "Full Stack Developer",
-        "Web Development",
+        "BU Computer Science",
+        "BU Economics",
+        "Economics Student",
+        // Technical skills
+        "React Developer",
+        "Next.js Developer",
+        "TypeScript Developer",
+        "JavaScript",
+        "Node.js",
+        "Tailwind CSS",
+        "Strapi CMS",
+        "Python",
         "Data Science",
-        "Economics",
+        // Projects & Experience
+        "La Colaborativa",
+        "Boston Voter",
+        "MAPLE 3.0",
+        "Word Wyrm",
+        "Trailblazer Boston Hacks",
+        "Chelsea MA Developer",
+        // Specific expertise
+        "Civic Tech",
+        "Educational Technology",
+        "Digital Equity",
+        "Web Accessibility",
+        "Mobile-First Design",
+        "Responsive Design",
         "Portfolio",
-        "UX Researcher",
-        "React",
-        "Next.js",
-        "TypeScript"
+        "Hackathon Winner",
+        "Boston Hacks 2025"
     ],
     authors: [{ name: "Evan Jaquez" }],
     creator: "Evan Jaquez",
     publisher: "Evan Jaquez",
+    metadataBase: new URL('https://jaquevan.com'),
+    alternates: {
+        canonical: '/',
+    },
     openGraph: {
         type: "website",
         locale: "en_US",
         url: "https://jaquevan.com",
-        title: "Evan Jaquez - Software Engineer & Computer Science Student",
-        description: "Portfolio of Evan Jaquez - Computer Science and Economics student at Boston University specializing in software engineering and full-stack development.",
+        title: "Evan Jaquez - Software Engineer & UX Designer | Boston University",
+        description: "Portfolio of Evan Jaquez (Evan J) - Computer Science and Economics student at Boston University specializing in UI/UX design, frontend development, and civic technology. Projects: La Colaborativa, Boston Voter, MAPLE, Word Wyrm.",
         siteName: "Evan Jaquez Portfolio",
+        images: [
+            {
+                url: '/pfp2.jpg',
+                width: 1200,
+                height: 630,
+                alt: 'Evan Jaquez - Software Engineer & UX Designer',
+            },
+        ],
     },
     twitter: {
         card: "summary_large_image",
-        title: "Evan Jaquez - Software Engineer & Computer Science Student",
-        description: "Portfolio of Evan Jaquez - Computer Science and Economics student at Boston University.",
+        title: "Evan Jaquez - Software Engineer & UX Designer @ Boston University",
+        description: "Portfolio of Evan Jaquez - CS & Econ student at BU. Frontend dev, UX designer, civic tech enthusiast.",
+        images: ['/pfp2.jpg'],
     },
     robots: {
         index: true,
@@ -68,29 +118,60 @@ export default function RootLayout({
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Evan Jaquez",
+        "alternateName": ["Evan J", "Evan Jacques", "Evan Jacquez"],
         "url": "https://jaquevan.com",
-        "jobTitle": "Software Engineer",
+        "jobTitle": ["Software Engineer", "UX Designer", "Frontend Developer"],
+        "worksFor": [
+            {
+                "@type": "Organization",
+                "name": "La Colaborativa",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Chelsea",
+                    "addressRegion": "MA"
+                }
+            }
+        ],
         "alumniOf": {
             "@type": "CollegeOrUniversity",
             "name": "Boston University",
+            "sameAs": "https://www.bu.edu"
         },
-        "description": "Computer Science and Economics student at Boston University, passionate about software engineering, full-stack development, and data science.",
+        "description": "Evan Jaquez (also known as Evan J) is a Computer Science and Economics student at Boston University, specializing in software engineering, frontend development, UI/UX design, and civic technology. Known for work on La Colaborativa, Boston Voter, MAPLE, and Word Wyrm projects.",
         "knowsAbout": [
             "Software Engineering",
+            "Frontend Development",
             "Full Stack Development",
+            "UI/UX Design",
             "Computer Science",
             "Data Science",
             "Economics",
             "Web Development",
             "React",
             "Next.js",
-            "TypeScript"
+            "TypeScript",
+            "JavaScript",
+            "Python",
+            "Tailwind CSS",
+            "Strapi CMS",
+            "Civic Technology",
+            "Educational Technology",
+            "Digital Equity",
+            "Web Accessibility",
+            "Mobile-First Design"
+        ],
+        "award": [
+            "Boston Hacks 2025 Winner - Trailblazer",
+            "MLH Adobe Award - Camelitics"
         ],
         "sameAs": [
-            // Add your social media profiles here
             "https://github.com/jaquevan",
-            "https://www.linkedin.com/in/evan-jaquez-118b5b294/",
-        ]
+            "https://www.linkedin.com/in/evan-jaquez-118b5b294/"
+        ],
+        "mainEntityOfPage": {
+            "@type": "ProfilePage",
+            "@id": "https://jaquevan.com"
+        }
     };
 
     return (

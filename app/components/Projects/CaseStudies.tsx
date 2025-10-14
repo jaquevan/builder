@@ -45,6 +45,13 @@ const ProjectCard = styled(Card)(({ theme }) => ({
 // Case Studies Thumbnails and links
 const caseStudies = [
     {
+        id: 1,
+        title: 'La Colaborativa',
+        image: LC,
+        link: '/case-studies/la-colaborativa',
+    },
+
+    {
         id: 2,
         title: 'Boston Voter',
         image: BostonVoterImage,
@@ -52,7 +59,7 @@ const caseStudies = [
     },
 
     {
-        id: 1,
+        id: 3,
         title: 'MAPLE 3.0',
         image: MapleImage,
         link: '/case-studies/maple',
@@ -63,13 +70,6 @@ const caseStudies = [
         title: 'Word Wyrm',
         image: WordWyrmImage,
         link: '/case-studies/word-wyrm',
-    },
-    
-    {
-        id: 3,
-        title: 'La Colaborativa',
-        image: LC,
-        link: '/case-studies/la-colaborativa',
     },
 
 ];
