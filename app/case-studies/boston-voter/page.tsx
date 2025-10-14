@@ -68,15 +68,20 @@ const Container = styled.main`
 
 const HeroImage = styled.div`
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     margin-bottom: 4rem;
+    width: 100%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 
     img {
         width: 100%;
         height: auto;
-        max-width: 800px;
         border-radius: 8px;
-        object-fit: cover;
+        object-fit: contain;
     }
 `;
 
