@@ -4,8 +4,7 @@ import React, { useState, useEffect, useCallback, useMemo } from "react";
 import styled from "styled-components";
 import {
     BarChart, Bar, XAxis, YAxis, CartesianGrid,
-    Tooltip, Legend, ResponsiveContainer, ReferenceLine, LabelList,
-    PieChart, Pie, Cell
+    Tooltip, Legend, ResponsiveContainer, ReferenceLine, LabelList
 } from "recharts";
 
 type HevyWorkout = {
@@ -166,54 +165,55 @@ const ChartTitle = styled.h2`
     }
 `;
 
-const ChartsRow = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 2rem;
-    width: 100%;
-
-    @media screen and (max-width: 900px) {
-        flex-direction: column;
-    }
-`;
-
-const ChartContainer = styled.div`
-    flex: 1;
-    min-width: 200px;
-`;
-
-const PieChartLegend = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 1rem;
-
-    @media screen and (max-width: 480px) {
-        gap: 0.5rem;
-        margin-top: 0.5rem;
-    }
-`;
-
-const LegendItem = styled.div`
-    display: flex;
-    align-items: center;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 12px;
-    color: unset;
-
-    @media screen and (max-width: 480px) {
-        font-size: 10px;
-    }
-`;
-
-const LegendColor = styled.div<{ color: string }>`
-    width: 12px;
-    height: 12px;
-    margin-right: 5px;
-    border-radius: 2px;
-`;
+// Commented out - used for pie chart feature (currently disabled)
+// const ChartsRow = styled.div`
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: space-between;
+//     gap: 2rem;
+//     width: 100%;
+//
+//     @media screen and (max-width: 900px) {
+//         flex-direction: column;
+//     }
+// `;
+//
+// const ChartContainer = styled.div`
+//     flex: 1;
+//     min-width: 200px;
+// `;
+//
+// const PieChartLegend = styled.div`
+//     display: flex;
+//     flex-wrap: wrap;
+//     justify-content: center;
+//     gap: 1rem;
+//     margin-top: 1rem;
+//
+//     @media screen and (max-width: 480px) {
+//         gap: 0.5rem;
+//         margin-top: 0.5rem;
+//     }
+// `;
+//
+// const LegendItem = styled.div`
+//     display: flex;
+//     align-items: center;
+//     font-family: 'Roboto Mono', monospace;
+//     font-size: 12px;
+//     color: unset;
+//
+//     @media screen and (max-width: 480px) {
+//         font-size: 10px;
+//     }
+// `;
+//
+// const LegendColor = styled.div<{ color: string }>`
+//     width: 12px;
+//     height: 12px;
+//     margin-right: 5px;
+//     border-radius: 2px;
+// `;
 
 const InfoText = styled.div`
     width: 100%;
@@ -251,38 +251,41 @@ function useResponsiveChartHeight(defaultHeight: number, tabletHeight: number, m
     return height;
 }
 
-function useResponsiveValue<T>(defaultValue: T, tabletValue: T, mobileValue: T) {
-    const [value, setValue] = useState(defaultValue);
-
-    useEffect(() => {
-        function handleResize() {
-            if (window.innerWidth < 480) {
-                setValue(mobileValue);
-            } else if (window.innerWidth < 768) {
-                setValue(tabletValue);
-            } else {
-                setValue(defaultValue);
-            }
-        }
-        handleResize();
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, [defaultValue, tabletValue, mobileValue]);
-
-    return value;
-}
+// Commented out - reserved for future responsive features
+// function useResponsiveValue<T>(defaultValue: T, tabletValue: T, mobileValue: T) {
+//     const [value, setValue] = useState(defaultValue);
+//
+//     useEffect(() => {
+//         function handleResize() {
+//             if (window.innerWidth < 480) {
+//                 setValue(mobileValue);
+//             } else if (window.innerWidth < 768) {
+//                 setValue(tabletValue);
+//             } else {
+//                 setValue(defaultValue);
+//             }
+//         }
+//         handleResize();
+//         window.addEventListener("resize", handleResize);
+//         return () => window.removeEventListener("resize", handleResize);
+//     }, [defaultValue, tabletValue, mobileValue]);
+//
+//     return value;
+// }
 
 export default function Gym() {
     const [totalWorkouts, setTotalWorkouts] = useState(0);
     const [totalSets, setTotalSets] = useState(0);
     const [workoutData, setWorkoutData] = useState<ChartData[]>([]);
-    const [muscleGroupData, setMuscleGroupData] = useState<MuscleGroupData[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
     // Responsive chart heights
     const barChartHeight = useResponsiveChartHeight(400, 300, 250);
-    const pieChartHeight = useResponsiveChartHeight(350, 280, 220);
+
+    // Commented out - for pie chart feature (currently disabled)
+    // const [muscleGroupData, setMuscleGroupData] = useState<MuscleGroupData[]>([]);
+    // const pieChartHeight = useResponsiveChartHeight(350, 280, 220);
 
     // Exercise categorization mapping
     const exerciseToMuscleGroup = useMemo(() => ({
@@ -416,14 +419,16 @@ export default function Gym() {
 
         // Convert to chart data format
         const chartData: MuscleGroupData[] = Object.entries(muscleGroupSets)
-            .filter(([_, count]) => count > 0)
+            .filter(([, count]) => count > 0)
             .map(([name, sets]) => ({
                 name,
                 sets,
                 fill: muscleGroupColors[name as keyof typeof muscleGroupColors]
             }));
 
-        setMuscleGroupData(chartData);
+        // Commented out - for pie chart feature (currently disabled)
+        // setMuscleGroupData(chartData);
+        console.log('Muscle group data:', chartData); // Keep for debugging
     }, [exerciseToMuscleGroup, muscleGroupColors]);
 
     useEffect(() => {
@@ -514,28 +519,29 @@ export default function Gym() {
         return null;
     };
 
-    const PieChartTooltip = ({ active, payload }: PieTooltipProps) => {
-        if (active && payload && payload.length) {
-            const data = payload[0];
-            return (
-                <div style={{
-                    background: '#fff',
-                    padding: '10px',
-                    border: '1px solid #ccc',
-                    borderLeft: `4px solid ${data.payload.fill}`,
-                    fontFamily: 'Roboto Mono, monospace',
-                    fontSize: '12px',
-                    boxShadow: '0 2px 5px rgba(0,0,0,0.1)'
-                }}>
-                    <p style={{ margin: '0 0 5px 0' }}><strong>{data.name}</strong></p>
-                    <p style={{color: data.payload.fill, margin: 0}}>
-                        {data.value} sets ({Math.round(data.percent * 100)}%)
-                    </p>
-                </div>
-            );
-        }
-        return null;
-    };
+    // Commented out - for pie chart feature (currently disabled)
+    // const PieChartTooltip = ({ active, payload }: PieTooltipProps) => {
+    //     if (active && payload && payload.length) {
+    //         const data = payload[0];
+    //         return (
+    //             <div style={{
+    //                 background: '#fff',
+    //                 padding: '10px',
+    //                 border: '1px solid #ccc',
+    //                 borderLeft: `4px solid ${data.payload.fill}`,
+    //                 fontFamily: 'Roboto Mono, monospace',
+    //                 fontSize: '12px',
+    //                 boxShadow: '0 2px 5px rgba(0,0,0,0.1)'
+    //             }}>
+    //                 <p style={{ margin: '0 0 5px 0' }}><strong>{data.name}</strong></p>
+    //                 <p style={{color: data.payload.fill, margin: 0}}>
+    //                     {data.value} sets ({Math.round(data.percent * 100)}%)
+    //                 </p>
+    //             </div>
+    //         );
+    //     }
+    //     return null;
+    // };
 
     if (error) {
         return (

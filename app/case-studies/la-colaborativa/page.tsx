@@ -472,9 +472,9 @@ export default function LaColaborativaCaseStudy() {
                         <CenteredParagraph>
                             I researched content management frameworks and identified Strapi as the ideal fit.
                             The people who knew the most about the programs offered needed to be editing the site—without
-                            coding experience, they needed a CMS to make updates independently. Strapi's headless architecture
+                            coding experience, they needed a CMS to make updates independently. Strapi&apos;s headless architecture
                             would allow non-technical staff to manage content without relying on developers, transforming
-                            update times from weeks to minutes while accomplishing more with the organization's limited
+                            update times from weeks to minutes while accomplishing more with the organization&apos;s limited
                             resources.
                         </CenteredParagraph>
                     </Phase>
@@ -572,7 +572,7 @@ export default function LaColaborativaCaseStudy() {
                     <TitleWrapper>Key Takeaways</TitleWrapper>
                     <CenteredParagraph>
                         This experience was a turning point in how I approach design and development. I learned
-                        that designing for accessibility isn't an add-on—it has to shape the foundation of the
+                        that designing for accessibility isn&apos;t an add-on—it has to shape the foundation of the
                         product from day one. My initial mistake taught me how critical it is to deeply understand
                         your users, especially when they come from different cultural or technical backgrounds than
                         your own. By admitting I had misjudged the needs of the user base and pivoting to a
