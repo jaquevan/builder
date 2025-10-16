@@ -59,12 +59,19 @@ const Time = styled.div`
     font-family: "JetBrains Mono", monospace;
 `;
 
-const Profile = styled.div`
+const Profile = styled.a`
     display: flex;
-    padding: 16px;
+    padding: 8px;
     align-items: center;
-    gap: 16px;
+    gap: 8px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.05);
+    }
 `;
 
 const Avatar = styled.img`
@@ -86,26 +93,49 @@ const UserDetails = styled.div`
     overflow: hidden;
 `;
 
+const Bio = styled.div`
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-family: "JetBrains Mono", monospace;
+    margin-top: 4px;
+    font-style: italic;
+    line-height: 1.4;
+
+    &::before {
+        content: '— ';
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    &::after {
+        content: '';
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    @media (max-width: 600px) {
+        font-size: 0.7rem;
+    }
+`;
+
 const IconsContainer = styled.div`
-    padding: 10px 0;
+    padding: 8px 0;
     overflow: hidden;
 `;
 
 const StatsContainer = styled.div`
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
-    padding: 14px;
+    padding: 7px;
 
-    @media (max-width: 480px) {
+    @media (max-width: 600px) {
         grid-template-columns: 1fr;
     }
 `;
 
 const StatBox = styled.div`
     background: rgba(255, 255, 255, 0.03);
-    border-radius: 12px;
-    padding: 14px;
+    border-radius: 10px;
+    padding: 10px 12px;
     position: relative;
     overflow: hidden;
     transition: transform 0.2s, box-shadow 0.2s;
@@ -116,7 +146,7 @@ const StatBox = styled.div`
     }
 
     @media (max-width: 480px) {
-        padding: 12px;
+        padding: 10px;
     }
 `;
 
@@ -124,23 +154,64 @@ const StatBoxHeader = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
 `;
 
 const StatLabel = styled.div`
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     color: rgba(255, 255, 255, 0.7);
     font-weight: 500;
 `;
 
 const StatValueText = styled.div`
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     font-weight: 600;
     color: #FFFFFF;
     font-family: "JetBrains Mono", monospace;
 
     @media (max-width: 600px) {
-        font-size: 1.1rem;
+        font-size: 1rem;
+    }
+`;
+
+const HeatmapContainer = styled.div`
+    padding: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+`;
+
+const HeatmapTitle = styled.div`
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+`;
+
+const HeatmapWrapper = styled.div`
+    width: 100%;
+    overflow-x: auto;
+
+    img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        filter: brightness(1.1);
+    }
+
+    &::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 3px;
     }
 `;
 
@@ -179,17 +250,25 @@ export default function GitHubStatus() {
     // state variables
     const [loading, setLoading] = useState(true);
     const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
-    const [repos, setRepos] = useState(0);
-    const [languages, setLanguages] = useState('');
+    const [languages, setLanguages] = useState('TypeScript');
     const [currentTime, setCurrentTime] = useState('');
+    const [mounted, setMounted] = useState(false);
 
-    // hardcoded values
     const username = "jaquevan";
-    const contributions = 277;
+    const repos = 27;
     const streak = 13;
 
     // update time every second
     useEffect(() => {
+        setMounted(true);
+
+        // Set initial time immediately
+        const now = new Date();
+        const formattedDate = now.toISOString().split('T')[0];
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        setCurrentTime(`${formattedDate} ${hours}:${minutes}`);
+
         const interval = setInterval(() => {
             const now = new Date();
             const formattedDate = now.toISOString().split('T')[0];
@@ -206,18 +285,16 @@ export default function GitHubStatus() {
             try {
                 setLoading(true);
 
-                // Fetch only the essential profile data in one request
+                // Fetch user profile
                 const profileResponse = await fetch(`https://api.github.com/users/${username}`);
                 if (!profileResponse.ok) {
                     throw new Error('GitHub API error');
                 }
-
                 const profileData = await profileResponse.json();
 
-                // Update all necessary state at once
+                // Update state
                 setUserProfile(profileData);
-                setRepos(profileData.public_repos || 0);
-                setLanguages('TypeScript'); // Hardcoded as requested
+                setLanguages('TypeScript');
 
                 setLoading(false);
             } catch (err) {
@@ -234,7 +311,7 @@ export default function GitHubStatus() {
             <StatusCard>
                 <CardHeader>
                     <Title><GitHubIcon sx={{ mr: 1, fontSize: "1.1rem" }} /> GitHub</Title>
-                    <Time>{currentTime}</Time>
+                    <Time>{mounted ? currentTime : ''}</Time>
                 </CardHeader>
                 <LoadingWrapper>
                     <CircularProgress size={30} sx={{ color: "#00843D" }} />
@@ -247,10 +324,10 @@ export default function GitHubStatus() {
         <StatusCard>
             <CardHeader>
                 <Title><GitHubIcon sx={{ mr: 1, fontSize: "1.1rem" }} /> GitHub</Title>
-                <Time>{currentTime}</Time>
+                <Time>{mounted ? currentTime : ''}</Time>
             </CardHeader>
 
-            <Profile>
+            <Profile href={`https://github.com/${username}`} target="_blank" rel="noopener noreferrer">
                 <Avatar
                     src={userProfile?.avatar_url || "https://avatars.githubusercontent.com/u/144175083?v=4"}
                     alt={username}
@@ -264,12 +341,29 @@ export default function GitHubStatus() {
                     }}>
                         jaquevan
                     </Typography>
+                    {userProfile?.bio && (
+                        <Bio>{userProfile.bio}</Bio>
+                    )}
                 </UserDetails>
             </Profile>
 
             <IconsContainer>
                 <TechIcons />
             </IconsContainer>
+
+            <HeatmapContainer>
+                <HeatmapTitle>
+                    <CodeIcon fontSize="small" sx={{ color: "#58a6ff" }} />
+                    Contribution Activity
+                </HeatmapTitle>
+                <HeatmapWrapper>
+                    <img
+                        src={`https://ghchart.rshah.org/00843D/${username}`}
+                        alt="GitHub Contribution Chart"
+                    />
+                </HeatmapWrapper>
+            </HeatmapContainer>
+
             <StatsContainer>
                 <StatBox>
                     <StatBoxHeader>
@@ -281,16 +375,8 @@ export default function GitHubStatus() {
 
                 <StatBox>
                     <StatBoxHeader>
-                        <StatLabel>Contributions</StatLabel>
-                        <CodeIcon fontSize="small" sx={{ color: "#4078c0" }} />
-                    </StatBoxHeader>
-                    <StatValueText>{contributions}</StatValueText>
-                </StatBox>
-
-                <StatBox>
-                    <StatBoxHeader>
                         <StatLabel>Longest Streak</StatLabel>
-                        <StarIcon fontSize="small" sx={{ color: "#bd2c00" }} />
+                        <StarIcon fontSize="small" sx={{ color: "#ff6e29" }} />
                     </StatBoxHeader>
                     <StatValueText>{streak}</StatValueText>
                 </StatBox>
@@ -298,7 +384,7 @@ export default function GitHubStatus() {
                 <StatBox>
                     <StatBoxHeader>
                         <StatLabel>Language</StatLabel>
-                        <TerminalIcon fontSize="small" sx={{ color: "#6e5494" }} />
+                        <TerminalIcon fontSize="small" sx={{ color: "#a371f7" }} />
                     </StatBoxHeader>
                     <StatValueText>{languages}</StatValueText>
                 </StatBox>

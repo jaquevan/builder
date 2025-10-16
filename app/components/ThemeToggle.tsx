@@ -47,11 +47,15 @@ const ToggleButton = styled.button`
 `;
 
 export default function ThemeToggle() {
-    const { isDarkMode, toggleTheme } = useTheme();
+    const { isDarkMode, toggleTheme, mounted } = useTheme();
 
     return (
-        <ToggleButton onClick={toggleTheme} aria-label="Toggle theme">
-            {isDarkMode ? <LightModeIcon fontSize="small" /> : <DarkModeIcon fontSize="small" />}
+        <ToggleButton onClick={toggleTheme} aria-label="Toggle theme" suppressHydrationWarning>
+            {mounted ? (
+                isDarkMode ? <LightModeIcon fontSize="small" /> : <DarkModeIcon fontSize="small" />
+            ) : (
+                <DarkModeIcon fontSize="small" />
+            )}
         </ToggleButton>
     );
 }
