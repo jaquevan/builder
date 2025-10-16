@@ -8,10 +8,10 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata: Metadata = {
     title: {
-        default: "Evan Jaquez | Software Engineer & UX Designer",
+        default: "Evan Jaquez",
         template: "%s | Evan Jaquez"
     },
-    description: "Evan Jaquez (Evan J, Evan Jacques) is a Computer Science and Economics student at Boston University (BU), specializing in software engineering, frontend development, UI/UX design, and full-stack development. Portfolio showcasing projects at La Colaborativa, Boston Voter, MAPLE, and Word Wyrm.",
+    description: "Evan Jaquez (Evan J) is a Computer Science and Economics student at Boston University (BU), specializing in software engineering, frontend development, UI/UX design. Portfolio showcasing projects at La Colaborativa, Boston Voter, MAPLE, and Word Wyrm.",
     keywords: [
         // Name variations
         "Evan Jaquez",
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
         type: "website",
         locale: "en_US",
         url: "https://jaquevan.com",
-        title: "Evan Jaquez - Software Engineer & UX Designer | Boston University",
+        title: "Evan Jaquez | Boston University",
         description: "Portfolio of Evan Jaquez (Evan J) - Computer Science and Economics student at Boston University specializing in UI/UX design, frontend development, and civic technology. Projects: La Colaborativa, Boston Voter, MAPLE, Word Wyrm.",
         siteName: "Evan Jaquez Portfolio",
         images: [
@@ -83,13 +83,13 @@ export const metadata: Metadata = {
                 url: '/pfp2.jpg',
                 width: 1200,
                 height: 630,
-                alt: 'Evan Jaquez - Software Engineer & UX Designer',
+                alt: 'Evan Jaquez - Software Engineer & UX Researcher/Designer',
             },
         ],
     },
     twitter: {
         card: "summary_large_image",
-        title: "Evan Jaquez - Software Engineer & UX Designer @ Boston University",
+        title: "Evan Jaquez - Software Engineer & UX Researcher/Designer @ Boston University",
         description: "Portfolio of Evan Jaquez - CS & Econ student at BU. Frontend dev, UX designer, civic tech enthusiast.",
         images: ['/pfp2.jpg'],
     },
