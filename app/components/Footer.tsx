@@ -326,10 +326,14 @@ const CurrentTime = styled.div`
 `;
 
 export default function Footer() {
-    const [currentDateTime, setCurrentDateTime] = useState("2025-03-02 20:41:07");
+    const [currentDateTime, setCurrentDateTime] = useState("");
+    const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
-        const interval = setInterval(() => {
+        setMounted(true);
+
+        // Set initial time immediately
+        const updateTime = () => {
             const now = new Date();
             const year = now.getFullYear();
             const month = String(now.getMonth() + 1).padStart(2, '0');
@@ -342,7 +346,11 @@ export default function Footer() {
             hours = hours ? hours : 12;
 
             setCurrentDateTime(`${year}-${month}-${day} ${hours}:${minutes}:${seconds} ${ampm}`);
-        }, 1000);
+        };
+
+        updateTime();
+
+        const interval = setInterval(updateTime, 1000);
 
         return () => clearInterval(interval);
     }, []);
@@ -386,7 +394,7 @@ export default function Footer() {
                     </SocialIconsContainer>
 
                     <CurrentTime>
-                        {currentDateTime}
+                        {mounted ? currentDateTime : ''}
                     </CurrentTime>
                 </BrandColumn>
 
