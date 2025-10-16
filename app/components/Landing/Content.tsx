@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes, css } from "styled-components";
 
 // Assets
 import Train from "@/public/t.svg";
@@ -36,13 +36,13 @@ const TrackContainer = styled.div`
     background: url(${City.src}) no-repeat center;
     background-size: cover;
     overflow: hidden;
+    overflow-y: visible;
     min-height: 160px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    z-index: -1;
-    pointer-events: none;
+    z-index: 1;
 
     @media (max-width: 768px) {
         height: 35vh;
@@ -58,6 +58,18 @@ const TrackContainer = styled.div`
 
 
 
+const hop = keyframes`
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+`;
+
 const TrainContainer = styled.div`
     position: absolute;
     bottom: 4%;
@@ -70,12 +82,29 @@ const TrainContainer = styled.div`
     will-change: transform;
     z-index: 5;
     pointer-events: none;
+`;
 
+const TrainHitBox = styled.div<{
+    $isAnimating: boolean;
+}>`
+    display: flex;
+    align-items: flex-end;
+    pointer-events: auto;
+    position: relative;
+    transform-origin: bottom center;
+    padding: 10px;
+    margin: -10px;
+    will-change: transform;
+
+    ${props => props.$isAnimating && css`
+        animation: ${hop} 0.4s cubic-bezier(0.33, 1, 0.68, 1);
+    `}
 `;
 
 const TrainImageWrapper = styled.div`
     display: flex;
-    align-items: flex-end; 
+    align-items: flex-end;
+    pointer-events: none;
 `;
 
 const TrainImage = styled(Image)`
@@ -102,6 +131,7 @@ const TrainImage = styled(Image)`
 
 export default function TrainAnimation() {
     const [trainCount, setTrainCount] = useState(3);
+    const [isAnimating, setIsAnimating] = useState(false);
 
     useEffect(() => {
         // Adjust number of train cars based on screen width
@@ -114,30 +144,45 @@ export default function TrainAnimation() {
             }
         };
 
-        // Set initial count
         handleResize();
-
-
         window.addEventListener('resize', handleResize);
-
 
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
+    const handleHover = () => {
+        setIsAnimating(false);
+        // Force reflow to restart animation
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                setIsAnimating(true);
+            });
+        });
+    };
+
+    const handleAnimationEnd = () => {
+        setIsAnimating(false);
+    };
+
     return (
         <TrackContainer aria-label="Animated train scene with city background">
-
             <TrainContainer>
-                <TrainImageWrapper>
-                    {[...Array(trainCount)].map((_, index) => (
-                        <TrainImage
-                            key={`train-car-${index}`}
-                            src={Train}
-                            alt={`Boston T Train Car ${index + 1}`}
-                            priority={index === 0}
-                        />
-                    ))}
-                </TrainImageWrapper>
+                <TrainHitBox
+                    $isAnimating={isAnimating}
+                    onMouseEnter={handleHover}
+                    onAnimationEnd={handleAnimationEnd}
+                >
+                    <TrainImageWrapper>
+                        {[...Array(trainCount)].map((_, index) => (
+                            <TrainImage
+                                key={`train-car-${index}`}
+                                src={Train}
+                                alt={`Boston T Train Car ${index + 1}`}
+                                priority={index === 0}
+                            />
+                        ))}
+                    </TrainImageWrapper>
+                </TrainHitBox>
             </TrainContainer>
         </TrackContainer>
     );

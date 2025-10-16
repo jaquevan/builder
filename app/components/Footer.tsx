@@ -423,7 +423,7 @@ export default function Footer() {
             </ContentContainer>
 
             <BottomBar>
-                © {new Date().getFullYear()} <span>Evan Jaquez</span>. All rights reserved. Built with React & Next.js
+                © {new Date().getFullYear()} <span>Evan Jaquez</span>
             </BottomBar>
         </FooterWrapper>
     );
