@@ -36,7 +36,6 @@ const TrackContainer = styled.div`
     background: url(${City.src}) no-repeat center;
     background-size: cover;
     overflow: hidden;
-    overflow-y: visible;
     min-height: 160px;
     display: flex;
     flex-direction: column;
