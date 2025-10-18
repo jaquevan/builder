@@ -2,7 +2,6 @@
 
 import { useState, FormEvent } from 'react';
 import Nav from "@/app/components/NavBar";
-import Footer from "@/app/components/Footer";
 import { Container, Tooltip, FormControlLabel, Checkbox, Paper, Box, Typography } from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
@@ -379,7 +378,6 @@ export default function Contact() {
                     </Paper>
                 </motion.div>
             </Container>
-            <Footer />
         </>
     );
 }

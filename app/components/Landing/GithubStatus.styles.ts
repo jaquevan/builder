@@ -11,7 +11,6 @@ export const slideIn = keyframes`
 // colors
 export const MBTAColors = {
     green: "#00843D",
-    red: "#DA291C",
     orange: "#ED8B00",
     blue: "#003DA5",
     yellow: "#FCB61A",

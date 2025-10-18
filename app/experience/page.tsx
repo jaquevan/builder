@@ -1,7 +1,6 @@
 "use client";
 
 import Nav from '@/app/components/NavBar';
-import Footer from "@/app/components/Footer";
 import styled, { keyframes } from 'styled-components';
 import { Container, Paper } from '@mui/material';
 import { Work, LocationOn, VolunteerActivism } from '@mui/icons-material';
@@ -10,7 +9,6 @@ import Image from 'next/image';
 const colors = {
     green: "#00843D",
     blue: "#003DA5",
-    red: "#DA291C",
     orange: "#ED8B00",
     purple: "#8A2BE2",
     teal: "#008080",
@@ -231,10 +229,19 @@ const TechIcon = ({ name }: { name: string }) => {
     );
 };
 
+const NavWrapper = styled.div`
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+`;
+
 export default function ExperiencePage() {
     return (
         <>
-            <Nav />
+            <NavWrapper>
+                <Nav />
+            </NavWrapper>
             <Container>
                 <PageContent>
                     <Title>Relevant Experience</Title>
@@ -395,7 +402,6 @@ export default function ExperiencePage() {
                     </ExpCard>
                 </PageContent>
             </Container>
-            <Footer />
         </>
     );
 }

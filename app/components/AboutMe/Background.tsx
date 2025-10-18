@@ -66,14 +66,14 @@ const CardsGrid = styled.div`
 `;
 
 const Card = styled.div`
-    background: rgba(18, 18, 18, 0.7);
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 12px;
     padding: 1.5rem;
-    border: none;
+    border: 1px solid var(--border);
     animation: ${fadeIn} 0.7s cubic-bezier(0.4,0,0.2,1);
     width: 100%;
     max-width: 600px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    box-shadow: 0 4px 16px var(--shadow);
     margin: 0 auto;
     box-sizing: border-box;
 
@@ -95,7 +95,7 @@ const SectionTitle = styled.h2`
     font-size: clamp(1.2rem, 2vw, 1.5rem);
     margin-bottom: 0.7rem;
     font-weight: 600;
-    color: #fff;
+    color: var(--text-primary);
     text-align: left;
 
     @media screen and (max-width: 768px) {
@@ -111,7 +111,7 @@ const Text = styled.p`
     font-size: clamp(1rem, 1.5vw, 1.1rem);
     line-height: 1.7;
     margin: 0;
-    color: #eaeaea;
+    color: var(--text-secondary);
     text-align: left;
 
     @media screen and (max-width: 768px) {
@@ -124,19 +124,19 @@ const Text = styled.p`
 `;
 
 const FirstGenCard = styled(Card)`
-    background: rgba(18, 18, 18, 0.8);
-    border: none;
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px solid var(--primary);
 `;
 
 const FirstGenTitle = styled(SectionTitle)`
-    color: #fff;
+    color: var(--text-primary);
     font-size: clamp(1.25rem, 2vw, 1.6rem);
     margin-bottom: 1rem;
 `;
 
 const FirstGenText = styled(Text)`
     font-weight: 500;
-    color: #f5f5f5;
+    color: var(--text-primary);
     font-size: clamp(1.05rem, 1.7vw, 1.15rem);
 `;
 
@@ -158,7 +158,7 @@ export default function Background() {
                 <FirstGenCard>
                     <FirstGenTitle>First Generation College Student</FirstGenTitle>
                     <FirstGenText>
-                        As a first-generation college student, I&apos;ve embraced both the challenges and opportunities that come with charting a new path. This journey has instilled in me a deep appreciation for education and a drive to make the most of every learning opportunity. I&apos;m passionate about using my knowledge and skills to create technology that makes a meaningful difference.
+                        I will be the first person in my family to graduate college. This is exciting, and I recognize the sacrifices everyone in my family has made for me to get this far in life.
                     </FirstGenText>
                 </FirstGenCard>
             </CardsGrid>

@@ -49,35 +49,83 @@ interface StyledButtonProps {
 
 const ButtonContainer = styled.div`
     display: flex;
-    gap: clamp(0.5rem, 2vw, 1.5rem);
-    flex-wrap: wrap;
-    justify-content: flex-start;
+    gap: clamp(0.8rem, 2vw, 2rem);
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
     max-width: 100%;
-    margin: 1.5rem 0 0.5rem;
-    padding: 1% 0 clamp(1rem, 10%, 5rem);
+    width: 100%;
+    margin: 5vh auto 1.75vh;
 
     @media (max-width: 1024px) {
         justify-content: center;
-        gap: clamp(0.4rem, 1.5vw, 1rem);
-        margin-bottom: 0.25rem;
+        gap: clamp(0.6rem, 2vw, 1.5rem);
+        flex-wrap: wrap;
+        margin: 1vh auto 0.5vh;
+    }
+
+    @media (max-width: 600px) {
+        margin: 1.5vh auto 0.75vh;
+        gap: 0.4rem;
+    }
+
+    @media (max-width: 480px) {
+        margin: 1vh auto 0.5vh;
+        gap: 0.35rem;
+    }
+
+    @media (max-width: 375px) {
+        margin: 0.75vh auto 0.5vh;
+        gap: 0.3rem;
+    }
+
+    @media (max-width: 320px) {
+        margin: 0.5vh auto 0.35vh;
+        gap: 0.25rem;
     }
 `;
 
 const Name = styled.h1`
-    margin: 0;
+    margin: 4vh 0 .5vh;
     padding: 0;
-    font-size: clamp(2rem, 6vw, 4rem);
+    font-size: clamp(2rem, 7vw, 4rem); /* cap the max to reduce clumping on small screens */
     line-height: 1.2;
     letter-spacing: normal;
     transition: letter-spacing 0.3s ease;
+    text-align: center; // centered on all screen sizes
 
     &:hover {
         letter-spacing: 0.15rem;
     }
 
+    @media (max-width: 1024px) {
+        margin: 1vh 0 0.3vh;
+        font-size: clamp(2rem, 6vw, 2.5rem);
+    }
+
     @media (max-width: 768px) {
-        text-align: center;
         font-size: clamp(2rem, 8vw, 3rem);
+    }
+
+    @media (max-width: 600px) {
+        font-size: clamp(1.7rem, 7vw, 2.3rem);
+        margin: 1vh 0 0.35vh;
+        line-height: 1.1;
+    }
+
+    @media (max-width: 480px) {
+        font-size: clamp(1.6rem, 7vw, 2.2rem);
+        margin: 0.75vh 0 0.3vh;
+    }
+
+    @media (max-width: 375px) {
+        font-size: clamp(1.5rem, 6.5vw, 2rem);
+        margin: 0.6vh 0 0.25vh;
+    }
+
+    @media (max-width: 320px) {
+        font-size: clamp(1.3rem, 6vw, 1.8rem);
+        margin: 0.5vh 0 0.2vh;
     }
 `;
 
@@ -88,10 +136,27 @@ const SubText = styled.h2`
     color: #00843D;
     font-family: Monospaced, "JetBrains Mono", sans-serif;
     line-height: 1.2;
+    text-align: center; // centered on all screen sizes
 
     @media (max-width: 768px) {
-        text-align: center;
         font-size: clamp(0.9rem, 4vw, 1.2rem);
+    }
+
+    @media (max-width: 600px) {
+        font-size: clamp(0.8rem, 3.5vw, 1rem); // reduced size
+        line-height: 1.1;
+    }
+
+    @media (max-width: 480px) {
+        font-size: clamp(0.75rem, 3.5vw, 0.95rem); // reduced size
+    }
+
+    @media (max-width: 375px) {
+        font-size: clamp(0.7rem, 3vw, 0.9rem); // reduced size
+    }
+
+    @media (max-width: 320px) {
+        font-size: clamp(0.65rem, 2.8vw, 0.85rem); // smaller for tiny screens
     }
 `;
 
@@ -101,7 +166,7 @@ const StyledButton = styled.a<StyledButtonProps>`
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    padding: 0.8rem 2rem;
+    padding: clamp(0.6rem, 1.2vh, 0.9rem) clamp(1.2rem, 3vw, 2.2rem);
     border-radius: 10px;
     font-size: clamp(0.85rem, 1.5vw, 1.1rem);
     font-weight: 500;
@@ -112,8 +177,8 @@ const StyledButton = styled.a<StyledButtonProps>`
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
     flex: 1;
-    min-width: 140px;
-    max-width: 180px;
+    min-width: clamp(130px, 15vw, 160px);
+    max-width: clamp(160px, 20vw, 200px);
     overflow: hidden;
     z-index: 2;
 
@@ -172,12 +237,28 @@ const StyledButton = styled.a<StyledButtonProps>`
         font-size: 0.9rem;
     }
 
+    @media (max-width: 600px) {
+        flex: 0 1 calc(45% - 0.3rem);
+        min-width: 95px;
+        max-width: 130px;
+        padding: 0.45rem 0.6rem; // much reduced padding
+        font-size: 0.8rem;
+    }
+
     @media (max-width: 480px) {
-        flex: 0 1 calc(45% - 0.5rem);
-        min-width: 100px;
-        max-width: 140px;
-        padding: 0.6rem 0.75rem;
-        font-size: 0.85rem;
+        flex: 0 1 calc(45% - 0.3rem);
+        min-width: 90px;
+        max-width: 120px;
+        padding: 0.4rem 0.55rem; // much reduced padding
+        font-size: 0.75rem;
+    }
+
+    @media (max-width: 375px) {
+        flex: 0 1 calc(45% - 0.25rem);
+        min-width: 85px;
+        max-width: 110px;
+        padding: 0.35rem 0.5rem; // much reduced padding
+        font-size: 0.7rem;
     }
 `;
 

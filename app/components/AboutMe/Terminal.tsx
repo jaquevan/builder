@@ -28,22 +28,20 @@ export default function Terminal() {
     const [input, setInput] = useState<string>("");
     const [history, setHistory] = useState<CommandResult[]>([
         {
-            text: `    ______                         __
-   / ____/   ______ _____         / /___ _____ ___  _____  ____
-  / __/ | | / / __ \`/ __ \\   __  / / __ \`/ __ \`/ / / / _ \\/_  /
- / /___ | |/ / /_/ / / / /  / /_/ / /_/ / /_/ / /_/ /  __/ / /_
-/_____/ |___/\\__,_/_/ /_/   \\____/\\__,_/\\__, /\\__,_/\\___/ /___/
-                                          /_/
-`,
+            text: ` ▘
+ ▌▀▌▛▌▌▌█▌▌▌▀▌▛▌  ▛▘▛▌▛▛▌
+ ▌█▌▙▌▙▌▙▖▚▘█▌▌▌▗ ▙▖▙▌▌▌▌
+▙▌   ▌                   `,
             isCommand: false,
             isAsciiArt: true
         },
-        { text: "Welcome to my interactive terminal! Type 'help' for a list of commands.", isCommand: false },
+        { text: "Welcome to my terminal! Type 'help' for a list of commands.", isCommand: false },
     ]);
 
     const [commandHistory, setCommandHistory] = useState<string[]>([]);
     const [historyIndex, setHistoryIndex] = useState<number>(-1);
     const [showCopiedMessage, setShowCopiedMessage] = useState(false);
+    const [hasInteracted, setHasInteracted] = useState(false);
 
     const inputRef = useRef<HTMLInputElement>(null);
     const terminalRef = useRef<HTMLDivElement>(null);
@@ -51,15 +49,18 @@ export default function Terminal() {
     const commands: { [key: string]: () => string | { text: string; isAsciiArt?: boolean } } = {
         help: () =>
             "Available commands:\n" +
-            "  help      - display this help message\n" +
-            "  education - view my relevant coursework and education\n" +
+            "  help       - display this help message\n" +
+            "  education  - view my relevant coursework\n" +
             "  activities - view my extracurricular activities\n" +
-            "  location - learn about where im based\n" +
-            "  skills    - show my technical skills\n" +
-            "  crab      - show a crab! 🦀\n" +
-            "  wave      - say hello!\n" +
-            "  clear     - clear the terminal\n" +
-            "  about     - learn more about this terminal\n",
+            "  music      - learn about my passion for drumming\n" +
+            "  location   - learn about where I'm based\n" +
+            "  interests  - what I enjoy beyond coding\n" +
+            "  skills     - show my technical skills\n" +
+            "  contact    - get in touch with me\n" +
+            "  cat        - meet my friend\n" +
+            "  wave       - say hello!\n" +
+            "  clear      - clear the terminal\n" +
+            "  about      - learn more about this terminal\n",
 
         education: () =>
             " Boston University\n" +
@@ -97,32 +98,70 @@ export default function Terminal() {
             "   - Clear terminal\n",
 
         skills: () =>
-            " Technical Skills:\n" +
-            "   Languages: TypeScript, JavaScript, Python, Java, C\n" +
-            "   Frontend: React, Next.js, HTML/CSS, Tailwind\n" +
-            "   Backend: Node.js, Express, Flask\n" +
-            "   Database: PostgreSQL, MongoDB, Firebase\n" +
-            "   Tools: Git, Docker, AWS, Vercel\n",
+            " Technologies & Tools:\n\n" +
+            "   [Languages]\n" +
+            "   JavaScript    TypeScript    Python    Java    C\n\n" +
+            "   [Frontend]\n" +
+            "   React         Next.js       Tailwind  MUI\n" +
+            "   HTML/CSS      Three.js      Vite\n\n" +
+            "   [Backend & Database]\n" +
+            "   Node.js       Express       Flask\n" +
+            "   MongoDB       PostgreSQL    Firebase\n\n" +
+            "   [Tools & Design]\n" +
+            "   Git           Docker        Podman    AWS\n" +
+            "   Figma         Adobe         Jest      Slack\n" +
+            "   Linux         Ubuntu        Vercel\n",
 
-        crab: () => ({
+        music: () =>
+            " Music & Drumming:\n\n" +
+            " Being part of the BU Drumline has been one of my favorite\n" +
+            " experiences at college. I started on bass drum and moved to\n" +
+            " snare drum - both require precision, timing, and teamwork.\n\n" +
+            " The discipline from drumming actually translates well to\n" +
+            " programming: both require practice, attention to detail,\n" +
+            " and the ability to work in sync with others.\n\n" +
+            " Fun fact: The rhythm of debugging code and playing rhythms\n" +
+            " on a snare drum are surprisingly similar!\n",
+
+        interests: () =>
+            " Beyond Code:\n\n" +
+            " Film & Philosophy:\n" +
+            "   Member of the Film Lovers and Philosophers Club.\n" +
+            "   I love dissecting movies and discussing big ideas.\n\n" +
+            " Food:\n" +
+            "   Always on the hunt for the best spots in Boston.\n" +
+            "   If you have recommendations, let me know!\n\n" +
+            " Music:\n" +
+            "   Drumline, marching band, and discovering new artists.\n\n" +
+            " These interests keep me creative and give me perspective\n" +
+            " that I bring back to my technical work.\n",
+
+        contact: () =>
+            " Let's Connect:\n\n" +
+            " I'm always interested in connecting with people who are\n" +
+            " passionate about technology, design, or just want to chat!\n\n" +
+            " Find me on:\n" +
+            "   GitHub: github.com/jaquevan\n" +
+            "   LinkedIn: Check the footer of this site\n" +
+            "   Email: Available on my GitHub profile\n\n" +
+            " Feel free to reach out about projects, opportunities,\n" +
+            " or just to say hello!\n",
+
+        cat: () => ({
             text: `
-        ___
-    ___/   \\___
-   /   '---'   \\
-  (  0       0  )
-   \\     v     /
-   /|    |    |\\
-  / |    |    | \\
-     \\  / \\  /
-      \\/   \\/
+      (\\_/)
+     (='.'=)
+    (\")--(\")
 
-    🦀 Time for crab!`,
+    *meow*`,
             isAsciiArt: true
         }),
 
         wave: () => ({
             text: `
-    👋  Hello there!
+      o
+     /|\\    Hello there!
+     / \\
 
      ___________________
     < Nice to meet you! >
@@ -131,12 +170,15 @@ export default function Terminal() {
            \\  (oo)\\_______
               (__)\\       )\\/\\
                   ||----w |
-                  ||     ||`,
+                  ||     ||
+
+    Thanks for stopping by!`,
             isAsciiArt: true
         })
     };
 
     const handleContainerClick = () => {
+        setHasInteracted(true);
         inputRef.current?.focus();
     };
 
@@ -149,8 +191,18 @@ export default function Terminal() {
 
         if (input.trim() === "") return;
 
-        const newHistory = [...history, { text: input, isCommand: true }];
         const commandName = input.trim().toLowerCase().split(" ")[0];
+
+        // Handle clear command specially
+        if (commandName === "clear") {
+            setHistory([]);
+            setCommandHistory([input, ...commandHistory]);
+            setHistoryIndex(-1);
+            setInput("");
+            return;
+        }
+
+        const newHistory = [...history, { text: input, isCommand: true }];
 
         if (commands[commandName]) {
             const result = commands[commandName]();
@@ -232,9 +284,13 @@ export default function Terminal() {
     };
 
     useEffect(() => {
-        inputRef.current?.focus();
-        terminalRef.current?.scrollTo(0, terminalRef.current.scrollHeight);
-    }, [history]);
+        if (hasInteracted) {
+            inputRef.current?.focus();
+        }
+        if (terminalRef.current) {
+            terminalRef.current.scrollTo(0, terminalRef.current.scrollHeight);
+        }
+    }, [history, hasInteracted]);
 
     return (
         <TerminalContainer onClick={handleContainerClick}>
@@ -293,7 +349,6 @@ export default function Terminal() {
                             value={input}
                             onChange={handleInput}
                             onKeyDown={handleKeyDown}
-                            autoFocus
                             spellCheck={false}
                             autoComplete="off"
                         />

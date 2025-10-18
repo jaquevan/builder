@@ -96,9 +96,9 @@ const StatBar = styled.div`
     gap: 1rem;
     padding: 1.5rem;
     margin: 2rem auto;
-    background: rgba(18, 18, 18, 0.6);
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border);
     width: 100%;
     max-width: 800px;
     box-sizing: border-box;
@@ -549,7 +549,7 @@ export default function Gym() {
                 <Title>Workout Analytics</Title>
                 <ChartCard>
                     <ChartTitle>Error Loading Data</ChartTitle>
-                    <p style={{ color: "red", fontFamily: "'Roboto Mono', monospace" }}>{error}</p>
+                    <p style={{ color: "#888", fontFamily: "'Roboto Mono', monospace" }}>{error}</p>
                 </ChartCard>
             </Container>
         );
