@@ -12,16 +12,17 @@ const fadeIn = keyframes`
 const DrumlineContainer = styled.div`
     width: 100%;
     max-width: 900px;
-    padding: 2.5rem 2rem;
+    height: 100%;
+    padding: 2.95rem 2rem;
     border-radius: 18px;
-    background: rgba(152, 152, 152, 0.03);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 10px 30px var(--shadow);
     font-family: "DM Sans", sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    justify-content: flex-start;
+    border: 1px solid var(--border);
     backdrop-filter: blur(6px);
     animation: ${fadeIn} 0.6s ease-out;
     margin: 0 auto;
@@ -86,6 +87,7 @@ const Title = styled.h1`
     letter-spacing: -0.01em;
     text-align: center;
     width: 100%;
+    color: var(--text-primary);
 
     @media (max-width: 768px) {
         font-size: 1.8rem;
@@ -106,12 +108,7 @@ const Description = styled.div`
     font-weight: 400;
     width: 100%;
     box-sizing: border-box;
-
-    strong {
-        color: #e53935;
-        font-weight: 600;
-    }
-
+    color: var(--text-secondary);
 
     @media (max-width: 768px) {
         font-size: 1rem;
@@ -130,6 +127,7 @@ const YoutubeButton = styled.a`
     display: inline-flex;
     padding: 0.9rem 1.8rem;
     margin-top: 1rem;
+    margin-bottom: 0.5rem;
     background-color: #222;
     border-radius: 10px;
     color: #fff;
@@ -156,6 +154,7 @@ const YoutubeButton = styled.a`
         padding: 0.8rem 1.4rem;
         font-size: 0.95rem;
         gap: 0.5rem;
+        margin-bottom: 0.3rem;
 
         svg {
             width: 20px;
@@ -178,13 +177,10 @@ export default function Drumline() {
             </ImageContainer>
 
             <Description>
-                As a proud member of the <strong>Boston University Drumline</strong>, I
-                currently perform as a <strong>snare drummer</strong>, achieving a
-                significant personal milestone since my freshman year. My musical
-                journey includes experience with the <strong>bass drum</strong> in the
-                drumline, as well as playing the <strong>trumpet</strong>,{" "}
-                <strong>french horn</strong>, and <strong>mellophone</strong> during my
-                high school years.
+                Outside of professional experience, I am a proud member of the BU Drumline.
+                Having no prior drumming experience before college, I worked my butt off to
+                play the snare drum. And I love it. Switching instruments at this level
+                demonstrated a lot of courage, and it&apos;s one of my proudest achievements.
             </Description>
 
             <YoutubeButton

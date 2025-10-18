@@ -5,7 +5,6 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import BackToProjects from "@/app/components/Projects/BackToProjects";
 import NavBar from '@/app/components/NavBar';
-import Footer from '@/app/components/Footer';
 import figmaIcon from '../../../public/icons/figma.svg';
 
 // Import images
@@ -469,7 +468,6 @@ export default function BostonVoter() {
             </FigmaSection>
         </Container>
 
-        <Footer/>
     </>
     );
 }

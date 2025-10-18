@@ -5,7 +5,6 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import BackToProjects from "@/app/components/Projects/BackToProjects";
 import NavBar from '@/app/components/NavBar';
-import Footer from '@/app/components/Footer';
 
 // images
 import MapleImage from '../../../public/cases/m3/MAPLE-thumb.png';
@@ -313,7 +312,6 @@ export default function MapleCaseStudy() {
                 </Section>
             </Container>
 
-            <Footer />
         </>
     );
 }

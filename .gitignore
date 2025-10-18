@@ -40,3 +40,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# screenshots and test output
+mobile-screenshots/
+desktop-screenshots/
+final-screenshots/
+train-screenshots/
+debug-*.png

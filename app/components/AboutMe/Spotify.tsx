@@ -8,18 +8,19 @@ const fadeIn = keyframes`
 const SpotifyContainer = styled.div`
     width: 100%;
     max-width: 900px;
+    height: 100%;
     padding: 2.5rem 2rem;
     border-radius: 18px;
-    background: rgba(152, 152, 152, 0.03);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 10px 30px var(--shadow);
     font-family: "DM Sans", sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    justify-content: flex-start;
+    border: 1px solid var(--border);
     backdrop-filter: blur(6px);
     animation: ${fadeIn} 0.6s ease-out;
-    text-align: center;
     margin: 0 auto;
     box-sizing: border-box;
 
@@ -32,7 +33,13 @@ const SpotifyContainer = styled.div`
     @media (max-width: 480px) {
         padding: 1rem;
         border-radius: 8px;
-        width: 90%;
+        width: calc(100% - 2rem);
+        max-width: calc(100% - 2rem);
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         box-sizing: border-box;
     }
 `;
@@ -45,17 +52,17 @@ const Title = styled.h1`
     font-weight: 700;
     letter-spacing: -0.01em;
     text-align: center;
-    font-family: 'JetBrains Mono', monospace;
     width: 100%;
+    color: var(--text-primary);
 
     @media (max-width: 768px) {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
         margin-bottom: 1rem;
     }
 
     @media (max-width: 480px) {
-        font-size: 1.2rem;
-        margin-bottom: 0.7rem;
+        font-size: 1.5rem;
+        margin-bottom: 0.8rem;
         padding-bottom: 0.5rem;
     }
 `;

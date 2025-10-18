@@ -5,7 +5,6 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import BackToProjects from "@/app/components/Projects/BackToProjects";
 import NavBar from '@/app/components/NavBar';
-import Footer from '@/app/components/Footer';
 
 // Images - placeholders for now, you'll add these later
 import LCThumb from '../../../public/LC-thumb.png';
@@ -583,7 +582,6 @@ export default function LaColaborativaCaseStudy() {
                     </CenteredParagraph>
                 </Section>
             </Container>
-            <Footer />
         </>
     );
 }

@@ -5,7 +5,6 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import BackToProjects from "@/app/components/Projects/BackToProjects";
 import NavBar from '@/app/components/NavBar';
-import Footer from '@/app/components/Footer';
 
 // images
 import team from '../../../public/word/team.png';
@@ -474,7 +473,6 @@ export default function WordWyrm() {
                     </PrototypeLink>
                 </NextStepsSection>
             </Container>
-            <Footer />
         </>
     );
 }

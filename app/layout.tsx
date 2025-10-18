@@ -120,7 +120,7 @@ export default function RootLayout({
         "name": "Evan Jaquez",
         "alternateName": ["Evan J", "Evan Jacques", "Evan Jacquez"],
         "url": "https://jaquevan.com",
-        "jobTitle": ["Software Engineer", "UX Designer", "Frontend Developer"],
+        "jobTitle": ["UX Designer", "Frontend Developer"],
         "worksFor": [
             {
                 "@type": "Organization",

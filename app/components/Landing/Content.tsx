@@ -26,37 +26,6 @@ const moveTrain = keyframes`
     }
 `;
 
-
-const TrackContainer = styled.div`
-    position: relative;
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    margin-bottom: 0;
-    height: 30vh;
-    background: url(${City.src}) no-repeat center;
-    background-size: cover;
-    overflow: hidden;
-    min-height: 160px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    z-index: 1;
-
-    @media (max-width: 768px) {
-        height: 35vh;
-        min-height: 200px;
-    }
-
-    @media (max-width: 480px) {
-        height: 30vh;
-        min-height: 180px;
-    }
-`;
-
-
-
-
 const hop = keyframes`
     0% {
         transform: translateY(0);
@@ -69,19 +38,68 @@ const hop = keyframes`
     }
 `;
 
+const TrackContainer = styled.div`
+    position: relative;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%); // breaks out of parent container to full viewport width
+    margin-top: -120px; // negative margin pulls cityscape up to create overlap with content above
+    margin-bottom: 0;
+    padding-bottom: 0; // ensure no padding creates gaps
+    height: clamp(200px, 20vh, 300px); // much smaller vh to eliminate gap
+    background: url(${City.src}) no-repeat center bottom; // anchor city floor to bottom
+    background-size: cover; // makes background fill the container, may crop edges
+    background-position: center bottom; // ensures floor stays at bottom
+    overflow: visible; // allow train to overflow if needed
+    display: block; // block display prevents gap below
+    line-height: 0; // removes line-height gap
+    font-size: 0; // removes font-size gap
+    z-index: 1; // lowest layer - background cityscape
+
+    @media (max-width: 1024px) {
+        margin-top: 0; // remove overlap on tablet/mobile for natural stacking
+        height: clamp(110px, 15vh, 180px); // much smaller for mobile
+        overflow: visible; // show train on mobile
+    }
+
+    @media (max-width: 768px) {
+        height: clamp(100px, 14vh, 160px); // smaller for tablets
+    }
+
+    @media (max-width: 480px) {
+        height: clamp(90px, 12vh, 140px); // smaller for phones
+        min-height: 90px;
+    }
+
+    @media (max-width: 375px) {
+        height: clamp(80px, 11vh, 120px); // smaller for small phones
+        min-height: 80px;
+    }
+
+    @media (max-width: 320px) {
+        height: clamp(70px, 10vh, 100px); // smallest for very small screens
+        min-height: 70px;
+    }
+`;
+
 const TrainContainer = styled.div`
     position: absolute;
-    bottom: 4%;
+    bottom: 0; // train sits on the city floor
     left: 0;
     display: flex;
-    align-items: center;
+    align-items: flex-end; // aligns train to bottom of container
     justify-content: flex-start;
     width: 100%;
-    animation: ${moveTrain} 10s ease-out infinite;
+    animation: ${moveTrain} 10s ease-out infinite; // train animation movement
     will-change: transform;
-    z-index: 5;
+    z-index: 5; // keeps train above city background
     pointer-events: none;
+    padding-bottom: 2px; // tiny padding for visual refinement
+
+    @media (max-width: 1024px) {
+        bottom: 0; // consistent floor placement on all screen sizes
+    }
 `;
+
 
 const TrainHitBox = styled.div<{
     $isAnimating: boolean;
@@ -107,24 +125,34 @@ const TrainImageWrapper = styled.div`
 `;
 
 const TrainImage = styled(Image)`
-    width: 20vw;
-    max-width: 250px;
+    width: 20vw; // responsive train car width based on viewport
+    max-width: 250px; // maximum train car size
     height: auto;
-    margin-right: -1px; 
+    margin-right: -1px; // connects train cars seamlessly
 
     @media (max-width: 1200px) {
-        width: 22vw;
+        width: 22vw; // slightly wider on medium screens
         max-width: 220px;
     }
 
     @media (max-width: 768px) {
-        width: 25vw;
-        max-width: 180px;
+        width: 22vw; // smaller on tablets
+        max-width: 100px; // much smaller to fit container
     }
 
     @media (max-width: 480px) {
-        width: 30vw;
-        max-width: 150px;
+        width: 20vw; // smaller for phones
+        max-width: 80px; // much smaller max
+    }
+
+    @media (max-width: 375px) {
+        width: 18vw; // smaller for small phones
+        max-width: 70px; // smaller to fit container
+    }
+
+    @media (max-width: 320px) {
+        width: 16vw; // smallest for tiny screens
+        max-width: 60px; // smallest max
     }
 `;
 

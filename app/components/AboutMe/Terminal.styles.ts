@@ -7,7 +7,7 @@ const fadeIn = keyframes`
 `;
 
 export const AsciiArt = styled.pre`
-    font-size: calc(.7rem);
+    font-size: 0.7rem;
     width: 100%;
     white-space: pre;
     line-height: 1.2;
@@ -15,11 +15,23 @@ export const AsciiArt = styled.pre`
     color: #9e66ff;
     font-family: 'Roboto Mono', monospace;
     animation: ${fadeIn} 0.6s ease-in;
+    overflow-x: auto;
+
+    @media (max-width: 768px) {
+        font-size: 0.6rem;
+        line-height: 1.1;
+    }
+
+    @media (max-width: 480px) {
+        font-size: 0.5rem;
+        line-height: 1.05;
+    }
 `;
 
 export const TerminalContainer = styled.div<{ isFullscreen?: boolean }>`
-    width: 65vh;
-    height: 20vw;
+    width: 85%;
+    max-width: 800px;
+    height: 450px;
     position: relative;
     background-color: #1e1e1e;
     font-family: 'Roboto Mono', monospace;
@@ -31,27 +43,70 @@ export const TerminalContainer = styled.div<{ isFullscreen?: boolean }>`
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 15px;
-    font-size: calc(.8rem);
+    font-size: 0.85rem;
     margin: 0 auto;
     transition: all 0.3s ease-in-out;
+    box-sizing: border-box;
+
+    @media (max-width: 1400px) {
+        width: 90%;
+        max-width: 750px;
+        height: 420px;
+        font-size: 0.82rem;
+    }
+
+    @media (max-width: 1200px) {
+        width: 90%;
+        max-width: 700px;
+        height: 400px;
+        font-size: 0.8rem;
+        padding: 38px 3.5% 4.5% 3.5%;
+    }
 
     @media (max-width: 1024px) {
-        width: 50vw;
-        height: 30vw;
-        font-size: 0.9rem;
-        margin: 0;
+        width: 92%;
+        max-width: 650px;
+        height: 380px;
+        font-size: 0.78rem;
+    }
+
+    @media (max-width: 900px) {
+        width: 94%;
+        max-width: 600px;
+        height: 350px;
+        font-size: 0.75rem;
+        padding: 36px 3.2% 4.2% 3.2%;
     }
 
     @media (max-width: 768px) {
-        width: 85vw;
-        height: 40vw;
-        font-size: 0.8rem;
+        width: 95%;
+        max-width: 550px;
+        height: 320px;
+        font-size: 0.72rem;
+        padding: 35px 3% 4% 3%;
+    }
+
+    @media (max-width: 640px) {
+        width: 96%;
+        max-width: 500px;
+        height: 300px;
+        font-size: 0.7rem;
     }
 
     @media (max-width: 480px) {
-        width: 85vw;
-        height: 50vw;
-        font-size: 0.7rem;
+        width: 96%;
+        max-width: 100%;
+        height: 280px;
+        font-size: 0.65rem;
+        padding: 32px 2.5% 3% 2.5%;
+        border-radius: 10px;
+    }
+
+    @media (max-width: 380px) {
+        width: 98%;
+        height: 260px;
+        font-size: 0.6rem;
+        padding: 30px 2% 2.5% 2%;
     }
 `;
 
@@ -172,7 +227,7 @@ export const PromptSpan = styled.span`
 
 export const OutputText = styled.span<{ isError?: boolean }>`
     white-space: pre-wrap;
-    color: ${props => props.isError ? '#ff5555' : '#cccccc'};
+    color: ${props => props.isError ? '#cccccc' : '#cccccc'};
     animation: ${fadeIn} 0.4s ease-out;
 `;
 

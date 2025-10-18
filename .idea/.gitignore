@@ -1,5 +1,33 @@
-# Default ignored files
-/shelf/
-/workspace.xml
-# Editor-based HTTP Client requests
-/httpRequests/
+# Repo ignore rules
+
+# Next.js build output and cache
+.next/
+.next/cache/
+
+# Node modules
+node_modules/
+
+# Playwright/browser caches and reports
+.playwright/
+playwright-report/
+.local-chromium/
+
+# Local caches and logs
+.cache/
+npm-debug.log
+yarn-error.log
+pnpm-debug.log
+
+# Local screenshots and assistant runtime
+mobile-screenshots/
+desktop-screenshots/
+final-screenshots/
+train-screenshots/
+.claude/
+
+# OS and editor
+.DS_Store
+.env
+.env.local
+.vscode/
+.idea/

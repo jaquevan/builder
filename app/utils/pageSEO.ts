@@ -3,7 +3,7 @@ import { generatePageSEO } from './seo';
 // import { Project } from '@/app/components/Projects/ProjectCard';
 
 export const homeSEO = generatePageSEO({
-    title: "Evan Jaquez | Software Engineer & UX Designer",
+    title: "Evan Jaquez",
     description: "Evan Jaquez (Evan J, Evan Jacques) - Computer Science and Economics student at Boston University specializing in software engineering, frontend development, UI/UX design, and civic technology. Portfolio featuring La Colaborativa, Boston Voter, MAPLE, Word Wyrm, and Trailblazer projects.",
     keywords: [
         // Name variations

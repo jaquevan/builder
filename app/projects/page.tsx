@@ -2,7 +2,6 @@
 
 import { Container, Box, Grid } from "@mui/material";
 
-import Footer from "@/app/components/Footer";
 import NavBar from "@/app/components/NavBar";
 import ProjectCard from "../components/Projects/ProjectCard";
 import CaseStudies from "../components/Projects/CaseStudies";
@@ -21,16 +20,22 @@ const Title = styled.h1`
     }
 `;
 
+const NavWrapper = styled.div`
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+`;
+
 export default function Projects() {
     return (
         <>
-
-        <Box sx={{ minHeight: "100vh" }}>
-            <NavBar />
+            <NavWrapper>
+                <NavBar />
+            </NavWrapper>
             <CaseStudies/>
             <Container maxWidth="lg" sx={{ py: 8 }}>
                 <Title> Frontend Projects </Title>
-
 
                 <Grid className="fade-in"
                     container
@@ -63,9 +68,6 @@ export default function Projects() {
                     ))}
                 </Grid>
             </Container>
-            <Footer />
-        </Box>
-
         </>
     );
 }

@@ -10,7 +10,7 @@ const FlexContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
     gap: 2rem;
     max-width: 1200px;
     width: 100%;
@@ -18,21 +18,38 @@ const FlexContainer = styled.div`
     padding: 0 2rem;
     box-sizing: border-box;
 
+    > * {
+        flex: 1;
+        min-height: 700px;
+    }
+
     @media screen and (max-width: 1024px) {
         flex-direction: column;
-        align-items: center;
+        align-items: stretch;
         padding: 0 1rem;
+
+        > * {
+            flex: none;
+            width: 100%;
+            min-height: auto;
+        }
     }
 
     @media screen and (max-width: 480px) {
         flex-direction: column;
-        align-items: center;
+        align-items: stretch;
         justify-content: center;
         width: 100%;
         margin: 0 auto;
         padding: 0;
         box-sizing: border-box;
         gap: 1.5rem;
+
+        > * {
+            flex: none;
+            width: 100%;
+            min-height: auto;
+        }
     }
 `;
 
@@ -61,17 +78,40 @@ const MusicContainer = styled.div`
     }
 `;
 
+const EssenceText = styled.p`
+    text-align: center;
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    line-height: 1.7;
+    margin: 2rem auto 0;
+    max-width: 800px;
+    padding: 0 2rem;
+    color: var(--text-secondary);
+    font-family: 'DM Sans', sans-serif;
+    font-style: italic;
+
+    @media screen and (max-width: 768px) {
+        margin: 1.5rem auto 0;
+        padding: 0 1rem;
+    }
+
+    @media screen and (max-width: 480px) {
+        margin: 1rem auto 0;
+        font-size: 0.95rem;
+    }
+`;
+
 export default function Scroll() {
     return (
         <>
-            <Background />
-            <Gym />
             <MusicContainer>
                 <h1>Music</h1>
                 <FlexContainer>
                     <SpotifyEmbed />
                     <Drumline />
                 </FlexContainer>
+                <EssenceText>
+                    I hope that gives you an essence of the type of person I am. I love projects, and I love working at making something better day by day.
+                </EssenceText>
             </MusicContainer>
         </>
     );
