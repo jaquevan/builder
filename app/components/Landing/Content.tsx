@@ -66,18 +66,28 @@ const TrackContainer = styled.div`
     }
 
     @media (max-width: 480px) {
-        height: clamp(90px, 12vh, 140px); // smaller for phones
-        min-height: 90px;
+        height: clamp(85px, 12vh, 135px); // smaller for phones
+        min-height: 85px;
     }
 
-    @media (max-width: 375px) {
-        height: clamp(80px, 11vh, 120px); // smaller for small phones
+    @media (max-width: 430px) {
+        height: clamp(80px, 11.5vh, 130px); // iPhone 14 Pro Max, iPhone 15 Plus
         min-height: 80px;
     }
 
-    @media (max-width: 320px) {
-        height: clamp(70px, 10vh, 100px); // smallest for very small screens
+    @media (max-width: 393px) {
+        height: clamp(75px, 11vh, 125px); // iPhone 16, iPhone 14 Pro
+        min-height: 75px;
+    }
+
+    @media (max-width: 375px) {
+        height: clamp(70px, 10.5vh, 115px); // smaller for small phones
         min-height: 70px;
+    }
+
+    @media (max-width: 320px) {
+        height: clamp(65px, 10vh, 100px); // smallest for very small screens
+        min-height: 65px;
     }
 `;
 

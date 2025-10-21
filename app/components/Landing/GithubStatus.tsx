@@ -40,13 +40,23 @@ const StatusCard = styled.div`
     }
 
     @media (max-width: 480px) {
-        margin: 0.35vh auto;
+        margin: 0.3vh auto;
         max-width: 95%;
+    }
+
+    @media (max-width: 430px) {
+        margin: 0.25vh auto;
+        max-width: 96%;
+    }
+
+    @media (max-width: 393px) {
+        margin: 0.2vh auto;
+        max-width: 97%;
     }
 
     @media (max-width: 375px) {
         max-width: 98%;
-        margin: 0.25vh auto;
+        margin: 0.15vh auto;
     }
 `;
 
@@ -160,6 +170,14 @@ const IconsContainer = styled.div`
     @media (max-width: 1024px) {
         padding: 4px 0;
     }
+
+    @media (max-width: 480px) {
+        padding: 3px 0;
+    }
+
+    @media (max-width: 393px) {
+        padding: 2px 0;
+    }
 `;
 
 const StatsContainer = styled.div`
@@ -180,8 +198,18 @@ const StatsContainer = styled.div`
     }
 
     @media (max-width: 480px) {
-        padding: 5px;
-        gap: 6px;
+        padding: 4px;
+        gap: 5px;
+    }
+
+    @media (max-width: 430px) {
+        padding: 3px;
+        gap: 4px;
+    }
+
+    @media (max-width: 393px) {
+        padding: 3px;
+        gap: 4px;
     }
 `;
 
@@ -224,6 +252,14 @@ const StatLabel = styled.div`
     font-size: 0.7rem;
     color: rgba(255, 255, 255, 0.7);
     font-weight: 500;
+
+    @media (max-width: 480px) {
+        font-size: 0.6rem;
+    }
+
+    @media (max-width: 393px) {
+        font-size: 0.55rem;
+    }
 `;
 
 const StatValueText = styled.div`
@@ -234,6 +270,14 @@ const StatValueText = styled.div`
 
     @media (max-width: 600px) {
         font-size: 1rem;
+    }
+
+    @media (max-width: 480px) {
+        font-size: 0.9rem;
+    }
+
+    @media (max-width: 393px) {
+        font-size: 0.85rem;
     }
 `;
 
@@ -250,7 +294,19 @@ const HeatmapContainer = styled.div`
     }
 
     @media (max-width: 480px) {
-        padding: 10px;
+        padding: 8px;
+    }
+
+    @media (max-width: 430px) {
+        padding: 7px;
+    }
+
+    @media (max-width: 393px) {
+        padding: 6px;
+    }
+
+    @media (max-width: 375px) {
+        padding: 5px;
     }
 `;
 
@@ -262,6 +318,18 @@ const HeatmapTitle = styled.div`
     display: flex;
     align-items: center;
     gap: 8px;
+
+    @media (max-width: 480px) {
+        font-size: 0.7rem;
+        margin-bottom: 8px;
+        gap: 6px;
+    }
+
+    @media (max-width: 393px) {
+        font-size: 0.65rem;
+        margin-bottom: 6px;
+        gap: 5px;
+    }
 `;
 
 const HeatmapWrapper = styled.div`
