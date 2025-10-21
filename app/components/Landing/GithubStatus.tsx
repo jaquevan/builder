@@ -40,13 +40,23 @@ const StatusCard = styled.div`
     }
 
     @media (max-width: 480px) {
-        margin: 0.35vh auto;
+        margin: 0.3vh auto;
         max-width: 95%;
+    }
+
+    @media (max-width: 430px) {
+        margin: 0.25vh auto;
+        max-width: 96%;
+    }
+
+    @media (max-width: 393px) {
+        margin: 0.2vh auto;
+        max-width: 97%;
     }
 
     @media (max-width: 375px) {
         max-width: 98%;
-        margin: 0.25vh auto;
+        margin: 0.15vh auto;
     }
 `;
 

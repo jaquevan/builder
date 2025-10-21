@@ -83,6 +83,21 @@ const MainContentArea = styled.div`
 
     @media (max-width: 480px) {
         gap: 0.75rem;
+        padding-bottom: 60px;
+    }
+
+    @media (max-width: 430px) {
+        gap: 0.6rem;
+        padding-bottom: 50px;
+    }
+
+    @media (max-width: 393px) {
+        gap: 0.5rem;
+        padding-bottom: 45px;
+    }
+
+    @media (max-width: 375px) {
+        padding-bottom: 40px;
     }
 `;
 
@@ -216,11 +231,22 @@ const MobileStatusContainer = styled.div`
 
     @media (max-width: 480px) {
         max-width: 95%;
-        margin: 0.3rem auto;
+        margin: 0.25rem auto;
+    }
+
+    @media (max-width: 430px) {
+        max-width: 96%;
+        margin: 0.2rem auto;
+    }
+
+    @media (max-width: 393px) {
+        max-width: 97%;
+        margin: 0.15rem auto;
     }
 
     @media (max-width: 375px) {
         max-width: 98%;
+        margin: 0.1rem auto;
     }
 `;
 
