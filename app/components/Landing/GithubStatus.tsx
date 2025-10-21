@@ -170,6 +170,14 @@ const IconsContainer = styled.div`
     @media (max-width: 1024px) {
         padding: 4px 0;
     }
+
+    @media (max-width: 480px) {
+        padding: 3px 0;
+    }
+
+    @media (max-width: 393px) {
+        padding: 2px 0;
+    }
 `;
 
 const StatsContainer = styled.div`
@@ -190,8 +198,18 @@ const StatsContainer = styled.div`
     }
 
     @media (max-width: 480px) {
-        padding: 5px;
-        gap: 6px;
+        padding: 4px;
+        gap: 5px;
+    }
+
+    @media (max-width: 430px) {
+        padding: 3px;
+        gap: 4px;
+    }
+
+    @media (max-width: 393px) {
+        padding: 3px;
+        gap: 4px;
     }
 `;
 
@@ -260,7 +278,19 @@ const HeatmapContainer = styled.div`
     }
 
     @media (max-width: 480px) {
-        padding: 10px;
+        padding: 8px;
+    }
+
+    @media (max-width: 430px) {
+        padding: 7px;
+    }
+
+    @media (max-width: 393px) {
+        padding: 6px;
+    }
+
+    @media (max-width: 375px) {
+        padding: 5px;
     }
 `;
 

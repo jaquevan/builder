@@ -24,9 +24,15 @@ const StyledBody = styled.div`
     margin: 0;
     padding: 1rem 0 0;
     min-height: 100vh;
+    padding-bottom: env(safe-area-inset-bottom);
 
     @media (max-width: 768px) {
         padding: 0.5rem 0 0;
+        padding-bottom: calc(env(safe-area-inset-bottom) + 20px);
+    }
+
+    @media (max-width: 430px) {
+        padding-bottom: calc(env(safe-area-inset-bottom) + 30px);
     }
 `;
 
@@ -82,22 +88,27 @@ const MainContentArea = styled.div`
     }
 
     @media (max-width: 480px) {
-        gap: 0.75rem;
-        padding-bottom: 60px;
+        gap: 0.5rem;
+        padding-bottom: 100px;
     }
 
     @media (max-width: 430px) {
-        gap: 0.6rem;
-        padding-bottom: 50px;
+        gap: 0.4rem;
+        padding-bottom: 110px;
     }
 
     @media (max-width: 393px) {
-        gap: 0.5rem;
-        padding-bottom: 45px;
+        gap: 0.3rem;
+        padding-bottom: 120px;
     }
 
     @media (max-width: 375px) {
-        padding-bottom: 40px;
+        gap: 0.2rem;
+        padding-bottom: 130px;
+    }
+
+    @media (max-width: 360px) {
+        padding-bottom: 140px;
     }
 `;
 
