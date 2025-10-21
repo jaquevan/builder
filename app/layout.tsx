@@ -4,6 +4,7 @@ import ClientThemeProvider from './ClientThemeProvider';
 import StyledComponentsRegistry from '../lib/registry';
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import ThemeMetaTags from './components/ThemeMetaTags';
 
 
 export const metadata: Metadata = {
@@ -177,7 +178,6 @@ export default function RootLayout({
     return (
         <html lang="en">
         <head>
-            <meta name="theme-color" content="#000000" />
             <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
             <meta name="apple-mobile-web-app-capable" content="yes" />
             <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -188,7 +188,10 @@ export default function RootLayout({
         </head>
         <body>
         <StyledComponentsRegistry>
-            <ClientThemeProvider>{children}</ClientThemeProvider>
+            <ClientThemeProvider>
+                <ThemeMetaTags />
+                {children}
+            </ClientThemeProvider>
         </StyledComponentsRegistry>
         <Analytics/>
         <SpeedInsights/>

@@ -89,26 +89,26 @@ const MainContentArea = styled.div`
 
     @media (max-width: 480px) {
         gap: 0.5rem;
-        padding-bottom: 100px;
+        padding-bottom: 140px;
     }
 
     @media (max-width: 430px) {
         gap: 0.4rem;
-        padding-bottom: 110px;
+        padding-bottom: 150px;
     }
 
     @media (max-width: 393px) {
         gap: 0.3rem;
-        padding-bottom: 120px;
+        padding-bottom: 160px;
     }
 
     @media (max-width: 375px) {
         gap: 0.2rem;
-        padding-bottom: 130px;
+        padding-bottom: 170px;
     }
 
     @media (max-width: 360px) {
-        padding-bottom: 140px;
+        padding-bottom: 180px;
     }
 `;
 

@@ -252,6 +252,14 @@ const StatLabel = styled.div`
     font-size: 0.7rem;
     color: rgba(255, 255, 255, 0.7);
     font-weight: 500;
+
+    @media (max-width: 480px) {
+        font-size: 0.6rem;
+    }
+
+    @media (max-width: 393px) {
+        font-size: 0.55rem;
+    }
 `;
 
 const StatValueText = styled.div`
@@ -262,6 +270,14 @@ const StatValueText = styled.div`
 
     @media (max-width: 600px) {
         font-size: 1rem;
+    }
+
+    @media (max-width: 480px) {
+        font-size: 0.9rem;
+    }
+
+    @media (max-width: 393px) {
+        font-size: 0.85rem;
     }
 `;
 
@@ -302,6 +318,18 @@ const HeatmapTitle = styled.div`
     display: flex;
     align-items: center;
     gap: 8px;
+
+    @media (max-width: 480px) {
+        font-size: 0.7rem;
+        margin-bottom: 8px;
+        gap: 6px;
+    }
+
+    @media (max-width: 393px) {
+        font-size: 0.65rem;
+        margin-bottom: 6px;
+        gap: 5px;
+    }
 `;
 
 const HeatmapWrapper = styled.div`
