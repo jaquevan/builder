@@ -194,19 +194,38 @@ const MonkeyImage = styled.img`
     height: 50px;
     object-fit: contain;
     opacity: 0;
-    transform: translateY(15px) scale(0);
+    transform: translateY(15px) scale(0) rotate(45deg);
     transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     pointer-events: none;
     z-index: 0;
 
+    @media (max-width: 1024px) {
+        width: 20px;
+        height: 20px;
+        top: -14px;
+        right: 5px;
+
+
+    }
+
     @media (max-width: 768px) {
-        width: 40px;
-        height: 40px;
+        display: none;
+    }
+
+    @media (max-width: 600px) {
+        display: none;
     }
 
     @media (max-width: 480px) {
-        width: 35px;
-        height: 35px;
+        width: 22px;
+        height: 22px;
+        top: -16px;
+    }
+
+    @media (max-width: 375px) {
+        width: 20px;
+        height: 20px;
+        top: -14px;
     }
 `;
 
@@ -303,15 +322,13 @@ const drawLine = keyframes`
 
 const TooltipWrapper = styled.div`
     position: relative;
-    display: inline-flex;
+    display: flex;
     width: 100%;
+    justify-content: center;
 `;
 
 const CustomTooltipContent = styled.div<{ $visible: boolean }>`
     position: absolute;
-    top: calc(100% + 14px);
-    left: 50%;
-    transform: translate(-50%, 0);
     background: rgba(18, 18, 18, 0.95);
     color: #ffffff;
     font-size: 0.7rem;
@@ -327,30 +344,76 @@ const CustomTooltipContent = styled.div<{ $visible: boolean }>`
     opacity: ${props => props.$visible ? 1 : 0};
     animation: ${props => props.$visible ? fadeInScale : 'none'} 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     transition: opacity 0.2s ease;
+
+    /* Desktop: bottom */
+    top: calc(100% + 14px);
+    left: 50%;
+    transform: translate(-50%, 0);
+
+    /* Mobile/Tablet: right side */
+    @media (max-width: 1024px) {
+        display: none;
+
+    }
+
+    @media (max-width: 600px) {
+        display: none;
+
+    }
 `;
 
 const TooltipPath = styled.svg<{ $visible: boolean }>`
     position: absolute;
-    top: calc(100% - 2px);
-    left: 50%;
-    transform: translateX(-50%);
-    width: 24px;
-    height: 22px;
     pointer-events: none;
     z-index: 999;
     opacity: ${props => props.$visible ? 1 : 0};
     transition: opacity 0.2s ease;
 
-    path {
-        stroke: var(--text-primary);
-        stroke-width: 1.7;
-        fill: none;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-        stroke-dasharray: 60;
-        stroke-dashoffset: ${props => props.$visible ? 0 : 60};
-        animation: ${props => props.$visible ? drawLine : 'none'} 2.5s ease-out;
-        opacity: 0.63;
+    &.desktop-scribble {
+        /* Desktop: vertical scribble at bottom */
+        top: calc(100% - 2px);
+        left: 50%;
+        transform: translateX(-50%);
+        width: 24px;
+        height: 22px;
+
+        @media (max-width: 1024px) {
+            display: none;
+        }
+
+        path {
+            stroke: var(--text-primary);
+            stroke-width: 1.7;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 60;
+            stroke-dashoffset: ${props => props.$visible ? 0 : 60};
+            animation: ${props => props.$visible ? drawLine : 'none'} 2.5s ease-out;
+            opacity: 0.63;
+        }
+    }
+
+    &.mobile-line {
+        /* Mobile/Tablet: horizontal straight line to the right */
+        display: none;
+
+        @media (max-width: 1024px) {
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            display: none;
+        }
+
+        line {
+            stroke: var(--text-primary);
+            stroke-width: 1.5;
+            stroke-dasharray: 10;
+            stroke-dashoffset: ${props => props.$visible ? 0 : 10};
+            animation: ${props => props.$visible ? drawLine : 'none'} 0.3s ease-out;
+            opacity: 0.63;
+        }
     }
 `;
 
@@ -367,8 +430,11 @@ export default function EnhancedButtons() {
                         <CustomTooltipContent $visible={hoveredButton === button.id}>
                             {button.tooltip}
                         </CustomTooltipContent>
-                        <TooltipPath $visible={hoveredButton === button.id}>
+                        <TooltipPath $visible={hoveredButton === button.id} className="desktop-scribble">
                             <path d="M 12 0 Q 14 2, 10 4 Q 6 5, 10 7 Q 14 8, 10 10 Q 8 11, 10 13 Q 12 14, 12 14" />
+                        </TooltipPath>
+                        <TooltipPath $visible={hoveredButton === button.id} className="mobile-line">
+                            <line x1="0" y1="1" x2="8" y2="1" />
                         </TooltipPath>
                         <ButtonWrapper
                             onMouseEnter={(e) => {
