@@ -322,7 +322,7 @@ export default function EnhancedButtons() {
                             }}
                         >
                             {button.id === "projects" && (
-                                <MonkeyImage src="/classic_dart_monkey.webp" alt="" />
+                                <MonkeyImage src="/Classic_dart_monkey.webp" alt="" />
                             )}
                             <StyledButton
                                 href={button.href}
