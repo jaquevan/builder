@@ -125,25 +125,28 @@ const Title = styled.h3`
 
 const ViewButton = styled(Button)`
     && {
-        background: rgba(52, 211, 153, 0.15);
-        color: #34D399;
+        background-color: transparent;
+        color: #ffffff;
         padding: 0.6rem 1.5rem;
         font-size: 0.95rem;
         font-weight: 500;
         text-transform: none;
         border-radius: 8px;
-        border: 1px solid rgba(52, 211, 153, 0.3);
-        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
         font-family: 'JetBrains Mono', monospace;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
         &:hover {
-            background: rgba(52, 211, 153, 0.25);
-            border-color: rgba(52, 211, 153, 0.5);
-            color: #34D399;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            background-color: transparent;
         }
 
         &:active {
-            transform: scale(0.98);
+            transform: translateY(0);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         }
 
         .MuiSvgIcon-root {
@@ -202,7 +205,7 @@ export default function ResumeCard() {
                     variant="contained"
                     startIcon={<DescriptionIcon />}
                 >
-                    View Resume
+                    click here
                 </ViewButton>
             </Card>
         </Container>
