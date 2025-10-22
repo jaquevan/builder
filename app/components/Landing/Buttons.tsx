@@ -331,25 +331,26 @@ const CustomTooltipContent = styled.div<{ $visible: boolean }>`
 
 const TooltipPath = styled.svg<{ $visible: boolean }>`
     position: absolute;
-    top: calc(100%);
+    top: calc(100% - 2px);
     left: 50%;
     transform: translateX(-50%);
     width: 24px;
-    height: 14px;
+    height: 22px;
     pointer-events: none;
     z-index: 999;
     opacity: ${props => props.$visible ? 1 : 0};
     transition: opacity 0.2s ease;
 
     path {
-        stroke: rgba(255, 255, 255, 0.63);
-        stroke-width: 1.5;
+        stroke: var(--text-primary);
+        stroke-width: 1.7;
         fill: none;
         stroke-linecap: round;
         stroke-linejoin: round;
         stroke-dasharray: 60;
         stroke-dashoffset: ${props => props.$visible ? 0 : 60};
         animation: ${props => props.$visible ? drawLine : 'none'} 2.5s ease-out;
+        opacity: 0.63;
     }
 `;
 
