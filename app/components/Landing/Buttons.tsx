@@ -1,6 +1,6 @@
 "use client";
+import React from "react";
 import styled, { keyframes } from "styled-components";
-import { Tooltip } from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import FolderIcon from "@mui/icons-material/Folder";
@@ -281,28 +281,97 @@ const ButtonText = styled.span`
     font-size: calc(.5rem + 0.5vw);
 `;
 
+const fadeInScale = keyframes`
+    from {
+        opacity: 0;
+        transform: translate(-50%, -5px) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0) scale(1);
+    }
+`;
+
+const drawLine = keyframes`
+    from {
+        stroke-dashoffset: 50;
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
+`;
+
+const TooltipWrapper = styled.div`
+    position: relative;
+    display: inline-flex;
+    width: 100%;
+`;
+
+const CustomTooltipContent = styled.div<{ $visible: boolean }>`
+    position: absolute;
+    top: calc(100% + 14px);
+    left: 50%;
+    transform: translate(-50%, 0);
+    background: rgba(18, 18, 18, 0.95);
+    color: #ffffff;
+    font-size: 0.7rem;
+    font-family: "JetBrains Mono", monospace;
+    padding: 4px 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 1000;
+    opacity: ${props => props.$visible ? 1 : 0};
+    animation: ${props => props.$visible ? fadeInScale : 'none'} 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: opacity 0.2s ease;
+`;
+
+const TooltipPath = styled.svg<{ $visible: boolean }>`
+    position: absolute;
+    top: calc(100%);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 24px;
+    height: 14px;
+    pointer-events: none;
+    z-index: 999;
+    opacity: ${props => props.$visible ? 1 : 0};
+    transition: opacity 0.2s ease;
+
+    path {
+        stroke: rgba(255, 255, 255, 0.63);
+        stroke-width: 1.5;
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-dasharray: 60;
+        stroke-dashoffset: ${props => props.$visible ? 0 : 60};
+        animation: ${props => props.$visible ? drawLine : 'none'} 2.5s ease-out;
+    }
+`;
+
 export default function EnhancedButtons() {
+    const [hoveredButton, setHoveredButton] = React.useState<string | null>(null);
+
     return (
         <>
             <Name className="fade-in">Evan Jaquez</Name>
             <SubText className="fade-in">UX Designer & Researcher</SubText>
             <ButtonContainer className="fade-in" role="navigation" aria-label="Social links and navigation">
                 {buttons.map((button) => (
-                    <Tooltip
-                        title={button.tooltip}
-                        key={button.id}
-                        arrow
-                        placement="bottom"
-                        componentsProps={{
-                            tooltip: {
-                                sx: {
-                                    textAlign: 'center'
-                                }
-                            }
-                        }}
-                    >
+                    <TooltipWrapper key={button.id}>
+                        <CustomTooltipContent $visible={hoveredButton === button.id}>
+                            {button.tooltip}
+                        </CustomTooltipContent>
+                        <TooltipPath $visible={hoveredButton === button.id}>
+                            <path d="M 12 0 Q 14 2, 10 4 Q 6 5, 10 7 Q 14 8, 10 10 Q 8 11, 10 13 Q 12 14, 12 14" />
+                        </TooltipPath>
                         <ButtonWrapper
                             onMouseEnter={(e) => {
+                                setHoveredButton(button.id);
                                 if (button.id === "projects") {
                                     const monkey = e.currentTarget.querySelector('img');
                                     if (monkey) {
@@ -312,6 +381,7 @@ export default function EnhancedButtons() {
                                 }
                             }}
                             onMouseLeave={(e) => {
+                                setHoveredButton(null);
                                 if (button.id === "projects") {
                                     const monkey = e.currentTarget.querySelector('img');
                                     if (monkey) {
@@ -337,7 +407,7 @@ export default function EnhancedButtons() {
                                 <ButtonText>{button.text}</ButtonText>
                             </StyledButton>
                         </ButtonWrapper>
-                    </Tooltip>
+                    </TooltipWrapper>
                 ))}
             </ButtonContainer>
         </>
