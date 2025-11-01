@@ -1,50 +1,39 @@
 "use client";
+import React from "react";
 import styled, { keyframes } from "styled-components";
-import { Tooltip } from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import WorkIcon from "@mui/icons-material/Work";
+import FolderIcon from "@mui/icons-material/Folder";
 
 const buttons = [
-    {
-        id: "projects",
-        text: "Projects",
-        href: "/projects",
-        icon: <WorkIcon />,
-        gradient: "linear-gradient(135deg, #6a11cb, #2575fc)",
-        tooltip: "View Projects"
-    },
     {
         id: "linkedin",
         text: "LinkedIn",
         href: "https://www.linkedin.com/in/evan-jaquez-118b5b294/",
         icon: <LinkedInIcon />,
-        gradient: "linear-gradient(135deg, #0077b5, #00a0dc)",
+        color: "#0077b5",
         tooltip: "Connect on LinkedIn"
+    },
+    {
+        id: "projects",
+        text: "Projects",
+        href: "/projects",
+        icon: <FolderIcon />,
+        color: "#00843D",
+        tooltip: "View Projects"
     },
     {
         id: "github",
         text: "GitHub",
         href: "https://www.github.com/jaquevan",
         icon: <GitHubIcon />,
-        gradient: "linear-gradient(135deg, #24292e, #4a4a4a)",
-        tooltip: "View GitHub Projects"
+        color: "#343c40",
+        tooltip: "View GitHub Profile"
     }
 ];
 
-const pulse = keyframes`
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
-`;
-
-const shimmer = keyframes`
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
-`;
-
 interface StyledButtonProps {
-    $gradient?: string;
+    $color?: string;
 }
 
 const ButtonContainer = styled.div`
@@ -133,30 +122,110 @@ const SubText = styled.h2`
     margin: 0;
     padding: 0;
     font-size: clamp(1rem, 3vw, 1.5rem);
-    color: #00843D;
     font-family: Monospaced, "JetBrains Mono", sans-serif;
     line-height: 1.2;
-    text-align: center; // centered on all screen sizes
+    text-align: center;
+    
 
     @media (max-width: 768px) {
         font-size: clamp(0.9rem, 4vw, 1.2rem);
     }
 
     @media (max-width: 600px) {
-        font-size: clamp(0.8rem, 3.5vw, 1rem); // reduced size
+        font-size: clamp(0.8rem, 3.5vw, 1rem);
         line-height: 1.1;
     }
 
     @media (max-width: 480px) {
-        font-size: clamp(0.75rem, 3.5vw, 0.95rem); // reduced size
+        font-size: clamp(0.75rem, 3.5vw, 0.95rem);
     }
 
     @media (max-width: 375px) {
-        font-size: clamp(0.7rem, 3vw, 0.9rem); // reduced size
+        font-size: clamp(0.7rem, 3vw, 0.9rem);
     }
 
     @media (max-width: 320px) {
-        font-size: clamp(0.65rem, 2.8vw, 0.85rem); // smaller for tiny screens
+        font-size: clamp(0.65rem, 2.8vw, 0.85rem);
+    }
+`;
+
+const ButtonWrapper = styled.div`
+    position: relative;
+    display: flex;
+    flex: 1;
+    min-width: clamp(130px, 15vw, 160px);
+    max-width: clamp(160px, 20vw, 200px);
+
+    @media (max-width: 1024px) {
+        max-width: 300px;
+        flex: 0 1 calc(80% - 1rem);
+    }
+
+    @media (max-width: 768px) {
+        flex: 0 1 calc(45% - 0.5rem);
+        min-width: 120px;
+        max-width: 160px;
+    }
+
+    @media (max-width: 600px) {
+        flex: 0 1 calc(45% - 0.3rem);
+        min-width: 95px;
+        max-width: 130px;
+    }
+
+    @media (max-width: 480px) {
+        flex: 0 1 calc(45% - 0.3rem);
+        min-width: 90px;
+        max-width: 120px;
+    }
+
+    @media (max-width: 375px) {
+        flex: 0 1 calc(45% - 0.25rem);
+        min-width: 85px;
+        max-width: 110px;
+    }
+`;
+
+const MonkeyImage = styled.img`
+    position: absolute;
+    top: -32px;
+    right: 5px;
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    opacity: 0;
+    transform: translateY(15px) scale(0) rotate(45deg);
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    pointer-events: none;
+    z-index: 0;
+
+    @media (max-width: 1024px) {
+        width: 20px;
+        height: 20px;
+        top: -14px;
+        right: 5px;
+
+
+    }
+
+    @media (max-width: 768px) {
+        display: none;
+    }
+
+    @media (max-width: 600px) {
+        display: none;
+    }
+
+    @media (max-width: 480px) {
+        width: 22px;
+        height: 22px;
+        top: -16px;
+    }
+
+    @media (max-width: 375px) {
+        width: 20px;
+        height: 20px;
+        top: -14px;
     }
 `;
 
@@ -172,92 +241,44 @@ const StyledButton = styled.a<StyledButtonProps>`
     font-weight: 500;
     text-decoration: none;
     color: #fff;
-    background: ${props => props.$gradient || "linear-gradient(135deg, #2c3e50, #4c6b8a)"};
-    background-size: 200% 200%;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
-    flex: 1;
-    min-width: clamp(130px, 15vw, 160px);
-    max-width: clamp(160px, 20vw, 200px);
-    overflow: hidden;
-    z-index: 2;
+    background: ${props => props.$color || "#2c3e50"};
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    z-index: 1;
 
     &:hover, &:focus {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-        color: white;
-
-        & .icon {
-            animation: ${pulse} 1.5s ease-in-out infinite;
-        }
-
-        &::after {
-            opacity: 1;
-        }
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     }
 
     &:active {
-        transform: translateY(1px);
-        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
-    }
-
-    &::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(
-                90deg,
-                rgba(255, 255, 255, 0) 0%,
-                rgba(255, 255, 255, 0.1) 50%,
-                rgba(255, 255, 255, 0) 100%
-        );
-        background-size: 200% 100%;
-        opacity: 0;
-        z-index: -1;
-        animation: ${shimmer} 1.5s infinite;
-        transition: opacity 0.3s ease-in-out;
-        border-radius: inherit;
+        transform: translateY(0);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     }
 
     @media (max-width: 1024px) {
-        max-width: 300px;
-        flex: 0 1 calc(80% - 1rem);
         padding: 0.8rem 1rem;
         font-size: 1rem;
     }
 
     @media (max-width: 768px) {
-        flex: 0 1 calc(45% - 0.5rem);
-        min-width: 120px;
-        max-width: 160px;
         padding: 0.7rem 0.9rem;
         font-size: 0.9rem;
     }
 
     @media (max-width: 600px) {
-        flex: 0 1 calc(45% - 0.3rem);
-        min-width: 95px;
-        max-width: 130px;
-        padding: 0.45rem 0.6rem; // much reduced padding
+        padding: 0.45rem 0.6rem;
         font-size: 0.8rem;
     }
 
     @media (max-width: 480px) {
-        flex: 0 1 calc(45% - 0.3rem);
-        min-width: 90px;
-        max-width: 120px;
-        padding: 0.4rem 0.55rem; // much reduced padding
+        padding: 0.4rem 0.55rem;
         font-size: 0.75rem;
     }
 
     @media (max-width: 375px) {
-        flex: 0 1 calc(45% - 0.25rem);
-        min-width: 85px;
-        max-width: 110px;
-        padding: 0.35rem 0.5rem; // much reduced padding
+        padding: 0.35rem 0.5rem;
         font-size: 0.7rem;
     }
 `;
@@ -279,27 +300,181 @@ const ButtonText = styled.span`
     font-size: calc(.5rem + 0.5vw);
 `;
 
+const fadeInScale = keyframes`
+    from {
+        opacity: 0;
+        transform: translate(-50%, -5px) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0) scale(1);
+    }
+`;
+
+const drawLine = keyframes`
+    from {
+        stroke-dashoffset: 50;
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
+`;
+
+const TooltipWrapper = styled.div`
+    position: relative;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+`;
+
+const CustomTooltipContent = styled.div<{ $visible: boolean }>`
+    position: absolute;
+    background: rgba(18, 18, 18, 0.95);
+    color: #ffffff;
+    font-size: 0.7rem;
+    font-family: "JetBrains Mono", monospace;
+    padding: 4px 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 1000;
+    opacity: ${props => props.$visible ? 1 : 0};
+    animation: ${props => props.$visible ? fadeInScale : 'none'} 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: opacity 0.2s ease;
+
+    /* Desktop: bottom */
+    top: calc(100% + 14px);
+    left: 50%;
+    transform: translate(-50%, 0);
+
+    /* Mobile/Tablet: right side */
+    @media (max-width: 1024px) {
+        display: none;
+
+    }
+
+    @media (max-width: 600px) {
+        display: none;
+
+    }
+`;
+
+const TooltipPath = styled.svg<{ $visible: boolean }>`
+    position: absolute;
+    pointer-events: none;
+    z-index: 999;
+    opacity: ${props => props.$visible ? 1 : 0};
+    transition: opacity 0.2s ease;
+
+    &.desktop-scribble {
+        /* Desktop: vertical scribble at bottom */
+        top: calc(100% - 2px);
+        left: 50%;
+        transform: translateX(-50%);
+        width: 24px;
+        height: 22px;
+
+        @media (max-width: 1024px) {
+            display: none;
+        }
+
+        path {
+            stroke: var(--text-primary);
+            stroke-width: 1.7;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 60;
+            stroke-dashoffset: ${props => props.$visible ? 0 : 60};
+            animation: ${props => props.$visible ? drawLine : 'none'} 2.5s ease-out;
+            opacity: 0.63;
+        }
+    }
+
+    &.mobile-line {
+        /* Mobile/Tablet: horizontal straight line to the right */
+        display: none;
+
+        @media (max-width: 1024px) {
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            display: none;
+        }
+
+        line {
+            stroke: var(--text-primary);
+            stroke-width: 1.5;
+            stroke-dasharray: 10;
+            stroke-dashoffset: ${props => props.$visible ? 0 : 10};
+            animation: ${props => props.$visible ? drawLine : 'none'} 0.3s ease-out;
+            opacity: 0.63;
+        }
+    }
+`;
+
 export default function EnhancedButtons() {
+    const [hoveredButton, setHoveredButton] = React.useState<string | null>(null);
+
     return (
         <>
             <Name className="fade-in">Evan Jaquez</Name>
             <SubText className="fade-in">UX Designer & Researcher</SubText>
             <ButtonContainer className="fade-in" role="navigation" aria-label="Social links and navigation">
                 {buttons.map((button) => (
-                    <Tooltip title={button.tooltip} key={button.id} arrow>
-                        <StyledButton
-                            href={button.href}
-                            target={button.href.startsWith("http") ? "_blank" : "_self"}
-                            rel={button.href.startsWith("http") ? "noopener noreferrer" : ""}
-                            $gradient={button.gradient}
-                            aria-label={button.tooltip}
+                    <TooltipWrapper key={button.id}>
+                        <CustomTooltipContent $visible={hoveredButton === button.id}>
+                            {button.tooltip}
+                        </CustomTooltipContent>
+                        <TooltipPath $visible={hoveredButton === button.id} className="desktop-scribble">
+                            <path d="M 12 0 Q 14 2, 10 4 Q 6 5, 10 7 Q 14 8, 10 10 Q 8 11, 10 13 Q 12 14, 12 14" />
+                        </TooltipPath>
+                        <TooltipPath $visible={hoveredButton === button.id} className="mobile-line">
+                            <line x1="0" y1="1" x2="8" y2="1" />
+                        </TooltipPath>
+                        <ButtonWrapper
+                            onMouseEnter={(e) => {
+                                setHoveredButton(button.id);
+                                if (button.id === "projects") {
+                                    const monkey = e.currentTarget.querySelector('img');
+                                    if (monkey) {
+                                        (monkey as HTMLElement).style.opacity = '1';
+                                        (monkey as HTMLElement).style.transform = 'translateY(0) scale(1)';
+                                    }
+                                }
+                            }}
+                            onMouseLeave={(e) => {
+                                setHoveredButton(null);
+                                if (button.id === "projects") {
+                                    const monkey = e.currentTarget.querySelector('img');
+                                    if (monkey) {
+                                        (monkey as HTMLElement).style.opacity = '0';
+                                        (monkey as HTMLElement).style.transform = 'translateY(15px) scale(0)';
+                                    }
+                                }
+                            }}
                         >
-                            <IconWrapper className="icon">
-                                {button.icon}
-                            </IconWrapper>
-                            <ButtonText>{button.text}</ButtonText>
-                        </StyledButton>
-                    </Tooltip>
+                            {button.id === "projects" && (
+                                <MonkeyImage src="/Classic_dart_monkey.webp" alt="" />
+                            )}
+                            <StyledButton
+                                href={button.href}
+                                target={button.href.startsWith("http") ? "_blank" : "_self"}
+                                rel={button.href.startsWith("http") ? "noopener noreferrer" : ""}
+                                $color={button.color}
+                                aria-label={button.tooltip}
+                            >
+                                <IconWrapper className="icon">
+                                    {button.icon}
+                                </IconWrapper>
+                                <ButtonText>{button.text}</ButtonText>
+                            </StyledButton>
+                        </ButtonWrapper>
+                    </TooltipWrapper>
                 ))}
             </ButtonContainer>
         </>

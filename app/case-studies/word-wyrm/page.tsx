@@ -465,7 +465,7 @@ export default function WordWyrm() {
                         the platform based on user feedback and testing.
                     </Paragraph>
                     <PrototypeLink
-                        href="https://word-wyrm-front-end.vercel.app/"
+                        href="https://word-wyrm.vercel.app/"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
