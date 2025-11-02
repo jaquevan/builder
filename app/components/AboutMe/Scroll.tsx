@@ -104,9 +104,8 @@ export default function Scroll() {
     return (
         <>
             <MusicContainer>
-                <h1>Music</h1>
                 <FlexContainer>
-                    <SpotifyEmbed />
+                    {/* <SpotifyEmbed /> */}
                     <Drumline />
                 </FlexContainer>
                 <EssenceText>

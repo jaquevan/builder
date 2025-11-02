@@ -66,14 +66,13 @@ const CardsGrid = styled.div`
 `;
 
 const Card = styled.div`
-    background: rgba(255, 255, 255, 0.05);
+    background: transparent;
     border-radius: 12px;
     padding: 1.5rem;
-    border: 1px solid var(--border);
+    border: none;
     animation: ${fadeIn} 0.7s cubic-bezier(0.4,0,0.2,1);
     width: 100%;
     max-width: 600px;
-    box-shadow: 0 4px 16px var(--shadow);
     margin: 0 auto;
     box-sizing: border-box;
 
@@ -124,8 +123,8 @@ const Text = styled.p`
 `;
 
 const FirstGenCard = styled(Card)`
-    background: rgba(255, 255, 255, 0.08);
-    border: 2px solid var(--primary);
+    background: transparent;
+    border: none;
 `;
 
 const FirstGenTitle = styled(SectionTitle)`

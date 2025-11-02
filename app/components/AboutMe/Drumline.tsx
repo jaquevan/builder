@@ -10,8 +10,8 @@ const fadeIn = keyframes`
 `;
 
 const DrumlineContainer = styled.div`
-    width: 100%;
-    max-width: 900px;
+    width: 90vw;
+    max-width: 1200px;
     height: 100%;
     padding: 2.95rem 2rem;
     border-radius: 18px;
@@ -31,14 +31,13 @@ const DrumlineContainer = styled.div`
     @media (max-width: 768px) {
         padding: 1.5rem 1.5rem;
         border-radius: 12px;
-        width: 90%;
+        width: 90vw;
     }
 
     @media (max-width: 480px) {
         padding: 1rem;
         border-radius: 8px;
-        width: calc(100% - 2rem);
-        max-width: calc(100% - 2rem);
+        width: 90vw;
         margin: 0 auto;
         display: flex;
         flex-direction: column;
@@ -107,6 +106,7 @@ const Description = styled.div`
     margin: 1.8rem 0;
     font-weight: 400;
     width: 100%;
+    max-width: 700px;
     box-sizing: border-box;
     color: var(--text-secondary);
 
@@ -114,12 +114,14 @@ const Description = styled.div`
         font-size: 1rem;
         line-height: 1.7;
         margin: 1.2rem 0;
+        max-width: 600px;
     }
 
     @media (max-width: 480px) {
         font-size: 0.95rem;
         line-height: 1.6;
         margin: 1rem 0;
+        max-width: 90%;
     }
 `;
 

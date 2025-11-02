@@ -2,8 +2,8 @@
 
 import Nav from '@/app/components/NavBar';
 import styled, { keyframes } from 'styled-components';
-import { Container, Paper } from '@mui/material';
-import { Work, LocationOn, VolunteerActivism } from '@mui/icons-material';
+import { Container } from '@mui/material';
+import { Work, LocationOn } from '@mui/icons-material';
 import Image from 'next/image';
 
 const colors = {
@@ -20,11 +20,6 @@ const fadeIn = keyframes`
     to { opacity: 1; }
 `;
 
-const slideIn = keyframes`
-    from { transform: translateY(50px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-`;
-
 const PageContent = styled.div`
     width: 100%;
     min-height: 85vh;
@@ -38,12 +33,27 @@ const PageContent = styled.div`
 const Title = styled.h1`
     font-size: 2.5rem;
     font-weight: bold;
-    margin: 1rem 0;
+    margin: 1rem 0 0.5rem;
     font-family: 'JetBrains Mono', monospace;
     text-align: center;
 
     @media (max-width: 600px) {
         font-size: 2rem;
+    }
+`;
+
+const Subtitle = styled.p`
+    font-size: 1.15rem;
+    color: #666;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+    @media (max-width: 600px) {
+        font-size: 1rem;
+        padding: 0 1rem;
     }
 `;
 
@@ -73,19 +83,19 @@ const SectionTitle = styled.h2`
 `;
 
 //card styles
-const ExpCard = styled(Paper)`
+const ExpCard = styled.div`
     width: 100%;
     max-width: 700px;
     margin: 1.5rem auto;
-    border-radius: 12px;
-    animation: ${slideIn} 0.7s ease-out;
+    border-radius: 8px;
     overflow: hidden;
-    transition: transform 0.2s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    background: white;
 
     &:hover {
         transform: translateY(-4px);
-        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12), 0 6px 12px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
     }
 
     @media (max-width: 768px) {
@@ -94,46 +104,34 @@ const ExpCard = styled(Paper)`
 `;
 
 const CardHeader = styled.div`
-    background: linear-gradient(135deg, ${(props) => props.color || colors.green} 0%, ${(props) => {
-        const color = props.color || colors.green;
-        // Darken the color slightly for gradient
-        return color === colors.green ? '#006d31' :
-               color === colors.orange ? '#d67500' :
-               color === colors.blue ? '#002c7a' :
-               color === colors.teal ? '#006666' : color;
-    }} 100%);
+    background: ${(props) => props.color || colors.green};
     color: white;
-    padding: 1rem 1.5rem;
+    padding: 1.25rem 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-family: 'JetBrains Mono', monospace;
-    position: relative;
-
-    &::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
-        background: rgba(255, 255, 255, 0.3);
-    }
 
     @media (max-width: 600px) {
         flex-direction: column;
         align-items: flex-start;
         gap: 0.5rem;
-        padding: 0.875rem 1.25rem;
+        padding: 1rem 1.25rem;
     }
 `;
 
 const JobTitle = styled.div`
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 600;
     display: flex;
     align-items: center;
     gap: 8px;
+`;
+
+const DateText = styled.span`
+    font-size: 0.9rem;
+    opacity: 0.9;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 `;
 
 const CardBody = styled.div`
@@ -189,13 +187,13 @@ const TechStack = styled.div`
     gap: 0.5rem;
     margin-top: 1.25rem;
     padding-top: 1rem;
-    border-top: 1px solid #f0f0f0;
+    border-top: 1px solid #eee;
 `;
 
 const TechTag = styled.span`
-    background: #f5f5f5;
+    background: #f8f9fa;
     color: #555;
-    padding: 0.35rem 0.75rem;
+    padding: 0.4rem 0.8rem;
     border-radius: 6px;
     font-size: 0.85rem;
     font-family: 'JetBrains Mono', monospace;
@@ -203,12 +201,10 @@ const TechTag = styled.span`
     display: flex;
     align-items: center;
     gap: 6px;
-    border: 1px solid #e0e0e0;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
+    transition: all 0.2s ease;
 
     &:hover {
-        background-color: #ebebeb;
-        border-color: #d0d0d0;
+        background-color: #e9ecef;
     }
 `;
 
@@ -245,12 +241,15 @@ export default function ExperiencePage() {
             <Container>
                 <PageContent>
                     <Title>Relevant Experience</Title>
+                    <Subtitle>
+                        User-centered designer focused on civic tech, community impact, and accessible digital experiences
+                    </Subtitle>
 
                     {/* BU Spark UX PM */}
-                    <ExpCard elevation={2}>
+                    <ExpCard>
                         <CardHeader color={colors.green}>
                             <JobTitle>UX Design Project Manager</JobTitle>
-                            <span>September 2025 - Present</span>
+                            <DateText>September 2025 - Present</DateText>
                         </CardHeader>
                         <CardBody>
                             <Company><Work/><span>Boston University Spark!</span></Company>
@@ -269,10 +268,10 @@ export default function ExperiencePage() {
                     </ExpCard>
 
                     {/* La Colaborativa */}
-                    <ExpCard elevation={2}>
+                    <ExpCard>
                         <CardHeader color={colors.orange}>
                             <JobTitle>UI/UX Design and Web Development Intern</JobTitle>
-                            <span>May 2025 - August 2025</span>
+                            <DateText>May 2025 - August 2025</DateText>
                         </CardHeader>
                         <CardBody>
                             <Company><Work/><span>La Colaborativa</span></Company>
@@ -296,10 +295,10 @@ export default function ExperiencePage() {
                     </ExpCard>
 
                     {/* BU Spark UX Intern */}
-                    <ExpCard elevation={2}>
+                    <ExpCard>
                         <CardHeader color={colors.green}>
                             <JobTitle>UX Intern - Special Initiatives</JobTitle>
-                            <span>January 2025 - Present</span>
+                            <DateText>January 2025 - Present</DateText>
                         </CardHeader>
                         <CardBody>
                             <Company><Work/><span>Boston University Spark!</span></Company>
@@ -319,10 +318,10 @@ export default function ExperiencePage() {
                     </ExpCard>
 
                     {/* Blue Dev Digital */}
-                    <ExpCard elevation={2}>
+                    <ExpCard>
                         <CardHeader color={colors.blue}>
                             <JobTitle>Front-End Developer & UX Researcher</JobTitle>
-                            <span>Aug 2024 - Present</span>
+                            <DateText>Aug 2024 - Present</DateText>
                         </CardHeader>
                         <CardBody>
                             <Company><Work/><span>Blue Dev Digital</span></Company>
@@ -338,13 +337,13 @@ export default function ExperiencePage() {
                         </CardBody>
                     </ExpCard>
 
-                    <SectionTitle>Volunteer & Other</SectionTitle>
+                    <Title>Volunteer & Other</Title>
 
                     {/* Course Grader */}
-                    <ExpCard elevation={2}>
+                    <ExpCard>
                         <CardHeader color={colors.teal}>
-                            <JobTitle>Course Grader - CS411: Software Development Life Cycle</JobTitle>
-                            <span>August 2025 - Present</span>
+                            <JobTitle>Course Grader - CS411: Software Engineering</JobTitle>
+                            <DateText>August 2025 - Present</DateText>
                         </CardHeader>
                         <CardBody>
                             <Company><Work/><span>Boston University, College of Arts & Sciences</span></Company>
@@ -364,10 +363,10 @@ export default function ExperiencePage() {
                     </ExpCard>
 
                     {/* Hack4impact */}
-                    <ExpCard elevation={2}>
+                    <ExpCard>
                         <CardHeader color={colors.teal}>
                             <JobTitle>UI/UX Designer</JobTitle>
-                            <span>May 2025 - Present</span>
+                            <DateText>May 2025 - Present</DateText>
                         </CardHeader>
                         <CardBody>
                             <Company><Work/><span>Hack4Impact Boston University</span></Company>
@@ -383,10 +382,10 @@ export default function ExperiencePage() {
                     </ExpCard>
 
                     {/* Our National Conversation */}
-                    <ExpCard elevation={2}>
+                    <ExpCard>
                         <CardHeader color={colors.teal}>
                             <JobTitle>Software Engineer Intern</JobTitle>
-                            <span>July 2024 - May 2025</span>
+                            <DateText>July 2024 - May 2025</DateText>
                         </CardHeader>
                         <CardBody>
                             <Company><Work/> Our National Conversation</Company>
