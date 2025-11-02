@@ -81,7 +81,7 @@ export const metadata: Metadata = {
         siteName: "Evan Jaquez Portfolio",
         images: [
             {
-                url: '/pfp2.jpg',
+                url: '/snare_close.png',
                 width: 1200,
                 height: 630,
                 alt: 'Evan Jaquez - Software Engineer & UX Researcher/Designer',
@@ -92,7 +92,7 @@ export const metadata: Metadata = {
         card: "summary_large_image",
         title: "Evan Jaquez - Software Engineer & UX Researcher/Designer @ Boston University",
         description: "Portfolio of Evan Jaquez - CS & Econ student at BU. Frontend dev, UX designer, civic tech enthusiast.",
-        images: ['/pfp2.jpg'],
+        images: ['/snare_close.png'],
     },
     robots: {
         index: true,
