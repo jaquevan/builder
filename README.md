@@ -1,13 +1,9 @@
 ![image](https://github.com/user-attachments/assets/85cdd949-020a-4990-82f6-2cc4d3c0a6fb)
 
-# Builder
+# jaquevan.com
 
-## Under Development ... 🚧🏗️ - Evan Jaquez Active Portfolio Site 
+## 🚧🏗️ - Evan Jaquez Portfolio Site 
 
-## Features
-- Responsive design
-- Real-time updates
-- Detailed project portfolio
 
 ## Installation
 To get started with the project, follow these steps:
@@ -39,3 +35,4 @@ For any inquiries or feedback, feel free to reach out:
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
